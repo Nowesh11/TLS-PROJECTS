@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Tamil Language Society</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/logo.svg" alt="Tamil Language Society" class="logo-img">
+                <span class="logo-text">தமிழ் மொழி சமூகம்</span>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link active">About Us</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="ebooks.html" class="nav-link">Ebooks</a>
+                <a href="books.html" class="nav-link">Books Selling</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+                <a href="donate.html" class="nav-link donate-btn">Donate Now</a>
+                <a href="notifications.html" class="nav-link notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-dot" id="notification-dot"></span>
+                </a>
+                <a href="login.html" class="nav-link">Login</a>
+                <a href="signup.html" class="nav-link signup-btn">Sign Up</a>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 60vh;">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+            <div class="hero-pattern"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text" style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <h1 class="hero-title">
+                    <span class="english-title">About Tamil Language Society</span>
+                    <span class="tamil-title">தமிழ் மொழி சமூகம் பற்றி</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Preserving, promoting, and celebrating the rich heritage of Tamil language and culture for future generations
+                </p>
+                <p class="tamil-quote">
+                    "தமிழர் அடையாளம் தமிழ் மொழியில் அடங்கியுள்ளது"
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="english">Our Mission</span>
+                <span class="tamil">எங்கள் நோக்கம்</span>
+            </h2>
+            
+            <div class="card" style="max-width: 900px; margin: 0 auto;">
+                <div class="card-body" style="text-align: center; padding: 3rem;">
+                    <div class="feature-icon" style="margin: 0 auto 2rem;">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--primary-blue);">
+                        வளர்ச்சி மற்றும் பாதுகாப்பு
+                    </h3>
+                    <p style="font-size: 1.125rem; line-height: 1.8; color: var(--gray-600); margin-bottom: 2rem;">
+                        Tamil Language Society is dedicated to preserving, promoting, and advancing the Tamil language and its rich cultural heritage. Our mission is to create a vibrant community that celebrates Tamil literature, arts, traditions, and values while adapting to the modern world.
+                    </p>
+                    <p class="tamil-text" style="font-family: var(--font-tamil); font-size: 1.125rem; line-height: 1.8; color: var(--primary-blue);">
+                        தமிழ் மொழி சமூகம் தமிழ் மொழி மற்றும் அதன் வளமான கலாச்சார பாரம்பரியத்தை பாதுகாக்க, ஊக்குவிக்க மற்றும் முன்னேற்ற அர்ப்பணிக்கப்பட்டுள்ளது.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="stats" style="background: var(--gray-50); color: var(--gray-800);">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 3rem;">
+                <span class="english" style="color: var(--gray-900);">Our Core Values</span>
+                <span class="tamil" style="color: var(--primary-blue);">எங்கள் அடிப்படை மதிப்புகள்</span>
+            </h2>
+            
+            <div class="features-grid">
+                <div class="feature-card hover-lift">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Education</h3>
+                    <h4 class="tamil-text" style="font-family: var(--font-tamil); color: var(--primary-blue); margin-bottom: 1rem;">கல்வி</h4>
+                    <p>Promoting Tamil education through innovative learning resources, digital platforms, and community programs that make learning accessible to all.</p>
+                </div>
+                
+                <div class="feature-card hover-lift">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community</h3>
+                    <h4 class="tamil-text" style="font-family: var(--font-tamil); color: var(--primary-blue); margin-bottom: 1rem;">சமூகம்</h4>
+                    <p>Building a strong, connected community of Tamil language enthusiasts, scholars, and learners across the globe.</p>
+                </div>
+                
+                <div class="feature-card hover-lift">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Preservation</h3>
+                    <h4 class="tamil-text" style="font-family: var(--font-tamil); color: var(--primary-blue); margin-bottom: 1rem;">பாதுகாப்பு</h4>
+                    <p>Safeguarding Tamil literature, traditions, and cultural practices for future generations through digital archival and documentation.</p>
+                </div>
+                
+                <div class="feature-card hover-lift">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Global Reach</h3>
+                    <h4 class="tamil-text" style="font-family: var(--font-tamil); color: var(--primary-blue); margin-bottom: 1rem;">உலகளாவிய அணுகல்</h4>
+                    <p>Connecting Tamil communities worldwide and promoting Tamil language and culture on an international scale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="english">Our Journey</span>
+                <span class="tamil">எங்கள் பயணம்</span>
+            </h2>
+            
+            <div class="timeline" style="max-width: 800px; margin: 0 auto;">
+                <div class="timeline-item" style="display: flex; gap: 2rem; margin-bottom: 3rem; padding: 2rem; background: white; border-radius: 1rem; box-shadow: var(--shadow-lg);">
+                    <div class="timeline-year" style="min-width: 100px; font-size: 2rem; font-weight: 700; color: var(--primary-blue);">2020</div>
+                    <div class="timeline-content">
+                        <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Foundation</h3>
+                        <p style="color: var(--gray-600); line-height: 1.6;">Tamil Language Society was founded with a vision to create a comprehensive digital platform for Tamil language learning and cultural preservation.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" style="display: flex; gap: 2rem; margin-bottom: 3rem; padding: 2rem; background: white; border-radius: 1rem; box-shadow: var(--shadow-lg);">
+                    <div class="timeline-year" style="min-width: 100px; font-size: 2rem; font-weight: 700; color: var(--primary-blue);">2021</div>
+                    <div class="timeline-content">
+                        <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Digital Library Launch</h3>
+                        <p style="color: var(--gray-600); line-height: 1.6;">Launched our comprehensive digital library with thousands of Tamil books, literature, and educational resources.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" style="display: flex; gap: 2rem; margin-bottom: 3rem; padding: 2rem; background: white; border-radius: 1rem; box-shadow: var(--shadow-lg);">
+                    <div class="timeline-year" style="min-width: 100px; font-size: 2rem; font-weight: 700; color: var(--primary-blue);">2022</div>
+                    <div class="timeline-content">
+                        <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Global Expansion</h3>
+                        <p style="color: var(--gray-600); line-height: 1.6;">Expanded our reach to Tamil communities worldwide, establishing partnerships with cultural organizations globally.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" style="display: flex; gap: 2rem; margin-bottom: 3rem; padding: 2rem; background: white; border-radius: 1rem; box-shadow: var(--shadow-lg);">
+                    <div class="timeline-year" style="min-width: 100px; font-size: 2rem; font-weight: 700; color: var(--primary-blue);">2023</div>
+                    <div class="timeline-content">
+                        <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Cultural Programs</h3>
+                        <p style="color: var(--gray-600); line-height: 1.6;">Initiated comprehensive cultural programs, workshops, and events to promote Tamil arts, music, and traditions.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" style="display: flex; gap: 2rem; margin-bottom: 3rem; padding: 2rem; background: white; border-radius: 1rem; box-shadow: var(--shadow-lg);">
+                    <div class="timeline-year" style="min-width: 100px; font-size: 2rem; font-weight: 700; color: var(--primary-blue);">2024</div>
+                    <div class="timeline-content">
+                        <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Innovation & Technology</h3>
+                        <p style="color: var(--gray-600); line-height: 1.6;">Embraced cutting-edge technology to enhance Tamil language learning through AI-powered tools and interactive platforms.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="stats">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 3rem;">
+                <span class="english">Our Team</span>
+                <span class="tamil">எங்கள் குழு</span>
+            </h2>
+            
+            <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                <div class="card" style="text-align: center; padding: 2rem; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
+                    <div class="feature-icon" style="background: rgba(255, 255, 255, 0.2); margin: 0 auto 1.5rem;">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3 style="color: white; margin-bottom: 0.5rem;">Language Scholars</h3>
+                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem;">Expert Tamil linguists and researchers</p>
+                </div>
+                
+                <div class="card" style="text-align: center; padding: 2rem; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
+                    <div class="feature-icon" style="background: rgba(255, 255, 255, 0.2); margin: 0 auto 1.5rem;">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 style="color: white; margin-bottom: 0.5rem;">Technology Team</h3>
+                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem;">Innovative developers and designers</p>
+                </div>
+                
+                <div class="card" style="text-align: center; padding: 2rem; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
+                    <div class="feature-icon" style="background: rgba(255, 255, 255, 0.2); margin: 0 auto 1.5rem;">
+                        <i class="fas fa-theater-masks"></i>
+                    </div>
+                    <h3 style="color: white; margin-bottom: 0.5rem;">Cultural Experts</h3>
+                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem;">Artists and cultural practitioners</p>
+                </div>
+                
+                <div class="card" style="text-align: center; padding: 2rem; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
+                    <div class="feature-icon" style="background: rgba(255, 255, 255, 0.2); margin: 0 auto 1.5rem;">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3 style="color: white; margin-bottom: 0.5rem;">Community Volunteers</h3>
+                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem;">Passionate community contributors</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="features">
+        <div class="container">
+            <div class="card" style="text-align: center; max-width: 800px; margin: 0 auto; padding: 3rem;">
+                <h2 style="color: var(--primary-blue); margin-bottom: 1.5rem;">Join Our Mission</h2>
+                <h3 class="tamil-text" style="font-family: var(--font-tamil); color: var(--accent-gold); margin-bottom: 2rem;">எங்கள் பணியில் சேருங்கள்</h3>
+                <p style="font-size: 1.125rem; color: var(--gray-600); margin-bottom: 2rem; line-height: 1.8;">
+                    Be part of our journey to preserve and promote Tamil language and culture. Whether you're a learner, scholar, or enthusiast, there's a place for you in our community.
+                </p>
+                <div class="hero-buttons" style="justify-content: center;">
+                    <a href="signup.html" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i>
+                        Join Our Community
+                    </a>
+                    <a href="contact.html" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i>
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/logo.svg" alt="Tamil Language Society">
+                        <span>தமிழ் மொழி சமூகம்</span>
+                    </div>
+                    <p>Dedicated to preserving and promoting the rich heritage of Tamil language and culture worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="ebooks.html">Digital Library</a></li>
+                        <li><a href="books.html">Book Store</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="donate.html">Donate</a></li>
+                        <li><a href="notifications.html">Notifications</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Stay updated with our latest news and events</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" class="newsletter-input">
+                        <button class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tamil Language Society. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="notification-toast">
+        <div class="toast-content">
+            <i class="fas fa-bell"></i>
+            <span class="toast-message"></span>
+        </div>
+        <button class="toast-close" onclick="closeNotification()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/notifications.js"></script>
+</body>
+</html>

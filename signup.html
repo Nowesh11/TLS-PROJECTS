@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Tamil Language Society</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body style="background: linear-gradient(135deg, var(--light-blue), var(--primary-white));">
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/logo.svg" alt="Tamil Language Society" class="logo-img">
+                <span class="logo-text">தமிழ் மொழி சமூகம்</span>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="ebooks.html" class="nav-link">Ebooks</a>
+                <a href="books.html" class="nav-link">Books Selling</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+                <a href="donate.html" class="nav-link donate-btn">Donate Now</a>
+                <a href="notifications.html" class="nav-link notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-dot" id="notification-dot"></span>
+                </a>
+                <a href="login.html" class="nav-link">Login</a>
+                <a href="signup.html" class="nav-link signup-btn active">Sign Up</a>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Signup Container -->
+    <div class="auth-container" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 120px 1rem 2rem;">
+        <div class="auth-card animate-fadeInUp" style="background: white; border-radius: 2rem; box-shadow: var(--shadow-2xl); overflow: hidden; max-width: 1000px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; min-height: 700px;">
+            
+            <!-- Left Side - Registration Form -->
+            <div class="auth-form-container" style="padding: 3rem; display: flex; flex-direction: column; justify-content: center;">
+                <div class="auth-form-header" style="text-align: center; margin-bottom: 2rem;">
+                    <h2 style="color: var(--gray-900); font-size: 1.75rem; margin-bottom: 0.5rem;">Create Account</h2>
+                    <p style="color: var(--gray-600);">Join the Tamil Language Society community</p>
+                </div>
+                
+                <form id="signup-form" class="auth-form">
+                    <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div class="floating-label-group" style="position: relative;">
+                            <input type="text" id="first-name" name="firstName" class="floating-input" required style="width: 100%; padding: 1rem 1rem 1rem 3rem; border: 2px solid var(--gray-200); border-radius: 0.75rem; font-size: 1rem; background: white; transition: all 0.3s ease;">
+                            <label for="first-name" class="floating-label" style="position: absolute; left: 3rem; top: 1rem; color: var(--gray-500); pointer-events: none; transition: all 0.3s ease; background: white; padding: 0 0.25rem;">First Name</label>
+                            <i class="fas fa-user" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gray-400);"></i>
+                        </div>
+                        <div class="floating-label-group" style="position: relative;">
+                            <input type="text" id="last-name" name="lastName" class="floating-input" required style="width: 100%; padding: 1rem 1rem 1rem 3rem; border: 2px solid var(--gray-200); border-radius: 0.75rem; font-size: 1rem; background: white; transition: all 0.3s ease;">
+                            <label for="last-name" class="floating-label" style="position: absolute; left: 3rem; top: 1rem; color: var(--gray-500); pointer-events: none; transition: all 0.3s ease; background: white; padding: 0 0.25rem;">Last Name</label>
+                            <i class="fas fa-user" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gray-400);"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="floating-label-group" style="margin-bottom: 1.5rem; position: relative;">
+                        <input type="email" id="signup-email" name="email" class="floating-input" required style="width: 100%; padding: 1rem 1rem 1rem 3rem; border: 2px solid var(--gray-200); border-radius: 0.75rem; font-size: 1rem; background: white; transition: all 0.3s ease;">
+                        <label for="signup-email" class="floating-label" style="position: absolute; left: 3rem; top: 1rem; color: var(--gray-500); pointer-events: none; transition: all 0.3s ease; background: white; padding: 0 0.25rem;">Email Address</label>
+                        <i class="fas fa-envelope" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gray-400);"></i>
+                    </div>
+                    
+                    <div class="floating-label-group" style="margin-bottom: 1.5rem; position: relative;">
+                        <input type="tel" id="phone" name="phone" class="floating-input" style="width: 100%; padding: 1rem 1rem 1rem 3rem; border: 2px solid var(--gray-200); border-radius: 0.75rem; font-size: 1rem; background: white; transition: all 0.3s ease;">
+                        <label for="phone" class="floating-label" style="position: absolute; left: 3rem; top: 1rem; color: var(--gray-500); pointer-events: none; transition: all 0.3s ease; background: white; padding: 0 0.25rem;">Phone Number (Optional)</label>
+                        <i class="fas fa-phone" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gray-400);"></i>
+                    </div>
+                    
+                    <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div class="floating-label-group" style="position: relative;">
+                            <input type="password" id="signup-password" name="password" class="floating-input" required style="width: 100%; padding: 1rem 3rem 1rem 3rem; border: 2px solid var(--gray-200); border-radius: 0.75rem; font-size: 1rem; background: white; transition: all 0.3s ease;">
+                            <label for="signup-password" class="floating-label" style="position: absolute; left: 3rem; top: 1rem; color: var(--gray-500); pointer-events: none; transition: all 0.3s ease; background: white; padding: 0 0.25rem;">Password</label>
+                            <i class="fas fa-lock" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gray-400);"></i>
+                            <button type="button" class="password-toggle" onclick="togglePassword('signup-password')" style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--gray-400); cursor: pointer; font-size: 1.1rem;">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="floating-label-group" style="position: relative;">
+                            <input type="password" id="confirm-password" name="confirmPassword" class="floating-input" required style="width: 100%; padding: 1rem 3rem 1rem 3rem; border: 2px solid var(--gray-200); border-radius: 0.75rem; font-size: 1rem; background: white; transition: all 0.3s ease;">
+                            <label for="confirm-password" class="floating-label" style="position: absolute; left: 3rem; top: 1rem; color: var(--gray-500); pointer-events: none; transition: all 0.3s ease; background: white; padding: 0 0.25rem;">Confirm Password</label>
+                            <i class="fas fa-lock" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gray-400);"></i>
+                            <button type="button" class="password-toggle" onclick="togglePassword('confirm-password')" style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--gray-400); cursor: pointer; font-size: 1.1rem;">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Password Strength Indicator -->
+                    <div class="password-strength" id="password-strength" style="margin-bottom: 1.5rem; display: none;">
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--gray-600);">Password Strength:</div>
+                        <div class="strength-bar" style="height: 6px; background: var(--gray-200); border-radius: 3px; overflow: hidden;">
+                            <div id="strength-fill" style="height: 100%; width: 0%; transition: all 0.3s ease; border-radius: 3px;"></div>
+                        </div>
+                        <div id="strength-text" style="font-size: 0.8rem; margin-top: 0.25rem;"></div>
+                    </div>
+                    
+                    <div class="floating-label-group" style="margin-bottom: 1.5rem; position: relative;">
+                        <select id="interest" name="interest" class="floating-input" style="width: 100%; padding: 1rem 1rem 1rem 3rem; border: 2px solid var(--gray-200); border-radius: 0.75rem; font-size: 1rem; background: white; transition: all 0.3s ease;">
+                            <option value="">Select your primary interest</option>
+                            <option value="learning">Learning Tamil</option>
+                            <option value="literature">Tamil Literature</option>
+                            <option value="culture">Cultural Heritage</option>
+                            <option value="teaching">Teaching Tamil</option>
+                            <option value="research">Academic Research</option>
+                            <option value="community">Community Building</option>
+                        </select>
+                        <label for="interest" class="floating-label" style="position: absolute; left: 3rem; top: 1rem; color: var(--gray-500); pointer-events: none; transition: all 0.3s ease; background: white; padding: 0 0.25rem;">Primary Interest</label>
+                        <i class="fas fa-heart" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gray-400);"></i>
+                    </div>
+                    
+                    <div class="form-checkboxes" style="margin-bottom: 2rem;">
+                        <label style="display: flex; align-items: start; gap: 0.75rem; margin-bottom: 1rem; cursor: pointer; color: var(--gray-600); font-size: 0.9rem; line-height: 1.5;">
+                            <input type="checkbox" name="terms" required style="margin-top: 0.25rem; accent-color: var(--primary-blue);">
+                            <span>I agree to the <a href="#" style="color: var(--primary-blue); text-decoration: none;">Terms of Service</a> and <a href="#" style="color: var(--primary-blue); text-decoration: none;">Privacy Policy</a></span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; cursor: pointer; color: var(--gray-600); font-size: 0.9rem;">
+                            <input type="checkbox" name="newsletter" style="accent-color: var(--primary-blue);">
+                            <span>I would like to receive newsletters and updates about Tamil language and culture</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; color: var(--gray-600); font-size: 0.9rem;">
+                            <input type="checkbox" name="notifications" checked style="accent-color: var(--primary-blue);">
+                            <span>Send me notifications about community events and new content</span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1.1rem; font-weight: 600; border-radius: 0.75rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue)); transition: all 0.3s ease;">
+                        <i class="fas fa-user-plus"></i>
+                        Create Account
+                    </button>
+                    
+                    <div class="divider" style="text-align: center; margin-bottom: 1.5rem; position: relative;">
+                        <hr style="border: none; height: 1px; background: var(--gray-200);">
+                        <span style="background: white; padding: 0 1rem; color: var(--gray-500); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                            Or sign up with
+                        </span>
+                    </div>
+                    
+                    <div class="social-login" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
+                        <button type="button" class="social-btn" onclick="signupWithGoogle()" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem; border: 2px solid var(--gray-200); border-radius: 0.75rem; background: white; color: var(--gray-700); cursor: pointer; transition: all 0.3s ease;">
+                            <i class="fab fa-google" style="color: #db4437;"></i>
+                            <span>Google</span>
+                        </button>
+                        <button type="button" class="social-btn" onclick="signupWithFacebook()" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem; border: 2px solid var(--gray-200); border-radius: 0.75rem; background: white; color: var(--gray-700); cursor: pointer; transition: all 0.3s ease;">
+                            <i class="fab fa-facebook" style="color: #3b5998;"></i>
+                            <span>Facebook</span>
+                        </button>
+                    </div>
+                    
+                    <p style="text-align: center; color: var(--gray-600); font-size: 0.9rem;">
+                        Already have an account? 
+                        <a href="login.html" style="color: var(--primary-blue); font-weight: 600; text-decoration: none;">
+                            Sign in here
+                        </a>
+                    </p>
+                </form>
+            </div>
+            
+            <!-- Right Side - Welcome Section -->
+            <div class="auth-welcome" style="background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue)); padding: 3rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; position: relative; overflow: hidden;">
+                <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; z-index: 1;"></div>
+                <div style="position: absolute; bottom: -100px; left: -100px; width: 300px; height: 300px; background: rgba(255, 255, 255, 0.05); border-radius: 50%; z-index: 1;"></div>
+                
+                <div style="position: relative; z-index: 2;">
+                    <div style="width: 120px; height: 120px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; backdrop-filter: blur(10px);">
+                        <i class="fas fa-users" style="font-size: 4rem; color: white;"></i>
+                    </div>
+                    
+                    <h2 style="font-size: 2rem; margin-bottom: 1rem; font-weight: 700;">நல்வரவு!</h2>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 2rem; font-weight: 600;">Join Our Community</h3>
+                    
+                    <p style="opacity: 0.9; margin-bottom: 2rem; line-height: 1.6;">
+                        Become part of a vibrant community dedicated to preserving and promoting Tamil language and culture worldwide.
+                    </p>
+                    
+                    <div class="community-benefits" style="text-align: left; max-width: 300px;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <i class="fas fa-book-open" style="color: var(--accent-gold); font-size: 1.2rem;"></i>
+                            <span>Access to extensive digital library</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <i class="fas fa-users" style="color: var(--accent-gold); font-size: 1.2rem;"></i>
+                            <span>Connect with Tamil enthusiasts</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <i class="fas fa-calendar-alt" style="color: var(--accent-gold); font-size: 1.2rem;"></i>
+                            <span>Participate in cultural events</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <i class="fas fa-certificate" style="color: var(--accent-gold); font-size: 1.2rem;"></i>
+                            <span>Earn learning certificates</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="notification-toast">
+        <div class="toast-content">
+            <i class="fas fa-bell"></i>
+            <span class="toast-message"></span>
+        </div>
+        <button class="toast-close" onclick="closeNotification()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/auth.js"></script>
+    
+    <script>
+        // Floating label functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const floatingInputs = document.querySelectorAll('.floating-input');
+            
+            floatingInputs.forEach(input => {
+                // Check if input has value on load
+                if (input.value) {
+                    input.classList.add('has-value');
+                }
+                
+                input.addEventListener('input', function() {
+                    if (this.value) {
+                        this.classList.add('has-value');
+                    } else {
+                        this.classList.remove('has-value');
+                    }
+                });
+                
+                input.addEventListener('focus', function() {
+                    this.classList.add('focused');
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.classList.remove('focused');
+                });
+            });
+            
+            // Add hover effects to social buttons
+            document.querySelectorAll('.social-btn').forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    this.style.borderColor = 'var(--primary-blue)';
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = 'var(--shadow-lg)';
+                });
+                
+                btn.addEventListener('mouseleave', function() {
+                    this.style.borderColor = 'var(--gray-200)';
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = 'none';
+                });
+            });
+            
+            // Password strength checker
+            const passwordInput = document.getElementById('signup-password');
+            const strengthIndicator = document.getElementById('password-strength');
+            const strengthFill = document.getElementById('strength-fill');
+            const strengthText = document.getElementById('strength-text');
+            
+            passwordInput.addEventListener('input', function() {
+                const password = this.value;
+                if (password.length > 0) {
+                    strengthIndicator.style.display = 'block';
+                    const strength = checkPasswordStrength(password);
+                    updatePasswordStrength(strength);
+                } else {
+                    strengthIndicator.style.display = 'none';
+                }
+            });
+            
+            function checkPasswordStrength(password) {
+                let strength = 0;
+                let feedback = [];
+                
+                if (password.length >= 8) strength += 1;
+                else feedback.push('at least 8 characters');
+                
+                if (/[a-z]/.test(password)) strength += 1;
+                else feedback.push('lowercase letter');
+                
+                if (/[A-Z]/.test(password)) strength += 1;
+                else feedback.push('uppercase letter');
+                
+                if (/[0-9]/.test(password)) strength += 1;
+                else feedback.push('number');
+                
+                if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+                else feedback.push('special character');
+                
+                return { strength, feedback };
+            }
+            
+            function updatePasswordStrength({ strength, feedback }) {
+                const colors = ['#ef4444', '#f59e0b', '#f59e0b', '#10b981', '#10b981'];
+                const labels = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong'];
+                const widths = [20, 40, 60, 80, 100];
+                
+                strengthFill.style.backgroundColor = colors[strength];
+                strengthFill.style.width = widths[strength] + '%';
+                
+                let text = labels[strength];
+                if (feedback.length > 0 && strength < 4) {
+                    text += ` - Add: ${feedback.slice(0, 2).join(', ')}`;
+                }
+                
+                strengthText.textContent = text;
+                strengthText.style.color = colors[strength];
+            }
+        });
+        
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const toggle = input.nextElementSibling.nextElementSibling.querySelector('i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                toggle.classList.remove('fa-eye');
+                toggle.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                toggle.classList.remove('fa-eye-slash');
+                toggle.classList.add('fa-eye');
+            }
+        }
+        
+        function signupWithGoogle() {
+            window.TamilSociety.showNotification('Google signup functionality coming soon!');
+        }
+        
+        function signupWithFacebook() {
+            window.TamilSociety.showNotification('Facebook signup functionality coming soon!');
+        }
+    </script>
+    
+    <style>
+        /* Floating label styles */
+        .floating-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .floating-input:focus + .floating-label,
+        .floating-input.has-value + .floating-label {
+            top: -0.5rem;
+            left: 2.75rem;
+            font-size: 0.875rem;
+            color: var(--primary-blue);
+        }
+        
+        .floating-input.focused + .floating-label {
+            color: var(--primary-blue);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .auth-card {
+                grid-template-columns: 1fr !important;
+                max-width: 500px !important;
+                margin: 1rem;
+            }
+            
+            .auth-welcome {
+                padding: 2rem !important;
+                min-height: auto;
+                order: 2;
+            }
+            
+            .auth-form-container {
+                padding: 2rem !important;
+                order: 1;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .social-login {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        
+        /* Animation for auth card */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</body>
+</html>

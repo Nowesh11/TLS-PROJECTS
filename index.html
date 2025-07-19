@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tamil Language Society - Home</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/logo.svg" alt="Tamil Language Society" class="logo-img">
+                <span class="logo-text">தமிழ் மொழி சமூகம்</span>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="ebooks.html" class="nav-link">Ebooks</a>
+                <a href="books.html" class="nav-link">Books Selling</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+                <a href="donate.html" class="nav-link donate-btn">Donate Now</a>
+                <a href="notifications.html" class="nav-link notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-dot" id="notification-dot"></span>
+                </a>
+                <a href="login.html" class="nav-link">Login</a>
+                <a href="signup.html" class="nav-link signup-btn">Sign Up</a>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+            <div class="hero-pattern"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="english-title">Tamil Language Society</span>
+                    <span class="tamil-title">தமிழ் மொழி சமூகம்</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Preserving and promoting the beautiful Tamil language and culture for future generations
+                </p>
+                <p class="tamil-quote">
+                    "தமிழ் என்னும் திருநாமம் அனைத்துலகும் போற்றும் மொழி"
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="window.location.href='about.html'">
+                        <i class="fas fa-heart"></i>
+                        Explore Our Mission
+                    </button>
+                    <button class="btn btn-secondary" onclick="window.location.href='projects.html'">
+                        <i class="fas fa-project-diagram"></i>
+                        View Projects
+                    </button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="floating-card">
+                    <img src="assets/logo.svg" alt="Tamil Culture" class="hero-logo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="english">Our Services</span>
+                <span class="tamil">எங்கள் சேவைகள்</span>
+            </h2>
+            
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Digital Library</h3>
+                    <p>Access thousands of Tamil books, literature, and educational resources in our comprehensive digital collection.</p>
+                    <a href="ebooks.html" class="feature-link">Explore Library <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Cultural Programs</h3>
+                    <p>Join our cultural initiatives, workshops, and events that celebrate Tamil heritage and traditions.</p>
+                    <a href="projects.html" class="feature-link">View Programs <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>Book Store</h3>
+                    <p>Purchase authentic Tamil literature, textbooks, and cultural materials from our curated collection.</p>
+                    <a href="books.html" class="feature-link">Shop Now <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Community Support</h3>
+                    <p>Connect with fellow Tamil language enthusiasts and contribute to preserving our linguistic heritage.</p>
+                    <a href="contact.html" class="feature-link">Get Involved <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="5000">0</div>
+                    <div class="stat-label">Digital Books</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="25000">0</div>
+                    <div class="stat-label">Community Members</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="150">0</div>
+                    <div class="stat-label">Cultural Events</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="50">0</div>
+                    <div class="stat-label">Active Projects</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/logo.svg" alt="Tamil Language Society">
+                        <span>தமிழ் மொழி சமூகம்</span>
+                    </div>
+                    <p>Dedicated to preserving and promoting the rich heritage of Tamil language and culture worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="ebooks.html">Digital Library</a></li>
+                        <li><a href="books.html">Book Store</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="donate.html">Donate</a></li>
+                        <li><a href="notifications.html">Notifications</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Stay updated with our latest news and events</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" class="newsletter-input">
+                        <button class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tamil Language Society. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="notification-toast">
+        <div class="toast-content">
+            <i class="fas fa-bell"></i>
+            <span class="toast-message"></span>
+        </div>
+        <button class="toast-close" onclick="closeNotification()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/notifications.js"></script>
+</body>
+</html>

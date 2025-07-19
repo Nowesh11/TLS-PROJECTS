@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Tamil Language Society</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/logo.svg" alt="Tamil Language Society" class="logo-img">
+                <span class="logo-text">தமிழ் மொழி சமூகம்</span>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="projects.html" class="nav-link active">Projects</a>
+                <a href="ebooks.html" class="nav-link">Ebooks</a>
+                <a href="books.html" class="nav-link">Books Selling</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+                <a href="donate.html" class="nav-link donate-btn">Donate Now</a>
+                <a href="notifications.html" class="nav-link notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-dot" id="notification-dot"></span>
+                </a>
+                <a href="login.html" class="nav-link">Login</a>
+                <a href="signup.html" class="nav-link signup-btn">Sign Up</a>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 60vh;">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+            <div class="hero-pattern"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text" style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <h1 class="hero-title">
+                    <span class="english-title">Our Projects</span>
+                    <span class="tamil-title">எங்கள் திட்டங்கள்</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Innovative initiatives to preserve, promote, and advance Tamil language and culture
+                </p>
+                <p class="tamil-quote">
+                    "செயலே வாழ்க்கை - Action is life"
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Categories -->
+    <section class="features" style="padding-top: 2rem;">
+        <div class="container">
+            <div class="project-filters" style="text-align: center; margin-bottom: 3rem;">
+                <button class="filter-btn active" data-category="all">All Projects</button>
+                <button class="filter-btn" data-category="education">Education</button>
+                <button class="filter-btn" data-category="cultural">Cultural</button>
+                <button class="filter-btn" data-category="technology">Technology</button>
+                <button class="filter-btn" data-category="community">Community</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="english">Featured Projects</span>
+                <span class="tamil">சிறப்பு திட்டங்கள்</span>
+            </h2>
+            
+            <div class="projects-grid" id="projects-grid">
+                <!-- Digital Tamil Dictionary -->
+                <div class="project-card card-3d" data-category="technology education">
+                    <div class="card-3d-inner">
+                        <div class="card-3d-front">
+                            <div class="project-image" style="height: 200px; background: linear-gradient(135deg, #2563eb, #1e40af); display: flex; align-items: center; justify-content: center; border-radius: 1rem 1rem 0 0;">
+                                <i class="fas fa-book" style="font-size: 4rem; color: white;"></i>
+                            </div>
+                            <div class="project-content" style="padding: 1.5rem;">
+                                <div class="project-category" style="background: var(--light-blue); color: var(--primary-blue); padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem; display: inline-block; margin-bottom: 1rem;">Technology</div>
+                                <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Digital Tamil Dictionary</h3>
+                                <p style="color: var(--gray-600); margin-bottom: 1.5rem;">A comprehensive digital dictionary with over 100,000 Tamil words, meanings, and etymologies.</p>
+                                <div class="project-status" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                                    <div class="status-indicator" style="width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%;"></div>
+                                    <span style="font-size: 0.875rem; color: var(--accent-green); font-weight: 500;">Active</span>
+                                </div>
+                                <div class="project-progress" style="margin-bottom: 1rem;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                        <span style="font-size: 0.875rem; color: var(--gray-600);">Progress</span>
+                                        <span style="font-size: 0.875rem; color: var(--primary-blue); font-weight: 600;">85%</span>
+                                    </div>
+                                    <div style="background: var(--gray-200); height: 6px; border-radius: 3px; overflow: hidden;">
+                                        <div style="background: var(--primary-blue); height: 100%; width: 85%; border-radius: 3px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-3d-back" style="background: var(--primary-blue); color: white; padding: 2rem; display: flex; flex-direction: column; justify-content: center; text-align: center;">
+                            <h4 style="margin-bottom: 1rem;">Project Details</h4>
+                            <p style="margin-bottom: 1.5rem; opacity: 0.9;">Advanced search capabilities, audio pronunciations, and cultural context for Tamil words.</p>
+                            <button class="btn btn-secondary" style="background: white; color: var(--primary-blue);">
+                                <i class="fas fa-external-link-alt"></i>
+                                View Project
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tamil Learning App -->
+                <div class="project-card card-3d" data-category="education technology">
+                    <div class="card-3d-inner">
+                        <div class="card-3d-front">
+                            <div class="project-image" style="height: 200px; background: linear-gradient(135deg, #f59e0b, #f97316); display: flex; align-items: center; justify-content: center; border-radius: 1rem 1rem 0 0;">
+                                <i class="fas fa-mobile-alt" style="font-size: 4rem; color: white;"></i>
+                            </div>
+                            <div class="project-content" style="padding: 1.5rem;">
+                                <div class="project-category" style="background: #fef3c7; color: var(--accent-gold); padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem; display: inline-block; margin-bottom: 1rem;">Education</div>
+                                <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Tamil Learning App</h3>
+                                <p style="color: var(--gray-600); margin-bottom: 1.5rem;">Interactive mobile application for learning Tamil language with gamified lessons and progress tracking.</p>
+                                <div class="project-status" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                                    <div class="status-indicator" style="width: 8px; height: 8px; background: var(--accent-gold); border-radius: 50%;"></div>
+                                    <span style="font-size: 0.875rem; color: var(--accent-gold); font-weight: 500;">In Development</span>
+                                </div>
+                                <div class="project-progress" style="margin-bottom: 1rem;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                        <span style="font-size: 0.875rem; color: var(--gray-600);">Progress</span>
+                                        <span style="font-size: 0.875rem; color: var(--primary-blue); font-weight: 600;">60%</span>
+                                    </div>
+                                    <div style="background: var(--gray-200); height: 6px; border-radius: 3px; overflow: hidden;">
+                                        <div style="background: var(--accent-gold); height: 100%; width: 60%; border-radius: 3px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-3d-back" style="background: var(--accent-gold); color: white; padding: 2rem; display: flex; flex-direction: column; justify-content: center; text-align: center;">
+                            <h4 style="margin-bottom: 1rem;">App Features</h4>
+                            <p style="margin-bottom: 1.5rem; opacity: 0.9;">Voice recognition, interactive exercises, cultural context, and personalized learning paths.</p>
+                            <button class="btn btn-secondary" style="background: white; color: var(--accent-gold);">
+                                <i class="fas fa-download"></i>
+                                Download Beta
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cultural Heritage Archive -->
+                <div class="project-card card-3d" data-category="cultural technology">
+                    <div class="card-3d-inner">
+                        <div class="card-3d-front">
+                            <div class="project-image" style="height: 200px; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; border-radius: 1rem 1rem 0 0;">
+                                <i class="fas fa-archive" style="font-size: 4rem; color: white;"></i>
+                            </div>
+                            <div class="project-content" style="padding: 1.5rem;">
+                                <div class="project-category" style="background: #d1fae5; color: var(--accent-green); padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem; display: inline-block; margin-bottom: 1rem;">Cultural</div>
+                                <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Cultural Heritage Archive</h3>
+                                <p style="color: var(--gray-600); margin-bottom: 1.5rem;">Digital preservation of Tamil cultural artifacts, historical documents, and traditional practices.</p>
+                                <div class="project-status" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                                    <div class="status-indicator" style="width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%;"></div>
+                                    <span style="font-size: 0.875rem; color: var(--accent-green); font-weight: 500;">Active</span>
+                                </div>
+                                <div class="project-progress" style="margin-bottom: 1rem;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                        <span style="font-size: 0.875rem; color: var(--gray-600);">Progress</span>
+                                        <span style="font-size: 0.875rem; color: var(--primary-blue); font-weight: 600;">75%</span>
+                                    </div>
+                                    <div style="background: var(--gray-200); height: 6px; border-radius: 3px; overflow: hidden;">
+                                        <div style="background: var(--accent-green); height: 100%; width: 75%; border-radius: 3px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-3d-back" style="background: var(--accent-green); color: white; padding: 2rem; display: flex; flex-direction: column; justify-content: center; text-align: center;">
+                            <h4 style="margin-bottom: 1rem;">Archive Contents</h4>
+                            <p style="margin-bottom: 1.5rem; opacity: 0.9;">Manuscripts, folk songs, traditional recipes, art forms, and historical photographs.</p>
+                            <button class="btn btn-secondary" style="background: white; color: var(--accent-green);">
+                                <i class="fas fa-eye"></i>
+                                Explore Archive
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Community Forums -->
+                <div class="project-card card-3d" data-category="community technology">
+                    <div class="card-3d-inner">
+                        <div class="card-3d-front">
+                            <div class="project-image" style="height: 200px; background: linear-gradient(135deg, #8b5cf6, #7c3aed); display: flex; align-items: center; justify-content: center; border-radius: 1rem 1rem 0 0;">
+                                <i class="fas fa-users" style="font-size: 4rem; color: white;"></i>
+                            </div>
+                            <div class="project-content" style="padding: 1.5rem;">
+                                <div class="project-category" style="background: #ede9fe; color: #8b5cf6; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem; display: inline-block; margin-bottom: 1rem;">Community</div>
+                                <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Community Forums</h3>
+                                <p style="color: var(--gray-600); margin-bottom: 1.5rem;">Interactive platform for Tamil learners and enthusiasts to connect, share, and learn together.</p>
+                                <div class="project-status" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                                    <div class="status-indicator" style="width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%;"></div>
+                                    <span style="font-size: 0.875rem; color: var(--accent-green); font-weight: 500;">Live</span>
+                                </div>
+                                <div class="project-stats" style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                                    <div style="text-align: center;">
+                                        <div style="font-weight: 600; color: var(--primary-blue);">2.5K</div>
+                                        <div style="font-size: 0.75rem; color: var(--gray-600);">Members</div>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <div style="font-weight: 600; color: var(--primary-blue);">850</div>
+                                        <div style="font-size: 0.75rem; color: var(--gray-600);">Discussions</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-3d-back" style="background: #8b5cf6; color: white; padding: 2rem; display: flex; flex-direction: column; justify-content: center; text-align: center;">
+                            <h4 style="margin-bottom: 1rem;">Join Discussions</h4>
+                            <p style="margin-bottom: 1.5rem; opacity: 0.9;">Share knowledge, ask questions, and connect with Tamil language enthusiasts worldwide.</p>
+                            <button class="btn btn-secondary" style="background: white; color: #8b5cf6;">
+                                <i class="fas fa-comments"></i>
+                                Join Forums
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tamil Poetry Collection -->
+                <div class="project-card card-3d" data-category="cultural education">
+                    <div class="card-3d-inner">
+                        <div class="card-3d-front">
+                            <div class="project-image" style="height: 200px; background: linear-gradient(135deg, #ef4444, #dc2626); display: flex; align-items: center; justify-content: center; border-radius: 1rem 1rem 0 0;">
+                                <i class="fas fa-feather-alt" style="font-size: 4rem; color: white;"></i>
+                            </div>
+                            <div class="project-content" style="padding: 1.5rem;">
+                                <div class="project-category" style="background: #fee2e2; color: var(--accent-red); padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem; display: inline-block; margin-bottom: 1rem;">Cultural</div>
+                                <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Tamil Poetry Collection</h3>
+                                <p style="color: var(--gray-600); margin-bottom: 1.5rem;">Curated collection of classical and contemporary Tamil poetry with audio recitations and analysis.</p>
+                                <div class="project-status" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                                    <div class="status-indicator" style="width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%;"></div>
+                                    <span style="font-size: 0.875rem; color: var(--accent-green); font-weight: 500;">Active</span>
+                                </div>
+                                <div class="project-stats" style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                                    <div style="text-align: center;">
+                                        <div style="font-weight: 600; color: var(--primary-blue);">500+</div>
+                                        <div style="font-size: 0.75rem; color: var(--gray-600);">Poems</div>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <div style="font-weight: 600; color: var(--primary-blue);">50</div>
+                                        <div style="font-size: 0.75rem; color: var(--gray-600);">Poets</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-3d-back" style="background: var(--accent-red); color: white; padding: 2rem; display: flex; flex-direction: column; justify-content: center; text-align: center;">
+                            <h4 style="margin-bottom: 1rem;">Poetry Features</h4>
+                            <p style="margin-bottom: 1.5rem; opacity: 0.9;">Audio recitations, literary analysis, historical context, and modern translations.</p>
+                            <button class="btn btn-secondary" style="background: white; color: var(--accent-red);">
+                                <i class="fas fa-play"></i>
+                                Listen & Read
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Virtual Tamil Classroom -->
+                <div class="project-card card-3d" data-category="education technology">
+                    <div class="card-3d-inner">
+                        <div class="card-3d-front">
+                            <div class="project-image" style="height: 200px; background: linear-gradient(135deg, #06b6d4, #0891b2); display: flex; align-items: center; justify-content: center; border-radius: 1rem 1rem 0 0;">
+                                <i class="fas fa-chalkboard-teacher" style="font-size: 4rem; color: white;"></i>
+                            </div>
+                            <div class="project-content" style="padding: 1.5rem;">
+                                <div class="project-category" style="background: #cffafe; color: #06b6d4; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem; display: inline-block; margin-bottom: 1rem;">Education</div>
+                                <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Virtual Tamil Classroom</h3>
+                                <p style="color: var(--gray-600); margin-bottom: 1.5rem;">Online learning platform with live classes, interactive exercises, and personalized instruction.</p>
+                                <div class="project-status" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                                    <div class="status-indicator" style="width: 8px; height: 8px; background: var(--accent-gold); border-radius: 50%;"></div>
+                                    <span style="font-size: 0.875rem; color: var(--accent-gold); font-weight: 500;">Beta Testing</span>
+                                </div>
+                                <div class="project-stats" style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                                    <div style="text-align: center;">
+                                        <div style="font-weight: 600; color: var(--primary-blue);">12</div>
+                                        <div style="font-size: 0.75rem; color: var(--gray-600);">Courses</div>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <div style="font-weight: 600; color: var(--primary-blue);">300+</div>
+                                        <div style="font-size: 0.75rem; color: var(--gray-600);">Students</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-3d-back" style="background: #06b6d4; color: white; padding: 2rem; display: flex; flex-direction: column; justify-content: center; text-align: center;">
+                            <h4 style="margin-bottom: 1rem;">Course Features</h4>
+                            <p style="margin-bottom: 1.5rem; opacity: 0.9;">Live instruction, homework assignments, progress tracking, and certificate programs.</p>
+                            <button class="btn btn-secondary" style="background: white; color: #06b6d4;">
+                                <i class="fas fa-graduation-cap"></i>
+                                Enroll Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Statistics -->
+    <section class="stats">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 3rem;">
+                <span class="english">Project Impact</span>
+                <span class="tamil">திட்ட தாக்கம்</span>
+            </h2>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="15">0</div>
+                    <div class="stat-label">Active Projects</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="50000">0</div>
+                    <div class="stat-label">Lives Impacted</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="25">0</div>
+                    <div class="stat-label">Countries Reached</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="1000000">0</div>
+                    <div class="stat-label">Resources Created</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="features">
+        <div class="container">
+            <div class="card" style="text-align: center; max-width: 800px; margin: 0 auto; padding: 3rem;">
+                <h2 style="color: var(--primary-blue); margin-bottom: 1.5rem;">Get Involved</h2>
+                <h3 class="tamil-text" style="font-family: var(--font-tamil); color: var(--accent-gold); margin-bottom: 2rem;">பங்கேற்கவும்</h3>
+                <p style="font-size: 1.125rem; color: var(--gray-600); margin-bottom: 2rem; line-height: 1.8;">
+                    Join our mission to preserve and promote Tamil language and culture. Contribute to our projects, share your expertise, or support our initiatives.
+                </p>
+                <div class="hero-buttons" style="justify-content: center;">
+                    <a href="contact.html" class="btn btn-primary">
+                        <i class="fas fa-handshake"></i>
+                        Volunteer
+                    </a>
+                    <a href="donate.html" class="btn btn-secondary">
+                        <i class="fas fa-heart"></i>
+                        Support Projects
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/logo.svg" alt="Tamil Language Society">
+                        <span>தமிழ் மொழி சமூகம்</span>
+                    </div>
+                    <p>Dedicated to preserving and promoting the rich heritage of Tamil language and culture worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="ebooks.html">Digital Library</a></li>
+                        <li><a href="books.html">Book Store</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="donate.html">Donate</a></li>
+                        <li><a href="notifications.html">Notifications</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Stay updated with our latest news and events</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" class="newsletter-input">
+                        <button class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tamil Language Society. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="notification-toast">
+        <div class="toast-content">
+            <i class="fas fa-bell"></i>
+            <span class="toast-message"></span>
+        </div>
+        <button class="toast-close" onclick="closeNotification()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/notifications.js"></script>
+    
+    <script>
+        // Project filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const category = this.dataset.category;
+                    
+                    projectCards.forEach(card => {
+                        if (category === 'all' || card.dataset.category.includes(category)) {
+                            card.style.display = 'block';
+                            card.classList.add('animate-fadeInUp');
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    
+    <style>
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .project-card {
+            height: 500px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        
+        .project-filters {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--primary-blue);
+            background: white;
+            color: var(--primary-blue);
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .project-card:hover .card-3d-inner {
+            transform: rotateY(180deg);
+        }
+        
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .project-card {
+                height: auto;
+                perspective: none;
+            }
+            
+            .project-card:hover .card-3d-inner {
+                transform: none;
+            }
+            
+            .card-3d-back {
+                display: none;
+            }
+        }
+    </style>
+</body>
+</html>

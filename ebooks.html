@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Library - Tamil Language Society</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/logo.svg" alt="Tamil Language Society" class="logo-img">
+                <span class="logo-text">தமிழ் மொழி சமூகம்</span>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="ebooks.html" class="nav-link active">Ebooks</a>
+                <a href="books.html" class="nav-link">Books Selling</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+                <a href="donate.html" class="nav-link donate-btn">Donate Now</a>
+                <a href="notifications.html" class="nav-link notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-dot" id="notification-dot"></span>
+                </a>
+                <a href="login.html" class="nav-link">Login</a>
+                <a href="signup.html" class="nav-link signup-btn">Sign Up</a>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 60vh;">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+            <div class="hero-pattern"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text" style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <h1 class="hero-title">
+                    <span class="english-title">Digital Library</span>
+                    <span class="tamil-title">மின்னூல் நூலகம்</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Explore our vast collection of Tamil literature, educational resources, and cultural treasures
+                </p>
+                <p class="tamil-quote">
+                    "நூல் நுணுக்கம் இல்லாதவர் அறிவில் மழுங்கியவர்"
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search and Filter Section -->
+    <section class="features" style="padding-top: 2rem;">
+        <div class="container">
+            <div class="search-section" style="max-width: 800px; margin: 0 auto;">
+                <div class="search-bar" style="position: relative; margin-bottom: 2rem;">
+                    <input type="text" id="search-input" placeholder="Search for books, authors, or topics..." style="width: 100%; padding: 1rem 3rem 1rem 1rem; border: 2px solid var(--gray-200); border-radius: 2rem; font-size: 1rem; transition: border-color 0.3s ease;">
+                    <button class="search-btn" style="position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%); background: var(--primary-blue); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 1.5rem; cursor: pointer;">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <div class="filter-section" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <select id="category-filter" style="padding: 0.5rem 1rem; border: 1px solid var(--gray-300); border-radius: 0.5rem; background: white;">
+                        <option value="all">All Categories</option>
+                        <option value="literature">Literature</option>
+                        <option value="education">Education</option>
+                        <option value="culture">Culture</option>
+                        <option value="history">History</option>
+                        <option value="poetry">Poetry</option>
+                        <option value="children">Children's Books</option>
+                    </select>
+                    
+                    <select id="language-filter" style="padding: 0.5rem 1rem; border: 1px solid var(--gray-300); border-radius: 0.5rem; background: white;">
+                        <option value="all">All Languages</option>
+                        <option value="tamil">Tamil Only</option>
+                        <option value="bilingual">Tamil-English</option>
+                        <option value="english">English Translation</option>
+                    </select>
+                    
+                    <select id="sort-filter" style="padding: 0.5rem 1rem; border: 1px solid var(--gray-300); border-radius: 0.5rem; background: white;">
+                        <option value="latest">Latest First</option>
+                        <option value="popular">Most Popular</option>
+                        <option value="alphabetical">A-Z</option>
+                        <option value="rating">Highest Rated</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Books -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="english">Featured Books</span>
+                <span class="tamil">சிறப்பு நூல்கள்</span>
+            </h2>
+            
+            <div class="ebooks-carousel" style="position: relative; overflow: hidden; margin-bottom: 3rem;">
+                <div class="carousel-container" id="featured-carousel" style="display: flex; transition: transform 0.5s ease;">
+                    <!-- Featured Book 1 -->
+                    <div class="ebook-card featured" style="min-width: 300px; margin-right: 2rem;">
+                        <div class="book-cover" style="height: 400px; background: linear-gradient(135deg, #2563eb, #1e40af); border-radius: 1rem; position: relative; overflow: hidden; box-shadow: var(--shadow-xl);">
+                            <div style="position: absolute; top: 2rem; left: 2rem; right: 2rem; text-align: center; color: white;">
+                                <h3 style="font-family: var(--font-tamil); font-size: 1.5rem; margin-bottom: 1rem;">திருக்குறள்</h3>
+                                <p style="font-size: 1rem; opacity: 0.9;">திருவள்ளுவர்</p>
+                                <div style="position: absolute; bottom: -200px; left: 50%; transform: translateX(-50%); font-size: 8rem; opacity: 0.1;">
+                                    <i class="fas fa-book-open"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="book-info" style="padding: 1.5rem; background: white; border-radius: 0 0 1rem 1rem; box-shadow: var(--shadow-lg);">
+                            <h4 style="color: var(--gray-900); margin-bottom: 0.5rem;">Thirukkural</h4>
+                            <p style="color: var(--gray-600); font-size: 0.9rem; margin-bottom: 1rem;">Classic Tamil literature on ethics and morality</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div class="rating" style="color: var(--accent-gold);">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span style="margin-left: 0.5rem; color: var(--gray-600);">4.9</span>
+                                </div>
+                                <button class="btn-download" style="background: var(--primary-blue); color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.5rem; cursor: pointer; font-size: 0.9rem;">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Featured Book 2 -->
+                    <div class="ebook-card featured" style="min-width: 300px; margin-right: 2rem;">
+                        <div class="book-cover" style="height: 400px; background: linear-gradient(135deg, #f59e0b, #f97316); border-radius: 1rem; position: relative; overflow: hidden; box-shadow: var(--shadow-xl);">
+                            <div style="position: absolute; top: 2rem; left: 2rem; right: 2rem; text-align: center; color: white;">
+                                <h3 style="font-family: var(--font-tamil); font-size: 1.5rem; margin-bottom: 1rem;">சிலப்பதிகாரம்</h3>
+                                <p style="font-size: 1rem; opacity: 0.9;">இளங்கோ அடிகள்</p>
+                                <div style="position: absolute; bottom: -200px; left: 50%; transform: translateX(-50%); font-size: 8rem; opacity: 0.1;">
+                                    <i class="fas fa-scroll"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="book-info" style="padding: 1.5rem; background: white; border-radius: 0 0 1rem 1rem; box-shadow: var(--shadow-lg);">
+                            <h4 style="color: var(--gray-900); margin-bottom: 0.5rem;">Silappatikaram</h4>
+                            <p style="color: var(--gray-600); font-size: 0.9rem; margin-bottom: 1rem;">Ancient Tamil epic poem</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div class="rating" style="color: var(--accent-gold);">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span style="margin-left: 0.5rem; color: var(--gray-600);">4.8</span>
+                                </div>
+                                <button class="btn-download" style="background: var(--accent-gold); color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.5rem; cursor: pointer; font-size: 0.9rem;">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Featured Book 3 -->
+                    <div class="ebook-card featured" style="min-width: 300px; margin-right: 2rem;">
+                        <div class="book-cover" style="height: 400px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 1rem; position: relative; overflow: hidden; box-shadow: var(--shadow-xl);">
+                            <div style="position: absolute; top: 2rem; left: 2rem; right: 2rem; text-align: center; color: white;">
+                                <h3 style="font-family: var(--font-tamil); font-size: 1.5rem; margin-bottom: 1rem;">தமிழ் இலக்கணம்</h3>
+                                <p style="font-size: 1rem; opacity: 0.9;">தொல்காப்பியர்</p>
+                                <div style="position: absolute; bottom: -200px; left: 50%; transform: translateX(-50%); font-size: 8rem; opacity: 0.1;">
+                                    <i class="fas fa-language"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="book-info" style="padding: 1.5rem; background: white; border-radius: 0 0 1rem 1rem; box-shadow: var(--shadow-lg);">
+                            <h4 style="color: var(--gray-900); margin-bottom: 0.5rem;">Tamil Grammar</h4>
+                            <p style="color: var(--gray-600); font-size: 0.9rem; margin-bottom: 1rem;">Comprehensive guide to Tamil language structure</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div class="rating" style="color: var(--accent-gold);">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span style="margin-left: 0.5rem; color: var(--gray-600);">4.6</span>
+                                </div>
+                                <button class="btn-download" style="background: var(--accent-green); color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.5rem; cursor: pointer; font-size: 0.9rem;">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-prev" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); background: rgba(255, 255, 255, 0.9); border: none; border-radius: 50%; width: 50px; height: 50px; cursor: pointer; box-shadow: var(--shadow-lg);">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-next" style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); background: rgba(255, 255, 255, 0.9); border: none; border-radius: 50%; width: 50px; height: 50px; cursor: pointer; box-shadow: var(--shadow-lg);">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Book Categories -->
+    <section class="features" style="background: var(--gray-50);">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="english">Browse by Category</span>
+                <span class="tamil">பிரிவு வாரியாக பார்க்கவும்</span>
+            </h2>
+            
+            <div class="category-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                <div class="category-card hover-lift" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg); text-align: center; cursor: pointer;">
+                    <div class="category-icon" style="width: 80px; height: 80px; background: linear-gradient(135deg, #2563eb, #1e40af); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">
+                        <i class="fas fa-feather-alt"></i>
+                    </div>
+                    <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Literature</h3>
+                    <p style="color: var(--gray-600); margin-bottom: 1rem;">Classic and contemporary Tamil literature</p>
+                    <span style="color: var(--primary-blue); font-weight: 600;">1,200+ Books</span>
+                </div>
+                
+                <div class="category-card hover-lift" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg); text-align: center; cursor: pointer;">
+                    <div class="category-icon" style="width: 80px; height: 80px; background: linear-gradient(135deg, #f59e0b, #f97316); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Education</h3>
+                    <p style="color: var(--gray-600); margin-bottom: 1rem;">Educational resources and textbooks</p>
+                    <span style="color: var(--accent-gold); font-weight: 600;">800+ Books</span>
+                </div>
+                
+                <div class="category-card hover-lift" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg); text-align: center; cursor: pointer;">
+                    <div class="category-icon" style="width: 80px; height: 80px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">
+                        <i class="fas fa-theater-masks"></i>
+                    </div>
+                    <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Culture</h3>
+                    <p style="color: var(--gray-600); margin-bottom: 1rem;">Cultural traditions and practices</p>
+                    <span style="color: var(--accent-green); font-weight: 600;">450+ Books</span>
+                </div>
+                
+                <div class="category-card hover-lift" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg); text-align: center; cursor: pointer;">
+                    <div class="category-icon" style="width: 80px; height: 80px; background: linear-gradient(135deg, #8b5cf6, #7c3aed); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h3 style="color: var(--gray-900); margin-bottom: 1rem;">History</h3>
+                    <p style="color: var(--gray-600); margin-bottom: 1rem;">Tamil history and heritage</p>
+                    <span style="color: #8b5cf6; font-weight: 600;">350+ Books</span>
+                </div>
+                
+                <div class="category-card hover-lift" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg); text-align: center; cursor: pointer;">
+                    <div class="category-icon" style="width: 80px; height: 80px; background: linear-gradient(135deg, #ef4444, #dc2626); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Poetry</h3>
+                    <p style="color: var(--gray-600); margin-bottom: 1rem;">Classical and modern Tamil poetry</p>
+                    <span style="color: var(--accent-red); font-weight: 600;">600+ Books</span>
+                </div>
+                
+                <div class="category-card hover-lift" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg); text-align: center; cursor: pointer;">
+                    <div class="category-icon" style="width: 80px; height: 80px; background: linear-gradient(135deg, #06b6d4, #0891b2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Children's Books</h3>
+                    <p style="color: var(--gray-600); margin-bottom: 1rem;">Stories and learning materials for kids</p>
+                    <span style="color: #06b6d4; font-weight: 600;">300+ Books</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Additions -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="english">Recent Additions</span>
+                <span class="tamil">புதிய நூல்கள்</span>
+            </h2>
+            
+            <div class="books-grid" id="books-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem;">
+                <!-- Book entries will be populated here -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <button id="load-more" class="btn btn-primary">
+                    <i class="fas fa-plus"></i>
+                    Load More Books
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reading Statistics -->
+    <section class="stats">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 3rem;">
+                <span class="english">Library Statistics</span>
+                <span class="tamil">நூலக புள்ளிவிவரங்கள்</span>
+            </h2>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="5000">0</div>
+                    <div class="stat-label">Total Books</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="500000">0</div>
+                    <div class="stat-label">Downloads</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="15000">0</div>
+                    <div class="stat-label">Active Readers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="25">0</div>
+                    <div class="stat-label">Languages</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/logo.svg" alt="Tamil Language Society">
+                        <span>தமிழ் மொழி சமூகம்</span>
+                    </div>
+                    <p>Dedicated to preserving and promoting the rich heritage of Tamil language and culture worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="ebooks.html">Digital Library</a></li>
+                        <li><a href="books.html">Book Store</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="donate.html">Donate</a></li>
+                        <li><a href="notifications.html">Notifications</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Stay updated with our latest news and events</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" class="newsletter-input">
+                        <button class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tamil Language Society. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="notification-toast">
+        <div class="toast-content">
+            <i class="fas fa-bell"></i>
+            <span class="toast-message"></span>
+        </div>
+        <button class="toast-close" onclick="closeNotification()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/notifications.js"></script>
+    
+    <script>
+        // Ebooks functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sample book data
+            const books = [
+                {
+                    title: "Modern Tamil Literature",
+                    tamilTitle: "நவீன தமிழ் இலக்கியம்",
+                    author: "Dr. K. Rajendran",
+                    category: "literature",
+                    language: "bilingual",
+                    rating: 4.7,
+                    downloads: 2500,
+                    description: "A comprehensive study of contemporary Tamil literary works",
+                    color: "#2563eb"
+                },
+                {
+                    title: "Tamil Folk Tales",
+                    tamilTitle: "தமிழ் நாட்டுப்புறக் கதைகள்",
+                    author: "S. Meera",
+                    category: "culture",
+                    language: "tamil",
+                    rating: 4.5,
+                    downloads: 1800,
+                    description: "Collection of traditional Tamil folk stories",
+                    color: "#f59e0b"
+                },
+                {
+                    title: "Learn Tamil Grammar",
+                    tamilTitle: "தமிழ் இலக்கணம் கற்றுக்கொள்ளுங்கள்",
+                    author: "Prof. V. Krishnan",
+                    category: "education",
+                    language: "bilingual",
+                    rating: 4.8,
+                    downloads: 3200,
+                    description: "Complete guide to Tamil grammar for beginners",
+                    color: "#10b981"
+                },
+                {
+                    title: "Tamil History Chronicles",
+                    tamilTitle: "தமிழர் வரலாறு",
+                    author: "Dr. A. Ramanathan",
+                    category: "history",
+                    language: "english",
+                    rating: 4.6,
+                    downloads: 1500,
+                    description: "Detailed account of Tamil civilization and heritage",
+                    color: "#8b5cf6"
+                },
+                {
+                    title: "Children's Tamil Stories",
+                    tamilTitle: "குழந்தைகளுக்கான தமிழ் கதைகள்",
+                    author: "M. Lakshmi",
+                    category: "children",
+                    language: "tamil",
+                    rating: 4.9,
+                    downloads: 4100,
+                    description: "Engaging stories for young Tamil learners",
+                    color: "#06b6d4"
+                },
+                {
+                    title: "Classical Tamil Poetry",
+                    tamilTitle: "செம்மொழி தமிழின் கவிதைகள்",
+                    author: "Various Authors",
+                    category: "poetry",
+                    language: "tamil",
+                    rating: 4.4,
+                    downloads: 2800,
+                    description: "Anthology of classical Tamil poems",
+                    color: "#ef4444"
+                }
+            ];
+
+            let currentBooks = books.slice(0, 6);
+            let allBooks = [...books];
+
+            function renderBooks(booksToRender = currentBooks) {
+                const grid = document.getElementById('books-grid');
+                grid.innerHTML = '';
+
+                booksToRender.forEach((book, index) => {
+                    const bookCard = document.createElement('div');
+                    bookCard.className = 'book-card hover-lift';
+                    bookCard.style.animationDelay = `${index * 0.1}s`;
+                    
+                    bookCard.innerHTML = `
+                        <div class="book-cover" style="height: 300px; background: linear-gradient(135deg, ${book.color}, ${book.color}dd); border-radius: 1rem 1rem 0 0; position: relative; overflow: hidden; cursor: pointer;">
+                            <div style="position: absolute; top: 1.5rem; left: 1.5rem; right: 1.5rem; text-align: center; color: white;">
+                                <h4 style="font-family: var(--font-tamil); font-size: 1.25rem; margin-bottom: 0.5rem;">${book.tamilTitle}</h4>
+                                <h5 style="font-size: 1rem; opacity: 0.9; margin-bottom: 1rem;">${book.title}</h5>
+                                <p style="font-size: 0.9rem; opacity: 0.8;">by ${book.author}</p>
+                                <div style="position: absolute; bottom: -120px; left: 50%; transform: translateX(-50%); font-size: 6rem; opacity: 0.1;">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="book-info" style="padding: 1.5rem; background: white; border-radius: 0 0 1rem 1rem; box-shadow: var(--shadow-lg);">
+                            <p style="color: var(--gray-600); font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.5;">${book.description}</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                                <div class="rating" style="color: var(--accent-gold);">
+                                    ${generateStars(book.rating)}
+                                    <span style="margin-left: 0.5rem; color: var(--gray-600); font-size: 0.9rem;">${book.rating}</span>
+                                </div>
+                                <span style="color: var(--gray-500); font-size: 0.8rem;">${book.downloads} downloads</span>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button class="btn-download" style="flex: 1; background: ${book.color}; color: white; border: none; padding: 0.75rem; border-radius: 0.5rem; cursor: pointer; font-size: 0.9rem; transition: all 0.3s ease;">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                                <button class="btn-preview" style="background: var(--gray-100); color: var(--gray-700); border: none; padding: 0.75rem; border-radius: 0.5rem; cursor: pointer; font-size: 0.9rem; transition: all 0.3s ease;">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    grid.appendChild(bookCard);
+                });
+
+                // Add animation classes
+                setTimeout(() => {
+                    document.querySelectorAll('.book-card').forEach(card => {
+                        card.classList.add('animate-fadeInUp');
+                    });
+                }, 100);
+            }
+
+            function generateStars(rating) {
+                const fullStars = Math.floor(rating);
+                const hasHalfStar = rating % 1 !== 0;
+                let stars = '';
+                
+                for (let i = 0; i < fullStars; i++) {
+                    stars += '<i class="fas fa-star"></i>';
+                }
+                
+                if (hasHalfStar) {
+                    stars += '<i class="fas fa-star-half-alt"></i>';
+                }
+                
+                const emptyStars = 5 - Math.ceil(rating);
+                for (let i = 0; i < emptyStars; i++) {
+                    stars += '<i class="far fa-star"></i>';
+                }
+                
+                return stars;
+            }
+
+            // Filter functionality
+            document.getElementById('category-filter').addEventListener('change', function() {
+                filterBooks();
+            });
+
+            document.getElementById('language-filter').addEventListener('change', function() {
+                filterBooks();
+            });
+
+            document.getElementById('sort-filter').addEventListener('change', function() {
+                filterBooks();
+            });
+
+            function filterBooks() {
+                const categoryFilter = document.getElementById('category-filter').value;
+                const languageFilter = document.getElementById('language-filter').value;
+                const sortFilter = document.getElementById('sort-filter').value;
+
+                let filtered = [...allBooks];
+
+                // Apply category filter
+                if (categoryFilter !== 'all') {
+                    filtered = filtered.filter(book => book.category === categoryFilter);
+                }
+
+                // Apply language filter
+                if (languageFilter !== 'all') {
+                    filtered = filtered.filter(book => book.language === languageFilter);
+                }
+
+                // Apply sorting
+                switch (sortFilter) {
+                    case 'popular':
+                        filtered.sort((a, b) => b.downloads - a.downloads);
+                        break;
+                    case 'alphabetical':
+                        filtered.sort((a, b) => a.title.localeCompare(b.title));
+                        break;
+                    case 'rating':
+                        filtered.sort((a, b) => b.rating - a.rating);
+                        break;
+                    default: // latest
+                        // Keep original order
+                        break;
+                }
+
+                renderBooks(filtered);
+            }
+
+            // Search functionality
+            document.getElementById('search-input').addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const filtered = allBooks.filter(book => 
+                    book.title.toLowerCase().includes(searchTerm) ||
+                    book.tamilTitle.includes(searchTerm) ||
+                    book.author.toLowerCase().includes(searchTerm) ||
+                    book.description.toLowerCase().includes(searchTerm)
+                );
+                renderBooks(filtered);
+            });
+
+            // Download button functionality
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('btn-download') || e.target.parentElement.classList.contains('btn-download')) {
+                    e.preventDefault();
+                    window.TamilSociety.showNotification('புத்தகம் பதிவிறக்கம் தொடங்கியது! Book download started');
+                }
+                
+                if (e.target.classList.contains('btn-preview') || e.target.parentElement.classList.contains('btn-preview')) {
+                    e.preventDefault();
+                    window.TamilSociety.showNotification('Preview feature coming soon!');
+                }
+            });
+
+            // Load more functionality
+            document.getElementById('load-more').addEventListener('click', function() {
+                // Simulate loading more books
+                const moreBooks = [...books]; // In real app, this would fetch from server
+                currentBooks = [...currentBooks, ...moreBooks];
+                renderBooks(currentBooks);
+                window.TamilSociety.showNotification('More books loaded successfully!');
+            });
+
+            // Initialize page
+            renderBooks();
+
+            // Featured carousel functionality
+            let currentSlide = 0;
+            const carousel = document.getElementById('featured-carousel');
+            const slides = document.querySelectorAll('.ebook-card.featured');
+            
+            document.querySelector('.carousel-next').addEventListener('click', function() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                updateCarousel();
+            });
+            
+            document.querySelector('.carousel-prev').addEventListener('click', function() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                updateCarousel();
+            });
+            
+            function updateCarousel() {
+                const translateX = -currentSlide * (slides[0].offsetWidth + 32); // 32px for margin
+                carousel.style.transform = `translateX(${translateX}px)`;
+            }
+
+            // Auto-scroll carousel
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % slides.length;
+                updateCarousel();
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

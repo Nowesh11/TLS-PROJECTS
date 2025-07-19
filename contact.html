@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Tamil Language Society</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/logo.svg" alt="Tamil Language Society" class="logo-img">
+                <span class="logo-text">தமிழ் மொழி சமூகம்</span>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="ebooks.html" class="nav-link">Ebooks</a>
+                <a href="books.html" class="nav-link">Books Selling</a>
+                <a href="contact.html" class="nav-link active">Contact Us</a>
+                <a href="donate.html" class="nav-link donate-btn">Donate Now</a>
+                <a href="notifications.html" class="nav-link notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-dot" id="notification-dot"></span>
+                </a>
+                <a href="login.html" class="nav-link">Login</a>
+                <a href="signup.html" class="nav-link signup-btn">Sign Up</a>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 60vh;">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+            <div class="hero-pattern"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text" style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <h1 class="hero-title">
+                    <span class="english-title">Contact Us</span>
+                    <span class="tamil-title">எங்களை தொடர்பு கொள்ளவும்</span>
+                </h1>
+                <p class="hero-subtitle">
+                    We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+                </p>
+                <p class="tamil-quote">
+                    "தொடர்பு கொள்ளுங்கள் - நாங்கள் உங்களுக்காக காத்திருக்கிறோம்"
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="features" style="padding-top: 2rem;">
+        <div class="container">
+            <div class="contact-info-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
+                <div class="contact-info-card hover-lift" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg); text-align: center;">
+                    <div class="contact-icon" style="width: 80px; height: 80px; background: linear-gradient(135deg, #2563eb, #1e40af); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Visit Us</h3>
+                    <p style="color: var(--gray-600); line-height: 1.6;">
+                        Tamil Language Society<br>
+                        123 Tamil Heritage Street<br>
+                        Chennai, Tamil Nadu 600001<br>
+                        India
+                    </p>
+                </div>
+                
+                <div class="contact-info-card hover-lift" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg); text-align: center;">
+                    <div class="contact-icon" style="width: 80px; height: 80px; background: linear-gradient(135deg, #f59e0b, #f97316); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Call Us</h3>
+                    <p style="color: var(--gray-600); line-height: 1.6;">
+                        Phone: +91 44 2345 6789<br>
+                        Mobile: +91 98765 43210<br>
+                        Toll Free: 1800 123 4567
+                    </p>
+                </div>
+                
+                <div class="contact-info-card hover-lift" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg); text-align: center;">
+                    <div class="contact-icon" style="width: 80px; height: 80px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Email Us</h3>
+                    <p style="color: var(--gray-600); line-height: 1.6;">
+                        info@tamillanguagesociety.org<br>
+                        support@tamillanguagesociety.org<br>
+                        media@tamillanguagesociety.org
+                    </p>
+                </div>
+                
+                <div class="contact-info-card hover-lift" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg); text-align: center;">
+                    <div class="contact-icon" style="width: 80px; height: 80px; background: linear-gradient(135deg, #8b5cf6, #7c3aed); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Office Hours</h3>
+                    <p style="color: var(--gray-600); line-height: 1.6;">
+                        Monday - Friday: 9:00 AM - 6:00 PM<br>
+                        Saturday: 10:00 AM - 4:00 PM<br>
+                        Sunday: Closed
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="features" style="background: var(--gray-50);">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;">
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 2rem;">
+                        <span class="english">Send us a Message</span>
+                        <span class="tamil">எங்களுக்கு செய்தி அனுப்பவும்</span>
+                    </h2>
+                    
+                    <form id="contact-form" class="contact-form" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-xl);">
+                        <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div class="floating-label-group">
+                                <input type="text" id="first-name" name="firstName" class="floating-input" required>
+                                <label for="first-name" class="floating-label">First Name</label>
+                            </div>
+                            <div class="floating-label-group">
+                                <input type="text" id="last-name" name="lastName" class="floating-input" required>
+                                <label for="last-name" class="floating-label">Last Name</label>
+                            </div>
+                        </div>
+                        
+                        <div class="floating-label-group" style="margin-bottom: 1.5rem;">
+                            <input type="email" id="email" name="email" class="floating-input" required>
+                            <label for="email" class="floating-label">Email Address</label>
+                        </div>
+                        
+                        <div class="floating-label-group" style="margin-bottom: 1.5rem;">
+                            <input type="tel" id="phone" name="phone" class="floating-input">
+                            <label for="phone" class="floating-label">Phone Number (Optional)</label>
+                        </div>
+                        
+                        <div class="floating-label-group" style="margin-bottom: 1.5rem;">
+                            <select id="subject" name="subject" class="floating-input" required>
+                                <option value=""></option>
+                                <option value="general">General Inquiry</option>
+                                <option value="support">Technical Support</option>
+                                <option value="partnership">Partnership</option>
+                                <option value="volunteer">Volunteer Opportunity</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <label for="subject" class="floating-label">Subject</label>
+                        </div>
+                        
+                        <div class="floating-label-group" style="margin-bottom: 2rem;">
+                            <textarea id="message" name="message" class="floating-input" rows="5" required></textarea>
+                            <label for="message" class="floating-label">Your Message</label>
+                        </div>
+                        
+                        <div class="form-checkbox" style="margin-bottom: 2rem;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; color: var(--gray-600); font-size: 0.9rem;">
+                                <input type="checkbox" id="newsletter" name="newsletter" style="margin: 0;">
+                                Subscribe to our newsletter for updates
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1.1rem;">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Additional Information -->
+                <div class="contact-additional">
+                    <h3 style="color: var(--gray-900); margin-bottom: 1.5rem;">Get in Touch</h3>
+                    <p style="color: var(--gray-600); margin-bottom: 2rem; line-height: 1.8;">
+                        We're here to help and answer any questions you might have. We look forward to hearing from you! 
+                        Whether you're interested in learning Tamil, contributing to our projects, or just want to connect 
+                        with our community, don't hesitate to reach out.
+                    </p>
+                    
+                    <div class="contact-features" style="margin-bottom: 2rem;">
+                        <div class="feature-item" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="width: 40px; height: 40px; background: var(--primary-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                                <i class="fas fa-reply"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--gray-900); margin-bottom: 0.25rem;">Quick Response</h4>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.9rem;">We typically respond within 24 hours</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="width: 40px; height: 40px; background: var(--accent-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--gray-900); margin-bottom: 0.25rem;">Community Support</h4>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.9rem;">Join our vibrant Tamil community</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="width: 40px; height: 40px; background: var(--accent-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--gray-900); margin-bottom: 0.25rem;">Global Reach</h4>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.9rem;">Connect with Tamil speakers worldwide</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-contact" style="padding: 2rem; background: white; border-radius: 1rem; box-shadow: var(--shadow-lg);">
+                        <h4 style="color: var(--gray-900); margin-bottom: 1rem;">Follow Us</h4>
+                        <div class="social-links" style="display: flex; gap: 1rem;">
+                            <a href="#" class="social-link" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="social-link" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="social-link" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="english">Find Us</span>
+                <span class="tamil">எங்களை கண்டுபிடிக்கவும்</span>
+            </h2>
+            
+            <div class="map-container" style="background: var(--gray-200); height: 400px; border-radius: 1rem; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center;">
+                <div style="text-align: center; color: var(--gray-600);">
+                    <i class="fas fa-map-marked-alt" style="font-size: 4rem; margin-bottom: 1rem; color: var(--primary-blue);"></i>
+                    <h3 style="margin-bottom: 0.5rem;">Interactive Map</h3>
+                    <p>Chennai, Tamil Nadu, India</p>
+                    <button class="btn btn-primary" style="margin-top: 1rem;" onclick="openMaps()">
+                        <i class="fas fa-external-link-alt"></i>
+                        Open in Maps
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="features" style="background: var(--gray-50);">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="english">Frequently Asked Questions</span>
+                <span class="tamil">அடிக்கடி கேட்கப்படும் கேள்விகள்</span>
+            </h2>
+            
+            <div class="faq-container" style="max-width: 800px; margin: 0 auto;">
+                <div class="faq-item" style="background: white; margin-bottom: 1rem; border-radius: 1rem; overflow: hidden; box-shadow: var(--shadow-md);">
+                    <button class="faq-question" style="width: 100%; padding: 1.5rem; text-align: left; background: none; border: none; color: var(--gray-900); font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        How can I join the Tamil Language Society?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer" style="padding: 0 1.5rem 1.5rem; color: var(--gray-600); line-height: 1.6;">
+                        You can join our society by signing up on our website or visiting our office. Membership is open to all Tamil language enthusiasts regardless of their proficiency level.
+                    </div>
+                </div>
+                
+                <div class="faq-item" style="background: white; margin-bottom: 1rem; border-radius: 1rem; overflow: hidden; box-shadow: var(--shadow-md);">
+                    <button class="faq-question" style="width: 100%; padding: 1.5rem; text-align: left; background: none; border: none; color: var(--gray-900); font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        Do you offer Tamil language classes?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer" style="padding: 0 1.5rem 1.5rem; color: var(--gray-600); line-height: 1.6; display: none;">
+                        Yes, we offer various Tamil language classes for different skill levels, from beginners to advanced speakers. We also have specialized courses for children and adults.
+                    </div>
+                </div>
+                
+                <div class="faq-item" style="background: white; margin-bottom: 1rem; border-radius: 1rem; overflow: hidden; box-shadow: var(--shadow-md);">
+                    <button class="faq-question" style="width: 100%; padding: 1.5rem; text-align: left; background: none; border: none; color: var(--gray-900); font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        How can I contribute to your projects?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer" style="padding: 0 1.5rem 1.5rem; color: var(--gray-600); line-height: 1.6; display: none;">
+                        There are many ways to contribute: volunteering for events, donating to our projects, sharing your expertise, or helping with translations and content creation.
+                    </div>
+                </div>
+                
+                <div class="faq-item" style="background: white; margin-bottom: 1rem; border-radius: 1rem; overflow: hidden; box-shadow: var(--shadow-md);">
+                    <button class="faq-question" style="width: 100%; padding: 1.5rem; text-align: left; background: none; border: none; color: var(--gray-900); font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        Are your digital resources free to access?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer" style="padding: 0 1.5rem 1.5rem; color: var(--gray-600); line-height: 1.6; display: none;">
+                        Most of our digital resources are free to access for registered members. Some premium content and specialized courses may require a subscription or one-time fee.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/logo.svg" alt="Tamil Language Society">
+                        <span>தமிழ் மொழி சமூகம்</span>
+                    </div>
+                    <p>Dedicated to preserving and promoting the rich heritage of Tamil language and culture worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="ebooks.html">Digital Library</a></li>
+                        <li><a href="books.html">Book Store</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="donate.html">Donate</a></li>
+                        <li><a href="notifications.html">Notifications</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Stay updated with our latest news and events</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" class="newsletter-input">
+                        <button class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tamil Language Society. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="notification-toast">
+        <div class="toast-content">
+            <i class="fas fa-bell"></i>
+            <span class="toast-message"></span>
+        </div>
+        <button class="toast-close" onclick="closeNotification()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/notifications.js"></script>
+    
+    <script>
+        // Floating label functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const floatingInputs = document.querySelectorAll('.floating-input');
+            
+            floatingInputs.forEach(input => {
+                // Check if input has value on load
+                if (input.value) {
+                    input.classList.add('has-value');
+                }
+                
+                input.addEventListener('input', function() {
+                    if (this.value) {
+                        this.classList.add('has-value');
+                    } else {
+                        this.classList.remove('has-value');
+                    }
+                });
+                
+                input.addEventListener('focus', function() {
+                    this.classList.add('focused');
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.classList.remove('focused');
+                });
+            });
+        });
+
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const firstName = formData.get('firstName');
+            const lastName = formData.get('lastName');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            
+            // Validate form
+            if (!firstName || !lastName || !email || !subject || !message) {
+                window.TamilSociety.showNotification('Please fill in all required fields', 'error');
+                return;
+            }
+            
+            if (!window.TamilSociety.isValidEmail(email)) {
+                window.TamilSociety.showNotification('Please enter a valid email address', 'error');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                // Clear form
+                this.reset();
+                document.querySelectorAll('.floating-input').forEach(input => {
+                    input.classList.remove('has-value');
+                });
+                
+                // Show success message
+                showContactThankYou(firstName + ' ' + lastName);
+                window.TamilSociety.showNotification('உங்கள் செய்தி அனுப்பப்பட்டது! Message sent successfully');
+            }, 2000);
+        });
+
+        function showContactThankYou(name) {
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+                animation: fadeIn 0.3s ease;
+            `;
+            
+            overlay.innerHTML = `
+                <div style="background: white; padding: 3rem; border-radius: 1rem; text-align: center; max-width: 500px; animation: scaleIn 0.5s ease;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--accent-green), #047857); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; color: white; font-size: 2rem;">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h2 style="color: var(--gray-900); margin-bottom: 1rem;">நன்றி! Thank You!</h2>
+                    <h3 style="color: var(--primary-blue); margin-bottom: 1.5rem;">${name}</h3>
+                    <p style="color: var(--gray-600); margin-bottom: 1rem; line-height: 1.6;">Your message has been received successfully. We appreciate you taking the time to contact us.</p>
+                    <p style="color: var(--gray-600); font-family: var(--font-tamil); margin-bottom: 2rem;">உங்கள் செய்தி வெற்றிகரமாக பெறப்பட்டது. நாங்கள் விரைவில் உங்களைத் தொடர்பு கொள்வோம்.</p>
+                    <div style="display: flex; gap: 1rem; justify-content: center;">
+                        <button onclick="closeThankYou()" style="background: var(--primary-blue); color: white; border: none; padding: 0.75rem 2rem; border-radius: 0.5rem; cursor: pointer; font-weight: 600;">
+                            <i class="fas fa-home"></i> Back to Home
+                        </button>
+                        <button onclick="closeThankYouOnly()" style="background: var(--gray-200); color: var(--gray-700); border: none; padding: 0.75rem 2rem; border-radius: 0.5rem; cursor: pointer; font-weight: 600;">
+                            Continue
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(overlay);
+            
+            // Auto close after 8 seconds
+            setTimeout(() => {
+                if (overlay.parentNode) {
+                    closeThankYouOnly();
+                }
+            }, 8000);
+            
+            // Close on overlay click
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) {
+                    closeThankYouOnly();
+                }
+            });
+            
+            window.closeThankYou = function() {
+                document.body.removeChild(overlay);
+                window.location.href = 'index.html';
+            };
+            
+            window.closeThankYouOnly = function() {
+                overlay.style.animation = 'fadeOut 0.3s ease';
+                setTimeout(() => {
+                    if (overlay.parentNode) {
+                        document.body.removeChild(overlay);
+                    }
+                }, 300);
+            };
+        }
+
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                
+                if (answer.style.display === 'none' || !answer.style.display) {
+                    answer.style.display = 'block';
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    answer.style.display = 'none';
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+
+        function openMaps() {
+            window.open('https://maps.google.com/maps?q=Chennai,Tamil+Nadu,India', '_blank');
+        }
+    </script>
+    
+    <style>
+        /* Floating label styles */
+        .floating-label-group {
+            position: relative;
+        }
+        
+        .floating-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            background: white;
+            transition: border-color 0.3s ease;
+        }
+        
+        .floating-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+        
+        .floating-label {
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+            color: var(--gray-500);
+            pointer-events: none;
+            transition: all 0.3s ease;
+            background: white;
+            padding: 0 0.25rem;
+        }
+        
+        .floating-input:focus + .floating-label,
+        .floating-input.has-value + .floating-label {
+            top: -0.5rem;
+            left: 0.75rem;
+            font-size: 0.875rem;
+            color: var(--primary-blue);
+        }
+        
+        .floating-input.focused + .floating-label {
+            color: var(--primary-blue);
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .contact-info-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            div[style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+        }
+    </style>
+</body>
+</html>

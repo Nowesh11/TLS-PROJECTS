@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate Now - Tamil Language Society</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/logo.svg" alt="Tamil Language Society" class="logo-img">
+                <span class="logo-text">தமிழ் மொழி சமூகம்</span>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="ebooks.html" class="nav-link">Ebooks</a>
+                <a href="books.html" class="nav-link">Books Selling</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+                <a href="donate.html" class="nav-link donate-btn active">Donate Now</a>
+                <a href="notifications.html" class="nav-link notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-dot" id="notification-dot"></span>
+                </a>
+                <a href="login.html" class="nav-link">Login</a>
+                <a href="signup.html" class="nav-link signup-btn">Sign Up</a>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 60vh;">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+            <div class="hero-pattern"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text" style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <h1 class="hero-title">
+                    <span class="english-title">Support Our Mission</span>
+                    <span class="tamil-title">எங்கள் நோக்கத்தை ஆதரியுங்கள்</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Help us preserve and promote Tamil language and culture for future generations
+                </p>
+                <p class="tamil-quote">
+                    "கொடுத்தல் வாழ்க்கையின் மிகப்பெரிய அறம்"
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Impact -->
+    <section class="features" style="padding-top: 2rem;">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="english">Your Impact</span>
+                <span class="tamil">உங்கள் பங்களிப்பின் தாக்கம்</span>
+            </h2>
+            
+            <div class="impact-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+                <div class="impact-card hover-lift" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg); text-align: center;">
+                    <div class="impact-icon" style="width: 80px; height: 80px; background: linear-gradient(135deg, #2563eb, #1e40af); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3 style="color: var(--gray-900); margin-bottom: 1rem;">₹500</h3>
+                    <p style="color: var(--gray-600); margin-bottom: 1rem;">Sponsors one student's monthly learning materials</p>
+                    <div style="background: var(--light-blue); padding: 0.75rem; border-radius: 0.5rem;">
+                        <span style="color: var(--primary-blue); font-weight: 600;">Impact: 1 Student</span>
+                    </div>
+                </div>
+                
+                <div class="impact-card hover-lift" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg); text-align: center;">
+                    <div class="impact-icon" style="width: 80px; height: 80px; background: linear-gradient(135deg, #f59e0b, #f97316); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3 style="color: var(--gray-900); margin-bottom: 1rem;">₹2,000</h3>
+                    <p style="color: var(--gray-600); margin-bottom: 1rem;">Funds a cultural workshop for 50 participants</p>
+                    <div style="background: #fef3c7; padding: 0.75rem; border-radius: 0.5rem;">
+                        <span style="color: var(--accent-gold); font-weight: 600;">Impact: 50 People</span>
+                    </div>
+                </div>
+                
+                <div class="impact-card hover-lift" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg); text-align: center;">
+                    <div class="impact-icon" style="width: 80px; height: 80px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3 style="color: var(--gray-900); margin-bottom: 1rem;">₹5,000</h3>
+                    <p style="color: var(--gray-600); margin-bottom: 1rem;">Supports technology infrastructure for digital programs</p>
+                    <div style="background: #d1fae5; padding: 0.75rem; border-radius: 0.5rem;">
+                        <span style="color: var(--accent-green); font-weight: 600;">Impact: 200+ Users</span>
+                    </div>
+                </div>
+                
+                <div class="impact-card hover-lift" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg); text-align: center;">
+                    <div class="impact-icon" style="width: 80px; height: 80px; background: linear-gradient(135deg, #8b5cf6, #7c3aed); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">
+                        <i class="fas fa-archive"></i>
+                    </div>
+                    <h3 style="color: var(--gray-900); margin-bottom: 1rem;">₹10,000</h3>
+                    <p style="color: var(--gray-600); margin-bottom: 1rem;">Preserves and digitizes 100 historical documents</p>
+                    <div style="background: #ede9fe; padding: 0.75rem; border-radius: 0.5rem;">
+                        <span style="color: #8b5cf6; font-weight: 600;">Impact: Generations</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Form -->
+    <section class="features" style="background: var(--gray-50);">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;">
+                <!-- Donation Form -->
+                <div class="donation-form-container">
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 2rem;">
+                        <span class="english">Make a Donation</span>
+                        <span class="tamil">நன்கொடை வழங்கவும்</span>
+                    </h2>
+                    
+                    <form id="donation-form" class="donation-form" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-xl);">
+                        <!-- Donation Type -->
+                        <div class="donation-type" style="margin-bottom: 2rem;">
+                            <h4 style="color: var(--gray-900); margin-bottom: 1rem;">Donation Type</h4>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <label style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease;">
+                                    <input type="radio" name="donationType" value="one-time" checked style="margin: 0;">
+                                    <span>One-time</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease;">
+                                    <input type="radio" name="donationType" value="monthly" style="margin: 0;">
+                                    <span>Monthly</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Donation Amount -->
+                        <div class="donation-amount" style="margin-bottom: 2rem;">
+                            <h4 style="color: var(--gray-900); margin-bottom: 1rem;">Select Amount</h4>
+                            <div class="amount-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1rem;">
+                                <button type="button" class="amount-btn" data-amount="500" style="padding: 1rem; border: 2px solid var(--gray-200); background: white; border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease; font-weight: 600;">₹500</button>
+                                <button type="button" class="amount-btn" data-amount="1000" style="padding: 1rem; border: 2px solid var(--gray-200); background: white; border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease; font-weight: 600;">₹1,000</button>
+                                <button type="button" class="amount-btn" data-amount="2000" style="padding: 1rem; border: 2px solid var(--gray-200); background: white; border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease; font-weight: 600;">₹2,000</button>
+                                <button type="button" class="amount-btn" data-amount="5000" style="padding: 1rem; border: 2px solid var(--gray-200); background: white; border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease; font-weight: 600;">₹5,000</button>
+                                <button type="button" class="amount-btn" data-amount="10000" style="padding: 1rem; border: 2px solid var(--gray-200); background: white; border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease; font-weight: 600;">₹10,000</button>
+                                <button type="button" class="amount-btn" data-amount="custom" style="padding: 1rem; border: 2px solid var(--gray-200); background: white; border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease; font-weight: 600;">Custom</button>
+                            </div>
+                            <div class="custom-amount" style="display: none;">
+                                <input type="number" id="custom-amount-input" placeholder="Enter custom amount" style="width: 100%; padding: 1rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; font-size: 1rem;">
+                            </div>
+                        </div>
+                        
+                        <!-- Donor Information -->
+                        <div class="donor-info" style="margin-bottom: 2rem;">
+                            <h4 style="color: var(--gray-900); margin-bottom: 1rem;">Donor Information</h4>
+                            <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                                <input type="text" name="firstName" placeholder="First Name" required style="padding: 1rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; font-size: 1rem;">
+                                <input type="text" name="lastName" placeholder="Last Name" required style="padding: 1rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; font-size: 1rem;">
+                            </div>
+                            <input type="email" name="email" placeholder="Email Address" required style="width: 100%; padding: 1rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; font-size: 1rem; margin-bottom: 1rem;">
+                            <input type="tel" name="phone" placeholder="Phone Number (Optional)" style="width: 100%; padding: 1rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; font-size: 1rem; margin-bottom: 1rem;">
+                        </div>
+                        
+                        <!-- Donation Purpose -->
+                        <div class="donation-purpose" style="margin-bottom: 2rem;">
+                            <label for="purpose" style="display: block; margin-bottom: 0.5rem; color: var(--gray-700); font-weight: 500;">Donation Purpose (Optional)</label>
+                            <select name="purpose" id="purpose" style="width: 100%; padding: 1rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; font-size: 1rem; background: white;">
+                                <option value="">General Support</option>
+                                <option value="education">Educational Programs</option>
+                                <option value="preservation">Cultural Preservation</option>
+                                <option value="technology">Technology Development</option>
+                                <option value="scholarships">Student Scholarships</option>
+                                <option value="events">Cultural Events</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Anonymous Donation -->
+                        <div class="anonymous-donation" style="margin-bottom: 2rem;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; color: var(--gray-600);">
+                                <input type="checkbox" name="anonymous" style="margin: 0;">
+                                Make this donation anonymous
+                            </label>
+                        </div>
+                        
+                        <!-- Payment Method -->
+                        <div class="payment-method" style="margin-bottom: 2rem;">
+                            <h4 style="color: var(--gray-900); margin-bottom: 1rem;">Payment Method</h4>
+                            <div class="payment-options" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                                <label style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease;">
+                                    <input type="radio" name="paymentMethod" value="card" checked style="margin: 0;">
+                                    <i class="fas fa-credit-card" style="color: var(--primary-blue);"></i>
+                                    <span>Credit/Debit Card</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease;">
+                                    <input type="radio" name="paymentMethod" value="upi" style="margin: 0;">
+                                    <i class="fas fa-mobile-alt" style="color: var(--accent-green);"></i>
+                                    <span>UPI</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease;">
+                                    <input type="radio" name="paymentMethod" value="netbanking" style="margin: 0;">
+                                    <i class="fas fa-university" style="color: var(--accent-gold);"></i>
+                                    <span>Net Banking</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease;">
+                                    <input type="radio" name="paymentMethod" value="wallet" style="margin: 0;">
+                                    <i class="fas fa-wallet" style="color: var(--accent-red);"></i>
+                                    <span>Digital Wallet</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Terms and Conditions -->
+                        <div class="terms" style="margin-bottom: 2rem;">
+                            <label style="display: flex; align-items: start; gap: 0.5rem; color: var(--gray-600); font-size: 0.9rem; line-height: 1.6;">
+                                <input type="checkbox" name="terms" required style="margin-top: 0.25rem;">
+                                <span>I agree to the <a href="#" style="color: var(--primary-blue);">Terms and Conditions</a> and understand that my donation will be used to support Tamil Language Society's mission.</span>
+                            </label>
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1.25rem; font-size: 1.1rem; background: linear-gradient(135deg, var(--accent-gold), #f97316);">
+                            <i class="fas fa-heart"></i>
+                            Donate Now
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Donation Information -->
+                <div class="donation-info">
+                    <h3 style="color: var(--gray-900); margin-bottom: 1.5rem;">Why Donate?</h3>
+                    <p style="color: var(--gray-600); margin-bottom: 2rem; line-height: 1.8;">
+                        Your donation directly supports our mission to preserve, promote, and advance Tamil language and culture. 
+                        Every contribution, no matter the size, makes a meaningful difference in our community.
+                    </p>
+                    
+                    <div class="donation-benefits" style="margin-bottom: 2rem;">
+                        <div class="benefit-item" style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 40px; height: 40px; background: var(--primary-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; flex-shrink: 0;">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--gray-900); margin-bottom: 0.5rem;">Secure Donations</h4>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.9rem;">All transactions are encrypted and secure. We never store your payment information.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item" style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 40px; height: 40px; background: var(--accent-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; flex-shrink: 0;">
+                                <i class="fas fa-receipt"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--gray-900); margin-bottom: 0.5rem;">Tax Benefits</h4>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.9rem;">Donations are eligible for tax deductions under Section 80G of the Income Tax Act.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item" style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 40px; height: 40px; background: var(--accent-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; flex-shrink: 0;">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--gray-900); margin-bottom: 0.5rem;">Impact Reports</h4>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.9rem;">Receive regular updates on how your donation is making a difference.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Alternative Donation Methods -->
+                    <div class="alternative-methods" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg); margin-bottom: 2rem;">
+                        <h4 style="color: var(--gray-900); margin-bottom: 1rem;">Other Ways to Support</h4>
+                        <div style="margin-bottom: 1rem;">
+                            <strong>Bank Transfer:</strong><br>
+                            <span style="color: var(--gray-600); font-size: 0.9rem;">
+                                Account: Tamil Language Society<br>
+                                IFSC: HDFC0001234<br>
+                                Account No: 12345678901234
+                            </span>
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <strong>UPI ID:</strong><br>
+                            <span style="color: var(--gray-600); font-size: 0.9rem;">tamillanguagesociety@upi</span>
+                        </div>
+                        <div>
+                            <strong>Cheque/DD:</strong><br>
+                            <span style="color: var(--gray-600); font-size: 0.9rem;">
+                                Payable to "Tamil Language Society"<br>
+                                Mail to our office address
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- Recognition Program -->
+                    <div class="recognition-program" style="background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue)); color: white; padding: 2rem; border-radius: 1rem;">
+                        <h4 style="margin-bottom: 1rem;">Donor Recognition</h4>
+                        <div style="margin-bottom: 1rem;">
+                            <strong style="color: var(--accent-gold);">Gold Patron (₹50,000+)</strong><br>
+                            <span style="opacity: 0.9; font-size: 0.9rem;">Name on our website and annual report</span>
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <strong style="color: #c0c0c0;">Silver Supporter (₹25,000+)</strong><br>
+                            <span style="opacity: 0.9; font-size: 0.9rem;">Recognition in our newsletter</span>
+                        </div>
+                        <div>
+                            <strong style="color: #cd7f32;">Bronze Friend (₹10,000+)</strong><br>
+                            <span style="opacity: 0.9; font-size: 0.9rem;">Thank you certificate</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="english">Success Stories</span>
+                <span class="tamil">வெற்றிக் கதைகள்</span>
+            </h2>
+            
+            <div class="success-stories" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div class="story-card hover-lift" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg);">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--gray-900); margin-bottom: 0.25rem;">Priya's Journey</h4>
+                            <p style="color: var(--gray-600); margin: 0; font-size: 0.9rem;">From beginner to Tamil teacher</p>
+                        </div>
+                    </div>
+                    <p style="color: var(--gray-600); line-height: 1.6;">
+                        "Thanks to the scholarship program funded by donations, I was able to complete my Tamil language certification 
+                        and now teach Tamil to children in my community."
+                    </p>
+                </div>
+                
+                <div class="story-card hover-lift" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg);">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--accent-green), #047857); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                            <i class="fas fa-archive"></i>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--gray-900); margin-bottom: 0.25rem;">Heritage Preserved</h4>
+                            <p style="color: var(--gray-600); margin: 0; font-size: 0.9rem;">Digital archive project</p>
+                        </div>
+                    </div>
+                    <p style="color: var(--gray-600); line-height: 1.6;">
+                        "Donor contributions helped us digitize over 1,000 rare Tamil manuscripts, 
+                        preserving our cultural heritage for future generations."
+                    </p>
+                </div>
+                
+                <div class="story-card hover-lift" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg);">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--accent-gold), #f97316); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--gray-900); margin-bottom: 0.25rem;">Global Reach</h4>
+                            <p style="color: var(--gray-600); margin: 0; font-size: 0.9rem;">International programs</p>
+                        </div>
+                    </div>
+                    <p style="color: var(--gray-600); line-height: 1.6;">
+                        "With generous donations, we launched Tamil learning programs in 15 countries, 
+                        connecting Tamil diaspora communities worldwide."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/logo.svg" alt="Tamil Language Society">
+                        <span>தமிழ் மொழி சமூகம்</span>
+                    </div>
+                    <p>Dedicated to preserving and promoting the rich heritage of Tamil language and culture worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="ebooks.html">Digital Library</a></li>
+                        <li><a href="books.html">Book Store</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="donate.html">Donate</a></li>
+                        <li><a href="notifications.html">Notifications</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Stay updated with our latest news and events</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" class="newsletter-input">
+                        <button class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tamil Language Society. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="notification-toast">
+        <div class="toast-content">
+            <i class="fas fa-bell"></i>
+            <span class="toast-message"></span>
+        </div>
+        <button class="toast-close" onclick="closeNotification()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/notifications.js"></script>
+    
+    <script>
+        let selectedAmount = 500;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Amount button functionality
+            const amountButtons = document.querySelectorAll('.amount-btn');
+            const customAmountDiv = document.querySelector('.custom-amount');
+            const customAmountInput = document.getElementById('custom-amount-input');
+            
+            amountButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    amountButtons.forEach(btn => {
+                        btn.style.borderColor = 'var(--gray-200)';
+                        btn.style.background = 'white';
+                        btn.style.color = 'var(--gray-700)';
+                    });
+                    
+                    // Add active class to clicked button
+                    this.style.borderColor = 'var(--primary-blue)';
+                    this.style.background = 'var(--primary-blue)';
+                    this.style.color = 'white';
+                    
+                    const amount = this.dataset.amount;
+                    if (amount === 'custom') {
+                        customAmountDiv.style.display = 'block';
+                        selectedAmount = null;
+                    } else {
+                        customAmountDiv.style.display = 'none';
+                        selectedAmount = parseInt(amount);
+                    }
+                });
+            });
+            
+            // Custom amount input
+            customAmountInput.addEventListener('input', function() {
+                selectedAmount = parseInt(this.value) || null;
+            });
+            
+            // Payment method styling
+            const paymentLabels = document.querySelectorAll('input[name="paymentMethod"]');
+            paymentLabels.forEach(input => {
+                input.addEventListener('change', function() {
+                    // Reset all labels
+                    document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
+                        radio.parentElement.style.borderColor = 'var(--gray-200)';
+                        radio.parentElement.style.background = 'white';
+                    });
+                    
+                    // Highlight selected
+                    if (this.checked) {
+                        this.parentElement.style.borderColor = 'var(--primary-blue)';
+                        this.parentElement.style.background = 'var(--light-blue)';
+                    }
+                });
+            });
+            
+            // Donation type styling
+            const donationTypeInputs = document.querySelectorAll('input[name="donationType"]');
+            donationTypeInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    // Reset all labels
+                    document.querySelectorAll('input[name="donationType"]').forEach(radio => {
+                        radio.parentElement.style.borderColor = 'var(--gray-200)';
+                        radio.parentElement.style.background = 'white';
+                    });
+                    
+                    // Highlight selected
+                    if (this.checked) {
+                        this.parentElement.style.borderColor = 'var(--primary-blue)';
+                        this.parentElement.style.background = 'var(--light-blue)';
+                    }
+                });
+            });
+            
+            // Initialize first amount button as selected
+            amountButtons[0].click();
+            
+            // Initialize first payment method as selected
+            document.querySelector('input[name="paymentMethod"]:checked').dispatchEvent(new Event('change'));
+            
+            // Initialize first donation type as selected
+            document.querySelector('input[name="donationType"]:checked').dispatchEvent(new Event('change'));
+        });
+        
+        // Form submission
+        document.getElementById('donation-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const firstName = formData.get('firstName');
+            const lastName = formData.get('lastName');
+            const email = formData.get('email');
+            const terms = formData.get('terms');
+            
+            // Validate form
+            if (!firstName || !lastName || !email) {
+                window.TamilSociety.showNotification('Please fill in all required fields', 'error');
+                return;
+            }
+            
+            if (!window.TamilSociety.isValidEmail(email)) {
+                window.TamilSociety.showNotification('Please enter a valid email address', 'error');
+                return;
+            }
+            
+            if (!selectedAmount || selectedAmount <= 0) {
+                window.TamilSociety.showNotification('Please select a valid donation amount', 'error');
+                return;
+            }
+            
+            if (!terms) {
+                window.TamilSociety.showNotification('Please accept the terms and conditions', 'error');
+                return;
+            }
+            
+            // Show processing state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            submitBtn.disabled = true;
+            
+            // Simulate payment processing
+            setTimeout(() => {
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                // Show success
+                showDonationSuccess(firstName + ' ' + lastName, selectedAmount, formData.get('donationType'));
+                
+                // Clear form
+                this.reset();
+                
+                // Reset amount buttons
+                document.querySelectorAll('.amount-btn').forEach(btn => {
+                    btn.style.borderColor = 'var(--gray-200)';
+                    btn.style.background = 'white';
+                    btn.style.color = 'var(--gray-700)';
+                });
+                document.querySelector('.amount-btn').click();
+            }, 3000);
+        });
+        
+        function showDonationSuccess(name, amount, type) {
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+                animation: fadeIn 0.3s ease;
+            `;
+            
+            overlay.innerHTML = `
+                <div style="background: white; padding: 3rem; border-radius: 1rem; text-align: center; max-width: 500px; animation: scaleIn 0.5s ease;">
+                    <div style="width: 100px; height: 100px; background: linear-gradient(135deg, var(--accent-green), #047857); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; color: white; font-size: 3rem;">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h2 style="color: var(--gray-900); margin-bottom: 1rem;">நன்றி! Thank You!</h2>
+                    <h3 style="color: var(--primary-blue); margin-bottom: 1.5rem;">${name}</h3>
+                    <div style="background: var(--light-blue); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 2rem;">
+                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-blue); margin-bottom: 0.5rem;">₹${amount.toLocaleString()}</div>
+                        <div style="color: var(--gray-600);">${type === 'monthly' ? 'Monthly' : 'One-time'} Donation</div>
+                    </div>
+                    <p style="color: var(--gray-600); margin-bottom: 1rem; line-height: 1.6;">Your generous donation will help us continue our mission to preserve and promote Tamil language and culture.</p>
+                    <p style="color: var(--gray-600); font-family: var(--font-tamil); margin-bottom: 2rem;">உங்கள் நன்கொடை தமிழ் மொழி மற்றும் கலாச்சாரத்தை பாதுகாக்க உதவும்.</p>
+                    <div style="background: var(--gray-50); padding: 1rem; border-radius: 0.5rem; margin-bottom: 2rem;">
+                        <p style="color: var(--gray-600); font-size: 0.9rem; margin: 0;">A receipt has been sent to your email. You will receive regular updates on how your donation is making a difference.</p>
+                    </div>
+                    <div style="display: flex; gap: 1rem; justify-content: center;">
+                        <button onclick="closeDonationSuccess()" style="background: var(--primary-blue); color: white; border: none; padding: 0.75rem 2rem; border-radius: 0.5rem; cursor: pointer; font-weight: 600;">
+                            <i class="fas fa-home"></i> Back to Home
+                        </button>
+                        <button onclick="closeDonationSuccessOnly()" style="background: var(--gray-200); color: var(--gray-700); border: none; padding: 0.75rem 2rem; border-radius: 0.5rem; cursor: pointer; font-weight: 600;">
+                            Continue
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(overlay);
+            
+            // Success notification
+            window.TamilSociety.showNotification('நன்கொடை வெற்றிகரமாக பெறப்பட்டது! Donation successful');
+            
+            // Auto close after 10 seconds
+            setTimeout(() => {
+                if (overlay.parentNode) {
+                    closeDonationSuccessOnly();
+                }
+            }, 10000);
+            
+            // Close on overlay click
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) {
+                    closeDonationSuccessOnly();
+                }
+            });
+            
+            window.closeDonationSuccess = function() {
+                document.body.removeChild(overlay);
+                window.location.href = 'index.html';
+            };
+            
+            window.closeDonationSuccessOnly = function() {
+                overlay.style.animation = 'fadeOut 0.3s ease';
+                setTimeout(() => {
+                    if (overlay.parentNode) {
+                        document.body.removeChild(overlay);
+                    }
+                }, 300);
+            };
+        }
+    </script>
+    
+    <style>
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .amount-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            
+            .payment-options {
+                grid-template-columns: 1fr !important;
+            }
+            
+            div[style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+            
+            .impact-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Store - Tamil Language Society</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/logo.svg" alt="Tamil Language Society" class="logo-img">
+                <span class="logo-text">தமிழ் மொழி சமூகம்</span>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="ebooks.html" class="nav-link">Ebooks</a>
+                <a href="books.html" class="nav-link active">Books Selling</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+                <a href="donate.html" class="nav-link donate-btn">Donate Now</a>
+                <a href="notifications.html" class="nav-link notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-dot" id="notification-dot"></span>
+                </a>
+                <a href="login.html" class="nav-link">Login</a>
+                <a href="signup.html" class="nav-link signup-btn">Sign Up</a>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 60vh;">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+            <div class="hero-pattern"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text" style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <h1 class="hero-title">
+                    <span class="english-title">Tamil Book Store</span>
+                    <span class="tamil-title">தமிழ் புத்தக கடை</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Discover and purchase authentic Tamil literature, educational materials, and cultural treasures
+                </p>
+                <p class="tamil-quote">
+                    "நூல் வாங்கி படிப்பவன் புத்தி வளர்ந்து வாழ்வான்"
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Summary -->
+    <div class="cart-summary" id="cart-summary" style="position: fixed; top: 100px; right: 2rem; background: white; border-radius: 1rem; box-shadow: var(--shadow-xl); padding: 1.5rem; max-width: 300px; transform: translateX(120%); transition: transform 0.3s ease; z-index: 1000;">
+        <div class="cart-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--gray-200);">
+            <h3 style="color: var(--gray-900); margin: 0;">Shopping Cart</h3>
+            <button class="cart-close" onclick="toggleCart()" style="background: none; border: none; color: var(--gray-400); cursor: pointer; font-size: 1.25rem;">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <p style="color: var(--gray-500); text-align: center;">Your cart is empty</p>
+        </div>
+        <div class="cart-footer" id="cart-footer" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--gray-200); display: none;">
+            <div class="cart-total" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="font-weight: 600; color: var(--gray-900);">Total:</span>
+                <span id="cart-total-amount" style="font-weight: 700; color: var(--primary-blue); font-size: 1.25rem;">₹0</span>
+            </div>
+            <button class="btn btn-primary" style="width: 100%;" onclick="proceedToCheckout()">
+                <i class="fas fa-shopping-cart"></i>
+                Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Search and Filter Section -->
+    <section class="features" style="padding-top: 2rem;">
+        <div class="container">
+            <div class="search-section" style="max-width: 800px; margin: 0 auto;">
+                <div class="search-bar" style="position: relative; margin-bottom: 2rem;">
+                    <input type="text" id="search-input" placeholder="Search for books, authors, or topics..." style="width: 100%; padding: 1rem 3rem 1rem 1rem; border: 2px solid var(--gray-200); border-radius: 2rem; font-size: 1rem; transition: border-color 0.3s ease;">
+                    <button class="search-btn" style="position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%); background: var(--primary-blue); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 1.5rem; cursor: pointer;">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <div class="filter-section" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem;">
+                    <select id="category-filter" style="padding: 0.5rem 1rem; border: 1px solid var(--gray-300); border-radius: 0.5rem; background: white;">
+                        <option value="all">All Categories</option>
+                        <option value="literature">Literature</option>
+                        <option value="education">Education</option>
+                        <option value="culture">Culture</option>
+                        <option value="children">Children's Books</option>
+                        <option value="religion">Religious</option>
+                        <option value="history">History</option>
+                    </select>
+                    
+                    <select id="price-filter" style="padding: 0.5rem 1rem; border: 1px solid var(--gray-300); border-radius: 0.5rem; background: white;">
+                        <option value="all">All Prices</option>
+                        <option value="0-500">Under ₹500</option>
+                        <option value="500-1000">₹500 - ₹1000</option>
+                        <option value="1000-2000">₹1000 - ₹2000</option>
+                        <option value="2000+">Above ₹2000</option>
+                    </select>
+                    
+                    <select id="sort-filter" style="padding: 0.5rem 1rem; border: 1px solid var(--gray-300); border-radius: 0.5rem; background: white;">
+                        <option value="featured">Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="alphabetical">A-Z</option>
+                        <option value="rating">Highest Rated</option>
+                    </select>
+                </div>
+
+                <div class="cart-toggle" style="text-align: center;">
+                    <button class="btn btn-secondary" onclick="toggleCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        View Cart (<span id="cart-count">0</span>)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Books -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="english">Featured Books</span>
+                <span class="tamil">சிறப்பு நூல்கள்</span>
+            </h2>
+            
+            <div class="books-showcase" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+                <!-- Featured books will be populated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Books Catalog -->
+    <section class="features" style="background: var(--gray-50);">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="english">Browse Our Collection</span>
+                <span class="tamil">எங்கள் தொகுப்பை பார்க்கவும்</span>
+            </h2>
+            
+            <div class="books-grid" id="books-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem;">
+                <!-- Book catalog will be populated here -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <button id="load-more" class="btn btn-primary">
+                    <i class="fas fa-plus"></i>
+                    Load More Books
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Store Statistics -->
+    <section class="stats">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 3rem;">
+                <span class="english">Store Statistics</span>
+                <span class="tamil">கடை புள்ளிவிவரங்கள்</span>
+            </h2>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="2500">0</div>
+                    <div class="stat-label">Books Available</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="50000">0</div>
+                    <div class="stat-label">Books Sold</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="12000">0</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="4.8">0</div>
+                    <div class="stat-label">Average Rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/logo.svg" alt="Tamil Language Society">
+                        <span>தமிழ் மொழி சமூகம்</span>
+                    </div>
+                    <p>Dedicated to preserving and promoting the rich heritage of Tamil language and culture worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="ebooks.html">Digital Library</a></li>
+                        <li><a href="books.html">Book Store</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="donate.html">Donate</a></li>
+                        <li><a href="notifications.html">Notifications</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Stay updated with our latest news and events</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" class="newsletter-input">
+                        <button class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tamil Language Society. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="notification-toast">
+        <div class="toast-content">
+            <i class="fas fa-bell"></i>
+            <span class="toast-message"></span>
+        </div>
+        <button class="toast-close" onclick="closeNotification()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/notifications.js"></script>
+    
+    <script>
+        // Shopping cart functionality
+        let cart = JSON.parse(localStorage.getItem('tamil_society_cart') || '[]');
+        let cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+        // Sample book data for the store
+        const storeBooks = [
+            {
+                id: 'book_001',
+                title: "Thirukkural Commentary",
+                tamilTitle: "திருக்குறள் உரை",
+                author: "Dr. M. Karunanidhi",
+                category: "literature",
+                price: 850,
+                originalPrice: 1000,
+                rating: 4.9,
+                reviews: 245,
+                description: "Complete commentary on Thirukkural with detailed explanations and modern interpretations.",
+                image: "linear-gradient(135deg, #2563eb, #1e40af)",
+                inStock: true,
+                bestseller: true,
+                featured: true
+            },
+            {
+                id: 'book_002',
+                title: "Tamil Grammar Made Easy",
+                tamilTitle: "எளிய தமிழ் இலக்கணம்",
+                author: "Prof. S. Vellaiyan",
+                category: "education",
+                price: 650,
+                originalPrice: 750,
+                rating: 4.7,
+                reviews: 156,
+                description: "Comprehensive guide to Tamil grammar for students and language enthusiasts.",
+                image: "linear-gradient(135deg, #f59e0b, #f97316)",
+                inStock: true,
+                bestseller: false,
+                featured: true
+            },
+            {
+                id: 'book_003',
+                title: "Sangam Literature Collection",
+                tamilTitle: "சங்க இலக்கிய தொகுப்பு",
+                author: "Various Authors",
+                category: "literature",
+                price: 1250,
+                originalPrice: 1500,
+                rating: 4.8,
+                reviews: 89,
+                description: "Complete collection of Sangam period literature with modern translations.",
+                image: "linear-gradient(135deg, #10b981, #059669)",
+                inStock: true,
+                bestseller: true,
+                featured: true
+            },
+            {
+                id: 'book_004',
+                title: "Tamil Folk Tales",
+                tamilTitle: "தமிழ் நாட்டுப்புறக் கதைகள்",
+                author: "S. Meera Devi",
+                category: "children",
+                price: 450,
+                originalPrice: 500,
+                rating: 4.6,
+                reviews: 312,
+                description: "Collection of traditional Tamil folk stories for children and families.",
+                image: "linear-gradient(135deg, #8b5cf6, #7c3aed)",
+                inStock: true,
+                bestseller: false,
+                featured: false
+            },
+            {
+                id: 'book_005',
+                title: "Tamil Culture and Traditions",
+                tamilTitle: "தமிழ் கலாச்சாரம் மற்றும் மரபுகள்",
+                author: "Dr. A. Ramanathan",
+                category: "culture",
+                price: 950,
+                originalPrice: 1100,
+                rating: 4.5,
+                reviews: 78,
+                description: "Detailed study of Tamil cultural practices and traditional customs.",
+                image: "linear-gradient(135deg, #ef4444, #dc2626)",
+                inStock: true,
+                bestseller: false,
+                featured: false
+            },
+            {
+                id: 'book_006',
+                title: "Ancient Tamil History",
+                tamilTitle: "பண்டைய தமிழர் வரலாறு",
+                author: "Prof. K. Srinivasan",
+                category: "history",
+                price: 1150,
+                originalPrice: 1300,
+                rating: 4.7,
+                reviews: 124,
+                description: "Comprehensive history of ancient Tamil civilization and kingdoms.",
+                image: "linear-gradient(135deg, #06b6d4, #0891b2)",
+                inStock: true,
+                bestseller: false,
+                featured: false
+            }
+        ];
+
+        let filteredBooks = [...storeBooks];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartDisplay();
+            renderFeaturedBooks();
+            renderBooks();
+        });
+
+        function renderFeaturedBooks() {
+            const container = document.querySelector('.books-showcase');
+            const featured = storeBooks.filter(book => book.featured);
+            
+            container.innerHTML = featured.map(book => `
+                <div class="featured-book-card hover-lift" style="background: white; border-radius: 1rem; box-shadow: var(--shadow-xl); overflow: hidden; position: relative;">
+                    ${book.bestseller ? '<div style="position: absolute; top: 1rem; left: 1rem; background: var(--accent-red); color: white; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem; font-weight: 600; z-index: 10;">Bestseller</div>' : ''}
+                    <div class="book-cover" style="height: 250px; background: ${book.image}; position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: 2rem; left: 2rem; right: 2rem; text-align: center; color: white;">
+                            <h4 style="font-family: var(--font-tamil); font-size: 1.25rem; margin-bottom: 0.5rem;">${book.tamilTitle}</h4>
+                            <h5 style="font-size: 1rem; opacity: 0.9; margin-bottom: 1rem;">${book.title}</h5>
+                            <p style="font-size: 0.9rem; opacity: 0.8;">by ${book.author}</p>
+                        </div>
+                    </div>
+                    <div class="book-info" style="padding: 2rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <div class="price-info">
+                                <span style="font-size: 1.5rem; font-weight: 700; color: var(--primary-blue);">₹${book.price}</span>
+                                ${book.originalPrice > book.price ? `<span style="font-size: 1rem; color: var(--gray-400); text-decoration: line-through; margin-left: 0.5rem;">₹${book.originalPrice}</span>` : ''}
+                            </div>
+                            <div class="rating" style="color: var(--accent-gold); font-size: 0.9rem;">
+                                ${generateStars(book.rating)}
+                                <span style="margin-left: 0.5rem; color: var(--gray-600);">${book.rating}</span>
+                            </div>
+                        </div>
+                        <p style="color: var(--gray-600); margin-bottom: 1.5rem; line-height: 1.5;">${book.description}</p>
+                        <div style="display: flex; gap: 0.75rem;">
+                            <button class="btn-add-cart" data-book-id="${book.id}" style="flex: 1; background: var(--primary-blue); color: white; border: none; padding: 0.75rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease; font-weight: 600;">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                            <button class="btn-buy-now" data-book-id="${book.id}" style="flex: 1; background: var(--accent-gold); color: white; border: none; padding: 0.75rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease; font-weight: 600;">
+                                <i class="fas fa-bolt"></i> Buy Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderBooks(books = filteredBooks) {
+            const container = document.getElementById('books-grid');
+            
+            container.innerHTML = books.map((book, index) => `
+                <div class="book-card hover-lift animate-fadeInUp" style="background: white; border-radius: 1rem; box-shadow: var(--shadow-lg); overflow: hidden; transition: all 0.3s ease; animation-delay: ${index * 0.1}s; position: relative;">
+                    ${book.bestseller ? '<div style="position: absolute; top: 1rem; left: 1rem; background: var(--accent-red); color: white; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem; font-weight: 600; z-index: 10;">Bestseller</div>' : ''}
+                    <div class="book-cover" style="height: 200px; background: ${book.image}; position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: 1.5rem; left: 1.5rem; right: 1.5rem; text-align: center; color: white;">
+                            <h4 style="font-family: var(--font-tamil); font-size: 1.1rem; margin-bottom: 0.5rem;">${book.tamilTitle}</h4>
+                            <h5 style="font-size: 0.9rem; opacity: 0.9;">${book.title}</h5>
+                        </div>
+                    </div>
+                    <div class="book-info" style="padding: 1.5rem;">
+                        <p style="color: var(--gray-600); font-size: 0.9rem; margin-bottom: 0.5rem;">by ${book.author}</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <div class="price-info">
+                                <span style="font-size: 1.25rem; font-weight: 700; color: var(--primary-blue);">₹${book.price}</span>
+                                ${book.originalPrice > book.price ? `<span style="font-size: 0.9rem; color: var(--gray-400); text-decoration: line-through; margin-left: 0.5rem;">₹${book.originalPrice}</span>` : ''}
+                            </div>
+                            <div class="rating" style="color: var(--accent-gold); font-size: 0.8rem;">
+                                ${generateStars(book.rating)}
+                                <span style="margin-left: 0.25rem; color: var(--gray-600);">(${book.reviews})</span>
+                            </div>
+                        </div>
+                        <p style="color: var(--gray-600); font-size: 0.85rem; margin-bottom: 1.5rem; line-height: 1.4;">${book.description.substring(0, 100)}...</p>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button class="btn-add-cart" data-book-id="${book.id}" style="flex: 1; background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-300); padding: 0.5rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease; font-size: 0.85rem;">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                            <button class="btn-buy-now" data-book-id="${book.id}" style="flex: 1; background: var(--primary-blue); color: white; border: none; padding: 0.5rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease; font-size: 0.85rem;">
+                                <i class="fas fa-bolt"></i> Buy Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Add event listeners for buttons
+            addButtonEventListeners();
+        }
+
+        function addButtonEventListeners() {
+            // Add to cart buttons
+            document.querySelectorAll('.btn-add-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const bookId = this.dataset.bookId;
+                    addToCart(bookId);
+                    
+                    // Animation effect
+                    this.style.background = 'var(--accent-green)';
+                    this.innerHTML = '<i class="fas fa-check"></i> Added';
+                    setTimeout(() => {
+                        this.style.background = '';
+                        this.innerHTML = '<i class="fas fa-cart-plus"></i> Add to Cart';
+                    }, 2000);
+                });
+            });
+
+            // Buy now buttons
+            document.querySelectorAll('.btn-buy-now').forEach(button => {
+                button.addEventListener('click', function() {
+                    const bookId = this.dataset.bookId;
+                    buyNow(bookId);
+                });
+            });
+        }
+
+        function addToCart(bookId) {
+            const book = storeBooks.find(b => b.id === bookId);
+            if (!book) return;
+
+            const existingItem = cart.find(item => item.id === bookId);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: book.id,
+                    title: book.title,
+                    tamilTitle: book.tamilTitle,
+                    author: book.author,
+                    price: book.price,
+                    image: book.image,
+                    quantity: 1
+                });
+            }
+
+            saveCart();
+            updateCartDisplay();
+            window.TamilSociety.showNotification(`${book.tamilTitle} added to cart!`);
+        }
+
+        function buyNow(bookId) {
+            const book = storeBooks.find(b => b.id === bookId);
+            if (!book) return;
+
+            // Simulate immediate purchase
+            window.TamilSociety.showNotification(`Purchasing ${book.tamilTitle}... Redirecting to payment...`);
+            
+            setTimeout(() => {
+                window.TamilSociety.showNotification('வாங்கியதற்கு நன்றி! Thank you for your purchase!');
+            }, 2000);
+        }
+
+        function removeFromCart(bookId) {
+            cart = cart.filter(item => item.id !== bookId);
+            saveCart();
+            updateCartDisplay();
+            renderCartItems();
+        }
+
+        function updateQuantity(bookId, newQuantity) {
+            const item = cart.find(item => item.id === bookId);
+            if (item) {
+                if (newQuantity <= 0) {
+                    removeFromCart(bookId);
+                } else {
+                    item.quantity = newQuantity;
+                    saveCart();
+                    updateCartDisplay();
+                    renderCartItems();
+                }
+            }
+        }
+
+        function saveCart() {
+            localStorage.setItem('tamil_society_cart', JSON.stringify(cart));
+        }
+
+        function updateCartDisplay() {
+            cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').textContent = cartCount;
+            
+            if (cartCount > 0) {
+                document.getElementById('notification-dot').classList.add('show');
+            }
+        }
+
+        function toggleCart() {
+            const cartSummary = document.getElementById('cart-summary');
+            const isVisible = cartSummary.style.transform === 'translateX(0px)';
+            
+            if (isVisible) {
+                cartSummary.style.transform = 'translateX(120%)';
+            } else {
+                cartSummary.style.transform = 'translateX(0px)';
+                renderCartItems();
+            }
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cart-items');
+            const footer = document.getElementById('cart-footer');
+            
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="color: var(--gray-500); text-align: center;">Your cart is empty</p>';
+                footer.style.display = 'none';
+                return;
+            }
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            container.innerHTML = cart.map(item => `
+                <div class="cart-item" style="display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--gray-200);">
+                    <div style="width: 60px; height: 80px; background: ${item.image}; border-radius: 0.5rem; flex-shrink: 0;"></div>
+                    <div style="flex: 1;">
+                        <h5 style="color: var(--gray-900); margin-bottom: 0.25rem; font-size: 0.9rem;">${item.tamilTitle}</h5>
+                        <p style="color: var(--gray-600); font-size: 0.8rem; margin-bottom: 0.5rem;">${item.title}</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: var(--primary-blue); font-weight: 600;">₹${item.price}</span>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <button onclick="updateQuantity('${item.id}', ${item.quantity - 1})" style="background: var(--gray-200); border: none; width: 24px; height: 24px; border-radius: 50%; cursor: pointer;">-</button>
+                                <span style="font-weight: 600;">${item.quantity}</span>
+                                <button onclick="updateQuantity('${item.id}', ${item.quantity + 1})" style="background: var(--gray-200); border: none; width: 24px; height: 24px; border-radius: 50%; cursor: pointer;">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('cart-total-amount').textContent = `₹${total}`;
+            footer.style.display = 'block';
+        }
+
+        function proceedToCheckout() {
+            window.TamilSociety.showNotification('Proceeding to checkout... இருக்கைக்கு செல்கிறோம்...');
+            setTimeout(() => {
+                window.TamilSociety.showNotification('Checkout feature coming soon!');
+            }, 1500);
+        }
+
+        function generateStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            let stars = '';
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star"></i>';
+            }
+            
+            if (hasHalfStar) {
+                stars += '<i class="fas fa-star-half-alt"></i>';
+            }
+            
+            const emptyStars = 5 - Math.ceil(rating);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="far fa-star"></i>';
+            }
+            
+            return stars;
+        }
+
+        // Filter functionality
+        document.getElementById('category-filter').addEventListener('change', applyFilters);
+        document.getElementById('price-filter').addEventListener('change', applyFilters);
+        document.getElementById('sort-filter').addEventListener('change', applyFilters);
+        document.getElementById('search-input').addEventListener('input', applyFilters);
+
+        function applyFilters() {
+            const category = document.getElementById('category-filter').value;
+            const priceRange = document.getElementById('price-filter').value;
+            const sortBy = document.getElementById('sort-filter').value;
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+
+            filteredBooks = storeBooks.filter(book => {
+                // Category filter
+                if (category !== 'all' && book.category !== category) return false;
+                
+                // Price filter
+                if (priceRange !== 'all') {
+                    const [min, max] = priceRange === '2000+' ? [2000, Infinity] : priceRange.split('-').map(Number);
+                    if (book.price < min || book.price > max) return false;
+                }
+                
+                // Search filter
+                if (searchTerm && !book.title.toLowerCase().includes(searchTerm) && 
+                    !book.tamilTitle.includes(searchTerm) && 
+                    !book.author.toLowerCase().includes(searchTerm)) {
+                    return false;
+                }
+                
+                return true;
+            });
+
+            // Sort
+            switch (sortBy) {
+                case 'price-low':
+                    filteredBooks.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    filteredBooks.sort((a, b) => b.price - a.price);
+                    break;
+                case 'alphabetical':
+                    filteredBooks.sort((a, b) => a.title.localeCompare(b.title));
+                    break;
+                case 'rating':
+                    filteredBooks.sort((a, b) => b.rating - a.rating);
+                    break;
+                default:
+                    // Keep original order for featured
+                    break;
+            }
+
+            renderBooks(filteredBooks);
+        }
+
+        // Load more functionality
+        document.getElementById('load-more').addEventListener('click', function() {
+            window.TamilSociety.showNotification('Loading more books...');
+            setTimeout(() => {
+                window.TamilSociety.showNotification('All books loaded!');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
