@@ -1,0 +1,127 @@
+Create a complete, stunning, high-level frontend website called Tamil Language Society using only HTML, CSS, and JavaScript (no backend, no frameworks like React, no database).
+
+General requirements:
+
+Use a modern, attractive, eye-catching design. The core color theme must be blue and white; you may add any accent colors to enhance the aesthetics.
+
+Layout must be fully responsive (desktop, tablet, mobile) and feel premium.
+
+Use fancy buttons, elevated card components, shadows, gradients, rounded corners, smooth hover effects, and animated transitions to make the UI look impressive.
+
+Integrate Google Fonts and at least one beautiful Tamil Unicode font in headers and sections for authentic feel.
+
+Navigation and Page Structure:
+Add a fixed top navigation bar with the following sections:
+
+Home
+
+About Us
+
+Projects
+
+Ebooks
+
+Books Selling
+
+Contact Us
+
+Donate Now
+
+Notifications
+
+Login
+
+Sign Up
+
+Pages & Features:
+
+Home:
+
+Visually rich hero section with society logo (placeholder), a brief intro, and a line in Tamil script with special Tamil font.
+
+Use animated/fancy background or decorative graphics.
+
+About Us:
+
+Stylish section/card for society history (add only a visually appealing placeholder or lorem ipsum; I'll fill in content later).
+
+Highlight Tamil culture visually.
+
+Projects:
+
+Display project cards in a grid, each with sample image, name, and description.
+
+Cards must have a modern 3D effect or fancy styling/animation.
+
+Add dummy project data.
+
+Ebooks:
+
+Fancy cards for ebooks: cover image, title, author, and download (button with dummy link).
+
+Grid or carousel format, with smooth scroll/animations.
+
+Use sample/placeholder ebook entries.
+
+Books Selling:
+
+Catalog UI listing books for sale with card designs (image, title, short description, price).
+
+Include "Add to Cart" and "Buy Now" buttons (UI only, no working cart).
+
+Fancy hover/press animation for buttons.
+
+Add book cards with demo/sample data.
+
+Contact Us:
+
+Animated, stunning contact form (name, email, message, submit button).
+
+On submit, show a “Thank You” message on the page (no backend).
+
+Donate Now:
+
+Stylish donation info section with sample payment/donation instructions.
+
+Notifications:
+
+Dedicated page with sample notification cards.
+
+Users can view all notifications on the site (dummy/demo data).
+
+Include stylish notification bell icon in navbar with a red dot for new notifications.
+
+(Simulate email notifications: when a new notification is created or marked, show a popup/toast or overlay that mimics an email alert notification to the user, but do not implement real email sending).
+
+Login & Sign Up:
+
+Stunning login and signup forms with floating labels and animated/fancy inputs.
+
+Add “Forgot Password?” link in Login form.
+
+Forgot/Reset Password:
+
+When “Forgot Password?” is clicked, show a form for user email with a fake “reset” flow (front-end only, no backend).
+
+Simulate success message on reset request (“Instructions have been sent to your email”).
+
+Additional Details:
+
+All admin/user content updates should be simulated via UI only (no backend, just dummy content and forms).
+
+Use meaningful placeholder images and text for demo (no references to actual data).
+
+Animations, gradients, and hover effects must be prominent in cards and buttons to achieve a high-level look.
+
+All UI elements (cards, forms, nav, notifications, modals, etc.) must be built only with HTML, CSS, and JavaScript, and be easily customizable.
+
+Ensure every page and feature is accessible by clicking/scrolling from the navbar.
+
+Add clear code comments for easy editing.
+
+The project should be in a well-structured, maintainable format with separated CSS, JS, and HTML files for each page/feature as needed.
+
+Summary:
+Build a visually striking, modern, and fully responsive multipage website called Tamil Language Society in blue and white theme (with fun accents if desired), featuring all sections described above, using only HTML, CSS, and JavaScript—with a special notifications page, simulated email/website notifications, and a fake forgot/reset password flow.
+
+No backend, no frameworks, no database.
