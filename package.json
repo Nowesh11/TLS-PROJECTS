@@ -1,0 +1,51 @@
+{
+  "name": "tls-projects",
+  "version": "1.0.0",
+  "description": "TLS Projects - Node.js + Express + MongoDB application",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "cd backend && node server.js",
+    "dev": "cd backend && nodemon server.js",
+    "lint:js": "eslint . --ext .js --fix",
+    "lint:html": "htmlhint \"**/*.html\"",
+    "lint:css": "stylelint \"**/*.css\" --fix",
+    "lint": "npm run lint:js && npm run lint:html && npm run lint:css",
+    "format": "prettier --write .",
+    "audit": "npm audit --fix || true",
+    "snyk": "snyk test || true",
+    "test": "jest --runInBand",
+    "check-all": "npm run lint && npm run format && npm run audit && npm test",
+    "seed-admin": "cd backend && node seedAdmin.js",
+    "cleanup-contact-tests": "node cleanup-contact-tests.js",
+    "fix-auth-tests": "npm run seed-admin && npm run cleanup-contact-tests",
+    "test:playwright": "npx playwright test",
+    "test:playwright:headed": "npx playwright test --headed",
+    "test:playwright:debug": "npx playwright test --debug",
+    "test:playwright:report": "npx playwright show-report",
+    "test:full-fix": "npm run fix-auth-tests && npm run test:playwright",
+    "test:comprehensive": "npm run fix-auth-tests && npx playwright test --reporter=html",
+    "servers:start": "concurrently \"npm run start\" \"npx http-server -p 3000\"",
+    "test:with-servers": "npm run servers:start & sleep 10 && npm run test:comprehensive",
+    "postinstall": "npx playwright install"
+  },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "express-validator": "^7.2.1",
+    "puppeteer": "^24.17.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.57.0",
+    "html-validate": "^10.0.0",
+    "htmlhint": "^1.1.4",
+    "jest": "^29.0.0",
+    "nodemon": "^3.0.0",
+    "playwright": "^1.55.0",
+    "prettier": "^3.0.0",
+    "snyk": "^1.1290.0",
+    "stylelint": "^16.0.0",
+    "stylelint-config-standard": "^36.0.0",
+    "supertest": "^6.3.0"
+  }
+}

@@ -1,0 +1,211 @@
+/* Hero Slideshow Styles */
+.hero-slideshow {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    overflow: hidden;
+}
+
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.slide.active {
+    opacity: 0.3;
+}
+
+.slide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgb(37 99 235 / 40%) 0%, rgb(255 255 255 / 20%) 50%, rgb(245 158 11 / 30%) 100%);
+    z-index: 1;
+}
+
+/* Slideshow indicators */
+.slideshow-indicators {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 3;
+}
+
+.indicator {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 50%);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    min-height: 40px;
+}
+
+.indicator.active {
+    background: var(--primary-blue);
+    border-color: rgb(255 255 255 / 80%);
+    transform: scale(1.2);
+}
+
+.indicator:hover {
+    background: rgb(255 255 255 / 80%);
+    transform: scale(1.1);
+}
+
+/* Slideshow controls */
+.slideshow-controls {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    background: rgb(255 255 255 / 20%);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.slideshow-controls:hover {
+    background: rgb(255 255 255 / 30%);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.slideshow-controls i {
+    color: var(--primary-blue);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.prev-btn {
+    left: 30px;
+}
+
+.next-btn {
+    right: 30px;
+}
+
+/* Default slideshow images */
+.slide.default-1 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.slide.default-2 {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.slide.default-3 {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.slide.default-4 {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.slide.default-5 {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+/* Theme support */
+[data-theme="dark"] .slideshow-controls {
+    background: rgb(0 0 0 / 30%);
+    border: 1px solid rgb(255 255 255 / 20%);
+}
+
+[data-theme="dark"] .slideshow-controls:hover {
+    background: rgb(0 0 0 / 50%);
+}
+
+[data-theme="dark"] .slideshow-controls i {
+    color: var(--light-blue);
+}
+
+[data-theme="dark"] .indicator {
+    background: rgb(255 255 255 / 30%);
+    border-color: rgb(255 255 255 / 10%);
+}
+
+[data-theme="dark"] .indicator.active {
+    background: var(--light-blue);
+    border-color: rgb(255 255 255 / 60%);
+}
+
+[data-theme="dark"] .indicator:hover {
+    background: rgb(255 255 255 / 60%);
+}
+
+/* Responsive design */
+@media (width <= 768px) {
+    .slideshow-controls {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .slideshow-controls i {
+        font-size: 1rem;
+    }
+    
+    .prev-btn {
+        left: 15px;
+    }
+    
+    .next-btn {
+        right: 15px;
+    }
+    
+    .slideshow-indicators {
+        bottom: 20px;
+    }
+    
+    .indicator {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+    }
+}
+
+@media (width <= 480px) {
+    .slideshow-controls {
+        display: none;
+    }
+    
+    .slideshow-indicators {
+        bottom: 15px;
+        gap: 8px;
+    }
+    
+    .indicator {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+    }
+}

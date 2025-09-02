@@ -1,0 +1,133 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - button "" [ref=e2] [cursor=pointer]:
+    - generic [ref=e3] [cursor=pointer]: 
+  - generic [ref=e4]:
+    - text: 
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - button "" [ref=e7] [cursor=pointer]:
+          - generic [ref=e8] [cursor=pointer]: 
+        - img "Tamil Language Society" [ref=e9]
+        - heading "Admin Panel" [level=3] [ref=e10]
+        - paragraph [ref=e11]: Content Management System
+        - generic [ref=e13]:
+          - generic [ref=e14]: T
+          - generic [ref=e15]:
+            - generic [ref=e16]: Test Admin User
+            - generic [ref=e17]: Administrator
+          - button "" [ref=e18] [cursor=pointer]:
+            - generic [ref=e19] [cursor=pointer]: 
+      - navigation [ref=e20]:
+        - button " Dashboard" [ref=e21] [cursor=pointer]:
+          - generic [ref=e22] [cursor=pointer]: 
+          - text: Dashboard
+        - button " Website Content" [ref=e23] [cursor=pointer]:
+          - generic [ref=e24] [cursor=pointer]: 
+          - text: Website Content
+        - button " Books Management" [ref=e25] [cursor=pointer]:
+          - generic [ref=e26] [cursor=pointer]: 
+          - text: Books Management
+        - button " E-books Management" [ref=e27] [cursor=pointer]:
+          - generic [ref=e28] [cursor=pointer]: 
+          - text: E-books Management
+        - button " Projects" [ref=e29] [cursor=pointer]:
+          - generic [ref=e30] [cursor=pointer]: 
+          - text: Projects
+        - button " Activities" [ref=e31] [cursor=pointer]:
+          - generic [ref=e32] [cursor=pointer]: 
+          - text: Activities
+        - button " Initiatives" [ref=e33] [cursor=pointer]:
+          - generic [ref=e34] [cursor=pointer]: 
+          - text: Initiatives
+        - button " Team Management" [active] [ref=e35] [cursor=pointer]:
+          - generic [ref=e36] [cursor=pointer]: 
+          - text: Team Management
+        - button " Recruitment Management" [ref=e37] [cursor=pointer]:
+          - generic [ref=e38] [cursor=pointer]: 
+          - text: Recruitment Management
+        - button " Chats" [ref=e39] [cursor=pointer]:
+          - generic [ref=e40] [cursor=pointer]: 
+          - text: Chats
+        - button " Users" [ref=e41] [cursor=pointer]:
+          - generic [ref=e42] [cursor=pointer]: 
+          - text: Users
+        - button " Announcements" [ref=e43] [cursor=pointer]:
+          - generic [ref=e44] [cursor=pointer]: 
+          - text: Announcements
+        - button " Purchased Books" [ref=e45] [cursor=pointer]:
+          - generic [ref=e46] [cursor=pointer]: 
+          - text: Purchased Books
+        - button " Payment Settings" [ref=e47] [cursor=pointer]:
+          - generic [ref=e48] [cursor=pointer]: 
+          - text: Payment Settings
+        - button " Posters" [ref=e49] [cursor=pointer]:
+          - generic [ref=e50] [cursor=pointer]: 
+          - text: Posters
+        - button " Slideshow" [ref=e51] [cursor=pointer]:
+          - generic [ref=e52] [cursor=pointer]: 
+          - text: Slideshow
+        - button " File Storage" [ref=e53] [cursor=pointer]:
+          - generic [ref=e54] [cursor=pointer]: 
+          - text: File Storage
+        - button " Logout" [ref=e55] [cursor=pointer]:
+          - generic [ref=e56] [cursor=pointer]: 
+          - text: Logout
+    - generic [ref=e57]:
+      - text: + + + + +                                            +   +   +    +    +   
+      - generic [ref=e58]:
+        - generic [ref=e59]:
+          - heading "Team Management" [level=1] [ref=e60]
+          - generic [ref=e61]:
+            - button " Export CSV" [ref=e62] [cursor=pointer]:
+              - generic [ref=e63] [cursor=pointer]: 
+              - text: Export CSV
+            - button "+ Add Team Member" [ref=e64] [cursor=pointer]:
+              - generic [ref=e65] [cursor=pointer]: +
+              - text: Add Team Member
+        - generic [ref=e66]:
+          - generic [ref=e67]:
+            - generic [ref=e68]:
+              - textbox "Search team members..." [ref=e69]
+              - generic [ref=e70]: 
+            - combobox [ref=e72] [cursor=pointer]:
+              - option "All Positions" [selected]
+              - option "President"
+              - option "Vice President"
+              - option "Treasurer"
+              - option "Secretary"
+              - option "Executive Committee"
+              - option "Auditor"
+          - table [ref=e74]:
+            - rowgroup [ref=e75]:
+              - row "Photo Name Position Department Order Status Actions" [ref=e76]:
+                - cell "Photo" [ref=e77]
+                - cell "Name" [ref=e78]
+                - cell "Position" [ref=e79]
+                - cell "Department" [ref=e80]
+                - cell "Order" [ref=e81]
+                - cell "Status" [ref=e82]
+                - cell "Actions" [ref=e83]
+            - rowgroup
+      - text:        +            $   +       + ✓              +   
+      - generic [ref=e85]:
+        - generic [ref=e86]: Network error. Retrying... (1/2)
+        - button "×" [ref=e87] [cursor=pointer]
+      - text:  +               
+  - button "Toggle theme" [ref=e88] [cursor=pointer]:
+    - generic [ref=e89] [cursor=pointer]: 
+  - text:  
+  - generic [ref=e90]:
+    - generic [ref=e91]:
+      - generic [ref=e92]: 
+      - generic [ref=e93]:
+        - generic [ref=e94]: Tamil Language Society
+        - generic [ref=e95]: New Email
+      - button "Close email notification" [ref=e96] [cursor=pointer]:
+        - generic [ref=e97] [cursor=pointer]: 
+    - generic [ref=e99]:
+      - button "Dismiss" [ref=e100] [cursor=pointer]
+      - button "View Details" [ref=e101] [cursor=pointer]
+```

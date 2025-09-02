@@ -1,0 +1,12 @@
+node_modules/
+backend/node_modules/
+*.min.js
+test-*.js
+sw.js
+backend/public/
+backend/uploads/
+uploads/
+assets/
+.git/
+dist/
+build/

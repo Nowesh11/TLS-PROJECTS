@@ -1,0 +1,137 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - button "" [ref=e2] [cursor=pointer]:
+    - generic [ref=e3] [cursor=pointer]: 
+  - generic [ref=e4]:
+    - text: 
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - button "" [ref=e7] [cursor=pointer]:
+          - generic [ref=e8] [cursor=pointer]: 
+        - img "Tamil Language Society" [ref=e9]
+        - heading "Admin Panel" [level=3] [ref=e10]
+        - paragraph [ref=e11]: Content Management System
+        - generic [ref=e13]:
+          - generic [ref=e14]: T
+          - generic [ref=e15]:
+            - generic [ref=e16]: Test Admin User
+            - generic [ref=e17]: Administrator
+          - button "" [ref=e18] [cursor=pointer]:
+            - generic [ref=e19] [cursor=pointer]: 
+      - navigation [ref=e20]:
+        - button " Dashboard" [ref=e21] [cursor=pointer]:
+          - generic [ref=e22] [cursor=pointer]: 
+          - text: Dashboard
+        - button " Website Content" [ref=e23] [cursor=pointer]:
+          - generic [ref=e24] [cursor=pointer]: 
+          - text: Website Content
+        - button " Books Management" [ref=e25] [cursor=pointer]:
+          - generic [ref=e26] [cursor=pointer]: 
+          - text: Books Management
+        - button " E-books Management" [ref=e27] [cursor=pointer]:
+          - generic [ref=e28] [cursor=pointer]: 
+          - text: E-books Management
+        - button " Projects" [ref=e29] [cursor=pointer]:
+          - generic [ref=e30] [cursor=pointer]: 
+          - text: Projects
+        - button " Activities" [ref=e31] [cursor=pointer]:
+          - generic [ref=e32] [cursor=pointer]: 
+          - text: Activities
+        - button " Initiatives" [ref=e33] [cursor=pointer]:
+          - generic [ref=e34] [cursor=pointer]: 
+          - text: Initiatives
+        - button " Team Management" [ref=e35] [cursor=pointer]:
+          - generic [ref=e36] [cursor=pointer]: 
+          - text: Team Management
+        - button " Recruitment Management" [ref=e37] [cursor=pointer]:
+          - generic [ref=e38] [cursor=pointer]: 
+          - text: Recruitment Management
+        - button " Chats" [ref=e39] [cursor=pointer]:
+          - generic [ref=e40] [cursor=pointer]: 
+          - text: Chats
+        - button " Users" [ref=e41] [cursor=pointer]:
+          - generic [ref=e42] [cursor=pointer]: 
+          - text: Users
+        - button " Announcements" [ref=e43] [cursor=pointer]:
+          - generic [ref=e44] [cursor=pointer]: 
+          - text: Announcements
+        - button " Purchased Books" [ref=e45] [cursor=pointer]:
+          - generic [ref=e46] [cursor=pointer]: 
+          - text: Purchased Books
+        - button " Payment Settings" [ref=e47] [cursor=pointer]:
+          - generic [ref=e48] [cursor=pointer]: 
+          - text: Payment Settings
+        - button " Posters" [ref=e49] [cursor=pointer]:
+          - generic [ref=e50] [cursor=pointer]: 
+          - text: Posters
+        - button " Slideshow" [ref=e51] [cursor=pointer]:
+          - generic [ref=e52] [cursor=pointer]: 
+          - text: Slideshow
+        - button " File Storage" [ref=e53] [cursor=pointer]:
+          - generic [ref=e54] [cursor=pointer]: 
+          - text: File Storage
+        - button " Logout" [ref=e55] [cursor=pointer]:
+          - generic [ref=e56] [cursor=pointer]: 
+          - text: Logout
+    - generic [ref=e57]:
+      - generic [ref=e58]:
+        - heading "Dashboard" [level=1] [ref=e60]
+        - generic [ref=e61]:
+          - heading "Content Overview" [level=3] [ref=e63]
+          - generic [ref=e67]:
+            - heading "Quick Actions" [level=3] [ref=e68]
+            - generic [ref=e69]:
+              - button "+ Add Book" [ref=e70] [cursor=pointer]:
+                - generic [ref=e71] [cursor=pointer]: +
+                - generic [ref=e72] [cursor=pointer]: Add Book
+              - button "+ Add E-book" [ref=e73] [cursor=pointer]:
+                - generic [ref=e74] [cursor=pointer]: +
+                - generic [ref=e75] [cursor=pointer]: Add E-book
+              - button "+ Add Project" [ref=e76] [cursor=pointer]:
+                - generic [ref=e77] [cursor=pointer]: +
+                - generic [ref=e78] [cursor=pointer]: Add Project
+              - button "+ Add Activity" [ref=e79] [cursor=pointer]:
+                - generic [ref=e80] [cursor=pointer]: +
+                - generic [ref=e81] [cursor=pointer]: Add Activity
+              - button "+ Add Initiative" [ref=e82] [cursor=pointer]:
+                - generic [ref=e83] [cursor=pointer]: +
+                - generic [ref=e84] [cursor=pointer]: Add Initiative
+              - button " Edit" [ref=e85] [cursor=pointer]:
+                - generic [ref=e86] [cursor=pointer]: 
+                - generic [ref=e87] [cursor=pointer]: Edit
+              - button " Manage Users" [ref=e88] [cursor=pointer]:
+                - generic [ref=e89] [cursor=pointer]: 
+                - generic [ref=e90] [cursor=pointer]: Manage Users
+              - button " Recruitment" [ref=e91] [cursor=pointer]:
+                - generic [ref=e92] [cursor=pointer]: 
+                - generic [ref=e93] [cursor=pointer]: Recruitment
+              - button " Export Data" [ref=e94] [cursor=pointer]:
+                - generic [ref=e95] [cursor=pointer]: 
+                - generic [ref=e96] [cursor=pointer]: Export Data
+        - generic [ref=e97]:
+          - heading "Recent Activity" [level=3] [ref=e98]
+          - generic [ref=e100]:
+            - generic [ref=e101]: 
+            - paragraph [ref=e102]: Loading recent activity...
+      - text:                                       +   +   +    +    +     +         +            $   +       + ✓              +   
+      - generic [ref=e104]:
+        - generic [ref=e105]: Failed to load activity data
+        - button "×" [ref=e106] [cursor=pointer]
+      - text:  +               
+  - button "Toggle theme" [ref=e107] [cursor=pointer]:
+    - generic [ref=e108] [cursor=pointer]: 
+  - text:  
+  - generic [ref=e109]:
+    - generic [ref=e110]:
+      - generic [ref=e111]: 
+      - generic [ref=e112]:
+        - generic [ref=e113]: Tamil Language Society
+        - generic [ref=e114]: New Email
+      - button "Close email notification" [ref=e115] [cursor=pointer]:
+        - generic [ref=e116] [cursor=pointer]: 
+    - generic [ref=e118]:
+      - button "Dismiss" [ref=e119] [cursor=pointer]
+      - button "View Details" [ref=e120] [cursor=pointer]
+```

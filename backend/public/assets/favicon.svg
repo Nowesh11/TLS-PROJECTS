@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <style>
+    .primary { fill: #3498db; }
+    .secondary { fill: #2c3e50; }
+  </style>
+  
+  <!-- Book icon background -->
+  <rect class="primary" x="2" y="2" width="28" height="28" rx="4" ry="4" />
+  
+  <!-- Book pages -->
+  <rect class="secondary" x="6" y="6" width="20" height="20" rx="2" ry="2" />
+  <rect fill="white" x="8" y="8" width="8" height="16" />
+  <rect fill="white" x="16" y="8" width="8" height="16" />
+  
+  <!-- Tamil letter stylized -->
+  <path fill="#2c3e50" d="M12,10 H9 V12 H10 V20 H9 V22 H13 V20 H12 V10 Z" />
+  <path fill="#2c3e50" d="M23,10 H20 V22 H23 V20 H22 V12 H23 V10 Z" />
+</svg>

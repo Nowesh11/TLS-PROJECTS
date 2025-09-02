@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="60" viewBox="0 0 200 60">
+  <style>
+    .logo-text { font-family: Arial, sans-serif; font-weight: bold; }
+    .primary { fill: #3498db; }
+    .secondary { fill: #2c3e50; }
+  </style>
+  
+  <!-- Book icon -->
+  <g transform="translate(10, 10)">
+    <path class="primary" d="M35,0 H5 C2.25,0 0,2.25 0,5 V45 C0,47.75 2.25,50 5,50 H35 C37.75,50 40,47.75 40,45 V5 C40,2.25 37.75,0 35,0 Z M5,45 V5 H17.5 V45 H5 Z M35,45 H22.5 V5 H35 V45 Z"/>
+    
+    <!-- Tamil letter stylized -->
+    <path class="secondary" d="M11,15 H5 V20 H8 V35 H5 V40 H14 V35 H11 V15 Z" />
+    <path class="secondary" d="M30,15 H24 V40 H30 V35 H27 V20 H30 V15 Z" />
+  </g>
+  
+  <!-- Text -->
+  <text x="60" y="30" class="logo-text primary" font-size="16">Tamil Literary</text>
+  <text x="60" y="48" class="logo-text secondary" font-size="18">Society</text>
+</svg>

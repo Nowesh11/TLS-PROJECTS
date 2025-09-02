@@ -1,7 +1,7 @@
 /* Responsive Design */
 
 /* Large screens (1200px and up) */
-@media (min-width: 1200px) {
+@media (width >= 1200px) {
     .container {
         max-width: 1200px;
     }
@@ -20,7 +20,7 @@
 }
 
 /* Medium screens (768px to 1199px) */
-@media (max-width: 1199px) {
+@media (width <= 1199px) {
     .nav-menu {
         gap: var(--spacing-md);
     }
@@ -44,7 +44,7 @@
 }
 
 /* Tablet screens (768px to 991px) */
-@media (max-width: 991px) {
+@media (width <= 991px) {
     .nav-container {
         padding: 0 var(--spacing-md);
     }
@@ -100,14 +100,16 @@
 }
 
 /* Mobile screens (up to 767px) */
-@media (max-width: 767px) {
+@media (width <= 767px) {
     .nav-menu {
         position: fixed;
         top: 70px;
         left: -100%;
         width: 100%;
         height: calc(100vh - 70px);
-        background: var(--primary-white);
+        background: var(--bg-primary);
+        backdrop-filter: blur(10px);
+        border-right: 1px solid var(--border-color);
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
@@ -234,7 +236,7 @@
 }
 
 /* Small mobile screens (up to 480px) */
-@media (max-width: 480px) {
+@media (width <= 480px) {
     .nav-container {
         padding: 0 var(--spacing-sm);
         height: 60px;
@@ -329,7 +331,7 @@
 }
 
 /* Extra small screens (up to 360px) */
-@media (max-width: 360px) {
+@media (width <= 360px) {
     .english-title {
         font-size: 1.5rem;
     }
@@ -383,8 +385,8 @@
     body {
         font-size: 12pt;
         line-height: 1.4;
-        color: #000;
-        background: #fff;
+        color: var(--text-primary);
+        background: var(--bg-primary);
     }
     
     .section-title,
@@ -395,23 +397,23 @@
     .feature-card {
         page-break-inside: avoid;
         box-shadow: none;
-        border: 1px solid #ddd;
+        border: 1px solid var(--border-primary);
     }
 }
 
 /* High contrast mode */
 @media (prefers-contrast: high) {
     :root {
-        --primary-blue: #0000ff;
-        --secondary-blue: #000080;
-        --gray-600: #000000;
-        --gray-700: #000000;
-        --gray-800: #000000;
-        --gray-900: #000000;
+        --primary-blue: var(--contrast-blue);
+        --secondary-blue: var(--contrast-blue-dark);
+        --gray-600: var(--contrast-text);
+        --gray-700: var(--contrast-text);
+        --gray-800: var(--contrast-text);
+        --gray-900: var(--contrast-text);
     }
     
     .btn {
-        border: 2px solid currentColor;
+        border: 2px solid currentcolor;
     }
     
     .feature-card {
@@ -440,39 +442,117 @@
 
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
-    :root {
-        --primary-white: #1a1a1a;
-        --gray-50: #2a2a2a;
-        --gray-100: #3a3a3a;
-        --gray-800: #e5e5e5;
-        --gray-900: #ffffff;
-    }
-    
     body {
-        background-color: var(--primary-white);
-        color: var(--gray-900);
+        background: var(--bg-primary);
+        color: var(--text-primary);
     }
-    
+}
+
+[data-theme="dark"] {
     .navbar {
-        background: rgba(26, 26, 26, 0.95);
-        border-bottom-color: var(--gray-700);
+        background: var(--bg-secondary);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
     }
     
     .hero-gradient {
-        background: linear-gradient(135deg, #1e3a8a 0%, #1a1a1a 50%, #92400e 100%);
+        background: var(--bg-gradient-primary);
     }
     
     .feature-card,
     .card {
-        background: var(--gray-100);
-        color: var(--gray-900);
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-md);
+    }
+    
+    .feature-card:hover,
+    .card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg), var(--glow-primary);
+    }
+    
+    .form-container {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
     }
     
     .form-input,
     .form-textarea,
     .form-select {
-        background: var(--gray-100);
-        color: var(--gray-900);
-        border-color: var(--gray-600);
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        border-color: var(--border-color);
+    }
+    
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+        border-color: var(--accent-primary);
+        box-shadow: var(--glow-primary);
+    }
+    
+    /* Dark theme modal styles */
+    .modal-content {
+        background: var(--bg-secondary) !important;
+        color: var(--text-primary) !important;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-lg);
+    }
+    
+    .modal-close {
+        background: var(--bg-primary) !important;
+        color: var(--text-primary) !important;
+        border: 1px solid var(--border-color);
+    }
+    
+    .modal-close:hover {
+        background: var(--bg-tertiary) !important;
+        box-shadow: var(--glow-primary);
+    }
+    
+    .content-display-modal {
+        background: var(--bg-secondary) !important;
+        color: var(--text-primary) !important;
+    }
+    
+    .content-display-modal .modal-header {
+        background: var(--bg-primary) !important;
+        color: var(--text-primary) !important;
+        border-bottom: 1px solid var(--border-color) !important;
+    }
+    
+    .content-display-modal .modal-body {
+        background: var(--bg-secondary) !important;
+        color: var(--text-primary) !important;
+    }
+    
+    .content-display-modal h1,
+    .content-display-modal h2,
+    .content-display-modal h3,
+    .content-display-modal h4,
+    .content-display-modal h5,
+    .content-display-modal h6 {
+        color: var(--text-primary) !important;
+    }
+    
+    .content-display-modal p,
+    .content-display-modal div,
+    .content-display-modal span,
+    .content-display-modal li {
+        color: var(--text-secondary) !important;
+    }
+    
+    .content-display-modal .btn {
+        background: var(--accent-primary) !important;
+        color: var(--light-tertiary) !important;
+        border: 1px solid var(--accent-primary) !important;
+        box-shadow: var(--glow-primary);
+    }
+    
+    .content-display-modal .btn:hover {
+        background: var(--accent-secondary) !important;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg), var(--glow-primary);
     }
 }

@@ -1,0 +1,1006 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - button "" [ref=e2] [cursor=pointer]:
+    - generic [ref=e3] [cursor=pointer]: 
+  - generic [ref=e4]:
+    - text: 
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - button "" [ref=e7] [cursor=pointer]:
+          - generic [ref=e8] [cursor=pointer]: 
+        - img "Tamil Language Society" [ref=e9]
+        - heading "Admin Panel" [level=3] [ref=e10]
+        - paragraph [ref=e11]: Content Management System
+        - generic [ref=e13]:
+          - generic [ref=e14]: A
+          - generic [ref=e15]:
+            - generic [ref=e16]: Admin User
+            - generic [ref=e17]: Administrator
+          - button "" [ref=e18] [cursor=pointer]:
+            - generic [ref=e19] [cursor=pointer]: 
+      - navigation [ref=e20]:
+        - button " Dashboard" [ref=e21] [cursor=pointer]:
+          - generic [ref=e22] [cursor=pointer]: 
+          - text: Dashboard
+        - button " Website Content" [ref=e23] [cursor=pointer]:
+          - generic [ref=e24] [cursor=pointer]: 
+          - text: Website Content
+        - button " Books Management" [ref=e25] [cursor=pointer]:
+          - generic [ref=e26] [cursor=pointer]: 
+          - text: Books Management
+        - button " E-books Management" [ref=e27] [cursor=pointer]:
+          - generic [ref=e28] [cursor=pointer]: 
+          - text: E-books Management
+        - button " Projects" [ref=e29] [cursor=pointer]:
+          - generic [ref=e30] [cursor=pointer]: 
+          - text: Projects
+        - button " Activities" [ref=e31] [cursor=pointer]:
+          - generic [ref=e32] [cursor=pointer]: 
+          - text: Activities
+        - button " Initiatives" [ref=e33] [cursor=pointer]:
+          - generic [ref=e34] [cursor=pointer]: 
+          - text: Initiatives
+        - button " Team Management" [ref=e35] [cursor=pointer]:
+          - generic [ref=e36] [cursor=pointer]: 
+          - text: Team Management
+        - button " Recruitment Management" [ref=e37] [cursor=pointer]:
+          - generic [ref=e38] [cursor=pointer]: 
+          - text: Recruitment Management
+        - button " Chats" [ref=e39] [cursor=pointer]:
+          - generic [ref=e40] [cursor=pointer]: 
+          - text: Chats
+        - button " Users" [ref=e41] [cursor=pointer]:
+          - generic [ref=e42] [cursor=pointer]: 
+          - text: Users
+        - button " Announcements" [ref=e43] [cursor=pointer]:
+          - generic [ref=e44] [cursor=pointer]: 
+          - text: Announcements
+        - button " Purchased Books" [ref=e45] [cursor=pointer]:
+          - generic [ref=e46] [cursor=pointer]: 
+          - text: Purchased Books
+        - button " Payment Settings" [ref=e47] [cursor=pointer]:
+          - generic [ref=e48] [cursor=pointer]: 
+          - text: Payment Settings
+        - button " Posters" [ref=e49] [cursor=pointer]:
+          - generic [ref=e50] [cursor=pointer]: 
+          - text: Posters
+        - button " Slideshow" [ref=e51] [cursor=pointer]:
+          - generic [ref=e52] [cursor=pointer]: 
+          - text: Slideshow
+        - button " File Storage" [ref=e53] [cursor=pointer]:
+          - generic [ref=e54] [cursor=pointer]: 
+          - text: File Storage
+        - button " Logout" [ref=e55] [cursor=pointer]:
+          - generic [ref=e56] [cursor=pointer]: 
+          - text: Logout
+    - generic [ref=e57]:
+      - generic [ref=e58]:
+        - heading "Dashboard" [level=1] [ref=e60]
+        - generic [ref=e61]:
+          - heading "Content Overview" [level=3] [ref=e63]
+          - generic [ref=e67]:
+            - heading "Quick Actions" [level=3] [ref=e68]
+            - generic [ref=e69]:
+              - button "+ Add Book" [ref=e70] [cursor=pointer]:
+                - generic [ref=e71] [cursor=pointer]: +
+                - generic [ref=e72] [cursor=pointer]: Add Book
+              - button "+ Add E-book" [ref=e73] [cursor=pointer]:
+                - generic [ref=e74] [cursor=pointer]: +
+                - generic [ref=e75] [cursor=pointer]: Add E-book
+              - button "+ Add Project" [ref=e76] [cursor=pointer]:
+                - generic [ref=e77] [cursor=pointer]: +
+                - generic [ref=e78] [cursor=pointer]: Add Project
+              - button "+ Add Activity" [ref=e79] [cursor=pointer]:
+                - generic [ref=e80] [cursor=pointer]: +
+                - generic [ref=e81] [cursor=pointer]: Add Activity
+              - button "+ Add Initiative" [ref=e82] [cursor=pointer]:
+                - generic [ref=e83] [cursor=pointer]: +
+                - generic [ref=e84] [cursor=pointer]: Add Initiative
+              - button " Edit" [ref=e85] [cursor=pointer]:
+                - generic [ref=e86] [cursor=pointer]: 
+                - generic [ref=e87] [cursor=pointer]: Edit
+              - button " Manage Users" [ref=e88] [cursor=pointer]:
+                - generic [ref=e89] [cursor=pointer]: 
+                - generic [ref=e90] [cursor=pointer]: Manage Users
+              - button " Recruitment" [ref=e91] [cursor=pointer]:
+                - generic [ref=e92] [cursor=pointer]: 
+                - generic [ref=e93] [cursor=pointer]: Recruitment
+              - button " Export Data" [ref=e94] [cursor=pointer]:
+                - generic [ref=e95] [cursor=pointer]: 
+                - generic [ref=e96] [cursor=pointer]: Export Data
+        - generic [ref=e97]:
+          - heading "Recent Activity" [level=3] [ref=e98]
+          - generic [ref=e100]:
+            - generic [ref=e101]: 
+            - paragraph [ref=e102]: Loading recent activity...
+      - generic [ref=e103]:
+        - heading "Website Content Management" [level=1] [ref=e105]
+        - generic [ref=e106]:
+          - generic [ref=e107]:
+            - generic [ref=e108]:
+              - generic [ref=e109]:
+                - generic [ref=e110]:
+                  - generic [ref=e111]: 
+                  - text: "Select Page:"
+                - combobox [ref=e112] [cursor=pointer]:
+                  - option "🌐 Global Elements" [selected]
+                  - option "🏠 Home Page"
+                  - option "ℹ️ About Page"
+                  - option "📚 Books Page"
+                  - option "🚀 Projects Page"
+                  - option "📱 E-books Page"
+                  - option "📧 Contact Page"
+                  - option "👤 Sign Up Page"
+                  - option "🔐 Login Page"
+              - generic [ref=e113]:
+                - generic [ref=e114]: 
+                - generic [ref=e115]: Global Elements Selected
+              - generic [ref=e116]:
+                - generic [ref=e117]:
+                  - generic [ref=e118]: 
+                  - text: "Edit Language:"
+                - button " EN" [ref=e119] [cursor=pointer]:
+                  - generic [ref=e120] [cursor=pointer]: 
+                  - text: EN
+                - button " த" [ref=e121] [cursor=pointer]:
+                  - generic [ref=e122] [cursor=pointer]: 
+                  - text: த
+            - generic [ref=e123]:
+              - button " Content Editor" [ref=e124] [cursor=pointer]:
+                - generic [ref=e125] [cursor=pointer]: 
+                - text: Content Editor
+              - button " Create Section" [ref=e126] [cursor=pointer]:
+                - generic [ref=e127] [cursor=pointer]: 
+                - text: Create Section
+              - button " Refresh Content" [ref=e128] [cursor=pointer]:
+                - generic [ref=e129] [cursor=pointer]: 
+                - text: Refresh Content
+              - button " Preview Website" [ref=e130] [cursor=pointer]:
+                - generic [ref=e131] [cursor=pointer]: 
+                - text: Preview Website
+              - button " Live Preview" [ref=e132] [cursor=pointer]:
+                - generic [ref=e133] [cursor=pointer]: 
+                - text: Live Preview
+          - generic [ref=e134]:      +                
+        - generic [ref=e135]:
+          - generic [ref=e136]:
+            - textbox "Search content..." [ref=e137]
+            - combobox [ref=e138] [cursor=pointer]:
+              - option "All Pages" [selected]
+              - option "Global Elements"
+              - option "Home"
+              - option "About"
+              - option "Books"
+              - option "Projects"
+              - option "E-books"
+              - option "Contact Us"
+              - option "Sign Up"
+              - option "Login"
+            - combobox [ref=e139] [cursor=pointer]:
+              - option "All Status" [selected]
+              - option "Active"
+              - option "Inactive"
+          - table [ref=e141]:
+            - rowgroup [ref=e142]:
+              - row "Page Section Title Tamil Title Status Last Updated Actions" [ref=e143]:
+                - cell "Page" [ref=e144]
+                - cell "Section" [ref=e145]
+                - cell "Title" [ref=e146]
+                - cell "Tamil Title" [ref=e147]
+                - cell "Status" [ref=e148]
+                - cell "Last Updated" [ref=e149]
+                - cell "Actions" [ref=e150]
+            - rowgroup
+        - generic [ref=e151]:
+          - generic [ref=e152]:
+            - heading "Recent Content Changes" [level=3] [ref=e153]
+            - button " Refresh" [ref=e154] [cursor=pointer]:
+              - generic [ref=e155] [cursor=pointer]: 
+              - text: Refresh
+          - generic [ref=e156]:
+            - textbox "Search activities..." [ref=e157]
+            - combobox [ref=e158] [cursor=pointer]:
+              - option "All Actions" [selected]
+              - option "Create Section"
+              - option "Update Section"
+              - option "Delete Section"
+              - option "Duplicate Section"
+              - option "Save Section"
+              - option "Update Property"
+            - combobox [ref=e159] [cursor=pointer]:
+              - option "All Pages" [selected]
+              - option "Global Elements"
+              - option "Home"
+              - option "About"
+              - option "Books"
+              - option "Projects"
+              - option "E-books"
+              - option "Contact Us"
+              - option "Donate Now"
+              - option "Sign Up"
+              - option "Login"
+          - table [ref=e161]:
+            - rowgroup [ref=e162]:
+              - row "Action  Page  Section  Description  User  Date  Actions" [ref=e163]:
+                - cell "Action " [ref=e164] [cursor=pointer]:
+                  - text: Action
+                  - generic [ref=e165] [cursor=pointer]: 
+                - cell "Page " [ref=e166] [cursor=pointer]:
+                  - text: Page
+                  - generic [ref=e167] [cursor=pointer]: 
+                - cell "Section " [ref=e168] [cursor=pointer]:
+                  - text: Section
+                  - generic [ref=e169] [cursor=pointer]: 
+                - cell "Description " [ref=e170] [cursor=pointer]:
+                  - text: Description
+                  - generic [ref=e171] [cursor=pointer]: 
+                - cell "User " [ref=e172] [cursor=pointer]:
+                  - text: User
+                  - generic [ref=e173] [cursor=pointer]: 
+                - cell "Date " [ref=e174] [cursor=pointer]:
+                  - text: Date
+                  - generic [ref=e175] [cursor=pointer]: 
+                - cell "Actions" [ref=e176]
+            - rowgroup [ref=e177]:
+              - row "No recent activities found" [ref=e178]:
+                - cell "No recent activities found" [ref=e179]
+      - generic [ref=e180]:
+        - heading "Books Management" [level=1] [ref=e182]
+        - generic [ref=e183]:
+          - button "+ Add New Book" [ref=e184] [cursor=pointer]:
+            - generic [ref=e185] [cursor=pointer]: +
+            - text: Add New Book
+          - button " Export CSV" [ref=e186] [cursor=pointer]:
+            - generic [ref=e187] [cursor=pointer]: 
+            - text: Export CSV
+          - button " Refresh Books" [ref=e188] [cursor=pointer]:
+            - generic [ref=e189] [cursor=pointer]: 
+            - text: Refresh Books
+        - generic [ref=e190]:
+          - generic [ref=e191]:
+            - textbox "Search books..." [ref=e192]
+            - combobox [ref=e193] [cursor=pointer]:
+              - option "All Status" [selected]
+              - option "Available"
+              - option "Out of Stock"
+              - option "Discontinued"
+          - table [ref=e195]:
+            - rowgroup [ref=e196]:
+              - row "Title (EN) Title (TA) Author Category Price Stock Status Actions" [ref=e197]:
+                - cell "Title (EN)" [ref=e198]
+                - cell "Title (TA)" [ref=e199]
+                - cell "Author" [ref=e200]
+                - cell "Category" [ref=e201]
+                - cell "Price" [ref=e202]
+                - cell "Stock" [ref=e203]
+                - cell "Status" [ref=e204]
+                - cell "Actions" [ref=e205]
+            - rowgroup
+      - generic [ref=e206]:
+        - heading "E-books Management" [level=1] [ref=e208]
+        - generic [ref=e209]:
+          - button "+ Add New E-book" [ref=e210] [cursor=pointer]:
+            - generic [ref=e211] [cursor=pointer]: +
+            - text: Add New E-book
+          - button " Export CSV" [ref=e212] [cursor=pointer]:
+            - generic [ref=e213] [cursor=pointer]: 
+            - text: Export CSV
+          - button " Refresh E-books" [ref=e214] [cursor=pointer]:
+            - generic [ref=e215] [cursor=pointer]: 
+            - text: Refresh E-books
+        - generic [ref=e216]:
+          - generic [ref=e217]:
+            - textbox "Search e-books..." [ref=e218]
+            - combobox [ref=e219] [cursor=pointer]:
+              - option "All Status" [selected]
+              - option "Available"
+              - option "Coming Soon"
+              - option "Discontinued"
+          - table [ref=e221]:
+            - rowgroup [ref=e222]:
+              - row "Title (EN) Title (TA) Author (EN) Author (TA) Category Language Downloads Status Actions" [ref=e223]:
+                - cell "Title (EN)" [ref=e224]
+                - cell "Title (TA)" [ref=e225]
+                - cell "Author (EN)" [ref=e226]
+                - cell "Author (TA)" [ref=e227]
+                - cell "Category" [ref=e228]
+                - cell "Language" [ref=e229]
+                - cell "Downloads" [ref=e230]
+                - cell "Status" [ref=e231]
+                - cell "Actions" [ref=e232]
+            - rowgroup
+      - generic [ref=e233]:
+        - heading "Projects Management" [level=1] [ref=e235]
+        - generic [ref=e236]:
+          - generic [ref=e237]:
+            - button "+ Add New Project" [ref=e238] [cursor=pointer]:
+              - generic [ref=e239] [cursor=pointer]: +
+              - text: Add New Project
+            - button " Export CSV" [ref=e240] [cursor=pointer]:
+              - generic [ref=e241] [cursor=pointer]: 
+              - text: Export CSV
+            - button " Refresh Projects" [ref=e242] [cursor=pointer]:
+              - generic [ref=e243] [cursor=pointer]: 
+              - text: Refresh Projects
+          - generic [ref=e244]:
+            - generic [ref=e245]:
+              - textbox "Search projects..." [ref=e246]
+              - generic [ref=e247]: 
+            - combobox [ref=e249] [cursor=pointer]:
+              - option "All Status" [selected]
+              - option "Active"
+              - option "Completed"
+              - option "On Hold"
+              - option "Cancelled"
+          - table [ref=e251]:
+            - rowgroup [ref=e252]:
+              - row "Title (EN) Title (TA) Description Status Start Date End Date Team Size Actions" [ref=e253]:
+                - cell "Title (EN)" [ref=e254]
+                - cell "Title (TA)" [ref=e255]
+                - cell "Description" [ref=e256]
+                - cell "Status" [ref=e257]
+                - cell "Start Date" [ref=e258]
+                - cell "End Date" [ref=e259]
+                - cell "Team Size" [ref=e260]
+                - cell "Actions" [ref=e261]
+            - rowgroup
+      - generic [ref=e262]:
+        - heading "Activities Management" [level=1] [ref=e264]
+        - generic [ref=e265]:
+          - generic [ref=e266]:
+            - button "+ Add New Activity" [ref=e267] [cursor=pointer]:
+              - generic [ref=e268] [cursor=pointer]: +
+              - text: Add New Activity
+            - button " Export CSV" [ref=e269] [cursor=pointer]:
+              - generic [ref=e270] [cursor=pointer]: 
+              - text: Export CSV
+            - button " Refresh Activities" [ref=e271] [cursor=pointer]:
+              - generic [ref=e272] [cursor=pointer]: 
+              - text: Refresh Activities
+          - generic [ref=e273]:
+            - generic [ref=e274]:
+              - textbox "Search activities..." [ref=e275]
+              - generic [ref=e276]: 
+            - combobox [ref=e278] [cursor=pointer]:
+              - option "All Status" [selected]
+              - option "Upcoming"
+              - option "Ongoing"
+              - option "Completed"
+              - option "Cancelled"
+          - table [ref=e280]:
+            - rowgroup [ref=e281]:
+              - row "Title (EN) Title (TA) Description Date Time Location Status Actions" [ref=e282]:
+                - cell "Title (EN)" [ref=e283]
+                - cell "Title (TA)" [ref=e284]
+                - cell "Description" [ref=e285]
+                - cell "Date" [ref=e286]
+                - cell "Time" [ref=e287]
+                - cell "Location" [ref=e288]
+                - cell "Status" [ref=e289]
+                - cell "Actions" [ref=e290]
+            - rowgroup
+      - generic [ref=e291]:
+        - heading "Initiatives Management" [level=1] [ref=e293]
+        - generic [ref=e294]:
+          - generic [ref=e295]:
+            - button "+ Add New Initiative" [ref=e296] [cursor=pointer]:
+              - generic [ref=e297] [cursor=pointer]: +
+              - text: Add New Initiative
+            - button " Export CSV" [ref=e298] [cursor=pointer]:
+              - generic [ref=e299] [cursor=pointer]: 
+              - text: Export CSV
+            - button " Refresh Initiatives" [ref=e300] [cursor=pointer]:
+              - generic [ref=e301] [cursor=pointer]: 
+              - text: Refresh Initiatives
+          - generic [ref=e302]:
+            - generic [ref=e303]:
+              - textbox "Search initiatives..." [ref=e304]
+              - generic [ref=e305]: 
+            - combobox [ref=e307] [cursor=pointer]:
+              - option "All Status" [selected]
+              - option "Planning"
+              - option "Active"
+              - option "Completed"
+              - option "On Hold"
+          - table [ref=e309]:
+            - rowgroup [ref=e310]:
+              - row "Title (EN) Title (TA) Description Category Status Start Date Budget Actions" [ref=e311]:
+                - cell "Title (EN)" [ref=e312]
+                - cell "Title (TA)" [ref=e313]
+                - cell "Description" [ref=e314]
+                - cell "Category" [ref=e315]
+                - cell "Status" [ref=e316]
+                - cell "Start Date" [ref=e317]
+                - cell "Budget" [ref=e318]
+                - cell "Actions" [ref=e319]
+            - rowgroup
+      - generic [ref=e320]:
+        - generic [ref=e321]:
+          - heading "Team Management" [level=1] [ref=e322]
+          - generic [ref=e323]:
+            - button " Export CSV" [ref=e324] [cursor=pointer]:
+              - generic [ref=e325] [cursor=pointer]: 
+              - text: Export CSV
+            - button "+ Add Team Member" [ref=e326] [cursor=pointer]:
+              - generic [ref=e327] [cursor=pointer]: +
+              - text: Add Team Member
+        - generic [ref=e328]:
+          - generic [ref=e329]:
+            - generic [ref=e330]:
+              - textbox "Search team members..." [ref=e331]
+              - generic [ref=e332]: 
+            - combobox [ref=e334] [cursor=pointer]:
+              - option "All Positions" [selected]
+              - option "President"
+              - option "Vice President"
+              - option "Treasurer"
+              - option "Secretary"
+              - option "Executive Committee"
+              - option "Auditor"
+          - table [ref=e336]:
+            - rowgroup [ref=e337]:
+              - row "Photo Name Position Department Order Status Actions" [ref=e338]:
+                - cell "Photo" [ref=e339]
+                - cell "Name" [ref=e340]
+                - cell "Position" [ref=e341]
+                - cell "Department" [ref=e342]
+                - cell "Order" [ref=e343]
+                - cell "Status" [ref=e344]
+                - cell "Actions" [ref=e345]
+            - rowgroup
+      - generic [ref=e346]:
+        - generic [ref=e347]:
+          - heading "Chat Management" [level=1] [ref=e348]
+          - generic [ref=e349]:
+            - button " Export CSV" [ref=e350] [cursor=pointer]:
+              - generic [ref=e351] [cursor=pointer]: 
+              - text: Export CSV
+            - button " Refresh" [ref=e352] [cursor=pointer]:
+              - generic [ref=e353] [cursor=pointer]: 
+              - text: Refresh
+        - generic [ref=e355]:
+          - generic [ref=e357]:
+            - heading "Conversations" [level=3] [ref=e358]
+            - generic [ref=e359]:
+              - textbox "Search chats..." [ref=e360]
+              - combobox [ref=e361] [cursor=pointer]:
+                - option "All Status" [selected]
+                - option "Active"
+                - option "Pending"
+                - option "Resolved"
+                - option "Closed"
+          - generic [ref=e363]:
+            - generic [ref=e365]:
+              - generic [ref=e366]: 
+              - paragraph [ref=e367]: Select a conversation to start chatting
+            - text: 
+      - generic [ref=e368]:
+        - heading "Users Management" [level=1] [ref=e370]
+        - generic [ref=e371]:
+          - generic [ref=e372]:
+            - button " Export CSV" [ref=e373] [cursor=pointer]:
+              - generic [ref=e374] [cursor=pointer]: 
+              - text: Export CSV
+            - button " Refresh Users" [ref=e375] [cursor=pointer]:
+              - generic [ref=e376] [cursor=pointer]: 
+              - text: Refresh Users
+          - generic [ref=e377]:
+            - generic [ref=e378]:
+              - textbox "Search users..." [ref=e379]
+              - generic [ref=e380]: 
+            - generic [ref=e381]:
+              - combobox [ref=e382] [cursor=pointer]:
+                - option "All Roles" [selected]
+                - option "Admin"
+                - option "Moderator"
+                - option "User"
+              - combobox [ref=e383] [cursor=pointer]:
+                - option "All Status" [selected]
+                - option "Active"
+                - option "Inactive"
+                - option "Suspended"
+          - table [ref=e385]:
+            - rowgroup [ref=e386]:
+              - row "Name Email Role Status Joined Last Login Actions" [ref=e387]:
+                - cell "Name" [ref=e388]
+                - cell "Email" [ref=e389]
+                - cell "Role" [ref=e390]
+                - cell "Status" [ref=e391]
+                - cell "Joined" [ref=e392]
+                - cell "Last Login" [ref=e393]
+                - cell "Actions" [ref=e394]
+            - rowgroup
+      - generic [ref=e395]:
+        - generic [ref=e396]:
+          - heading "Announcements & Notifications" [level=1] [ref=e397]
+          - generic [ref=e398]:
+            - button "+ Create Announcement" [ref=e399] [cursor=pointer]:
+              - generic [ref=e400] [cursor=pointer]: +
+              - text: Create Announcement
+            - button " Export CSV" [ref=e401] [cursor=pointer]:
+              - generic [ref=e402] [cursor=pointer]: 
+              - text: Export CSV
+            - button " Refresh" [ref=e403] [cursor=pointer]:
+              - generic [ref=e404] [cursor=pointer]: 
+              - text: Refresh
+        - generic [ref=e405]:
+          - generic [ref=e406]:
+            - generic [ref=e407]:
+              - generic [ref=e409]: 
+              - generic [ref=e410]:
+                - generic [ref=e411]: "0"
+                - generic [ref=e412]: Total Announcements
+            - generic [ref=e413]:
+              - generic [ref=e415]: 
+              - generic [ref=e416]:
+                - generic [ref=e417]: "0"
+                - generic [ref=e418]: Active
+            - generic [ref=e419]:
+              - generic [ref=e421]: 
+              - generic [ref=e422]:
+                - generic [ref=e423]: "0"
+                - generic [ref=e424]: Scheduled
+            - generic [ref=e425]:
+              - generic [ref=e427]: 
+              - generic [ref=e428]:
+                - generic [ref=e429]: "0"
+                - generic [ref=e430]: Archived
+          - generic [ref=e431]:
+            - generic [ref=e432]:
+              - textbox "Search announcements..." [ref=e433]
+              - generic [ref=e434]: 
+            - generic [ref=e435]:
+              - combobox [ref=e436] [cursor=pointer]:
+                - option "All Status" [selected]
+                - option "Active"
+                - option "Scheduled"
+                - option "Expired"
+                - option "Archived"
+              - combobox [ref=e437] [cursor=pointer]:
+                - option "All Types" [selected]
+                - option "General"
+                - option "Urgent"
+                - option "Maintenance"
+                - option "Event"
+          - table [ref=e439]:
+            - rowgroup [ref=e440]:
+              - row "Title Type Status Start Date End Date Views Created Actions" [ref=e441]:
+                - cell "Title" [ref=e442]
+                - cell "Type" [ref=e443]
+                - cell "Status" [ref=e444]
+                - cell "Start Date" [ref=e445]
+                - cell "End Date" [ref=e446]
+                - cell "Views" [ref=e447]
+                - cell "Created" [ref=e448]
+                - cell "Actions" [ref=e449]
+            - rowgroup
+      - generic [ref=e450]:
+        - generic [ref=e451]:
+          - heading "Purchased Books Management" [level=1] [ref=e452]
+          - button " Export CSV" [ref=e454] [cursor=pointer]:
+            - generic [ref=e455] [cursor=pointer]: 
+            - text: Export CSV
+        - generic [ref=e456]:
+          - generic [ref=e457]:
+            - generic [ref=e458]:
+              - generic [ref=e460]: 
+              - generic [ref=e461]:
+                - generic [ref=e462]: "0"
+                - generic [ref=e463]: Total Orders
+            - generic [ref=e464]:
+              - generic [ref=e466]: 
+              - generic [ref=e467]:
+                - generic [ref=e468]: "0"
+                - generic [ref=e469]: Pending Orders
+            - generic [ref=e470]:
+              - generic [ref=e472]: 
+              - generic [ref=e473]:
+                - generic [ref=e474]: "0"
+                - generic [ref=e475]: Processed Orders
+            - generic [ref=e476]:
+              - generic [ref=e478]: $
+              - generic [ref=e479]:
+                - generic [ref=e480]: $0
+                - generic [ref=e481]: Total Revenue
+          - generic [ref=e482]:
+            - generic [ref=e483]:
+              - textbox "Search orders..." [ref=e484]
+              - combobox [ref=e485] [cursor=pointer]:
+                - option "All Status" [selected]
+                - option "Pending"
+                - option "Processed"
+                - option "Shipped"
+                - option "Delivered"
+                - option "Cancelled"
+            - table [ref=e487]:
+              - rowgroup [ref=e488]:
+                - row "Order ID Customer Book Price Payment Status Date Actions" [ref=e489]:
+                  - cell "Order ID" [ref=e490]
+                  - cell "Customer" [ref=e491]
+                  - cell "Book" [ref=e492]
+                  - cell "Price" [ref=e493]
+                  - cell "Payment" [ref=e494]
+                  - cell "Status" [ref=e495]
+                  - cell "Date" [ref=e496]
+                  - cell "Actions" [ref=e497]
+              - rowgroup
+      - generic [ref=e498]:
+        - heading "Payment Settings" [level=1] [ref=e500]
+        - generic [ref=e501]:
+          - generic [ref=e502]:
+            - heading "E-PAY UM Settings" [level=3] [ref=e503]
+            - generic [ref=e504]:
+              - generic [ref=e505]: "E-PAY UM Link:"
+              - textbox "E-PAY UM Link:" [ref=e506]
+            - generic [ref=e507]:
+              - generic [ref=e508]: "Description:"
+              - textbox "Description:" [ref=e509]
+          - generic [ref=e510]:
+            - heading "FBX Bank Details" [level=3] [ref=e511]
+            - generic [ref=e512]:
+              - generic [ref=e513]: "Bank Name:"
+              - textbox "Bank Name:" [ref=e514]
+            - generic [ref=e515]:
+              - generic [ref=e516]: "Account Number:"
+              - textbox "Account Number:" [ref=e517]
+            - generic [ref=e518]:
+              - generic [ref=e519]: "Account Holder Name:"
+              - textbox "Account Holder Name:" [ref=e520]
+          - generic [ref=e521]:
+            - heading "Shipping Settings" [level=3] [ref=e522]
+            - generic [ref=e523]:
+              - generic [ref=e524]: "Shipping Fee (RM):"
+              - spinbutton "Shipping Fee (RM):" [ref=e525]
+          - button " Save Settings" [ref=e527] [cursor=pointer]:
+            - generic [ref=e528] [cursor=pointer]: 
+            - text: Save Settings
+      - generic [ref=e529]:
+        - generic [ref=e530]:
+          - heading "Posters Management" [level=1] [ref=e531]
+          - generic [ref=e532]:
+            - button " Export CSV" [ref=e533] [cursor=pointer]:
+              - generic [ref=e534] [cursor=pointer]: 
+              - text: Export CSV
+            - button "+ Add New Poster" [ref=e535] [cursor=pointer]:
+              - generic [ref=e536] [cursor=pointer]: +
+              - text: Add New Poster
+        - generic [ref=e537]:
+          - generic [ref=e538]:
+            - generic [ref=e540]: 
+            - generic [ref=e541]:
+              - heading "0" [level=3] [ref=e542]
+              - paragraph [ref=e543]: Total Posters
+          - generic [ref=e544]:
+            - generic [ref=e546]: 
+            - generic [ref=e547]:
+              - heading "0" [level=3] [ref=e548]
+              - paragraph [ref=e549]: Total Views
+          - generic [ref=e550]:
+            - generic [ref=e552]: 
+            - generic [ref=e553]:
+              - heading "0" [level=3] [ref=e554]
+              - paragraph [ref=e555]: Total Clicks
+          - generic [ref=e556]:
+            - generic [ref=e558]: 
+            - generic [ref=e559]:
+              - heading "0" [level=3] [ref=e560]
+              - paragraph [ref=e561]: Active Posters
+        - generic [ref=e562]:
+          - generic [ref=e563]:
+            - generic [ref=e564]:
+              - textbox "Search posters..." [ref=e565]
+              - generic [ref=e566]: 
+            - combobox [ref=e567] [cursor=pointer]:
+              - option "All Status" [selected]
+              - option "Active"
+              - option "Inactive"
+            - combobox [ref=e568] [cursor=pointer]:
+              - option "All Priorities" [selected]
+              - option "High (8-10)"
+              - option "Medium (4-7)"
+              - option "Low (1-3)"
+          - table [ref=e570]:
+            - rowgroup [ref=e571]:
+              - row "Image Title Status Priority Views Clicks Start Date End Date Actions" [ref=e572]:
+                - cell "Image" [ref=e573]
+                - cell "Title" [ref=e574]
+                - cell "Status" [ref=e575]
+                - cell "Priority" [ref=e576]
+                - cell "Views" [ref=e577]
+                - cell "Clicks" [ref=e578]
+                - cell "Start Date" [ref=e579]
+                - cell "End Date" [ref=e580]
+                - cell "Actions" [ref=e581]
+            - rowgroup
+      - generic [ref=e582]:
+        - generic [ref=e583]:
+          - heading "Slideshow Management" [level=1] [ref=e584]
+          - generic [ref=e585]:
+            - button " Export Settings" [ref=e586] [cursor=pointer]:
+              - generic [ref=e587] [cursor=pointer]: 
+              - text: Export Settings
+            - button "+ Add Slide" [ref=e588] [cursor=pointer]:
+              - generic [ref=e589] [cursor=pointer]: +
+              - text: Add Slide
+        - generic [ref=e590]:
+          - generic [ref=e591]:
+            - generic [ref=e592]:
+              - heading "Page Selection" [level=3] [ref=e593]
+              - paragraph [ref=e594]: Select which pages should display slideshow images
+            - generic [ref=e595]:
+              - generic [ref=e596]:
+                - generic [ref=e598] [cursor=pointer]:
+                  - checkbox "Home Page" [checked] [ref=e599] [cursor=pointer]: ✓
+                  - text: Home Page
+                - generic [ref=e601] [cursor=pointer]:
+                  - checkbox "About Page" [ref=e602] [cursor=pointer]
+                  - text: About Page
+                - generic [ref=e604] [cursor=pointer]:
+                  - checkbox "Services Page" [ref=e605] [cursor=pointer]
+                  - text: Services Page
+                - generic [ref=e607] [cursor=pointer]:
+                  - checkbox "Projects Page" [ref=e608] [cursor=pointer]
+                  - text: Projects Page
+                - generic [ref=e610] [cursor=pointer]:
+                  - checkbox "Contact Page" [ref=e611] [cursor=pointer]
+                  - text: Contact Page
+                - generic [ref=e613] [cursor=pointer]:
+                  - checkbox "Activities Page" [ref=e614] [cursor=pointer]
+                  - text: Activities Page
+              - button " Save Page Selection" [ref=e616] [cursor=pointer]:
+                - generic [ref=e617] [cursor=pointer]: 
+                - text: Save Page Selection
+          - generic [ref=e618]:
+            - heading "Slideshow Settings" [level=3] [ref=e620]
+            - generic [ref=e621]:
+              - generic [ref=e622]:
+                - generic [ref=e623]:
+                  - generic [ref=e624]: Slide Interval (seconds)
+                  - spinbutton "Slide Interval (seconds)" [ref=e625]: "6000"
+                - generic [ref=e626]:
+                  - generic [ref=e627]: Autoplay
+                  - combobox "Autoplay" [ref=e628] [cursor=pointer]:
+                    - option "Enabled" [selected]
+                    - option "Disabled"
+                - generic [ref=e629]:
+                  - generic [ref=e630]: Show Controls
+                  - combobox "Show Controls" [ref=e631] [cursor=pointer]:
+                    - option "Show" [selected]
+                    - option "Hide"
+                - generic [ref=e632]:
+                  - generic [ref=e633]: Show Indicators
+                  - combobox "Show Indicators" [ref=e634] [cursor=pointer]:
+                    - option "Show" [selected]
+                    - option "Hide"
+              - button " Save Settings" [ref=e636] [cursor=pointer]:
+                - generic [ref=e637] [cursor=pointer]: 
+                - text: Save Settings
+          - generic [ref=e638]:
+            - heading "Current Slides" [level=3] [ref=e640]
+            - generic [ref=e643]:
+              - generic [ref=e644]: 
+              - paragraph [ref=e645]: No slides uploaded yet. Click "Add Slide" to get started.
+          - generic [ref=e646]:
+            - heading "Upload New Slide" [level=3] [ref=e648]
+            - generic [ref=e649]:
+              - generic [ref=e651]:
+                - generic [ref=e652]: 
+                - paragraph [ref=e653]: Drag and drop an image here or click to browse
+                - paragraph [ref=e654]: "Recommended: 1920x1080px, JPG/PNG, Max 5MB"
+              - generic [ref=e655]:
+                - generic [ref=e656]:
+                  - generic [ref=e657]: Slide Title (Optional)
+                  - textbox "Slide Title (Optional)" [ref=e658]
+                - generic [ref=e659]:
+                  - generic [ref=e660]: Display Order
+                  - spinbutton "Display Order" [ref=e661]: "1"
+              - generic [ref=e663]:
+                - generic [ref=e664]: Alt Text (Optional)
+                - textbox "Alt Text (Optional)" [ref=e665]
+              - generic [ref=e666]:
+                - button " Upload Slide" [ref=e667] [cursor=pointer]:
+                  - generic [ref=e668] [cursor=pointer]: 
+                  - text: Upload Slide
+                - button " Cancel" [ref=e669] [cursor=pointer]:
+                  - generic [ref=e670] [cursor=pointer]: 
+                  - text: Cancel
+      - generic [ref=e671]:
+        - generic [ref=e672]:
+          - heading "File Storage Management" [level=1] [ref=e673]
+          - generic [ref=e674]:
+            - button " Cleanup Orphaned" [ref=e675] [cursor=pointer]:
+              - generic [ref=e676] [cursor=pointer]: 
+              - text: Cleanup Orphaned
+            - button " Export All Files" [ref=e677] [cursor=pointer]:
+              - generic [ref=e678] [cursor=pointer]: 
+              - text: Export All Files
+            - button " Refresh Stats" [ref=e679] [cursor=pointer]:
+              - generic [ref=e680] [cursor=pointer]: 
+              - text: Refresh Stats
+        - generic [ref=e681]:
+          - generic [ref=e682]:
+            - heading "Storage Statistics" [level=3] [ref=e684]
+            - generic [ref=e685]:
+              - generic [ref=e686]:
+                - generic [ref=e687]:
+                  - generic [ref=e688]: "-"
+                  - generic [ref=e689]: Total Files
+                - generic [ref=e690]:
+                  - generic [ref=e691]: "-"
+                  - generic [ref=e692]: Total Size
+                - generic [ref=e693]:
+                  - generic [ref=e694]: "-"
+                  - generic [ref=e695]: Categories
+                - generic [ref=e696]:
+                  - generic [ref=e697]: "-"
+                  - generic [ref=e698]: Linked Files
+              - heading "Category Breakdown" [level=4] [ref=e700]
+          - generic [ref=e701]:
+            - generic [ref=e702]:
+              - heading "File Browser" [level=3] [ref=e703]
+              - generic [ref=e704]:
+                - combobox [ref=e705] [cursor=pointer]:
+                  - option "All Categories" [selected]
+                  - option "Books"
+                  - option "E-books"
+                  - option "General"
+                  - option "Slideshow"
+                - textbox "Search files..." [ref=e706]
+                - generic [ref=e707]: Loading...
+            - table [ref=e710]:
+              - rowgroup [ref=e711]:
+                - row "Preview Filename Category Size Type Linked Upload Date Actions" [ref=e712]:
+                  - cell "Preview" [ref=e713]
+                  - cell "Filename" [ref=e714]
+                  - cell "Category" [ref=e715]
+                  - cell "Size" [ref=e716]
+                  - cell "Type" [ref=e717]
+                  - cell "Linked" [ref=e718]
+                  - cell "Upload Date" [ref=e719]
+                  - cell "Actions" [ref=e720]
+              - rowgroup
+          - generic [ref=e721]:
+            - heading "Export & Backup" [level=3] [ref=e723]
+            - generic [ref=e725]:
+              - generic [ref=e726]:
+                - heading "Export by Category" [level=4] [ref=e727]
+                - combobox [ref=e728] [cursor=pointer]:
+                  - option "Select Category" [selected]
+                  - option "Books"
+                  - option "E-books"
+                  - option "General"
+                  - option "Slideshow"
+                - button " Export Category" [ref=e729] [cursor=pointer]:
+                  - generic [ref=e730] [cursor=pointer]: 
+                  - text: Export Category
+              - generic [ref=e731]:
+                - heading "Full Backup" [level=4] [ref=e732]
+                - paragraph [ref=e733]: Export all files with metadata manifest
+                - button " Full Backup" [ref=e734] [cursor=pointer]:
+                  - generic [ref=e735] [cursor=pointer]: 
+                  - text: Full Backup
+              - generic [ref=e736]:
+                - heading "Cleanup Tools" [level=4] [ref=e737]
+                - paragraph [ref=e738]: Remove orphaned files not linked to database records
+                - button " Cleanup Orphaned" [ref=e739] [cursor=pointer]:
+                  - generic [ref=e740] [cursor=pointer]: 
+                  - text: Cleanup Orphaned
+      - text:  +   
+      - generic [ref=e742]:
+        - generic [ref=e743]: Authentication error. Please log in again.
+        - button "×" [ref=e744] [cursor=pointer]
+      - text:  +
+      - generic [ref=e745]:
+        - generic [ref=e746]:
+          - heading "Recruitment Management" [level=1] [ref=e747]
+          - paragraph [ref=e748]: Create dynamic custom forms for activities, projects, and initiatives recruitment
+        - generic [ref=e749]:
+          - generic [ref=e751]:
+            - generic [ref=e752]:
+              - generic [ref=e753]: 
+              - generic [ref=e754]: Recruitment Management System
+            - generic [ref=e755]:
+              - button " Refresh Data" [ref=e756] [cursor=pointer]:
+                - generic [ref=e757] [cursor=pointer]: 
+                - text: Refresh Data
+              - button " Export Data" [ref=e758] [cursor=pointer]:
+                - generic [ref=e759] [cursor=pointer]: 
+                - text: Export Data
+          - generic [ref=e761]:
+            - generic [ref=e762]:
+              - generic [ref=e763]:
+                - generic [ref=e765]: 
+                - generic [ref=e766]:
+                  - generic [ref=e767]: "0"
+                  - generic [ref=e768]: Total Forms
+              - generic [ref=e769]:
+                - generic [ref=e771]: 
+                - generic [ref=e772]:
+                  - generic [ref=e773]: "0"
+                  - generic [ref=e774]: Active Forms
+              - generic [ref=e775]:
+                - generic [ref=e777]: 
+                - generic [ref=e778]:
+                  - generic [ref=e779]: "0"
+                  - generic [ref=e780]: Applications
+              - generic [ref=e781]:
+                - generic [ref=e783]: 
+                - generic [ref=e784]:
+                  - generic [ref=e785]: "0"
+                  - generic [ref=e786]: Pending Review
+            - generic [ref=e787]:
+              - generic [ref=e788]:
+                - heading " Projects, Activities & Initiatives" [level=2] [ref=e789]:
+                  - generic [ref=e790]: 
+                  - text: Projects, Activities & Initiatives
+                - paragraph [ref=e791]: Browse and create recruitment forms for different entities
+              - generic [ref=e792]:
+                - generic [ref=e793]:
+                  - button " Projects" [ref=e794] [cursor=pointer]:
+                    - generic [ref=e795] [cursor=pointer]: 
+                    - text: Projects
+                  - button " Activities" [ref=e796] [cursor=pointer]:
+                    - generic [ref=e797] [cursor=pointer]: 
+                    - text: Activities
+                  - button " Initiatives" [ref=e798] [cursor=pointer]:
+                    - generic [ref=e799] [cursor=pointer]: 
+                    - text: Initiatives
+                - generic [ref=e801]:
+                  - heading "Projects" [level=3] [ref=e802]
+                  - paragraph [ref=e803]: Select a project to create recruitment forms. Each project can have individual Create Form buttons.
+            - generic [ref=e806]:
+              - generic [ref=e807]:
+                - heading " Forms Management" [level=2] [ref=e808]:
+                  - generic [ref=e809]: 
+                  - text: Forms Management
+                - paragraph [ref=e810]: Manage all recruitment forms in one place
+              - generic [ref=e811]:
+                - generic [ref=e812]:
+                  - textbox "Search forms..." [ref=e813]
+                  - combobox [ref=e814] [cursor=pointer]:
+                    - option "All Categories" [selected]
+                    - option "Projects"
+                    - option "Activities"
+                    - option "Initiatives"
+                  - combobox [ref=e815] [cursor=pointer]:
+                    - option "All Status" [selected]
+                    - option "Active"
+                    - option "Inactive"
+                    - option "Expired"
+                  - combobox [ref=e816] [cursor=pointer]:
+                    - option "All Roles" [selected]
+                    - option "Crews"
+                    - option "Participants"
+                    - option "Volunteers"
+                - button " Refresh" [ref=e817] [cursor=pointer]:
+                  - generic [ref=e818] [cursor=pointer]: 
+                  - text: Refresh
+              - table [ref=e820]:
+                - rowgroup [ref=e821]:
+                  - row "Category Name Bureau Status Role Responses Created Actions" [ref=e822]:
+                    - cell "Category" [ref=e823]
+                    - cell "Name" [ref=e824]
+                    - cell "Bureau" [ref=e825]
+                    - cell "Status" [ref=e826]
+                    - cell "Role" [ref=e827]
+                    - cell "Responses" [ref=e828]
+                    - cell "Created" [ref=e829]
+                    - cell "Actions" [ref=e830]
+                - rowgroup
+  - button "Toggle theme" [ref=e831] [cursor=pointer]:
+    - generic [ref=e832] [cursor=pointer]: 
+  - text:  
+  - generic [ref=e833]:
+    - generic [ref=e834]:
+      - generic [ref=e835]: 
+      - generic [ref=e836]:
+        - generic [ref=e837]: Tamil Language Society
+        - generic [ref=e838]: New Email
+      - button "Close email notification" [ref=e839] [cursor=pointer]:
+        - generic [ref=e840] [cursor=pointer]: 
+    - generic [ref=e842]:
+      - button "Dismiss" [ref=e843] [cursor=pointer]
+      - button "View Details" [ref=e844] [cursor=pointer]
+```

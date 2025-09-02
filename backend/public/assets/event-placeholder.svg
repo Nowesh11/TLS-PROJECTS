@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200">
+  <style>
+    .event-bg { fill: #2c3e50; }
+    .calendar { fill: white; }
+    .calendar-header { fill: #e74c3c; }
+    .calendar-text { font-family: Arial, sans-serif; font-weight: bold; fill: #2c3e50; }
+    .event-text { font-family: Arial, sans-serif; fill: white; }
+    .event-decoration { fill: rgba(255, 255, 255, 0.1); }
+  </style>
+  
+  <!-- Background -->
+  <rect class="event-bg" x="0" y="0" width="300" height="200" rx="10" ry="10" />
+  
+  <!-- Decorative elements -->
+  <circle class="event-decoration" cx="50" cy="150" r="80" />
+  <circle class="event-decoration" cx="250" cy="50" r="60" />
+  
+  <!-- Calendar icon -->
+  <g transform="translate(30, 50)">
+    <!-- Calendar body -->
+    <rect class="calendar" x="0" y="0" width="60" height="70" rx="5" ry="5" />
+    <!-- Calendar header -->
+    <rect class="calendar-header" x="0" y="0" width="60" height="20" rx="5" ry="5" />
+    <!-- Calendar lines -->
+    <line x1="15" y1="35" x2="45" y2="35" stroke="#2c3e50" stroke-width="2" />
+    <line x1="15" y1="50" x2="45" y2="50" stroke="#2c3e50" stroke-width="2" />
+    <!-- Calendar date -->
+    <text x="30" y="45" text-anchor="middle" class="calendar-text" font-size="16">15</text>
+  </g>
+  
+  <!-- Event information -->
+  <text x="110" y="70" class="event-text" font-size="20" font-weight="bold">EVENT TITLE</text>
+  <text x="110" y="100" class="event-text" font-size="14">Date & Time</text>
+  <text x="110" y="125" class="event-text" font-size="14">Location</text>
+  <text x="110" y="150" class="event-text" font-size="14">Description</text>
+</svg>

@@ -1,0 +1,13 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="avatarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="100" fill="url(#avatarGradient)"/>
+  <circle cx="100" cy="80" r="35" fill="rgba(255,255,255,0.9)"/>
+  <path d="M100 120 C120 120, 140 130, 150 150 L150 200 L50 200 L50 150 C60 130, 80 120, 100 120 Z" fill="rgba(255,255,255,0.9)"/>
+  <circle cx="100" cy="80" r="25" fill="#6b7280"/>
+  <path d="M100 105 C115 105, 130 115, 135 135 L135 200 L65 200 L65 135 C70 115, 85 105, 100 105 Z" fill="#6b7280"/>
+</svg>

@@ -1,0 +1,3144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Response Analytics - Tamil Language Society</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <!-- WordCloud2.js for word clouds -->
+    <script src="https://cdn.jsdelivr.net/npm/wordcloud@1.2.2/src/wordcloud2.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <style>
+        /* Theme Variables */
+        :root {
+            /* Light Theme (Default) */
+            --bg-primary: #FFFEFF;
+            --bg-secondary: #F2F2F2;
+            --bg-gradient: linear-gradient(135deg, #F2F2F2 0%, #FFFEFF 100%);
+            --bg-gradient-accent: linear-gradient(135deg, #2F3E75 0%, #A83232 100%);
+            --bg-gradient-secondary: linear-gradient(135deg, #0D0D0D 0%, #182657 100%);
+            
+            --text-primary: #0D0D0D;
+            --text-secondary: #2F3E75;
+            --text-muted: #CFD0D0;
+            --text-accent: #A83232;
+            --text-inverse: #FFFEFF;
+            
+            --border-color: rgba(47, 62, 117, 0.2);
+            --shadow-sm: 0 2px 4px rgba(47, 62, 117, 0.1);
+            --shadow-md: 0 4px 12px rgba(47, 62, 117, 0.15);
+            --shadow-lg: 0 8px 24px rgba(47, 62, 117, 0.2);
+            
+            --overlay-light: rgba(255, 254, 255, 0.9);
+            --overlay-dark: rgba(47, 62, 117, 0.1);
+            
+            --glass-bg: rgba(255, 254, 255, 0.8);
+            --glass-border: rgba(47, 62, 117, 0.2);
+            
+            --transition: all 0.3s ease-in-out;
+            --glow-primary: 0 0 12px rgba(168, 50, 50, 0.4);
+            --glow-secondary: 0 0 8px rgba(47, 62, 117, 0.3);
+            
+            --status-success: #22c55e;
+            --status-warning: #f59e0b;
+            --status-error: #ef4444;
+            --status-info: #3b82f6;
+            
+            --light-tertiary: #FFFEFF;
+            --dark-tertiary: #EDEFEE;
+        }
+        
+        [data-theme="dark"] {
+            /* Dark Theme */
+            --bg-primary: #182657;
+            --bg-secondary: #0D0D0D;
+            --bg-gradient: linear-gradient(135deg, #0D0D0D 0%, #182657 100%);
+            --bg-gradient-accent: linear-gradient(135deg, #7A1515 0%, #EDEFEE 100%);
+            --bg-gradient-secondary: linear-gradient(135deg, #0D0D0D 0%, #182657 100%);
+            
+            --text-primary: #EDEFEE;
+            --text-secondary: #AEAEAE;
+            --text-muted: #7A1515;
+            --text-accent: #7A1515;
+            --text-inverse: #0D0D0D;
+            
+            --border-color: rgba(174, 174, 174, 0.3);
+            --shadow-sm: 0 2px 4px rgba(174, 174, 174, 0.1);
+            --shadow-md: 0 4px 12px rgba(174, 174, 174, 0.2);
+            --shadow-lg: 0 8px 24px rgba(174, 174, 174, 0.3);
+            
+            --overlay-light: rgba(24, 38, 87, 0.9);
+            --overlay-dark: rgba(174, 174, 174, 0.1);
+            
+            --glass-bg: rgba(24, 38, 87, 0.8);
+            --glass-border: rgba(174, 174, 174, 0.3);
+            
+            --glow-primary: 0 0 12px rgba(237, 239, 238, 0.4);
+            --glow-secondary: 0 0 8px rgba(174, 174, 174, 0.3);
+            
+            --light-tertiary: #EDEFEE;
+            --dark-tertiary: #EDEFEE;
+        }
+        
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--bg-gradient-accent);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+            color: var(--light-tertiary);
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: var(--glow-primary);
+        }
+        
+        /* Body and base styles */
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+        
+        /* Response page specific styles */
+        .analytics-container {
+            background: var(--bg-primary);
+            border-radius: 1rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        
+        .chart-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-primary {
+            background: var(--bg-gradient-accent);
+            color: var(--light-tertiary);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .btn-primary:hover {
+            box-shadow: var(--glow-primary);
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-accent);
+            border: 2px solid var(--text-accent);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: var(--transition);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--text-accent);
+            color: var(--light-tertiary);
+            box-shadow: var(--glow-primary);
+        }
+        
+        /* Legacy variable compatibility */
+        :root {
+            --bg-accent: var(--bg-gradient-accent);
+            --bg-accent-light: var(--overlay-light);
+            --bg-success: var(--status-success);
+            --bg-danger: var(--status-error);
+            --bg-warning: var(--status-warning);
+            --bg-tertiary: var(--bg-secondary);
+            --text-tertiary: var(--text-secondary);
+            --border-primary: var(--border-color);
+            --border-secondary: var(--border-color);
+            --border-accent: var(--text-accent);
+            --shadow-xl: 0 16px 64px rgba(1, 87, 155, 0.30);
+            
+            --glass-bg: rgba(224, 247, 250, 0.9);
+            --glass-border: rgba(1, 87, 155, 0.3);
+            --glass-shadow: 0 8px 32px rgba(1, 87, 155, 0.25);
+            
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --input-bg: rgba(255, 255, 255, 0.9);
+            
+            --primary-blue: #0288D1;
+            --primary-blue-dark: #0277BD;
+            --success-color: #4CAF50;
+            --warning-color: #FF9800;
+            --error-color: #F44336;
+            --info-color: #2196F3;
+            
+            --gray-50: #fafafa;
+            --gray-100: #f5f5f5;
+            --gray-200: #eeeeee;
+            --gray-300: #e0e0e0;
+            --gray-400: #bdbdbd;
+            --gray-500: #9e9e9e;
+            --gray-600: #757575;
+            --gray-700: #616161;
+            --gray-800: #424242;
+            --gray-900: #212121;
+            
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+        }
+
+        // Histogram with summary statistics for numeric data
+        function createHistogramWithStats(container, field, responses, index) {
+            const numericValues = responses
+                .map(r => parseFloat(r))
+                .filter(n => !isNaN(n));
+            
+            if (numericValues.length === 0) {
+                container.innerHTML = '<p>No numeric data available for histogram</p>';
+                return;
+            }
+
+        // File analysis for file upload fields
+        function createFileAnalysis(container, field, responses, index) {
+            if (responses.length === 0) {
+                container.innerHTML = '<p>No file uploads available</p>';
+                return;
+            }
+            
+            const fileStats = {
+                totalFiles: responses.length,
+                fileTypes: {},
+                totalSize: 0,
+                averageSize: 0
+            };
+            
+            responses.forEach(response => {
+                if (typeof response === 'object' && response.name) {
+                    const extension = response.name.split('.').pop().toLowerCase();
+                    fileStats.fileTypes[extension] = (fileStats.fileTypes[extension] || 0) + 1;
+                    if (response.size) {
+                        fileStats.totalSize += response.size;
+                    }
+                } else if (typeof response === 'string') {
+                    const extension = response.split('.').pop().toLowerCase();
+                    fileStats.fileTypes[extension] = (fileStats.fileTypes[extension] || 0) + 1;
+                }
+            });
+            
+            fileStats.averageSize = fileStats.totalSize / responses.length;
+            
+            // Create stats display
+            const statsDiv = document.createElement('div');
+            statsDiv.innerHTML = `
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px; padding: 15px; background: var(--bg-secondary); border-radius: 8px;">
+                    <div><strong>Total Files:</strong> ${fileStats.totalFiles}</div>
+                    <div><strong>File Types:</strong> ${Object.keys(fileStats.fileTypes).length}</div>
+                    <div><strong>Total Size:</strong> ${(fileStats.totalSize / (1024 * 1024)).toFixed(2)} MB</div>
+                    <div><strong>Average Size:</strong> ${(fileStats.averageSize / 1024).toFixed(2)} KB</div>
+                </div>
+            `;
+            container.appendChild(statsDiv);
+            
+            // Create file type chart
+            if (Object.keys(fileStats.fileTypes).length > 0) {
+                const canvas = document.createElement('canvas');
+                canvas.id = `chart-${index}`;
+                container.appendChild(canvas);
+                const ctx = canvas.getContext('2d');
+                
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: Object.keys(fileStats.fileTypes),
+                        datasets: [{
+                            data: Object.values(fileStats.fileTypes),
+                            backgroundColor: ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f'],
+                            borderWidth: 2,
+                            borderColor: '#ffffff'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'right',
+                                labels: { color: 'var(--text-primary)' }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        const percentage = ((context.parsed / fileStats.totalFiles) * 100).toFixed(1);
+                                        return `${context.label}: ${context.parsed} files (${percentage}%)`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Domain analysis for email fields
+        function createDomainAnalysis(container, field, responses, index) {
+            if (responses.length === 0) {
+                container.innerHTML = '<p>No email responses available</p>';
+                return;
+            }
+            
+            const domains = {};
+            const validEmails = responses.filter(email => {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            });
+            
+            validEmails.forEach(email => {
+                const domain = email.split('@')[1].toLowerCase();
+                domains[domain] = (domains[domain] || 0) + 1;
+            });
+            
+            const processedDomains = getTopNCategories(domains, 10);
+            const total = Object.values(processedDomains).reduce((a, b) => a + b, 0);
+            
+            // Create stats
+            const statsDiv = document.createElement('div');
+            statsDiv.innerHTML = `
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px; padding: 15px; background: var(--bg-secondary); border-radius: 8px;">
+                    <div><strong>Total Emails:</strong> ${responses.length}</div>
+                    <div><strong>Valid Emails:</strong> ${validEmails.length}</div>
+                    <div><strong>Unique Domains:</strong> ${Object.keys(domains).length}</div>
+                    <div><strong>Top Domain:</strong> ${Object.keys(processedDomains)[0] || 'N/A'}</div>
+                </div>
+            `;
+            container.appendChild(statsDiv);
+            
+            if (Object.keys(processedDomains).length > 0) {
+                const canvas = document.createElement('canvas');
+                canvas.id = `chart-${index}`;
+                container.appendChild(canvas);
+                const ctx = canvas.getContext('2d');
+                
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: Object.keys(processedDomains),
+                        datasets: [{
+                            label: 'Email Count',
+                            data: Object.values(processedDomains),
+                            backgroundColor: '#17becf',
+                            borderColor: '#17becf',
+                            borderWidth: 1,
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        const percentage = ((context.parsed.x / total) * 100).toFixed(1);
+                                        return `${context.parsed.x} emails from ${context.label} (${percentage}%)`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                ticks: { color: 'var(--text-secondary)' },
+                                grid: { color: 'var(--border-secondary)' }
+                            },
+                            y: {
+                                ticks: { color: 'var(--text-secondary)' },
+                                grid: { display: false }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Geographic analysis (placeholder - would need geocoding service)
+        function createGeographicAnalysis(container, field, responses, index) {
+            container.innerHTML = `
+                <div style="padding: 20px; text-align: center; background: var(--bg-secondary); border-radius: 8px; border: 1px solid var(--border-secondary);">
+                    <h4>Geographic Analysis</h4>
+                    <p>Geographic visualization requires a geocoding service integration.</p>
+                    <p>Responses: ${responses.length}</p>
+                    <div style="margin-top: 15px; max-height: 200px; overflow-y: auto; text-align: left;">
+                        ${responses.slice(0, 10).map(response => 
+                            `<div style="padding: 5px 0; border-bottom: 1px solid var(--border-secondary);">${response}</div>`
+                        ).join('')}
+                        ${responses.length > 10 ? `<div style="padding: 5px 0; font-style: italic;">... and ${responses.length - 10} more</div>` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Enhanced response list with better formatting
+        function createEnhancedResponseList(container, field, responses, index) {
+            if (responses.length === 0) {
+                container.innerHTML = '<p>No responses available</p>';
+                return;
+            }
+            
+            // Calculate statistics
+            const stats = {
+                total: responses.length,
+                unique: new Set(responses).size,
+                averageLength: responses.reduce((sum, r) => sum + String(r).length, 0) / responses.length
+            };
+            
+            // Create stats display
+            const statsDiv = document.createElement('div');
+            statsDiv.innerHTML = `
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 20px; padding: 15px; background: var(--bg-secondary); border-radius: 8px;">
+                    <div><strong>Total:</strong> ${stats.total}</div>
+                    <div><strong>Unique:</strong> ${stats.unique}</div>
+                    <div><strong>Avg Length:</strong> ${Math.round(stats.averageLength)} chars</div>
+                </div>
+            `;
+            container.appendChild(statsDiv);
+            
+            // Create response list
+            const listDiv = document.createElement('div');
+            listDiv.style.cssText = `
+                max-height: 400px;
+                overflow-y: auto;
+                border: 1px solid var(--border-secondary);
+                border-radius: 8px;
+                background: var(--bg-secondary);
+            `;
+            
+            responses.forEach((response, i) => {
+                const responseDiv = document.createElement('div');
+                responseDiv.style.cssText = `
+                    padding: 12px 15px;
+                    border-bottom: ${i < responses.length - 1 ? '1px solid var(--border-secondary)' : 'none'};
+                    color: var(--text-secondary);
+                    font-size: 14px;
+                    line-height: 1.4;
+                `;
+                
+                const responseText = String(response);
+                if (responseText.length > 200) {
+                    responseDiv.innerHTML = `
+                        <div>${responseText.substring(0, 200)}...</div>
+                        <button onclick="this.previousElementSibling.textContent='${responseText.replace(/'/g, "\\'")}';
+                                        this.style.display='none';" 
+                                style="margin-top: 5px; padding: 2px 8px; font-size: 12px; background: var(--bg-primary); border: 1px solid var(--border-secondary); border-radius: 4px; cursor: pointer;">
+                            Show full response
+                        </button>
+                    `;
+                } else {
+                    responseDiv.textContent = responseText;
+                }
+                
+                listDiv.appendChild(responseDiv);
+            });
+            
+            container.appendChild(listDiv);
+        }
+
+        // Word cloud for text fields
+        function createWordCloud(container, field, responses, index) {
+            if (responses.length === 0) {
+                container.innerHTML = '<p>No text responses available for word cloud</p>';
+                return;
+            }
+            
+            // Combine all text and extract words
+            const allText = responses.join(' ');
+            const words = allText.toLowerCase()
+                .replace(/[^a-z0-9\s]/g, ' ')
+                .split(/\s+/)
+                .filter(word => word.length > 2);
+            
+            // Remove stop words and count frequency
+            const cleanWords = removeStopWords(words);
+            const wordFreq = {};
+            cleanWords.forEach(word => {
+                wordFreq[word] = (wordFreq[word] || 0) + 1;
+            });
+            
+            // Convert to WordCloud2 format
+            const wordList = Object.entries(wordFreq)
+                .sort(([,a], [,b]) => b - a)
+                .slice(0, 100) // Limit to top 100 words
+                .map(([word, freq]) => [word, freq]);
+            
+            if (wordList.length === 0) {
+                container.innerHTML = '<p>No meaningful words found for word cloud</p>';
+                return;
+            }
+            
+            // Create canvas for word cloud
+            const canvas = document.createElement('canvas');
+            canvas.id = `wordcloud-${index}`;
+            canvas.width = 600;
+            canvas.height = 400;
+            canvas.style.cssText = `
+                width: 100%;
+                max-width: 600px;
+                height: 400px;
+                border: 1px solid var(--border-secondary);
+                border-radius: 8px;
+                background: var(--bg-secondary);
+            `;
+            container.appendChild(canvas);
+            
+            // Generate word cloud
+            try {
+                WordCloud(canvas, {
+                    list: wordList,
+                    gridSize: Math.round(16 * canvas.width / 1024),
+                    weightFactor: function(size) {
+                        return Math.pow(size, 0.8) * canvas.width / 1024;
+                    },
+                    fontFamily: 'Arial, sans-serif',
+                    color: function() {
+                        const colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'];
+                        return colors[Math.floor(Math.random() * colors.length)];
+                    },
+                    rotateRatio: 0.3,
+                    backgroundColor: 'transparent',
+                    minSize: 8,
+                    drawOutOfBound: false
+                });
+            } catch (error) {
+                console.error('WordCloud2 error:', error);
+                // Fallback to simple word list
+                canvas.style.display = 'none';
+                const fallbackDiv = document.createElement('div');
+                fallbackDiv.innerHTML = `
+                    <h4>Top Words (Word Cloud unavailable)</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+                        ${wordList.slice(0, 20).map(([word, freq]) => 
+                            `<span style="padding: 5px 10px; background: var(--bg-tertiary); border-radius: 15px; font-size: ${Math.min(16 + freq * 2, 24)}px;">
+                                ${word} (${freq})
+                            </span>`
+                        ).join('')}
+                    </div>
+                `;
+                container.appendChild(fallbackDiv);
+            }
+        }
+
+        // Smart text analysis for paragraph and text fields
+        function createSmartTextAnalysis(container, field, responses, index) {
+            if (responses.length === 0) {
+                container.innerHTML = '<p>No text responses available</p>';
+                return;
+            }
+            
+            // Calculate text statistics
+            const textStats = {
+                totalResponses: responses.length,
+                totalWords: 0,
+                totalCharacters: 0,
+                averageLength: 0,
+                longestResponse: '',
+                shortestResponse: responses[0] || '',
+                wordFrequency: {}
+            };
+            
+            responses.forEach(response => {
+                const text = String(response).trim();
+                const words = text.split(/\s+/).filter(word => word.length > 0);
+                
+                textStats.totalWords += words.length;
+                textStats.totalCharacters += text.length;
+                
+                if (text.length > textStats.longestResponse.length) {
+                    textStats.longestResponse = text;
+                }
+                if (text.length < textStats.shortestResponse.length) {
+                    textStats.shortestResponse = text;
+                }
+                
+                // Count word frequency (excluding stop words)
+                words.forEach(word => {
+                    const cleanWord = word.toLowerCase().replace(/[^a-z0-9]/g, '');
+                    if (cleanWord.length > 2 && !removeStopWords([cleanWord]).length === 0) {
+                        textStats.wordFrequency[cleanWord] = (textStats.wordFrequency[cleanWord] || 0) + 1;
+                    }
+                });
+            });
+            
+            textStats.averageLength = textStats.totalCharacters / responses.length;
+            
+            // Create statistics display
+            const statsDiv = document.createElement('div');
+            statsDiv.className = 'text-analysis-stats';
+            statsDiv.innerHTML = `
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px; padding: 15px; background: var(--bg-secondary); border-radius: 8px;">
+                    <div><strong>Total Responses:</strong> ${textStats.totalResponses}</div>
+                    <div><strong>Total Words:</strong> ${textStats.totalWords.toLocaleString()}</div>
+                    <div><strong>Average Length:</strong> ${Math.round(textStats.averageLength)} characters</div>
+                    <div><strong>Longest Response:</strong> ${textStats.longestResponse.length} characters</div>
+                    <div><strong>Shortest Response:</strong> ${textStats.shortestResponse.length} characters</div>
+                    <div><strong>Words per Response:</strong> ${Math.round(textStats.totalWords / textStats.totalResponses)}</div>
+                </div>
+            `;
+            container.appendChild(statsDiv);
+            
+            // Show top words if we have enough data
+            const topWords = Object.entries(textStats.wordFrequency)
+                .sort(([,a], [,b]) => b - a)
+                .slice(0, 10);
+            
+            if (topWords.length > 0) {
+                const wordsTitle = document.createElement('h4');
+                wordsTitle.textContent = 'Most Frequent Words';
+                wordsTitle.style.cssText = 'margin: 20px 0 10px 0; color: var(--text-primary);';
+                container.appendChild(wordsTitle);
+                
+                const canvas = document.createElement('canvas');
+                canvas.id = `chart-${index}`;
+                container.appendChild(canvas);
+                const ctx = canvas.getContext('2d');
+                
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: topWords.map(([word]) => word),
+                        datasets: [{
+                            label: 'Frequency',
+                            data: topWords.map(([, count]) => count),
+                            backgroundColor: '#9467bd',
+                            borderColor: '#9467bd',
+                            borderWidth: 1,
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return `"${context.label}" appears ${context.parsed.x} times`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                ticks: { color: 'var(--text-secondary)' },
+                                grid: { color: 'var(--border-secondary)' }
+                            },
+                            y: {
+                                ticks: { color: 'var(--text-secondary)' },
+                                grid: { display: false }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // Show sample responses
+            if (responses.length > 0) {
+                const samplesTitle = document.createElement('h4');
+                samplesTitle.textContent = 'Sample Responses';
+                samplesTitle.style.cssText = 'margin: 20px 0 10px 0; color: var(--text-primary);';
+                container.appendChild(samplesTitle);
+                
+                const samplesDiv = document.createElement('div');
+                samplesDiv.style.cssText = `
+                    max-height: 300px;
+                    overflow-y: auto;
+                    border: 1px solid var(--border-secondary);
+                    border-radius: 8px;
+                    padding: 15px;
+                    background: var(--bg-secondary);
+                `;
+                
+                const sampleResponses = responses.slice(0, 5);
+                sampleResponses.forEach((response, i) => {
+                    const responseDiv = document.createElement('div');
+                    responseDiv.style.cssText = `
+                        padding: 10px 0;
+                        border-bottom: ${i < sampleResponses.length - 1 ? '1px solid var(--border-secondary)' : 'none'};
+                        color: var(--text-secondary);
+                        font-size: 14px;
+                        line-height: 1.4;
+                    `;
+                    responseDiv.textContent = String(response).substring(0, 200) + (String(response).length > 200 ? '...' : '');
+                    samplesDiv.appendChild(responseDiv);
+                });
+                
+                container.appendChild(samplesDiv);
+            }
+        }
+
+        // Circular histogram for time fields (clock visualization)
+        function createCircularHistogram(container, field, responses, index) {
+            const times = responses
+                .map(r => {
+                    const time = new Date(`1970-01-01T${r}`);
+                    return isNaN(time.getTime()) ? null : time.getHours();
+                })
+                .filter(h => h !== null);
+            
+            if (times.length === 0) {
+                container.innerHTML = '<p>No valid time data available</p>';
+                return;
+            }
+            
+            // Group by hour (0-23)
+            const hourCounts = Array(24).fill(0);
+            times.forEach(hour => {
+                hourCounts[hour]++;
+            });
+            
+            // Create labels for 24 hours
+            const labels = Array.from({length: 24}, (_, i) => {
+                const hour = i === 0 ? 12 : i > 12 ? i - 12 : i;
+                const ampm = i < 12 ? 'AM' : 'PM';
+                return `${hour}:00 ${ampm}`;
+            });
+            
+            const canvas = document.createElement('canvas');
+            canvas.id = `chart-${index}`;
+            container.appendChild(canvas);
+            const ctx = canvas.getContext('2d');
+            
+            new Chart(ctx, {
+                type: 'polarArea',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Responses by Hour',
+                        data: hourCounts,
+                        backgroundColor: [
+                            '#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b',
+                            '#e377c2', '#7f7f7f', '#bcbd22', '#17becf', '#aec7e8', '#ffbb78',
+                            '#98df8a', '#ff9896', '#c5b0d5', '#c49c94', '#f7b6d3', '#c7c7c7',
+                            '#dbdb8d', '#9edae5', '#393b79', '#637939', '#8c6d31', '#843c39'
+                        ],
+                        borderWidth: 1,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const percentage = ((context.parsed.r / times.length) * 100).toFixed(1);
+                                    return `${context.label}: ${context.parsed.r} responses (${percentage}%)`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            ticks: {
+                                display: false
+                            },
+                            grid: {
+                                color: 'var(--border-secondary)'
+                            },
+                            pointLabels: {
+                                color: 'var(--text-secondary)',
+                                font: {
+                                    size: 10
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Time series chart for date fields
+        function createTimeSeriesChart(container, field, responses, index) {
+            const dates = responses
+                .map(r => {
+                    const date = new Date(r);
+                    return isNaN(date.getTime()) ? null : date;
+                })
+                .filter(d => d !== null)
+                .sort((a, b) => a - b);
+            
+            if (dates.length === 0) {
+                container.innerHTML = '<p>No valid date data available</p>';
+                return;
+            }
+            
+            // Group dates by day/week/month based on data range
+            const dateRange = dates[dates.length - 1] - dates[0];
+            const dayMs = 24 * 60 * 60 * 1000;
+            
+            let groupBy, formatKey, formatLabel;
+            if (dateRange <= 30 * dayMs) { // Less than 30 days - group by day
+                groupBy = date => date.toISOString().split('T')[0];
+                formatKey = key => key;
+                formatLabel = key => new Date(key).toLocaleDateString();
+            } else if (dateRange <= 365 * dayMs) { // Less than 1 year - group by week
+                groupBy = date => {
+                    const week = new Date(date);
+                    week.setDate(week.getDate() - week.getDay());
+                    return week.toISOString().split('T')[0];
+                };
+                formatKey = key => key;
+                formatLabel = key => `Week of ${new Date(key).toLocaleDateString()}`;
+            } else { // More than 1 year - group by month
+                groupBy = date => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+                formatKey = key => `${key}-01`;
+                formatLabel = key => new Date(formatKey(key)).toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+            }
+            
+            const groupedData = {};
+            dates.forEach(date => {
+                const key = groupBy(date);
+                groupedData[key] = (groupedData[key] || 0) + 1;
+            });
+            
+            // Sort keys chronologically
+            const sortedKeys = Object.keys(groupedData).sort();
+            const labels = sortedKeys.map(formatLabel);
+            const data = sortedKeys.map(key => groupedData[key]);
+            
+            const canvas = document.createElement('canvas');
+            canvas.id = `chart-${index}`;
+            container.appendChild(canvas);
+            const ctx = canvas.getContext('2d');
+            
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Responses over time',
+                        data: data,
+                        borderColor: '#d62728',
+                        backgroundColor: 'rgba(214, 39, 40, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.1,
+                        pointBackgroundColor: '#d62728',
+                        pointBorderColor: '#ffffff',
+                        pointBorderWidth: 2,
+                        pointRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.parsed.y} responses on ${context.label}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Number of Responses' },
+                            ticks: { 
+                                stepSize: 1,
+                                color: 'var(--text-secondary)'
+                            },
+                            grid: { color: 'var(--border-secondary)' }
+                        },
+                        x: {
+                            title: { display: true, text: 'Time Period' },
+                            ticks: { 
+                                color: 'var(--text-secondary)',
+                                maxRotation: 45
+                            },
+                            grid: { color: 'var(--border-secondary)' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Small multiples chart for grid questions
+        function createSmallMultiplesChart(container, field, responses, index) {
+            if (!field.rows || !field.columns) {
+                createEnhancedBarChart(container, field, responses, index);
+                return;
+            }
+            
+            // Process grid responses
+            const gridData = {};
+            field.rows.forEach(row => {
+                gridData[row] = {};
+                field.columns.forEach(col => {
+                    gridData[row][col] = 0;
+                });
+            });
+            
+            responses.forEach(response => {
+                if (typeof response === 'object' && response !== null) {
+                    Object.keys(response).forEach(row => {
+                        if (gridData[row] && response[row]) {
+                            const answer = Array.isArray(response[row]) ? response[row] : [response[row]];
+                            answer.forEach(col => {
+                                if (gridData[row][col] !== undefined) {
+                                    gridData[row][col]++;
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+            
+            const totalResponses = responses.length;
+            
+            // Create container for small multiples
+            const multiplesContainer = document.createElement('div');
+            multiplesContainer.style.cssText = `
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 20px;
+                margin-top: 15px;
+            `;
+            container.appendChild(multiplesContainer);
+            
+            // Create a chart for each row
+            field.rows.forEach((row, rowIndex) => {
+                const rowContainer = document.createElement('div');
+                rowContainer.style.cssText = `
+                    border: 1px solid var(--border-secondary);
+                    border-radius: 8px;
+                    padding: 15px;
+                    background: var(--bg-secondary);
+                `;
+                
+                const title = document.createElement('h4');
+                title.textContent = row;
+                title.style.cssText = `
+                    margin: 0 0 15px 0;
+                    font-size: 14px;
+                    font-weight: 600;
+                    color: var(--text-primary);
+                `;
+                rowContainer.appendChild(title);
+                
+                const canvas = document.createElement('canvas');
+                canvas.id = `chart-${index}-${rowIndex}`;
+                canvas.style.height = '200px';
+                rowContainer.appendChild(canvas);
+                
+                const ctx = canvas.getContext('2d');
+                const rowData = gridData[row];
+                const labels = Object.keys(rowData);
+                const data = Object.values(rowData);
+                
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Responses',
+                            data: data,
+                            backgroundColor: '#ff7f0e',
+                            borderColor: '#ff7f0e',
+                            borderWidth: 1,
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        const percentage = totalResponses > 0 
+                                            ? ((context.parsed.y / totalResponses) * 100).toFixed(1)
+                                            : '0';
+                                        return `${context.parsed.y} responses (${percentage}% of respondents)`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: { 
+                                    stepSize: 1,
+                                    color: 'var(--text-secondary)'
+                                },
+                                grid: { color: 'var(--border-secondary)' }
+                            },
+                            x: {
+                                ticks: { 
+                                    color: 'var(--text-secondary)',
+                                    maxRotation: 45
+                                },
+                                grid: { display: false }
+                            }
+                        }
+                    }
+                });
+                
+                multiplesContainer.appendChild(rowContainer);
+            });
+        }
+            
+            // Calculate statistics
+            const sorted = numericValues.sort((a, b) => a - b);
+            const min = sorted[0];
+            const max = sorted[sorted.length - 1];
+            const mean = sorted.reduce((a, b) => a + b, 0) / sorted.length;
+            const median = sorted.length % 2 === 0 
+                ? (sorted[sorted.length / 2 - 1] + sorted[sorted.length / 2]) / 2
+                : sorted[Math.floor(sorted.length / 2)];
+            
+            // Create bins
+            const binCount = Math.min(10, Math.ceil(Math.sqrt(numericValues.length)));
+            const binWidth = (max - min) / binCount;
+            const bins = Array(binCount).fill(0);
+            const binLabels = [];
+            
+            for (let i = 0; i < binCount; i++) {
+                const binStart = min + i * binWidth;
+                const binEnd = min + (i + 1) * binWidth;
+                binLabels.push(`${binStart.toFixed(1)}-${binEnd.toFixed(1)}`);
+            }
+            
+            numericValues.forEach(value => {
+                const binIndex = Math.min(Math.floor((value - min) / binWidth), binCount - 1);
+                bins[binIndex]++;
+            });
+            
+            // Create stats display
+            const statsDiv = document.createElement('div');
+            statsDiv.className = 'chart-stats';
+            statsDiv.innerHTML = `
+                <div style="display: flex; gap: 20px; margin-bottom: 15px; font-size: 14px;">
+                    <span><strong>Count:</strong> ${numericValues.length}</span>
+                    <span><strong>Min:</strong> ${min.toFixed(2)}</span>
+                    <span><strong>Max:</strong> ${max.toFixed(2)}</span>
+                    <span><strong>Mean:</strong> ${mean.toFixed(2)}</span>
+                    <span><strong>Median:</strong> ${median.toFixed(2)}</span>
+                </div>
+            `;
+            container.appendChild(statsDiv);
+            
+            const canvas = document.createElement('canvas');
+            canvas.id = `chart-${index}`;
+            container.appendChild(canvas);
+            const ctx = canvas.getContext('2d');
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: binLabels,
+                    datasets: [{
+                        label: 'Frequency',
+                        data: bins,
+                        backgroundColor: '#2ca02c',
+                        borderColor: '#2ca02c',
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.parsed.y} values in range ${context.label}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Frequency' },
+                            ticks: { color: 'var(--text-secondary)' },
+                            grid: { color: 'var(--border-secondary)' }
+                        },
+                        x: {
+                            title: { display: true, text: field.label || 'Value Range' },
+                            ticks: { color: 'var(--text-secondary)' },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        /* Dark Theme Colors */
+        [data-theme="dark"] {
+            --bg-primary: linear-gradient(135deg, #1E1E2E 0%, #2A2A4F 25%, #6D28D9 50%, #9D4EDD 75%, #1E1E2E 100%);
+            --bg-secondary: linear-gradient(135deg, #1E1E2E 0%, #2A2A4F 50%, #3A3A5F 100%);
+            --bg-tertiary: linear-gradient(135deg, #2A2A4F 0%, #4A4A7F 50%, #6D28D9 100%);
+            --bg-accent: linear-gradient(135deg, #6D28D9 0%, #8B5CF6 50%, #9D4EDD 100%);
+            --bg-accent-light: rgba(157, 78, 221, 0.15);
+            --bg-success: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            --bg-danger: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+            --bg-warning: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+            
+            --text-primary: #ffffff;
+            --text-secondary: #E5E7EB;
+            --text-tertiary: #D1D5DB;
+            --text-inverse: #1E1E2E;
+            --text-accent: #9D4EDD;
+            
+            --border-primary: rgba(157, 78, 221, 0.3);
+            --border-secondary: rgba(109, 40, 217, 0.2);
+            --border-accent: #9D4EDD;
+            
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+            --shadow-xl: 0 16px 64px rgba(0, 0, 0, 0.6);
+            
+            --glass-bg: rgba(30, 30, 46, 0.9);
+            --glass-border: rgba(157, 78, 221, 0.3);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            
+            --card-bg: rgba(42, 42, 79, 0.95);
+            --input-bg: rgba(58, 58, 95, 0.9);
+            
+            --primary-blue: #9D4EDD;
+            --primary-blue-dark: #8B5CF6;
+            --success-color: #10B981;
+            --warning-color: #F59E0B;
+            --error-color: #EF4444;
+            --info-color: #3B82F6;
+            
+            --gray-50: #1f2937;
+            --gray-100: #374151;
+            --gray-200: #4b5563;
+            --gray-300: #6b7280;
+            --gray-400: #9ca3af;
+            --gray-500: #d1d5db;
+            --gray-600: #e5e7eb;
+            --gray-700: #f3f4f6;
+            --gray-800: #f9fafb;
+            --gray-900: #ffffff;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header Styles */
+        .response-header {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-secondary);
+        }
+
+        .response-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: var(--bg-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .response-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .info-item i {
+            color: var(--primary-blue);
+        }
+
+        /* Export Actions */
+        .export-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--bg-accent);
+            color: var(--text-inverse);
+        }
+
+        .btn-success {
+            background: var(--bg-success);
+            color: var(--text-inverse);
+        }
+
+        .btn-info {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            color: var(--text-inverse);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Chart Container */
+        .charts-container {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-secondary);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-secondary);
+        }
+
+        .chart-header h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .chart-content {
+            position: relative;
+            height: 400px;
+        }
+
+        .chart-content canvas {
+            max-height: 100%;
+        }
+
+        /* Response List */
+        .responses-list {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-secondary);
+        }
+
+        .responses-list h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .response-item {
+            background: var(--glass-bg);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .response-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .response-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .response-content {
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .theme-toggle button {
+            background: var(--card-bg);
+            border: 1px solid var(--border-secondary);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+        }
+
+        .theme-toggle button:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Loading State */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            color: var(--text-secondary);
+        }
+
+        .loading i {
+            animation: spin 1s linear infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .response-header h1 {
+                font-size: 2rem;
+            }
+
+            .export-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                justify-content: center;
+            }
+
+            .chart-content {
+                height: 300px;
+            }
+
+            .form-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* No Data State */
+        .no-data {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+        }
+
+        .no-data i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .no-data h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        /* Message Handler Styles */
+        .message-handler {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .message-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--border-secondary);
+            animation: messageSlideIn 0.3s ease-out;
+        }
+
+        @keyframes messageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .message-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .message-icon.success { color: var(--success-color); }
+        .message-icon.error { color: var(--error-color); }
+        .message-icon.warning { color: var(--warning-color); }
+        .message-icon.info { color: var(--info-color); }
+
+        .message-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .message-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .message-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Redirect Counter Styles */
+        .redirect-counter {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            backdrop-filter: blur(10px);
+        }
+
+        .counter-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--border-secondary);
+        }
+
+        .counter-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .counter-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .counter-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--bg-accent);
+            border-radius: 4px;
+            transition: width 0.1s linear;
+        }
+
+        /* Feedback Section Styles */
+        .feedback-section {
+            margin-top: 2rem;
+        }
+
+        .feedback-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-secondary);
+        }
+
+        .feedback-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .feedback-header h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .feedback-header p {
+            color: var(--text-secondary);
+        }
+
+        .feedback-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-secondary);
+            border-radius: var(--radius-md);
+            background: var(--input-bg);
+            color: var(--text-primary);
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-group small {
+            display: block;
+            margin-top: 0.25rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .rating-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .star-rating {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .star {
+            font-size: 2rem;
+            color: var(--gray-300);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .star:hover,
+        .star.active {
+            color: #fbbf24;
+            transform: scale(1.1);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-secondary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+
+    <div class="container">
+        <!-- Response Header -->
+        <div class="response-header">
+            <h1 id="form-title">Form Response Analytics</h1>
+            <p id="form-description">Analyzing responses and generating insights</p>
+            
+            <div class="form-info">
+                <div class="info-item">
+                    <i class="fas fa-calendar"></i>
+                    <span id="form-date">Loading...</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-users"></i>
+                    <span id="total-responses">0 responses</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-tag"></i>
+                    <span id="form-category">Loading...</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-building"></i>
+                    <span id="form-bureau">Loading...</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-user-tag"></i>
+                    <span id="form-role">Loading...</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-circle" id="status-icon"></i>
+                    <span id="form-status">Loading...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Export Actions -->
+        <div class="export-actions">
+            <button class="btn btn-success" onclick="exportJSON()">
+                <i class="fas fa-download"></i> Export JSON
+            </button>
+            <button class="btn btn-info" onclick="exportCSV()">
+                <i class="fas fa-file-csv"></i> Export CSV
+            </button>
+            <button class="btn btn-primary" onclick="exportTrend()">
+                <i class="fas fa-chart-line"></i> Export Trend
+            </button>
+        </div>
+
+        <!-- Charts Container -->
+        <div class="charts-container" id="charts-container">
+            <div class="loading">
+                <i class="fas fa-spinner"></i>
+                Loading response data...
+            </div>
+        </div>
+
+        <!-- Success/Error Message Handler -->
+        <div class="message-handler" id="message-handler" style="display: none;">
+            <div class="message-card" id="message-card">
+                <div class="message-icon" id="message-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="message-content">
+                    <h3 id="message-title">Success!</h3>
+                    <p id="message-text">Your response has been processed successfully.</p>
+                    <div class="message-actions" id="message-actions">
+                        <button class="btn btn-primary" id="redirect-btn" onclick="handleRedirect()">
+                            <i class="fas fa-arrow-right"></i> Continue
+                        </button>
+                        <button class="btn btn-secondary" onclick="closeMessage()">
+                            <i class="fas fa-times"></i> Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Redirect Counter -->
+        <div class="redirect-counter" id="redirect-counter" style="display: none;">
+            <div class="counter-card">
+                <div class="counter-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="counter-content">
+                    <h3>Redirecting...</h3>
+                    <p>You will be redirected in <span id="countdown">5</span> seconds</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="cancelRedirect()">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Feedback Form -->
+        <div class="feedback-section" id="feedback-section">
+            <div class="feedback-card">
+                <div class="feedback-header">
+                    <h3><i class="fas fa-comment-dots"></i> Share Your Feedback</h3>
+                    <p>Help us improve your experience with our forms</p>
+                </div>
+                <form class="feedback-form" id="feedback-form">
+                    <div class="rating-section">
+                        <label>How would you rate your experience?</label>
+                        <div class="star-rating" id="star-rating">
+                            <span class="star" data-rating="1"><i class="fas fa-star"></i></span>
+                            <span class="star" data-rating="2"><i class="fas fa-star"></i></span>
+                            <span class="star" data-rating="3"><i class="fas fa-star"></i></span>
+                            <span class="star" data-rating="4"><i class="fas fa-star"></i></span>
+                            <span class="star" data-rating="5"><i class="fas fa-star"></i></span>
+                        </div>
+                        <input type="hidden" id="rating-value" name="rating" value="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="feedback-category">Feedback Category</label>
+                        <select id="feedback-category" name="category" required>
+                            <option value="">Select a category</option>
+                            <option value="usability">Usability</option>
+                            <option value="design">Design</option>
+                            <option value="performance">Performance</option>
+                            <option value="content">Content</option>
+                            <option value="bug">Bug Report</option>
+                            <option value="suggestion">Suggestion</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="feedback-text">Your Feedback</label>
+                        <textarea id="feedback-text" name="feedback" rows="4" 
+                                placeholder="Please share your thoughts, suggestions, or report any issues..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-email">Email (Optional)</label>
+                        <input type="email" id="contact-email" name="email" 
+                               placeholder="your.email@example.com">
+                        <small>We'll only use this to follow up on your feedback if needed</small>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Submit Feedback
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="clearFeedbackForm()">
+                            <i class="fas fa-undo"></i> Clear
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Raw Responses List -->
+        <div class="responses-list" id="responses-list" style="display: none;">
+            <h3>All Responses</h3>
+            <div id="responses-content">
+                <!-- Response items will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/auth-utils.js"></script>
+    <script>
+        // Global variables
+        let formData = null;
+        let responseData = null;
+        let currentTheme = localStorage.getItem('theme') || 'light';
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTheme();
+            loadFormData();
+        });
+
+        // Theme management
+        function initializeTheme() {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            updateThemeIcon();
+        }
+
+        function toggleTheme() {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            localStorage.setItem('theme', currentTheme);
+            updateThemeIcon();
+        }
+
+        function updateThemeIcon() {
+            const icon = document.getElementById('theme-icon');
+            icon.className = currentTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+        }
+
+        // Load form data from URL parameters
+        function loadFormData() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const formId = urlParams.get('formId');
+            const category = urlParams.get('category');
+            const name = urlParams.get('name');
+            const bureau = urlParams.get('bureau');
+            const role = urlParams.get('role');
+            const status = urlParams.get('status');
+
+            if (!formId) {
+                showError('No form ID provided');
+                return;
+            }
+
+            // Update header information
+            document.getElementById('form-title').textContent = name || 'Form Response Analytics';
+            document.getElementById('form-category').textContent = category || 'Unknown';
+            document.getElementById('form-bureau').textContent = bureau || 'Unknown';
+            document.getElementById('form-role').textContent = role || 'Unknown';
+            document.getElementById('form-status').textContent = status || 'Unknown';
+            
+            // Update status icon color
+            const statusIcon = document.getElementById('status-icon');
+            if (status === 'active') {
+                statusIcon.style.color = 'var(--success-color)';
+            } else if (status === 'inactive') {
+                statusIcon.style.color = 'var(--warning-color)';
+            } else if (status === 'expired') {
+                statusIcon.style.color = 'var(--error-color)';
+            }
+
+            // Load response data
+            fetchResponseData(formId);
+        }
+
+        // Fetch response data from API
+        async function fetchResponseData(formId) {
+            try {
+                const response = await fetch(`/api/forms/${formId}/responses`, {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch response data');
+                }
+
+                const data = await response.json();
+                responseData = data.responses || [];
+                formData = data.form || {};
+
+                // Update response count
+                document.getElementById('total-responses').textContent = `${responseData.length} responses`;
+                document.getElementById('form-date').textContent = new Date(formData.createdAt || Date.now()).toLocaleDateString();
+                document.getElementById('form-description').textContent = formData.description || 'Analyzing responses and generating insights';
+
+                // Generate charts and display responses
+                generateCharts();
+                displayResponses();
+
+            } catch (error) {
+                console.error('Error fetching response data:', error);
+                showError('Failed to load response data');
+            }
+        }
+
+        // Generate charts based on question types (Google Forms style)
+        function generateCharts() {
+            const chartsContainer = document.getElementById('charts-container');
+            chartsContainer.innerHTML = '';
+
+            if (!formData.fields || formData.fields.length === 0) {
+                chartsContainer.innerHTML = '<div class="no-data"><i class="fas fa-chart-bar"></i><h3>No Questions Found</h3><p>This form has no questions to analyze.</p></div>';
+                return;
+            }
+
+            if (!responseData || responseData.length === 0) {
+                chartsContainer.innerHTML = '<div class="no-data"><i class="fas fa-inbox"></i><h3>No Responses Yet</h3><p>No responses have been submitted for this form.</p></div>';
+                return;
+            }
+
+            formData.fields.forEach((field, index) => {
+                const chartCard = createChartForField(field, index);
+                if (chartCard) {
+                    chartsContainer.appendChild(chartCard);
+                }
+            });
+        }
+
+        // Enhanced chart type selection based on Google Forms mapping with advanced features
+        function getChartType(fieldType, responses = []) {
+            const baseMapping = {
+                // Google Forms style field types
+                'short-answer': 'Smart Text Analysis',
+                'paragraph': 'Word Cloud',
+                'multiple-choice': 'Smart Choice Chart',
+                'dropdown': 'Smart Choice Chart',
+                'checkboxes': 'Horizontal Bar',
+                'linear-scale': 'Histogram + Stats',
+                'multiple-choice-grid': 'Small Multiples',
+                'checkbox-grid': 'Small Multiples',
+                'date': 'Time Series',
+                'time': 'Circular Histogram',
+                'file-upload': 'File Analysis',
+                // Form builder field types mapping
+                'text': 'Smart Text Analysis',
+                'textarea': 'Word Cloud',
+                'radio': 'Smart Choice Chart',
+                'checkbox': 'Horizontal Bar',
+                'select': 'Smart Choice Chart',
+                'file': 'File Analysis',
+                'email': 'Domain Analysis',
+                'phone': 'Geographic Analysis',
+                'number': 'Histogram + Stats',
+                'rating': 'Histogram + Stats'
+            };
+            return baseMapping[fieldType.toLowerCase()] || 'Response List';
+        }
+
+        // Utility functions for enhanced chart features
+        function isNumericData(responses) {
+            return responses.every(r => !isNaN(parseFloat(r)) && isFinite(r));
+        }
+
+        function hasLongLabels(labels) {
+            return labels.some(label => label.length > 15);
+        }
+
+        function shouldUsePieChart(optionCount) {
+            return optionCount <= 6;
+        }
+
+        function getTopNCategories(counts, n = 8) {
+            const sorted = Object.entries(counts).sort(([,a], [,b]) => b - a);
+            const topN = sorted.slice(0, n);
+            const others = sorted.slice(n);
+            
+            if (others.length > 0) {
+                const otherCount = others.reduce((sum, [,count]) => sum + count, 0);
+                topN.push(['Other', otherCount]);
+            }
+            
+            return Object.fromEntries(topN);
+        }
+
+        function removeStopWords(text) {
+            const stopWords = ['the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could', 'should', 'may', 'might', 'must', 'can', 'this', 'that', 'these', 'those', 'i', 'you', 'he', 'she', 'it', 'we', 'they', 'me', 'him', 'her', 'us', 'them'];
+            return text.toLowerCase().split(/\s+/).filter(word => 
+                word.length > 2 && !stopWords.includes(word) && /^[a-zA-Z]+$/.test(word)
+            );
+        }
+
+        // Create chart for specific field type
+        function createChartForField(field, index) {
+            const chartCard = document.createElement('div');
+            chartCard.className = 'chart-card';
+
+            const responses = responseData.map(response => response.data[field.name]).filter(value => value !== undefined && value !== null && value !== '');
+            const chartType = getChartType(field.type);
+
+            const chartHeader = document.createElement('div');
+            chartHeader.className = 'chart-header';
+            chartHeader.innerHTML = `
+                <h3>${field.label || field.name}</h3>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem;">
+                    <span style="color: var(--text-secondary); font-size: 0.9rem;">${getFieldTypeLabel(field.type)} • ${chartType}</span>
+                    <span style="color: var(--text-tertiary); font-size: 0.85rem;">${responses.length} responses</span>
+                </div>
+            `;
+
+            const chartContent = document.createElement('div');
+            chartContent.className = 'chart-content';
+
+            chartCard.appendChild(chartHeader);
+            chartCard.appendChild(chartContent);
+
+            // Generate chart based on field type
+            setTimeout(() => {
+                generateFieldChart(field, chartContent, index);
+            }, 100);
+
+            return chartCard;
+        }
+
+        // Enhanced chart generation with smart selection
+        function generateFieldChart(field, container, index) {
+            const responses = responseData.map(response => response.data[field.name]).filter(value => value !== undefined && value !== null && value !== '');
+
+            if (responses.length === 0) {
+                container.innerHTML = '<div class="no-data"><i class="fas fa-inbox"></i><h3>No Responses</h3><p>No responses for this question.</p></div>';
+                return;
+            }
+
+            // Smart chart selection based on field type and data characteristics
+            switch (field.type) {
+                case 'multiple-choice':
+                case 'dropdown':
+                case 'radio':
+                case 'select':
+                    createSmartChoiceChart(container, field, responses, index);
+                    break;
+                case 'checkboxes':
+                case 'checkbox':
+                    createEnhancedBarChart(container, field, responses, index);
+                    break;
+                case 'linear-scale':
+                case 'number':
+                case 'rating':
+                    createHistogramWithStats(container, field, responses, index);
+                    break;
+                case 'multiple-choice-grid':
+                case 'checkbox-grid':
+                    createSmallMultiplesChart(container, field, responses, index);
+                    break;
+                case 'date':
+                    createTimeSeriesChart(container, field, responses, index);
+                    break;
+                case 'time':
+                    createCircularHistogram(container, field, responses, index);
+                    break;
+                case 'short-answer':
+                case 'text':
+                    createSmartTextAnalysis(container, field, responses, index);
+                    break;
+                case 'paragraph':
+                case 'textarea':
+                    createWordCloud(container, field, responses, index);
+                    break;
+                case 'file-upload':
+                case 'file':
+                    createFileAnalysis(container, field, responses, index);
+                    break;
+                case 'email':
+                    createDomainAnalysis(container, field, responses, index);
+                    break;
+                case 'phone':
+                    createGeographicAnalysis(container, field, responses, index);
+                    break;
+                default:
+                    createEnhancedResponseList(container, field, responses);
+                    break;
+            }
+        }
+
+        // Enhanced chart creation functions with advanced features
+        
+        // Smart choice chart (pie/donut for ≤6 options, horizontal bar for >6 or long labels)
+        function createSmartChoiceChart(container, field, responses, index) {
+            const counts = {};
+            responses.forEach(response => {
+                counts[response] = (counts[response] || 0) + 1;
+            });
+            
+            const processedCounts = getTopNCategories(counts, 10);
+            const labels = Object.keys(processedCounts);
+            const optionCount = labels.length;
+            const usePieChart = shouldUsePieChart(optionCount) && !hasLongLabels(labels);
+            
+            const canvas = document.createElement('canvas');
+            canvas.id = `chart-${index}`;
+            container.appendChild(canvas);
+            const ctx = canvas.getContext('2d');
+            
+            // Enhanced Google Forms colors with accessibility
+            const accessibleColors = [
+                '#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b',
+                '#e377c2', '#7f7f7f', '#bcbd22', '#17becf', '#aec7e8', '#ffbb78'
+            ];
+            
+            const total = Object.values(processedCounts).reduce((a, b) => a + b, 0);
+            
+            if (usePieChart) {
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: Object.values(processedCounts),
+                            backgroundColor: accessibleColors.slice(0, labels.length),
+                            borderWidth: 3,
+                            borderColor: 'var(--card-bg)',
+                            hoverBorderWidth: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'right',
+                                labels: {
+                                    usePointStyle: true,
+                                    padding: 15,
+                                    font: { size: 12 },
+                                    color: 'var(--text-primary)',
+                                    generateLabels: function(chart) {
+                                        const data = chart.data;
+                                        return data.labels.map((label, i) => {
+                                            const count = data.datasets[0].data[i];
+                                            const percentage = ((count / total) * 100).toFixed(1);
+                                            return {
+                                                text: `${label} (${count}, ${percentage}%)`,
+                                                fillStyle: data.datasets[0].backgroundColor[i],
+                                                pointStyle: 'circle'
+                                            };
+                                        });
+                                    }
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        const percentage = ((context.parsed / total) * 100).toFixed(1);
+                                        return `${context.label}: ${context.parsed} responses (${percentage}%)`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            } else {
+                // Use horizontal bar chart for better readability
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Responses',
+                            data: Object.values(processedCounts),
+                            backgroundColor: accessibleColors[0],
+                            borderColor: accessibleColors[0],
+                            borderWidth: 1,
+                            borderRadius: 6
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        const percentage = ((context.parsed.x / total) * 100).toFixed(1);
+                                        return `${context.parsed.x} responses (${percentage}%)`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                ticks: { color: 'var(--text-secondary)' },
+                                grid: { color: 'var(--border-secondary)' }
+                            },
+                            y: {
+                                ticks: { color: 'var(--text-secondary)' },
+                                grid: { display: false }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Enhanced horizontal bar chart with count + % display
+        function createEnhancedBarChart(container, field, responses, index) {
+            const counts = {};
+            responses.forEach(response => {
+                if (Array.isArray(response)) {
+                    response.forEach(item => {
+                        counts[item] = (counts[item] || 0) + 1;
+                    });
+                } else {
+                    counts[response] = (counts[response] || 0) + 1;
+                }
+            });
+            
+            const processedCounts = getTopNCategories(counts, 10);
+            const total = Object.values(processedCounts).reduce((a, b) => a + b, 0);
+            
+            const canvas = document.createElement('canvas');
+            canvas.id = `chart-${index}`;
+            container.appendChild(canvas);
+            const ctx = canvas.getContext('2d');
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(processedCounts),
+                    datasets: [{
+                        label: 'Responses',
+                        data: Object.values(processedCounts),
+                        backgroundColor: '#1f77b4',
+                        borderColor: '#1f77b4',
+                        borderWidth: 1,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y', // Horizontal bars for better label readability
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const percentage = ((context.parsed.x / total) * 100).toFixed(1);
+                                    return `${context.parsed.x} responses (${percentage}% of respondents)`;
+                                }
+                            }
+                        },
+                        datalabels: {
+                            anchor: 'end',
+                            align: 'right',
+                            formatter: function(value, context) {
+                                const percentage = ((value / total) * 100).toFixed(1);
+                                return `${value} (${percentage}%)`;
+                            },
+                            color: 'var(--text-primary)',
+                            font: { size: 11, weight: '500' }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            ticks: { color: 'var(--text-secondary)' },
+                            grid: { color: 'var(--border-secondary)' }
+                        },
+                        y: {
+                            ticks: { color: 'var(--text-secondary)' },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createLinearScaleChart(ctx, field, responses) {
+            const counts = {};
+            responses.forEach(response => {
+                counts[response] = (counts[response] || 0) + 1;
+            });
+
+            const numericResponses = responses.map(r => parseInt(r)).filter(r => !isNaN(r));
+            const average = numericResponses.length > 0 ? numericResponses.reduce((sum, val) => sum + val, 0) / numericResponses.length : 0;
+            const sortedLabels = Object.keys(counts).sort((a, b) => parseInt(a) - parseInt(b));
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: sortedLabels,
+                    datasets: [{
+                        label: 'Responses',
+                        data: sortedLabels.map(key => counts[key]),
+                        backgroundColor: '#34A853',
+                        borderColor: '#34A853',
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: `Average: ${average.toFixed(2)}`,
+                            color: 'var(--text-primary)',
+                            font: {
+                                size: 14,
+                                weight: '500'
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = ((context.parsed.y / total) * 100).toFixed(1);
+                                    return `Scale ${context.label}: ${context.parsed.y} responses (${percentage}%)`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1,
+                                color: 'var(--text-secondary)'
+                            },
+                            grid: {
+                                color: 'var(--border-secondary)'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: 'var(--text-secondary)'
+                            },
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createGridChart(ctx, field, responses) {
+            // Simplified grid chart - would need more complex logic for full implementation
+            createBarChart(ctx, field, responses);
+        }
+
+        function createDateChart(ctx, field, responses) {
+            const dateCounts = {};
+            responses.forEach(response => {
+                try {
+                    const date = new Date(response);
+                    if (!isNaN(date.getTime())) {
+                        const dateStr = date.toLocaleDateString();
+                        dateCounts[dateStr] = (dateCounts[dateStr] || 0) + 1;
+                    }
+                } catch (e) {
+                    // Invalid date, skip
+                }
+            });
+
+            const sortedDates = Object.keys(dateCounts).sort((a, b) => new Date(a) - new Date(b));
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: sortedDates,
+                    datasets: [{
+                        label: 'Responses',
+                        data: sortedDates.map(date => dateCounts[date]),
+                        borderColor: '#FBBC04',
+                        backgroundColor: 'rgba(251, 188, 4, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#FBBC04',
+                        pointBorderColor: '#ffffff',
+                        pointBorderWidth: 2,
+                        pointRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.label}: ${context.parsed.y} responses`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1,
+                                color: 'var(--text-secondary)'
+                            },
+                            grid: {
+                                color: 'var(--border-secondary)'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: 'var(--text-secondary)',
+                                maxRotation: 45
+                            },
+                            grid: {
+                                color: 'var(--border-secondary)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createTimeChart(ctx, field, responses) {
+            const timeCounts = {};
+            responses.forEach(response => {
+                try {
+                    // Handle various time formats
+                    let hour;
+                    if (response.includes(':')) {
+                        hour = parseInt(response.split(':')[0]);
+                    } else {
+                        const date = new Date(`2000-01-01 ${response}`);
+                        hour = date.getHours();
+                    }
+                    
+                    if (!isNaN(hour) && hour >= 0 && hour <= 23) {
+                        const timeSlot = `${hour.toString().padStart(2, '0')}:00`;
+                        timeCounts[timeSlot] = (timeCounts[timeSlot] || 0) + 1;
+                    }
+                } catch (e) {
+                    // Invalid time, skip
+                }
+            });
+
+            const sortedTimes = Object.keys(timeCounts).sort();
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: sortedTimes,
+                    datasets: [{
+                        label: 'Responses',
+                        data: sortedTimes.map(time => timeCounts[time]),
+                        backgroundColor: '#EA4335',
+                        borderColor: '#EA4335',
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.label}: ${context.parsed.y} responses`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1,
+                                color: 'var(--text-secondary)'
+                            },
+                            grid: {
+                                color: 'var(--border-secondary)'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: 'var(--text-secondary)',
+                                maxRotation: 45
+                            },
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createResponseList(container, field, responses) {
+            container.innerHTML = '';
+            
+            if (responses.length === 0) {
+                container.innerHTML = '<div class="no-data"><i class="fas fa-inbox"></i><h4>No Responses</h4><p>No responses for this question yet.</p></div>';
+                return;
+            }
+
+            const listDiv = document.createElement('div');
+            listDiv.style.maxHeight = '350px';
+            listDiv.style.overflowY = 'auto';
+            listDiv.style.padding = '1rem';
+            listDiv.style.background = 'var(--glass-bg)';
+            listDiv.style.borderRadius = 'var(--radius-md)';
+            listDiv.style.border = '1px solid var(--border-secondary)';
+
+            // Add summary for text responses
+            const summaryDiv = document.createElement('div');
+            summaryDiv.style.marginBottom = '1rem';
+            summaryDiv.style.padding = '0.75rem';
+            summaryDiv.style.background = 'var(--bg-accent-light)';
+            summaryDiv.style.borderRadius = 'var(--radius-sm)';
+            summaryDiv.style.fontSize = '0.9rem';
+            summaryDiv.style.color = 'var(--text-secondary)';
+            
+            const avgLength = responses.reduce((sum, r) => sum + r.toString().length, 0) / responses.length;
+            summaryDiv.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span><i class="fas fa-list"></i> ${responses.length} responses</span>
+                    <span><i class="fas fa-text-width"></i> Avg length: ${Math.round(avgLength)} chars</span>
+                </div>
+            `;
+            listDiv.appendChild(summaryDiv);
+
+            responses.forEach((response, index) => {
+                const responseItem = document.createElement('div');
+                responseItem.className = 'response-item';
+                responseItem.style.marginBottom = '0.5rem';
+                responseItem.style.padding = '0.75rem';
+                responseItem.style.background = 'var(--card-bg)';
+                responseItem.style.borderRadius = 'var(--radius-sm)';
+                responseItem.style.border = '1px solid var(--border-secondary)';
+                responseItem.style.transition = 'all 0.2s ease';
+                
+                // Truncate long responses
+                const displayResponse = response.toString().length > 200 
+                    ? response.toString().substring(0, 200) + '...' 
+                    : response.toString();
+                
+                responseItem.innerHTML = `
+                    <div class="response-meta" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.85rem;">
+                        <span><i class="fas fa-user"></i> Response ${index + 1}</span>
+                        <span>${response.toString().length} chars</span>
+                    </div>
+                    <div class="response-content" style="color: var(--text-primary); line-height: 1.5;">${displayResponse}</div>
+                `;
+                
+                responseItem.addEventListener('mouseenter', () => {
+                    responseItem.style.transform = 'translateY(-1px)';
+                    responseItem.style.boxShadow = 'var(--shadow-sm)';
+                });
+                
+                responseItem.addEventListener('mouseleave', () => {
+                    responseItem.style.transform = 'translateY(0)';
+                    responseItem.style.boxShadow = 'none';
+                });
+                
+                listDiv.appendChild(responseItem);
+            });
+
+            container.appendChild(listDiv);
+        }
+
+        // Display all responses
+        function displayResponses() {
+            const responsesList = document.getElementById('responses-list');
+            const responsesContent = document.getElementById('responses-content');
+
+            if (!responseData || responseData.length === 0) {
+                responsesList.style.display = 'none';
+                return;
+            }
+
+            responsesList.style.display = 'block';
+            responsesContent.innerHTML = '';
+
+            responseData.forEach((response, index) => {
+                const responseItem = document.createElement('div');
+                responseItem.className = 'response-item';
+                
+                const responseDate = new Date(response.submittedAt || Date.now()).toLocaleString();
+                
+                responseItem.innerHTML = `
+                    <div class="response-meta">
+                        <span><i class="fas fa-user"></i> Response ${index + 1}</span>
+                        <span><i class="fas fa-calendar"></i> ${responseDate}</span>
+                    </div>
+                    <div class="response-content">
+                        ${Object.entries(response.data || {}).map(([key, value]) => 
+                            `<p><strong>${key}:</strong> ${Array.isArray(value) ? value.join(', ') : value}</p>`
+                        ).join('')}
+                    </div>
+                `;
+                
+                responsesContent.appendChild(responseItem);
+            });
+        }
+
+        // Export functions
+        function exportJSON() {
+            if (!responseData || responseData.length === 0) {
+                alert('No data to export');
+                return;
+            }
+
+            // Generate analytics summary
+            const analytics = {
+                totalResponses: responseData.length,
+                responseRate: formData.expectedResponses ? (responseData.length / formData.expectedResponses * 100).toFixed(2) + '%' : 'N/A',
+                averageCompletionTime: calculateAverageCompletionTime(),
+                firstResponse: responseData.length > 0 ? new Date(Math.min(...responseData.map(r => new Date(r.submittedAt || Date.now())))).toISOString() : null,
+                lastResponse: responseData.length > 0 ? new Date(Math.max(...responseData.map(r => new Date(r.submittedAt || Date.now())))).toISOString() : null,
+                fieldAnalytics: generateFieldAnalytics()
+            };
+
+            const exportData = {
+                metadata: {
+                    exportDate: new Date().toISOString(),
+                    exportVersion: '2.0',
+                    formId: formData.id,
+                    formName: formData.name,
+                    exportedBy: localStorage.getItem('userEmail') || 'Unknown'
+                },
+                form: formData,
+                responses: responseData,
+                analytics: analytics
+            };
+
+            const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `form-analytics-${formData.name || 'data'}-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function calculateAverageCompletionTime() {
+            // This would require start/end timestamps - placeholder for now
+            return 'N/A';
+        }
+
+        function generateFieldAnalytics() {
+            if (!formData.fields) return {};
+            
+            const fieldAnalytics = {};
+            formData.fields.forEach(field => {
+                const responses = responseData.map(response => response.data[field.name]).filter(value => value !== undefined && value !== null && value !== '');
+                
+                fieldAnalytics[field.name] = {
+                    fieldType: field.type,
+                    totalResponses: responses.length,
+                    responseRate: ((responses.length / responseData.length) * 100).toFixed(2) + '%',
+                    uniqueValues: field.type === 'short-answer' || field.type === 'paragraph' ? responses.length : [...new Set(responses)].length
+                };
+                
+                if (field.type === 'linear-scale') {
+                    const numericResponses = responses.map(r => parseInt(r)).filter(r => !isNaN(r));
+                    if (numericResponses.length > 0) {
+                        fieldAnalytics[field.name].average = (numericResponses.reduce((sum, val) => sum + val, 0) / numericResponses.length).toFixed(2);
+                        fieldAnalytics[field.name].min = Math.min(...numericResponses);
+                        fieldAnalytics[field.name].max = Math.max(...numericResponses);
+                    }
+                }
+            });
+            
+            return fieldAnalytics;
+        }
+
+        function exportCSV() {
+            if (!responseData || responseData.length === 0) {
+                alert('No data to export');
+                return;
+            }
+
+            // Create comprehensive headers
+            const baseHeaders = ['Response ID', 'Submitted At', 'Submission Date', 'Submission Time', 'Day of Week'];
+            const fieldHeaders = formData.fields ? formData.fields.map(field => field.label || field.name) : Object.keys(responseData[0].data || {});
+            const headers = [...baseHeaders, ...fieldHeaders];
+            
+            const csvContent = [headers.join(',')];
+
+            responseData.forEach((response, index) => {
+                const submittedAt = new Date(response.submittedAt || Date.now());
+                const baseData = [
+                    index + 1,
+                    submittedAt.toISOString(),
+                    submittedAt.toLocaleDateString(),
+                    submittedAt.toLocaleTimeString(),
+                    submittedAt.toLocaleDateString('en-US', { weekday: 'long' })
+                ];
+                
+                const fieldData = formData.fields 
+                    ? formData.fields.map(field => {
+                        const value = response.data[field.name];
+                        if (value === undefined || value === null) return '""';
+                        if (Array.isArray(value)) return `"${value.join('; ')}"`;
+                        return `"${value.toString().replace(/"/g, '""')}"`; // Escape quotes
+                    })
+                    : Object.values(response.data || {}).map(value => {
+                        if (value === undefined || value === null) return '""';
+                        if (Array.isArray(value)) return `"${value.join('; ')}"`;
+                        return `"${value.toString().replace(/"/g, '""')}"`;
+                    });
+                
+                const row = [...baseData, ...fieldData];
+                csvContent.push(row.join(','));
+            });
+            
+            // Add summary statistics at the end
+            csvContent.push('', 'Summary Statistics');
+            csvContent.push(`Total Responses,${responseData.length}`);
+            csvContent.push(`Export Date,"${new Date().toISOString()}"`);
+            csvContent.push(`Form Name,"${formData.name || 'Unnamed Form'}"`);
+            
+            if (formData.fields) {
+                csvContent.push('', 'Field Response Rates');
+                csvContent.push('Field Name,Response Count,Response Rate');
+                formData.fields.forEach(field => {
+                    const responses = responseData.filter(response => {
+                        const value = response.data[field.name];
+                        return value !== undefined && value !== null && value !== '';
+                    }).length;
+                    const rate = ((responses / responseData.length) * 100).toFixed(2);
+                    csvContent.push(`"${field.label || field.name}",${responses},${rate}%`);
+                });
+            }
+
+            const blob = new Blob([csvContent.join('\n')], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `form-responses-detailed-${formData.name || 'data'}-${new Date().toISOString().split('T')[0]}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function exportTrend() {
+            if (!responseData || responseData.length === 0) {
+                alert('No data to export');
+                return;
+            }
+
+            // Group responses by date with more detailed analysis
+            const trendData = {};
+            const hourlyData = {};
+            const dailyData = {};
+            
+            responseData.forEach(response => {
+                const date = new Date(response.submittedAt || Date.now());
+                const dateStr = date.toDateString();
+                const hour = date.getHours();
+                const dayOfWeek = date.toLocaleDateString('en-US', { weekday: 'long' });
+                
+                trendData[dateStr] = (trendData[dateStr] || 0) + 1;
+                hourlyData[hour] = (hourlyData[hour] || 0) + 1;
+                dailyData[dayOfWeek] = (dailyData[dayOfWeek] || 0) + 1;
+            });
+
+            const headers = ['Date', 'Response Count', 'Day of Week', 'Cumulative'];
+            const csvContent = [headers.join(',')];
+            
+            let cumulative = 0;
+            Object.entries(trendData).sort((a, b) => new Date(a[0]) - new Date(b[0])).forEach(([date, count]) => {
+                cumulative += count;
+                const dayOfWeek = new Date(date).toLocaleDateString('en-US', { weekday: 'long' });
+                csvContent.push(`"${date}",${count},"${dayOfWeek}",${cumulative}`);
+            });
+            
+            // Add hourly breakdown
+            csvContent.push('', 'Hourly Breakdown', 'Hour,Response Count');
+            for (let i = 0; i < 24; i++) {
+                csvContent.push(`${i}:00,${hourlyData[i] || 0}`);
+            }
+            
+            // Add daily breakdown
+            csvContent.push('', 'Daily Breakdown', 'Day,Response Count');
+            const daysOrder = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+            daysOrder.forEach(day => {
+                csvContent.push(`"${day}",${dailyData[day] || 0}`);
+            });
+
+            const blob = new Blob([csvContent.join('\n')], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `form-trend-analysis-${formData.name || 'data'}-${new Date().toISOString().split('T')[0]}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Utility functions
+        function getFieldTypeLabel(type) {
+            const labels = {
+                // Google Forms style field types
+                'short-answer': 'Short Answer',
+                'paragraph': 'Paragraph',
+                'multiple-choice': 'Multiple Choice',
+                'dropdown': 'Dropdown',
+                'checkboxes': 'Checkboxes',
+                'linear-scale': 'Linear Scale',
+                'multiple-choice-grid': 'Multiple Choice Grid',
+                'checkbox-grid': 'Checkbox Grid',
+                'date': 'Date',
+                'time': 'Time',
+                'file-upload': 'File Upload',
+                // Form builder field types
+                'text': 'Short Answer',
+                'textarea': 'Paragraph',
+                'radio': 'Multiple Choice',
+                'checkbox': 'Checkboxes',
+                'select': 'Dropdown',
+                'file': 'File Upload',
+                'email': 'Email',
+                'phone': 'Phone',
+                'number': 'Number',
+                'rating': 'Rating Scale'
+            };
+            return labels[type] || type;
+        }
+
+        function showError(message) {
+            const chartsContainer = document.getElementById('charts-container');
+            chartsContainer.innerHTML = `
+                <div class="no-data">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Error</h3>
+                    <p>${message}</p>
+                </div>
+            `;
+        }
+        
+        // Theme Toggle Functions
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        }
+        
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+        
+        function updateThemeIcon(theme) {
+            const icon = document.getElementById('theme-icon');
+            if (icon) {
+                icon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+            }
+        }
+        
+        // Message Handler Functions
+        function showMessage(type, title, message, actions = []) {
+            const messageHandler = document.getElementById('messageHandler');
+            const messageIcon = document.getElementById('messageIcon');
+            const messageTitle = document.getElementById('messageTitle');
+            const messageText = document.getElementById('messageText');
+            const messageActions = document.getElementById('messageActions');
+
+            // Set icon based on type
+            const icons = {
+                success: 'fas fa-check-circle',
+                error: 'fas fa-exclamation-circle',
+                warning: 'fas fa-exclamation-triangle',
+                info: 'fas fa-info-circle'
+            };
+
+            messageIcon.className = `message-icon ${type} ${icons[type] || icons.info}`;
+            messageTitle.textContent = title;
+            messageText.textContent = message;
+
+            // Clear and add action buttons
+            messageActions.innerHTML = '';
+            actions.forEach(action => {
+                const button = document.createElement('button');
+                button.className = `btn ${action.class || 'btn-primary'}`;
+                button.textContent = action.text;
+                button.onclick = action.onclick;
+                messageActions.appendChild(button);
+            });
+
+            // Add default close button if no actions provided
+            if (actions.length === 0) {
+                const closeButton = document.createElement('button');
+                closeButton.className = 'btn btn-primary';
+                closeButton.textContent = 'OK';
+                closeButton.onclick = hideMessage;
+                messageActions.appendChild(closeButton);
+            }
+
+            messageHandler.style.display = 'flex';
+        }
+
+        function hideMessage() {
+            const messageHandler = document.getElementById('messageHandler');
+            messageHandler.style.display = 'none';
+        }
+
+        // Redirect Counter Functions
+        function startRedirectCounter(url, seconds = 5, message = 'Redirecting...') {
+            const redirectCounter = document.getElementById('redirectCounter');
+            const counterMessage = document.getElementById('counterMessage');
+            const counterTime = document.getElementById('counterTime');
+            const progressFill = document.getElementById('progressFill');
+            const cancelRedirect = document.getElementById('cancelRedirect');
+
+            counterMessage.textContent = message;
+            counterTime.textContent = seconds;
+            redirectCounter.style.display = 'flex';
+
+            let timeLeft = seconds;
+            const interval = setInterval(() => {
+                timeLeft--;
+                counterTime.textContent = timeLeft;
+                const progress = ((seconds - timeLeft) / seconds) * 100;
+                progressFill.style.width = progress + '%';
+
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                    window.location.href = url;
+                }
+            }, 1000);
+
+            // Cancel redirect functionality
+            cancelRedirect.onclick = () => {
+                clearInterval(interval);
+                redirectCounter.style.display = 'none';
+            };
+        }
+
+        // Feedback Form Functions
+        function initializeFeedbackForm() {
+            const stars = document.querySelectorAll('.star');
+            const ratingInput = document.getElementById('rating');
+            let currentRating = 0;
+
+            stars.forEach((star, index) => {
+                star.addEventListener('click', () => {
+                    currentRating = index + 1;
+                    ratingInput.value = currentRating;
+                    updateStarDisplay(currentRating);
+                });
+
+                star.addEventListener('mouseenter', () => {
+                    updateStarDisplay(index + 1);
+                });
+            });
+
+            document.querySelector('.star-rating').addEventListener('mouseleave', () => {
+                updateStarDisplay(currentRating);
+            });
+
+            function updateStarDisplay(rating) {
+                stars.forEach((star, index) => {
+                    star.classList.toggle('active', index < rating);
+                });
+            }
+        }
+
+        function submitFeedback() {
+            const form = document.getElementById('feedbackForm');
+            const formData = new FormData(form);
+            const feedbackData = Object.fromEntries(formData.entries());
+
+            // Validate required fields
+            if (!feedbackData.rating || !feedbackData.feedback) {
+                showMessage('warning', 'Incomplete Form', 'Please provide a rating and feedback before submitting.');
+                return;
+            }
+
+            // Show loading state
+            const submitButton = document.querySelector('.btn-primary');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Submitting...';
+            submitButton.disabled = true;
+
+            // Simulate API call
+            setTimeout(() => {
+                console.log('Feedback submitted:', feedbackData);
+                showMessage('success', 'Thank You!', 'Your feedback has been submitted successfully. We appreciate your input!');
+                form.reset();
+                document.querySelectorAll('.star').forEach(star => star.classList.remove('active'));
+                
+                // Reset button
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            }, 1500);
+        }
+
+        function resetFeedbackForm() {
+            const form = document.getElementById('feedbackForm');
+            form.reset();
+            document.querySelectorAll('.star').forEach(star => star.classList.remove('active'));
+        }
+
+        // URL Parameter Handling for Messages and Redirects
+        function handleUrlParameters() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // Handle success/error messages
+            const status = urlParams.get('status');
+            const message = urlParams.get('message');
+            const redirect = urlParams.get('redirect');
+            const redirectTime = parseInt(urlParams.get('redirectTime')) || 5;
+
+            if (status && message) {
+                const actions = [];
+                
+                if (redirect) {
+                    actions.push({
+                        text: 'Continue',
+                        class: 'btn-primary',
+                        onclick: () => {
+                            hideMessage();
+                            startRedirectCounter(redirect, redirectTime);
+                        }
+                    });
+                    actions.push({
+                        text: 'Stay Here',
+                        class: 'btn-secondary',
+                        onclick: hideMessage
+                    });
+                } else {
+                    actions.push({
+                        text: 'OK',
+                        class: 'btn-primary',
+                        onclick: hideMessage
+                    });
+                }
+
+                const titles = {
+                    success: 'Success!',
+                    error: 'Error',
+                    warning: 'Warning',
+                    info: 'Information'
+                };
+
+                showMessage(status, titles[status] || 'Notification', decodeURIComponent(message), actions);
+            }
+        }
+
+        // Initialize theme and handle URL parameters on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeTheme();
+            handleUrlParameters();
+            initializeFeedbackForm();
+        });
+    </script>
+</body>
+</html>

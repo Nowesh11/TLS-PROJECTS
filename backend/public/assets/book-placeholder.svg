@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="300" viewBox="0 0 200 300">
+  <style>
+    .book-cover { fill: #3498db; }
+    .book-spine { fill: #2c3e50; }
+    .book-title { font-family: Arial, sans-serif; font-weight: bold; fill: white; }
+    .book-author { font-family: Arial, sans-serif; fill: #f0f0f0; }
+    .book-decoration { fill: rgba(255, 255, 255, 0.2); }
+  </style>
+  
+  <!-- Book cover -->
+  <rect class="book-cover" x="10" y="10" width="180" height="280" rx="5" ry="5" />
+  
+  <!-- Book spine shadow -->
+  <rect class="book-spine" x="10" y="10" width="20" height="280" rx="2" ry="2" />
+  
+  <!-- Decorative elements -->
+  <circle class="book-decoration" cx="100" cy="100" r="40" />
+  <rect class="book-decoration" x="40" y="200" width="120" height="2" />
+  <rect class="book-decoration" x="40" y="210" width="120" height="2" />
+  <rect class="book-decoration" x="40" y="220" width="120" height="2" />
+  
+  <!-- Text placeholders -->
+  <text x="100" y="160" text-anchor="middle" class="book-title" font-size="20">BOOK TITLE</text>
+  <text x="100" y="185" text-anchor="middle" class="book-author" font-size="14">Author Name</text>
+</svg>

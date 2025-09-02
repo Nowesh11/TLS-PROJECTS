@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Tamil Language Society</title>
+    <title data-content="about.meta.title" data-content-tamil="about.meta.titleTamil">About Us - Tamil Language Society</title>
+    <link rel="icon" type="image/svg+xml" data-content="global.favicon.url" href="favicon.ico">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,33 +13,809 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/style.css?v=10.0">
+    <link rel="stylesheet" href="css/responsive.css?v=10.0">
+    <link rel="stylesheet" href="css/animations.css?v=10.0">
+    <link rel="stylesheet" href="css/slideshow.css?v=10.0">
+    <link rel="stylesheet" href="css/css-priority-fixes.css?v=10.0">
+    
+    <!-- Cache Buster -->
+    <script src="js/cache-buster.js?v=10.0"></script>
+    
+    <style>
+        /* Modern About Page Styling */
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        
+        /* Modern Navigation */
+        .navbar {
+            background: var(--surface-color);
+            backdrop-filter: var(--glass-backdrop);
+            border-bottom: 1px solid var(--border-primary);
+            box-shadow: var(--shadow-lg);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all var(--transition-fast);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-4) var(--space-6);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            text-decoration: none;
+        }
+        
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-lg);
+            object-fit: cover;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .logo-text {
+            font-family: var(--font-tamil);
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--primary-color);
+        }
+        
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: var(--space-6);
+        }
+        
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: var(--font-weight-medium);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-lg);
+            transition: all var(--transition-fast);
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color);
+            background: var(--bg-secondary);
+            transform: translateY(-2px);
+        }
+        
+        .nav-link.active {
+            color: var(--primary-color);
+            background: var(--gradient-primary);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+
+        
+        .signup-btn {
+            background: var(--gradient-secondary);
+            color: var(--text-inverse) !important;
+            -webkit-text-fill-color: var(--text-inverse) !important;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .signup-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .notification-icon {
+            position: relative;
+        }
+        
+        .notification-dot {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 12px;
+            height: 12px;
+            background: var(--bg-danger);
+            border-radius: 50%;
+            border: 2px solid var(--surface-color);
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+        
+        .bar {
+            width: 25px;
+            height: 3px;
+            background: var(--text-primary);
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-fast);
+        }
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: var(--space-6);
+            right: var(--space-6);
+            z-index: 1100;
+            background: var(--surface-color);
+            backdrop-filter: var(--glass-backdrop);
+            border: 1px solid var(--border-primary);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-fast);
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .theme-toggle button {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: var(--font-size-lg);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        
+        /* Language Toggle */
+        .language-toggle {
+            display: flex;
+            background: var(--surface-color);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+        
+        .lang-btn {
+            background: none;
+            border: none;
+            padding: var(--space-2) var(--space-4);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-weight: var(--font-weight-medium);
+        }
+        
+        .lang-btn.active {
+            background: var(--gradient-primary);
+            color: var(--text-inverse);
+        }
+        
+        .lang-btn:hover:not(.active) {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+        
+        /* Modern Hero Section */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+            background: var(--bg-hero);
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+        
+        .hero-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0.1;
+        }
+        
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                              radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--space-8);
+        }
+        
+        .hero-title {
+            font-size: var(--font-size-5xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-6);
+            line-height: var(--line-height-tight);
+        }
+        
+        .english-title {
+            display: block;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .tamil-title {
+            display: block;
+            font-family: var(--font-tamil);
+            font-size: var(--font-size-3xl);
+            margin-top: var(--space-2);
+            color: var(--text-secondary);
+        }
+        
+        .hero-subtitle {
+            font-size: var(--font-size-xl);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-6);
+            line-height: var(--line-height-relaxed);
+        }
+        
+        .tamil-quote {
+            font-family: var(--font-tamil);
+            font-size: var(--font-size-2xl);
+            color: var(--accent-color);
+            font-weight: var(--font-weight-semibold);
+            font-style: italic;
+        }
+        
+        /* Modern Sections */
+        .features {
+            padding: var(--space-20) var(--space-6);
+            background: var(--bg-secondary);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: var(--font-size-4xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-16);
+            color: var(--text-primary);
+        }
+        
+        .section-title .english {
+            display: block;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .section-title .tamil {
+            display: block;
+            font-family: var(--font-tamil);
+            font-size: var(--font-size-2xl);
+            margin-top: var(--space-2);
+            color: var(--text-secondary);
+        }
+        
+        /* Modern Cards */
+        .card {
+            background: var(--surface-color);
+            backdrop-filter: var(--glass-backdrop);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--radius-3xl);
+            padding: var(--space-8);
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-slow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity var(--transition-slow);
+            z-index: 1;
+        }
+        
+        .card:hover::before {
+            opacity: 0.05;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-2xl);
+        }
+        
+        .card > * {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Feature Cards Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-8);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background: var(--surface-color);
+            backdrop-filter: var(--glass-backdrop);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--radius-3xl);
+            padding: var(--space-8);
+            text-align: center;
+            transition: all var(--transition-slow);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity var(--transition-slow);
+            z-index: 1;
+        }
+        
+        .feature-card:hover::before {
+            opacity: 0.05;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-2xl);
+        }
+        
+        .feature-card > * {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--space-6);
+            background: var(--gradient-primary);
+            border-radius: var(--radius-2xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-2xl);
+            color: var(--text-inverse);
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-fast);
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        /* Timeline Styling */
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline-item {
+            display: flex;
+            gap: var(--space-8);
+            margin-bottom: var(--space-12);
+            padding: var(--space-8);
+            background: var(--surface-color);
+            backdrop-filter: var(--glass-backdrop);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--radius-3xl);
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-slow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity var(--transition-slow);
+            z-index: 1;
+        }
+        
+        .timeline-item:hover::before {
+            opacity: 0.05;
+        }
+        
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .timeline-item > * {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .timeline-year {
+            min-width: 100px;
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--primary-color);
+        }
+        
+        .timeline-content h3 {
+            color: var(--text-primary);
+            margin-bottom: var(--space-4);
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+        }
+        
+        .timeline-content p {
+            color: var(--text-secondary);
+            line-height: var(--line-height-relaxed);
+        }
+        
+        /* Team Section */
+        .team-section {
+            padding: var(--space-20) var(--space-6);
+            background: var(--bg-primary);
+            color: var(--text-inverse);
+        }
+        
+        /* Buttons */
+        .hero-buttons {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-6);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-weight: var(--font-weight-semibold);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--text-inverse);
+        }
+        
+        .btn-secondary {
+            background: var(--gradient-secondary);
+            color: var(--text-inverse);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--bg-tertiary);
+            color: var(--text-inverse);
+            padding: var(--space-16) var(--space-6) var(--space-8);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-8);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-section h3 {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-4);
+            color: var(--accent-light);
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-4);
+        }
+        
+        .footer-logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-lg);
+            object-fit: cover;
+        }
+        
+        .footer-logo span {
+            font-family: var(--font-tamil);
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: var(--space-3);
+            margin-top: var(--space-4);
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            color: var(--text-inverse);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .social-link:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: var(--space-2);
+        }
+        
+        .footer-section ul li a {
+            color: var(--text-inverse);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: all var(--transition-fast);
+        }
+        
+        .footer-section ul li a:hover {
+            opacity: 1;
+            color: var(--accent-light);
+            transform: translateX(5px);
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: var(--space-2);
+            margin-top: var(--space-4);
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: var(--space-3);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--radius-lg);
+            background: var(--surface-color);
+            color: var(--text-primary);
+        }
+        
+        .newsletter-btn {
+            background: var(--gradient-primary);
+            color: var(--text-inverse);
+            border: none;
+            padding: var(--space-3);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .newsletter-btn:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: var(--space-8);
+            padding-top: var(--space-8);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.8;
+        }
+        
+        /* Notification Toast */
+        .notification-toast {
+            position: fixed;
+            top: var(--space-6);
+            right: var(--space-6);
+            background: var(--surface-color);
+            backdrop-filter: var(--glass-backdrop);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-4);
+            box-shadow: var(--shadow-xl);
+            z-index: 1050;
+            transform: translateX(100%);
+            transition: transform var(--transition-slow);
+        }
+        
+        .notification-toast.show {
+            transform: translateX(0);
+        }
+        
+        .toast-content {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        
+        .toast-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: var(--space-1);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+        }
+        
+        .toast-close:hover {
+            background: var(--bg-danger);
+            color: var(--text-inverse);
+        }
+        
+        /* Tamil Text Styling */
+        .tamil-text {
+            font-family: var(--font-tamil);
+            color: var(--primary-color);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .hero-title {
+                font-size: var(--font-size-3xl);
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+                gap: var(--space-4);
+            }
+            
+            .timeline-year {
+                min-width: auto;
+                font-size: var(--font-size-2xl);
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .theme-toggle {
+                top: var(--space-4);
+                right: var(--space-4);
+            }
+        }
+    </style>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#d32f2f">
+    
+    <!-- API Integration -->
+    <script src="js/api-integration.js?v=10.0"></script>
+    <!-- Content Management -->
+
 </head>
 <body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button onclick="toggleTheme()" title="Toggle Theme" aria-label="Toggle between light and dark theme">
+            <i id="theme-icon" class="fas fa-moon"></i>
+        </button>
+    </div>
+
     <!-- Navigation Bar -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="assets/logo.svg" alt="Tamil Language Society" class="logo-img">
-                <span class="logo-text">தமிழ் மொழி சமூகம்</span>
+                <img data-content="global.logo.image" src="assets/logo.jpeg" alt="Tamil Language Society" class="logo-img">
+                <span data-content="global.logo.text" data-content-tamil="global.logo.textTamil" class="logo-text">தமிழ்ப் பேரவை</span>
             </div>
             
             <div class="nav-menu" id="nav-menu">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="about.html" class="nav-link active">About Us</a>
-                <a href="projects.html" class="nav-link">Projects</a>
-                <a href="ebooks.html" class="nav-link">Ebooks</a>
-                <a href="books.html" class="nav-link">Books Selling</a>
-                <a href="contact.html" class="nav-link">Contact Us</a>
-                <a href="donate.html" class="nav-link donate-btn">Donate Now</a>
+                <a href="index.html" class="nav-link" data-content="global.menu.home" data-content-tamil="global.menu.homeTamil">Home</a>
+                <a href="about.html" class="nav-link active" data-content="global.menu.about" data-content-tamil="global.menu.aboutTamil">About Us</a>
+                <a href="projects.html" class="nav-link" data-content="global.menu.projects" data-content-tamil="global.menu.projectsTamil">Projects</a>
+                <a href="ebooks.html" class="nav-link" data-content="global.menu.ebooks" data-content-tamil="global.menu.ebooksTamil">Ebooks</a>
+                <a href="books.html" class="nav-link" data-content="global.menu.bookstore" data-content-tamil="global.menu.bookstoreTamil">Book Store</a>
+                <a href="contact.html" class="nav-link" data-content="global.menu.contact" data-content-tamil="global.menu.contactTamil">Contact Us</a>
+
                 <a href="notifications.html" class="nav-link notification-icon">
                     <i class="fas fa-bell"></i>
                     <span class="notification-dot" id="notification-dot"></span>
                 </a>
-                <a href="login.html" class="nav-link">Login</a>
-                <a href="signup.html" class="nav-link signup-btn">Sign Up</a>
+                <a href="login.html" class="nav-link" data-content="global.menu.login" data-content-tamil="global.menu.loginTamil">Login</a>
+                <a href="signup.html" class="nav-link signup-btn" data-content="global.menu.signup" data-content-tamil="global.menu.signupTamil">Sign Up</a>
+                
+                <!-- Language Toggle -->
+                <div class="language-toggle" id="language-toggle">
+                    <button class="lang-btn active" data-lang="en" title="English">EN</button>
+                    <button class="lang-btn" data-lang="ta" title="தமிழ்">த</button>
+                </div>
             </div>
             
             <div class="hamburger" id="hamburger">
@@ -59,40 +836,43 @@
         <div class="hero-content">
             <div class="hero-text" style="text-align: center; max-width: 800px; margin: 0 auto;">
                 <h1 class="hero-title">
-                    <span class="english-title">About Tamil Language Society</span>
-                    <span class="tamil-title">தமிழ் மொழி சமூகம் பற்றி</span>
+                    <span data-content="about.hero.title" class="english-title">About Tamil Language Society</span>
+                    <span data-content="about.hero.titleTamil" class="tamil-title">எங்களைப் பற்றி</span>
                 </h1>
-                <p class="hero-subtitle">
+                <p data-content="about.hero.subtitle" class="hero-subtitle">
                     Preserving, promoting, and celebrating the rich heritage of Tamil language and culture for future generations
                 </p>
-                <p class="tamil-quote">
-                    "தமிழர் அடையாளம் தமிழ் மொழியில் அடங்கியுள்ளது"
+                <p data-content="about.hero.quote" data-content-tamil="about.hero.quoteTamil" class="tamil-quote">
+                    "தமிழோடு உயர்வோம்"
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Mission Section -->
+    <!-- History Section -->
     <section class="features">
         <div class="container">
             <h2 class="section-title">
-                <span class="english">Our Mission</span>
-                <span class="tamil">எங்கள் நோக்கம்</span>
+                <span data-content="about.history.title" class="english">Our History</span>
+                <span data-content="about.history.titleTamil" class="tamil">எங்கள் வரலாறு</span>
             </h2>
             
             <div class="card" style="max-width: 900px; margin: 0 auto;">
                 <div class="card-body" style="text-align: center; padding: 3rem;">
                     <div class="feature-icon" style="margin: 0 auto 2rem;">
-                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-scroll"></i>
                     </div>
-                    <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--primary-blue);">
-                        வளர்ச்சி மற்றும் பாதுகாப்பு
+                    <h3 data-content="about.history.subtitle" style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--primary-blue);">
+                        A Legacy of Tamil Excellence
                     </h3>
-                    <p style="font-size: 1.125rem; line-height: 1.8; color: var(--gray-600); margin-bottom: 2rem;">
-                        Tamil Language Society is dedicated to preserving, promoting, and advancing the Tamil language and its rich cultural heritage. Our mission is to create a vibrant community that celebrates Tamil literature, arts, traditions, and values while adapting to the modern world.
+                    <p data-content="about.history.content1" style="font-size: 1.125rem; line-height: 1.8; color: var(--gray-600); margin-bottom: 2rem;">
+                        Founded in 2020, the Tamil Language Society emerged from a passionate vision to bridge the gap between traditional Tamil heritage and modern digital accessibility. Our journey began with a small group of Tamil scholars, educators, and technology enthusiasts who recognized the urgent need to preserve and promote Tamil language in the digital age.
                     </p>
-                    <p class="tamil-text" style="font-family: var(--font-tamil); font-size: 1.125rem; line-height: 1.8; color: var(--primary-blue);">
-                        தமிழ் மொழி சமூகம் தமிழ் மொழி மற்றும் அதன் வளமான கலாச்சார பாரம்பரியத்தை பாதுகாக்க, ஊக்குவிக்க மற்றும் முன்னேற்ற அர்ப்பணிக்கப்பட்டுள்ளது.
+                    <p data-content="about.history.content2" style="font-size: 1.125rem; line-height: 1.8; color: var(--gray-600); margin-bottom: 2rem;">
+                        Over the years, we have grown from a local initiative to a global movement, connecting Tamil communities worldwide and creating innovative platforms for language learning, cultural exchange, and literary preservation. Our commitment to excellence has made us a trusted resource for Tamil language education and cultural promotion.
+                    </p>
+                    <p data-content="about.history.contentTamil" data-content-tamil="about.history.contentTamil" class="tamil-text" style="font-family: var(--font-tamil); font-size: 1.125rem; line-height: 1.8; color: var(--primary-blue);">
+                        தமிழ்ப் பேரவை 2020 ஆம் ஆண்டில் நிறுவப்பட்டு, தமிழ் மொழி மற்றும் கலாச்சாரத்தை டிஜிட்டல் யுகத்தில் பாதுகாக்கும் நோக்கத்துடன் தொடங்கியது.
                     </p>
                 </div>
             </div>
@@ -103,8 +883,8 @@
     <section class="stats" style="background: var(--gray-50); color: var(--gray-800);">
         <div class="container">
             <h2 class="section-title" style="margin-bottom: 3rem;">
-                <span class="english" style="color: var(--gray-900);">Our Core Values</span>
-                <span class="tamil" style="color: var(--primary-blue);">எங்கள் அடிப்படை மதிப்புகள்</span>
+                <span data-content="about.values.title" class="english" style="color: var(--gray-900);">Our Core Values</span>
+                <span data-content="about.values.titleTamil" class="tamil" style="color: var(--primary-blue);">எங்கள் அடிப்படை மதிப்புகள்</span>
             </h2>
             
             <div class="features-grid">
@@ -112,36 +892,36 @@
                     <div class="feature-icon">
                         <i class="fas fa-book-open"></i>
                     </div>
-                    <h3>Education</h3>
-                    <h4 class="tamil-text" style="font-family: var(--font-tamil); color: var(--primary-blue); margin-bottom: 1rem;">கல்வி</h4>
-                    <p>Promoting Tamil education through innovative learning resources, digital platforms, and community programs that make learning accessible to all.</p>
+                    <h3 data-content="about.values.education.title">Education</h3>
+                    <h4 data-content="about.values.education.titleTamil" class="tamil-text" style="font-family: var(--font-tamil); color: var(--primary-blue); margin-bottom: 1rem;">கல்வி</h4>
+                    <p data-content="about.values.education.description">Promoting Tamil education through innovative learning resources, digital platforms, and community programs that make learning accessible to all.</p>
                 </div>
                 
                 <div class="feature-card hover-lift">
                     <div class="feature-icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <h3>Community</h3>
-                    <h4 class="tamil-text" style="font-family: var(--font-tamil); color: var(--primary-blue); margin-bottom: 1rem;">சமூகம்</h4>
-                    <p>Building a strong, connected community of Tamil language enthusiasts, scholars, and learners across the globe.</p>
+                    <h3 data-content="about.values.community.title">Community</h3>
+                    <h4 data-content="about.values.community.titleTamil" class="tamil-text" style="font-family: var(--font-tamil); color: var(--primary-blue); margin-bottom: 1rem;">சமூகம்</h4>
+                    <p data-content="about.values.community.description">Building a strong, connected community of Tamil language enthusiasts, scholars, and learners across the globe.</p>
                 </div>
                 
                 <div class="feature-card hover-lift">
                     <div class="feature-icon">
                         <i class="fas fa-leaf"></i>
                     </div>
-                    <h3>Preservation</h3>
-                    <h4 class="tamil-text" style="font-family: var(--font-tamil); color: var(--primary-blue); margin-bottom: 1rem;">பாதுகாப்பு</h4>
-                    <p>Safeguarding Tamil literature, traditions, and cultural practices for future generations through digital archival and documentation.</p>
+                    <h3 data-content="about.values.preservation.title">Preservation</h3>
+                    <h4 data-content="about.values.preservation.titleTamil" class="tamil-text" style="font-family: var(--font-tamil); color: var(--primary-blue); margin-bottom: 1rem;">பாதுகாப்பு</h4>
+                    <p data-content="about.values.preservation.description">Safeguarding Tamil literature, traditions, and cultural practices for future generations through digital archival and documentation.</p>
                 </div>
                 
                 <div class="feature-card hover-lift">
                     <div class="feature-icon">
                         <i class="fas fa-globe"></i>
                     </div>
-                    <h3>Global Reach</h3>
-                    <h4 class="tamil-text" style="font-family: var(--font-tamil); color: var(--primary-blue); margin-bottom: 1rem;">உலகளாவிய அணுகல்</h4>
-                    <p>Connecting Tamil communities worldwide and promoting Tamil language and culture on an international scale.</p>
+                    <h3 data-content="about.values.global.title">Global Reach</h3>
+                    <h4 data-content="about.values.global.titleTamil" class="tamil-text" style="font-family: var(--font-tamil); color: var(--primary-blue); margin-bottom: 1rem;">உலகளாவிய அணுகல்</h4>
+                    <p data-content="about.values.global.description">Connecting Tamil communities worldwide and promoting Tamil language and culture on an international scale.</p>
                 </div>
             </div>
         </div>
@@ -150,49 +930,49 @@
     <!-- History Section -->
     <section class="features">
         <div class="container">
-            <h2 class="section-title">
+            <h2 class="section-title" data-content="about-journey-title" data-content-tamil="about-journey-title-tamil">
                 <span class="english">Our Journey</span>
                 <span class="tamil">எங்கள் பயணம்</span>
             </h2>
             
             <div class="timeline" style="max-width: 800px; margin: 0 auto;">
                 <div class="timeline-item" style="display: flex; gap: 2rem; margin-bottom: 3rem; padding: 2rem; background: white; border-radius: 1rem; box-shadow: var(--shadow-lg);">
-                    <div class="timeline-year" style="min-width: 100px; font-size: 2rem; font-weight: 700; color: var(--primary-blue);">2020</div>
+                    <div class="timeline-year" style="min-width: 100px; font-size: 2rem; font-weight: 700; color: var(--primary-blue);" data-content="about-timeline-2020-year">2020</div>
                     <div class="timeline-content">
-                        <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Foundation</h3>
-                        <p style="color: var(--gray-600); line-height: 1.6;">Tamil Language Society was founded with a vision to create a comprehensive digital platform for Tamil language learning and cultural preservation.</p>
+                        <h3 style="color: var(--gray-900); margin-bottom: 1rem;" data-content="about-timeline-2020-title">Foundation</h3>
+                        <p style="color: var(--gray-600); line-height: 1.6;" data-content="about-timeline-2020-description">Tamil Language Society was founded with a vision to create a comprehensive digital platform for Tamil language learning and cultural preservation.</p>
                     </div>
                 </div>
                 
                 <div class="timeline-item" style="display: flex; gap: 2rem; margin-bottom: 3rem; padding: 2rem; background: white; border-radius: 1rem; box-shadow: var(--shadow-lg);">
-                    <div class="timeline-year" style="min-width: 100px; font-size: 2rem; font-weight: 700; color: var(--primary-blue);">2021</div>
+                    <div class="timeline-year" style="min-width: 100px; font-size: 2rem; font-weight: 700; color: var(--primary-blue);" data-content="about-timeline-2021-year">2021</div>
                     <div class="timeline-content">
-                        <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Digital Library Launch</h3>
-                        <p style="color: var(--gray-600); line-height: 1.6;">Launched our comprehensive digital library with thousands of Tamil books, literature, and educational resources.</p>
+                        <h3 style="color: var(--gray-900); margin-bottom: 1rem;" data-content="about-timeline-2021-title">Digital Library Launch</h3>
+                        <p style="color: var(--gray-600); line-height: 1.6;" data-content="about-timeline-2021-description">Launched our comprehensive digital library with thousands of Tamil books, literature, and educational resources.</p>
                     </div>
                 </div>
                 
                 <div class="timeline-item" style="display: flex; gap: 2rem; margin-bottom: 3rem; padding: 2rem; background: white; border-radius: 1rem; box-shadow: var(--shadow-lg);">
-                    <div class="timeline-year" style="min-width: 100px; font-size: 2rem; font-weight: 700; color: var(--primary-blue);">2022</div>
+                    <div class="timeline-year" style="min-width: 100px; font-size: 2rem; font-weight: 700; color: var(--primary-blue);" data-content="about-timeline-2022-year">2022</div>
                     <div class="timeline-content">
-                        <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Global Expansion</h3>
-                        <p style="color: var(--gray-600); line-height: 1.6;">Expanded our reach to Tamil communities worldwide, establishing partnerships with cultural organizations globally.</p>
+                        <h3 style="color: var(--gray-900); margin-bottom: 1rem;" data-content="about-timeline-2022-title">Global Expansion</h3>
+                        <p style="color: var(--gray-600); line-height: 1.6;" data-content="about-timeline-2022-description">Expanded our reach to Tamil communities worldwide, establishing partnerships with cultural organizations globally.</p>
                     </div>
                 </div>
                 
                 <div class="timeline-item" style="display: flex; gap: 2rem; margin-bottom: 3rem; padding: 2rem; background: white; border-radius: 1rem; box-shadow: var(--shadow-lg);">
-                    <div class="timeline-year" style="min-width: 100px; font-size: 2rem; font-weight: 700; color: var(--primary-blue);">2023</div>
+                    <div class="timeline-year" style="min-width: 100px; font-size: 2rem; font-weight: 700; color: var(--primary-blue);" data-content="about-timeline-2023-year">2023</div>
                     <div class="timeline-content">
-                        <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Cultural Programs</h3>
-                        <p style="color: var(--gray-600); line-height: 1.6;">Initiated comprehensive cultural programs, workshops, and events to promote Tamil arts, music, and traditions.</p>
+                        <h3 style="color: var(--gray-900); margin-bottom: 1rem;" data-content="about-timeline-2023-title">Cultural Programs</h3>
+                        <p style="color: var(--gray-600); line-height: 1.6;" data-content="about-timeline-2023-description">Initiated comprehensive cultural programs, workshops, and events to promote Tamil arts, music, and traditions.</p>
                     </div>
                 </div>
                 
                 <div class="timeline-item" style="display: flex; gap: 2rem; margin-bottom: 3rem; padding: 2rem; background: white; border-radius: 1rem; box-shadow: var(--shadow-lg);">
-                    <div class="timeline-year" style="min-width: 100px; font-size: 2rem; font-weight: 700; color: var(--primary-blue);">2024</div>
+                    <div class="timeline-year" style="min-width: 100px; font-size: 2rem; font-weight: 700; color: var(--primary-blue);" data-content="about-timeline-2024-year">2024</div>
                     <div class="timeline-content">
-                        <h3 style="color: var(--gray-900); margin-bottom: 1rem;">Innovation & Technology</h3>
-                        <p style="color: var(--gray-600); line-height: 1.6;">Embraced cutting-edge technology to enhance Tamil language learning through AI-powered tools and interactive platforms.</p>
+                        <h3 style="color: var(--gray-900); margin-bottom: 1rem;" data-content="about-timeline-2024-title">Innovation & Technology</h3>
+                        <p style="color: var(--gray-600); line-height: 1.6;" data-content="about-timeline-2024-description">Embraced cutting-edge technology to enhance Tamil language learning through AI-powered tools and interactive platforms.</p>
                     </div>
                 </div>
             </div>
@@ -200,45 +980,25 @@
     </section>
 
     <!-- Team Section -->
-    <section class="stats">
+    <section class="team-section" style="padding: 4rem 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
         <div class="container">
-            <h2 class="section-title" style="margin-bottom: 3rem;">
-                <span class="english">Our Team</span>
-                <span class="tamil">எங்கள் குழு</span>
-            </h2>
-            
-            <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-                <div class="card" style="text-align: center; padding: 2rem; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
-                    <div class="feature-icon" style="background: rgba(255, 255, 255, 0.2); margin: 0 auto 1.5rem;">
-                        <i class="fas fa-user-graduate"></i>
-                    </div>
-                    <h3 style="color: white; margin-bottom: 0.5rem;">Language Scholars</h3>
-                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem;">Expert Tamil linguists and researchers</p>
+            <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: white;" data-content="about-team-title">Our Team</h2>
+                <h3 class="tamil-text" style="font-family: var(--font-tamil); color: #FFD700; margin-bottom: 1rem;" data-content="about-team-title-tamil">எங்கள் குழு</h3>
+                <p style="font-size: 1.2rem; opacity: 0.9; max-width: 600px; margin: 0 auto;" data-content="about-team-description">
+                    Meet the dedicated board members who lead our mission to preserve and promote the Tamil language and culture.
+                </p>
+            </div>
+
+            <!-- Team Hierarchy -->
+            <div class="team-hierarchy" id="teamHierarchy" style="max-width: 1200px; margin: 0 auto;">
+                <!-- Loading state -->
+                <div id="teamLoading" style="text-align: center; padding: 3rem;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #FFD700; margin-bottom: 1rem;"></i>
+                    <p style="color: white; font-size: 1.1rem;">Loading our team...</p>
                 </div>
                 
-                <div class="card" style="text-align: center; padding: 2rem; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
-                    <div class="feature-icon" style="background: rgba(255, 255, 255, 0.2); margin: 0 auto 1.5rem;">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3 style="color: white; margin-bottom: 0.5rem;">Technology Team</h3>
-                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem;">Innovative developers and designers</p>
-                </div>
-                
-                <div class="card" style="text-align: center; padding: 2rem; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
-                    <div class="feature-icon" style="background: rgba(255, 255, 255, 0.2); margin: 0 auto 1.5rem;">
-                        <i class="fas fa-theater-masks"></i>
-                    </div>
-                    <h3 style="color: white; margin-bottom: 0.5rem;">Cultural Experts</h3>
-                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem;">Artists and cultural practitioners</p>
-                </div>
-                
-                <div class="card" style="text-align: center; padding: 2rem; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
-                    <div class="feature-icon" style="background: rgba(255, 255, 255, 0.2); margin: 0 auto 1.5rem;">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                    <h3 style="color: white; margin-bottom: 0.5rem;">Community Volunteers</h3>
-                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem;">Passionate community contributors</p>
-                </div>
+                <!-- Team hierarchy will be loaded here dynamically -->
             </div>
         </div>
     </section>
@@ -247,19 +1007,19 @@
     <section class="features">
         <div class="container">
             <div class="card" style="text-align: center; max-width: 800px; margin: 0 auto; padding: 3rem;">
-                <h2 style="color: var(--primary-blue); margin-bottom: 1.5rem;">Join Our Mission</h2>
-                <h3 class="tamil-text" style="font-family: var(--font-tamil); color: var(--accent-gold); margin-bottom: 2rem;">எங்கள் பணியில் சேருங்கள்</h3>
-                <p style="font-size: 1.125rem; color: var(--gray-600); margin-bottom: 2rem; line-height: 1.8;">
+                <h2 style="color: var(--primary-blue); margin-bottom: 1.5rem;" data-content="about-cta-title">Join Our Mission</h2>
+                <h3 class="tamil-text" style="font-family: var(--font-tamil); color: var(--accent-gold); margin-bottom: 2rem;" data-content="about-cta-title-tamil">எங்கள் பணியில் சேருங்கள்</h3>
+                <p style="font-size: 1.125rem; color: var(--gray-600); margin-bottom: 2rem; line-height: 1.8;" data-content="about-cta-description">
                     Be part of our journey to preserve and promote Tamil language and culture. Whether you're a learner, scholar, or enthusiast, there's a place for you in our community.
                 </p>
                 <div class="hero-buttons" style="justify-content: center;">
-                    <a href="signup.html" class="btn btn-primary">
+                    <a href="signup.html" class="btn btn-primary" data-content-url="about-cta-join-url">
                         <i class="fas fa-user-plus"></i>
-                        Join Our Community
+                        <span data-content="about-cta-join-text">Join Our Community</span>
                     </a>
-                    <a href="contact.html" class="btn btn-secondary">
+                    <a href="contact.html" class="btn btn-secondary" data-content-url="about-cta-contact-url">
                         <i class="fas fa-envelope"></i>
-                        Get in Touch
+                        <span data-content="about-cta-contact-text">Get in Touch</span>
                     </a>
                 </div>
             </div>
@@ -272,50 +1032,49 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <div class="footer-logo">
-                        <img src="assets/logo.svg" alt="Tamil Language Society">
-                        <span>தமிழ் மொழி சமூகம்</span>
+                        <img src="assets/logo.jpeg" alt="Tamil Language Society" data-content="global-logo" data-content-alt="global-logo-alt">
+                        <span data-content="global-logo-text" data-content-tamil="global-logo-text-tamil">தமிழ்ப் பேரவை</span>
                     </div>
-                    <p>Dedicated to preserving and promoting the rich heritage of Tamil language and culture worldwide.</p>
+                    <p data-content="global-footer-description" data-content-tamil="global-footer-description-tamil">Dedicated to preserving and promoting the rich heritage of Tamil language and culture worldwide.</p>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link" data-content-url="global-social-facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link" data-content-url="global-social-twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" data-content-url="global-social-instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" data-content-url="global-social-youtube"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 
                 <div class="footer-section">
-                    <h3>Quick Links</h3>
+                    <h3 data-content="global-footer-quicklinks-title" data-content-tamil="global-footer-quicklinks-title-tamil">Quick Links</h3>
                     <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="projects.html">Projects</a></li>
-                        <li><a href="ebooks.html">Digital Library</a></li>
-                        <li><a href="books.html">Book Store</a></li>
+                        <li><a href="about.html" data-content="global-nav-about" data-content-tamil="global-nav-about-tamil" data-content-url="global-nav-about-url">About Us</a></li>
+                        <li><a href="projects.html" data-content="global-nav-projects" data-content-tamil="global-nav-projects-tamil" data-content-url="global-nav-projects-url">Projects</a></li>
+                        <li><a href="ebooks.html" data-content="global-nav-ebooks" data-content-tamil="global-nav-ebooks-tamil" data-content-url="global-nav-ebooks-url">Ebooks</a></li>
+                        <li><a href="books.html" data-content="global-nav-books" data-content-tamil="global-nav-books-tamil" data-content-url="global-nav-books-url">Book Store</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
-                    <h3>Support</h3>
+                    <h3 data-content="global-footer-support-title" data-content-tamil="global-footer-support-title-tamil">Support</h3>
                     <ul>
-                        <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="donate.html">Donate</a></li>
-                        <li><a href="notifications.html">Notifications</a></li>
-                        <li><a href="#">Help Center</a></li>
+                        <li><a href="contact.html" data-content="global-nav-contact" data-content-tamil="global-nav-contact-tamil" data-content-url="global-nav-contact-url">Contact Us</a></li>
+
+                        <li><a href="notifications.html" data-content="global-nav-notifications" data-content-tamil="global-nav-notifications-tamil" data-content-url="global-nav-notifications-url">Notifications</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
-                    <h3>Newsletter</h3>
-                    <p>Stay updated with our latest news and events</p>
+                    <h3 data-content="global-footer-newsletter-title" data-content-tamil="global-footer-newsletter-title-tamil">Newsletter</h3>
+                    <p data-content="global-footer-newsletter-description" data-content-tamil="global-footer-newsletter-description-tamil">Stay updated with our latest news and events</p>
                     <div class="newsletter-form">
-                        <input type="email" placeholder="Enter your email" class="newsletter-input">
-                        <button class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                        <input type="email" placeholder="Enter your email" class="newsletter-input" data-content="global-footer-newsletter-placeholder" data-content-tamil="global-footer-newsletter-placeholder-tamil">
+                        <button class="newsletter-btn" aria-label="Subscribe to newsletter"><i class="fas fa-paper-plane"></i></button>
                     </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Tamil Language Society. All rights reserved.</p>
+                <p data-content="global-footer-copyright" data-content-tamil="global-footer-copyright-tamil">&copy; 2025 Tamil Language Society. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -326,13 +1085,344 @@
             <i class="fas fa-bell"></i>
             <span class="toast-message"></span>
         </div>
-        <button class="toast-close" onclick="closeNotification()">
+        <button class="toast-close" onclick="closeNotification()" aria-label="Close notification">
             <i class="fas fa-times"></i>
         </button>
     </div>
 
     <!-- JavaScript -->
-    <script src="js/main.js"></script>
-    <script src="js/notifications.js"></script>
+    <script src="js/api-integration.js?v=10.0"></script>
+    <script src="js/content-manager.js?v=10.0"></script>
+    <script src="js/main.js?v=10.0"></script>
+    <script src="js/notifications.js?v=10.0"></script>
+    <script src="js/auth-utils.js?v=10.0"></script>
+    <script src="js/slideshow.js?v=10.0"></script>
+    <script src="js/cache-buster.js?v=10.0"></script>
+    
+    <!-- Team Hierarchy Loading Script -->
+    <script>
+        // API Configuration - use window object to avoid conflicts
+        // Use window.TLS_API_BASE_URL directly to avoid const declaration conflicts
+
+        // Generic API call function
+        if (typeof window.apiCall !== 'function') {
+            window.apiCall = async function(endpoint, options = {}) {
+            const url = `${window.TLS_API_BASE_URL || 'http://127.0.0.1:8080'}${endpoint}`;
+            const defaultOptions = {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+            
+            const finalOptions = {
+                ...defaultOptions,
+                ...options,
+                headers: {
+                    ...defaultOptions.headers,
+                    ...options.headers
+                }
+            };
+            
+            const response = await fetch(url, finalOptions);
+            
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+            }
+            
+            return response.json();
+            };
+        }
+
+        // Team hierarchy configuration
+        const teamConfig = {
+            president: {
+                title: 'President',
+                icon: 'fas fa-crown',
+                gradient: 'linear-gradient(135deg, #FFD700, #FFA500)',
+                borderColor: 'rgba(255, 215, 0, 0.3)',
+                titleColor: '#FFD700',
+                background: 'rgba(255,255,255,0.15)',
+                size: { width: '120px', height: '120px' },
+                iconSize: '3rem',
+                cardPadding: '2rem',
+                cardMinWidth: '250px',
+                fontSize: '1.3rem'
+            },
+            'vice-president': {
+                title: 'Vice President',
+                icon: 'fas fa-user-tie',
+                gradient: 'linear-gradient(135deg, #87CEEB, #4682B4)',
+                borderColor: 'rgba(135, 206, 250, 0.3)',
+                titleColor: '#87CEEB',
+                background: 'rgba(255,255,255,0.12)',
+                size: { width: '100px', height: '100px' },
+                iconSize: '2.5rem',
+                cardPadding: '1.5rem',
+                cardMinWidth: '200px',
+                fontSize: '1.2rem'
+            },
+            treasurer: {
+                title: 'Treasurer',
+                icon: 'fas fa-coins',
+                gradient: 'linear-gradient(135deg, #90EE90, #32CD32)',
+                borderColor: 'rgba(144, 238, 144, 0.3)',
+                titleColor: '#90EE90',
+                background: 'rgba(255,255,255,0.1)',
+                size: { width: '100px', height: '100px' },
+                iconSize: '2.5rem',
+                cardPadding: '1.5rem',
+                cardMinWidth: '200px',
+                fontSize: '1.2rem'
+            },
+            secretary: {
+                title: 'Secretary',
+                icon: 'fas fa-pen-fancy',
+                gradient: 'linear-gradient(135deg, #FFB6C1, #FF69B4)',
+                borderColor: 'rgba(255, 182, 193, 0.3)',
+                titleColor: '#FFB6C1',
+                background: 'rgba(255,255,255,0.1)',
+                size: { width: '100px', height: '100px' },
+                iconSize: '2.5rem',
+                cardPadding: '1.5rem',
+                cardMinWidth: '200px',
+                fontSize: '1.2rem'
+            },
+            executive: {
+                title: 'Executive Committee',
+                icon: 'fas fa-user',
+                gradients: [
+                    'linear-gradient(135deg, #DDA0DD, #9370DB)',
+                    'linear-gradient(135deg, #F0E68C, #DAA520)',
+                    'linear-gradient(135deg, #20B2AA, #008B8B)',
+                    'linear-gradient(135deg, #CD853F, #A0522D)',
+                    'linear-gradient(135deg, #FF6347, #DC143C)',
+                    'linear-gradient(135deg, #4169E1, #191970)'
+                ],
+                background: 'rgba(255,255,255,0.08)',
+                size: { width: '80px', height: '80px' },
+                iconSize: '2rem',
+                cardPadding: '1.2rem',
+                cardMinWidth: '180px',
+                fontSize: '1rem'
+            },
+            auditor: {
+                title: 'Auditors',
+                icon: 'fas fa-search',
+                gradients: [
+                    'linear-gradient(135deg, #708090, #2F4F4F)',
+                    'linear-gradient(135deg, #696969, #2F2F2F)',
+                    'linear-gradient(135deg, #778899, #2F4F4F)'
+                ],
+                icons: ['fas fa-search', 'fas fa-clipboard-check', 'fas fa-balance-scale'],
+                background: 'rgba(255,255,255,0.06)',
+                size: { width: '80px', height: '80px' },
+                iconSize: '2rem',
+                cardPadding: '1.2rem',
+                cardMinWidth: '180px',
+                fontSize: '1rem'
+            }
+        };
+
+        // Function to create team member card
+        function createTeamMemberCard(member, position, index = 0) {
+            const config = teamConfig[position];
+            if (!config) return '';
+
+            const gradient = config.gradients ? config.gradients[index % config.gradients.length] : config.gradient;
+            const icon = config.icons ? config.icons[index % config.icons.length] : config.icon;
+            
+            const photoSrc = (member.profilePicture && member.profilePicture !== '/assets/default-avatar.jpg') || 
+                             (member.photo && member.photo !== '/assets/default-avatar.jpg')
+                ? `${window.TLS_API_BASE_URL || 'http://127.0.0.1:8080'}${member.profilePicture || member.photo}` 
+                : null;
+
+            return `
+                <div class="team-member-card" style="position: relative; background: ${config.background}; backdrop-filter: blur(10px); border-radius: ${position === 'president' ? '20px' : '15px'}; padding: ${config.cardPadding}; text-align: center; min-width: ${config.cardMinWidth}; box-shadow: 0 ${position === 'president' ? '8' : '6'}px ${position === 'president' ? '32' : '24'}px rgba(0,0,0,0.1); ${config.borderColor ? `border: ${position === 'president' ? '2px' : '2px'} solid ${config.borderColor};` : ''} transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;" 
+                     onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 ${position === 'president' ? '12' : '10'}px ${position === 'president' ? '40' : '32'}px rgba(0,0,0,0.2)'; this.querySelector('.contact-details').style.opacity='1'; this.querySelector('.contact-details').style.visibility='visible';" 
+                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 ${position === 'president' ? '8' : '6'}px ${position === 'president' ? '32' : '24'}px rgba(0,0,0,0.1)'; this.querySelector('.contact-details').style.opacity='0'; this.querySelector('.contact-details').style.visibility='hidden';">
+                    <div class="member-photo" style="width: ${config.size.width}; height: ${config.size.height}; border-radius: 50%; background: ${gradient}; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; border: ${position === 'president' ? '4px' : position === 'executive' || position === 'auditor' ? '2px' : '3px'} solid rgba(255,255,255,0.3); overflow: hidden;">
+                        ${photoSrc ? 
+                            `<img src="${photoSrc}" alt="${member.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">` :
+                            `<i class="${icon}" style="font-size: ${config.iconSize}; color: white;"></i>`
+                        }
+                    </div>
+                    ${position !== 'executive' && position !== 'auditor' ? 
+                        `<h3 style="margin: 0 0 0.5rem 0; font-size: ${config.fontSize}; color: ${config.titleColor};">${config.title}</h3>` : ''
+                    }
+                    <h4 style="margin: 0 0 ${member.bio ? '1rem' : '0.3rem'} 0; font-size: ${position === 'executive' || position === 'auditor' ? '1rem' : '1.1rem'}; color: white;">${member.name}</h4>
+                    ${member.nameTamil ? 
+                        `<p style="margin: 0 0 0.5rem 0; font-size: 0.9rem; color: rgba(255, 255, 255, 0.8); font-family: 'Noto Sans Tamil', var(--font-tamil), sans-serif; font-weight: 600;">${member.nameTamil}</p>` : ''
+                    }
+                    ${member.department ? 
+                        `<p style="margin: 0 0 ${member.bio ? '0.5rem' : '0'}; font-size: 0.9rem; color: ${position === 'executive' ? '#f0e68c' : position === 'auditor' ? '#ffa07a' : 'rgba(255, 255, 255, 0.8)'};">${member.department}</p>` : ''
+                    }
+                    ${member.bio ? 
+                        `<p style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem; margin: 0 0 0.5rem 0;">${member.bio}</p>` : ''
+                    }
+                    ${member.bioTamil ? 
+                        `<p style="color: rgba(255, 255, 255, 0.8); font-size: 0.85rem; margin: 0; font-family: 'Noto Sans Tamil', var(--font-tamil), sans-serif; font-weight: 600;">${member.bioTamil}</p>` : ''
+                    }
+                    
+                    <!-- Contact Details Overlay -->
+                    <div class="contact-details" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.9); border-radius: ${position === 'president' ? '20px' : '15px'}; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; backdrop-filter: blur(10px); padding: 1rem; box-sizing: border-box; overflow: hidden;">
+                        <h4 style="color: white; margin: 0 0 1rem 0; font-size: 1rem; text-align: center;">Contact Details</h4>
+                        <div style="width: 100%; max-width: 100%; overflow: hidden;">
+                            ${member.email ? 
+                                `<div style="display: flex; align-items: flex-start; margin-bottom: 0.5rem; color: rgba(255,255,255,0.9); width: 100%;">
+                                    <i class="fas fa-envelope" style="margin-right: 0.5rem; color: #ffd700; margin-top: 0.1rem; flex-shrink: 0;"></i>
+                                    <span style="font-size: 0.8rem; word-break: break-all; line-height: 1.2;">${member.email}</span>
+                                </div>` : ''
+                            }
+                            ${member.phone ? 
+                                `<div style="display: flex; align-items: center; margin-bottom: 0.5rem; color: rgba(255,255,255,0.9); width: 100%;">
+                                    <i class="fas fa-phone" style="margin-right: 0.5rem; color: #ffd700; flex-shrink: 0;"></i>
+                                    <span style="font-size: 0.8rem; word-break: break-word;">${member.phone}</span>
+                                </div>` : ''
+                            }
+                            ${!member.email && !member.phone ? 
+                                `<p style="color: rgba(255,255,255,0.7); font-size: 0.8rem; margin: 0; text-align: center;">No contact details available</p>` : ''
+                            }
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to load team hierarchy
+        async function loadTeamHierarchy() {
+            try {
+                const result = await apiCall('/api/team/hierarchy');
+                
+                if (!result.success) {
+                    throw new Error('Failed to load team data');
+                }
+
+                const hierarchy = result.data;
+                const teamContainer = document.getElementById('teamHierarchy');
+                const loadingElement = document.getElementById('teamLoading');
+                
+                // Hide loading
+                if (loadingElement) {
+                    loadingElement.style.display = 'none';
+                }
+
+                let hierarchyHTML = '';
+
+                // President
+                if (hierarchy.president && hierarchy.president.length > 0) {
+                    hierarchyHTML += `
+                        <div class="hierarchy-level" style="display: flex; justify-content: center; margin-bottom: 3rem;">
+                            ${createTeamMemberCard(hierarchy.president[0], 'president')}
+                        </div>
+                    `;
+                }
+
+                // Vice President, Treasurer, Secretary
+                const secondLevel = ['vice-president', 'treasurer', 'secretary'];
+                const secondLevelMembers = secondLevel.map(pos => hierarchy[pos] && hierarchy[pos][0]).filter(Boolean);
+                
+                if (secondLevelMembers.length > 0) {
+                    hierarchyHTML += `
+                        <div class="hierarchy-level" style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap;">
+                            ${secondLevelMembers.map(member => createTeamMemberCard(member, member.position)).join('')}
+                        </div>
+                    `;
+                }
+
+                // Executive Committee
+                if (hierarchy.executive && hierarchy.executive.length > 0) {
+                    hierarchyHTML += `
+                        <div class="hierarchy-level" style="margin-bottom: 3rem;">
+                            <h3 style="text-align: center; margin-bottom: 2rem; color: #ffd700; font-size: 1.5rem;">Executive Committee</h3>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto;">
+                                ${hierarchy.executive.map((member, index) => createTeamMemberCard(member, 'executive', index)).join('')}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // Auditors
+                if (hierarchy.auditor && hierarchy.auditor.length > 0) {
+                    hierarchyHTML += `
+                        <div class="hierarchy-level">
+                            <h3 style="text-align: center; margin-bottom: 2rem; color: #ffd700; font-size: 1.5rem;">Auditors</h3>
+                            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                                ${hierarchy.auditor.map((member, index) => createTeamMemberCard(member, 'auditor', index)).join('')}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // If no team members found
+                if (!hierarchyHTML) {
+                    hierarchyHTML = `
+                        <div style="text-align: center; padding: 3rem;">
+                            <i class="fas fa-users" style="font-size: 3rem; color: #FFD700; margin-bottom: 1rem;"></i>
+                            <h3 style="color: white; margin-bottom: 1rem;">Team Information Coming Soon</h3>
+                            <p style="color: rgba(255, 255, 255, 0.8);">Our team hierarchy will be updated shortly.</p>
+                        </div>
+                    `;
+                }
+
+                teamContainer.innerHTML = hierarchyHTML;
+
+            } catch (error) {
+                console.error('Error loading team hierarchy:', error);
+                const teamContainer = document.getElementById('teamHierarchy');
+                const loadingElement = document.getElementById('teamLoading');
+                
+                if (loadingElement) {
+                    loadingElement.style.display = 'none';
+                }
+                
+                teamContainer.innerHTML = `
+                    <div style="text-align: center; padding: 3rem;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #ff6b6b; margin-bottom: 1rem;"></i>
+                        <h3 style="color: white; margin-bottom: 1rem;">Unable to Load Team Information</h3>
+                        <p style="color: rgba(255, 255, 255, 0.8);">Please try refreshing the page or contact support if the issue persists.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Load team hierarchy when page loads
+        document.addEventListener('DOMContentLoaded', loadTeamHierarchy);
+    </script>
+    
+    <!-- Theme Management -->
+    <script>
+        // Theme management
+        let currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function initializeTheme() {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            updateThemeIcon();
+        }
+        
+        function toggleTheme() {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            localStorage.setItem('theme', currentTheme);
+            updateThemeIcon();
+        }
+        
+        function updateThemeIcon() {
+            const icon = document.getElementById('theme-icon');
+            if (icon) {
+                icon.className = currentTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+            }
+        }
+        
+        // Initialize theme on page load
+         document.addEventListener('DOMContentLoaded', function() {
+             initializeTheme();
+         });
+     </script>
+     
+     <!-- Initialize Content Manager -->
+     <script>
+         // ContentManager is automatically initialized by content-manager.js
+    </script>
 </body>
 </html>

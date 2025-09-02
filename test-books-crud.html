@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books CRUD Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .test-button {
+            background: #007bff;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 10px 5px;
+            font-size: 14px;
+        }
+        .test-button:hover {
+            background: #0056b3;
+        }
+        .test-button.danger {
+            background: #dc3545;
+        }
+        .test-button.danger:hover {
+            background: #c82333;
+        }
+        .test-button.success {
+            background: #28a745;
+        }
+        .test-button.success:hover {
+            background: #218838;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .book-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .book-form input, .book-form textarea, .book-form select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .book-form textarea {
+            grid-column: 1 / -1;
+            min-height: 80px;
+        }
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .book-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        .book-card h4 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .book-card p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #666;
+        }
+        .book-actions {
+            margin-top: 10px;
+        }
+        .book-actions button {
+            padding: 5px 10px;
+            margin-right: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .edit-btn {
+            background: #ffc107;
+            color: #212529;
+        }
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>📚 Books CRUD Operations Test</h1>
+        <p>Comprehensive testing of book management functionality including Create, Read, Update, Delete operations.</p>
+        
+        <div class="test-section">
+            <h2>📖 Read Books (GET)</h2>
+            <p>Test retrieving books from the database with various filters and pagination.</p>
+            <button class="test-button" onclick="getAllBooks()">Get All Books</button>
+            <button class="test-button" onclick="getBooksWithPagination()">Get Books (Paginated)</button>
+            <button class="test-button" onclick="searchBooks()">Search Books</button>
+            <button class="test-button" onclick="filterBooksByCategory()">Filter by Category</button>
+            <div id="read-result" class="result" style="display: none;"></div>
+            <div id="books-display" class="books-grid"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>➕ Create Book (POST)</h2>
+            <p>Test creating new books with various data combinations.</p>
+            <div class="book-form">
+                <input type="text" id="new-title" placeholder="Book Title (English)" value="Test Book Title">
+                <input type="text" id="new-title-tamil" placeholder="Book Title (Tamil)" value="சோதனை புத்தகம்">
+                <input type="text" id="new-author" placeholder="Author (English)" value="Test Author">
+                <input type="text" id="new-author-tamil" placeholder="Author (Tamil)" value="சோதனை ஆசிரியர்">
+                <input type="number" id="new-price" placeholder="Price" value="29.99" step="0.01">
+                <select id="new-category">
+                    <option value="Literature">Literature</option>
+                    <option value="Poetry">Poetry</option>
+                    <option value="History">History</option>
+                    <option value="Education">Education</option>
+                    <option value="Fiction">Fiction</option>
+                </select>
+                <input type="number" id="new-stock" placeholder="Stock Quantity" value="100">
+                <input type="text" id="new-isbn" placeholder="ISBN" value="978-0-123456-78-9">
+                <textarea id="new-description" placeholder="Book Description">This is a test book created for testing the CRUD operations of the book management system.</textarea>
+            </div>
+            <button class="test-button success" onclick="createBook()">Create New Book</button>
+            <button class="test-button" onclick="createMultipleBooks()">Create Multiple Books</button>
+            <div id="create-result" class="result" style="display: none;"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>✏️ Update Book (PUT)</h2>
+            <p>Test updating existing books. First select a book from the list above.</p>
+            <div class="book-form">
+                <input type="text" id="update-id" placeholder="Book ID" readonly>
+                <input type="text" id="update-title" placeholder="Updated Title">
+                <input type="text" id="update-author" placeholder="Updated Author">
+                <input type="number" id="update-price" placeholder="Updated Price" step="0.01">
+                <select id="update-category">
+                    <option value="Literature">Literature</option>
+                    <option value="Poetry">Poetry</option>
+                    <option value="History">History</option>
+                    <option value="Education">Education</option>
+                    <option value="Fiction">Fiction</option>
+                </select>
+                <input type="number" id="update-stock" placeholder="Updated Stock">
+                <textarea id="update-description" placeholder="Updated Description"></textarea>
+            </div>
+            <button class="test-button" onclick="updateBook()">Update Book</button>
+            <button class="test-button" onclick="updateBookPartial()">Partial Update</button>
+            <div id="update-result" class="result" style="display: none;"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>🗑️ Delete Book (DELETE)</h2>
+            <p>Test deleting books. Use with caution as this will permanently remove books.</p>
+            <input type="text" id="delete-id" placeholder="Book ID to Delete" style="width: 300px; padding: 10px; margin-right: 10px;">
+            <button class="test-button danger" onclick="deleteBook()">Delete Book</button>
+            <button class="test-button danger" onclick="deleteMultipleBooks()">Delete Test Books</button>
+            <div id="delete-result" class="result" style="display: none;"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>🔍 Advanced Operations</h2>
+            <p>Test advanced book management features.</p>
+            <button class="test-button" onclick="testBookValidation()">Test Validation</button>
+            <button class="test-button" onclick="testBookSearch()">Test Search Functionality</button>
+            <button class="test-button" onclick="testBookSorting()">Test Sorting</button>
+            <button class="test-button" onclick="testBookFiltering()">Test Filtering</button>
+            <div id="advanced-result" class="result" style="display: none;"></div>
+        </div>
+    </div>
+    
+    <script>
+        let allBooks = [];
+        let testBookIds = [];
+        
+        // Utility function to make API calls
+        async function apiCall(url, options = {}) {
+            try {
+                const token = localStorage.getItem('authToken');
+                const headers = {
+                    'Content-Type': 'application/json',
+                    ...options.headers
+                };
+                
+                if (token) {
+                    headers['Authorization'] = `Bearer ${token}`;
+                }
+                
+                const response = await fetch(url, {
+                    ...options,
+                    headers
+                });
+                
+                const data = await response.json();
+                return { response, data };
+            } catch (error) {
+                return { error: error.message };
+            }
+        }
+        
+        // Display result in specified element
+        function displayResult(elementId, content, type = 'info') {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            element.className = `result ${type}`;
+            element.innerHTML = content;
+        }
+        
+        // Get all books
+        async function getAllBooks() {
+            displayResult('read-result', 'Loading all books...', 'info');
+            
+            const { response, data, error } = await apiCall('/api/books');
+            
+            if (error) {
+                displayResult('read-result', `❌ Error: ${error}`, 'error');
+                return;
+            }
+            
+            if (response.ok && data.success) {
+                allBooks = data.data || [];
+                displayResult('read-result', `✅ Successfully loaded ${allBooks.length} books!<br>Total in database: ${data.total || data.count}`, 'success');
+                displayBooks(allBooks);
+            } else {
+                displayResult('read-result', `❌ Failed to load books: ${data.message || 'Unknown error'}`, 'error');
+            }
+        }
+        
+        // Get books with pagination
+        async function getBooksWithPagination() {
+            displayResult('read-result', 'Loading books with pagination...', 'info');
+            
+            const { response, data, error } = await apiCall('/api/books?page=1&limit=5');
+            
+            if (error) {
+                displayResult('read-result', `❌ Error: ${error}`, 'error');
+                return;
+            }
+            
+            if (response.ok && data.success) {
+                displayResult('read-result', `✅ Pagination test successful!<br>Page 1, Limit 5<br>Returned: ${data.data.length} books<br>Total: ${data.total}<br>Has Next: ${data.pagination?.next ? 'Yes' : 'No'}`, 'success');
+                displayBooks(data.data);
+            } else {
+                displayResult('read-result', `❌ Pagination failed: ${data.message}`, 'error');
+            }
+        }
+        
+        // Search books
+        async function searchBooks() {
+            const searchTerm = 'Literature';
+            displayResult('read-result', `Searching for books with term: "${searchTerm}"...`, 'info');
+            
+            const { response, data, error } = await apiCall(`/api/books?search=${encodeURIComponent(searchTerm)}`);
+            
+            if (error) {
+                displayResult('read-result', `❌ Search error: ${error}`, 'error');
+                return;
+            }
+            
+            if (response.ok && data.success) {
+                displayResult('read-result', `✅ Search successful!<br>Found ${data.data.length} books matching "${searchTerm}"`, 'success');
+                displayBooks(data.data);
+            } else {
+                displayResult('read-result', `❌ Search failed: ${data.message}`, 'error');
+            }
+        }
+        
+        // Filter books by category
+        async function filterBooksByCategory() {
+            const category = 'Literature';
+            displayResult('read-result', `Filtering books by category: "${category}"...`, 'info');
+            
+            const { response, data, error } = await apiCall(`/api/books?category=${encodeURIComponent(category)}`);
+            
+            if (error) {
+                displayResult('read-result', `❌ Filter error: ${error}`, 'error');
+                return;
+            }
+            
+            if (response.ok && data.success) {
+                displayResult('read-result', `✅ Filter successful!<br>Found ${data.data.length} books in "${category}" category`, 'success');
+                displayBooks(data.data);
+            } else {
+                displayResult('read-result', `❌ Filter failed: ${data.message}`, 'error');
+            }
+        }
+        
+        // Create a new book
+        async function createBook() {
+            displayResult('create-result', 'Creating new book...', 'info');
+            
+            const bookData = {
+                title: document.getElementById('new-title').value,
+                titleTamil: document.getElementById('new-title-tamil').value,
+                author: document.getElementById('new-author').value,
+                authorTamil: document.getElementById('new-author-tamil').value,
+                price: parseFloat(document.getElementById('new-price').value),
+                category: document.getElementById('new-category').value,
+                stock: parseInt(document.getElementById('new-stock').value),
+                isbn: document.getElementById('new-isbn').value,
+                description: document.getElementById('new-description').value,
+                status: 'available'
+            };
+            
+            const { response, data, error } = await apiCall('/api/books', {
+                method: 'POST',
+                body: JSON.stringify(bookData)
+            });
+            
+            if (error) {
+                displayResult('create-result', `❌ Create error: ${error}`, 'error');
+                return;
+            }
+            
+            if (response.ok && data.success) {
+                testBookIds.push(data.data._id);
+                displayResult('create-result', `✅ Book created successfully!<br>ID: ${data.data._id}<br>Title: ${data.data.title}<br>Author: ${data.data.author}`, 'success');
+                // Refresh the books list
+                getAllBooks();
+            } else {
+                displayResult('create-result', `❌ Create failed: ${data.message || 'Unknown error'}<br>Status: ${response.status}`, 'error');
+            }
+        }
+        
+        // Create multiple test books
+        async function createMultipleBooks() {
+            displayResult('create-result', 'Creating multiple test books...', 'info');
+            
+            const testBooks = [
+                {
+                    title: 'Tamil Poetry Collection',
+                    titleTamil: 'தமிழ் கவிதை தொகுப்பு',
+                    author: 'Test Poet',
+                    authorTamil: 'சோதனை கவிஞர்',
+                    price: 19.99,
+                    category: 'Poetry',
+                    stock: 50,
+                    description: 'A collection of modern Tamil poetry'
+                },
+                {
+                    title: 'Tamil History Guide',
+                    titleTamil: 'தமிழ் வரலாறு வழிகாட்டி',
+                    author: 'History Expert',
+                    authorTamil: 'வரலாற்று நிபுணர்',
+                    price: 34.99,
+                    category: 'History',
+                    stock: 30,
+                    description: 'Comprehensive guide to Tamil history'
+                }
+            ];
+            
+            let created = 0;
+            let failed = 0;
+            
+            for (const book of testBooks) {
+                const { response, data, error } = await apiCall('/api/books', {
+                    method: 'POST',
+                    body: JSON.stringify(book)
+                });
+                
+                if (response?.ok && data?.success) {
+                    testBookIds.push(data.data._id);
+                    created++;
+                } else {
+                    failed++;
+                }
+            }
+            
+            displayResult('create-result', `✅ Batch creation completed!<br>Created: ${created} books<br>Failed: ${failed} books<br>Test Book IDs stored for cleanup`, 'success');
+            getAllBooks();
+        }
+        
+        // Update a book
+        async function updateBook() {
+            const bookId = document.getElementById('update-id').value;
+            if (!bookId) {
+                displayResult('update-result', '❌ Please select a book to update first', 'error');
+                return;
+            }
+            
+            displayResult('update-result', 'Updating book...', 'info');
+            
+            const updateData = {
+                title: document.getElementById('update-title').value,
+                author: document.getElementById('update-author').value,
+                price: parseFloat(document.getElementById('update-price').value),
+                category: document.getElementById('update-category').value,
+                stock: parseInt(document.getElementById('update-stock').value),
+                description: document.getElementById('update-description').value
+            };
+            
+            // Remove empty fields
+            Object.keys(updateData).forEach(key => {
+                if (!updateData[key] && updateData[key] !== 0) {
+                    delete updateData[key];
+                }
+            });
+            
+            const { response, data, error } = await apiCall(`/api/books/${bookId}`, {
+                method: 'PUT',
+                body: JSON.stringify(updateData)
+            });
+            
+            if (error) {
+                displayResult('update-result', `❌ Update error: ${error}`, 'error');
+                return;
+            }
+            
+            if (response.ok && data.success) {
+                displayResult('update-result', `✅ Book updated successfully!<br>ID: ${bookId}<br>Updated fields: ${Object.keys(updateData).join(', ')}`, 'success');
+                getAllBooks();
+            } else {
+                displayResult('update-result', `❌ Update failed: ${data.message || 'Unknown error'}<br>Status: ${response.status}`, 'error');
+            }
+        }
+        
+        // Partial update
+        async function updateBookPartial() {
+            const bookId = document.getElementById('update-id').value;
+            if (!bookId) {
+                displayResult('update-result', '❌ Please select a book to update first', 'error');
+                return;
+            }
+            
+            displayResult('update-result', 'Performing partial update (price only)...', 'info');
+            
+            const updateData = {
+                price: 99.99
+            };
+            
+            const { response, data, error } = await apiCall(`/api/books/${bookId}`, {
+                method: 'PATCH',
+                body: JSON.stringify(updateData)
+            });
+            
+            if (error) {
+                displayResult('update-result', `❌ Partial update error: ${error}`, 'error');
+                return;
+            }
+            
+            if (response.ok && data.success) {
+                displayResult('update-result', `✅ Partial update successful!<br>Updated price to: $${updateData.price}`, 'success');
+                getAllBooks();
+            } else {
+                displayResult('update-result', `❌ Partial update failed: ${data.message || 'Unknown error'}`, 'error');
+            }
+        }
+        
+        // Delete a book
+        async function deleteBook() {
+            const bookId = document.getElementById('delete-id').value;
+            if (!bookId) {
+                displayResult('delete-result', '❌ Please enter a book ID to delete', 'error');
+                return;
+            }
+            
+            if (!confirm(`Are you sure you want to delete book with ID: ${bookId}?`)) {
+                return;
+            }
+            
+            displayResult('delete-result', 'Deleting book...', 'info');
+            
+            const { response, data, error } = await apiCall(`/api/books/${bookId}`, {
+                method: 'DELETE'
+            });
+            
+            if (error) {
+                displayResult('delete-result', `❌ Delete error: ${error}`, 'error');
+                return;
+            }
+            
+            if (response.ok && data.success) {
+                displayResult('delete-result', `✅ Book deleted successfully!<br>ID: ${bookId}`, 'success');
+                document.getElementById('delete-id').value = '';
+                getAllBooks();
+            } else {
+                displayResult('delete-result', `❌ Delete failed: ${data.message || 'Unknown error'}<br>Status: ${response.status}`, 'error');
+            }
+        }
+        
+        // Delete multiple test books
+        async function deleteMultipleBooks() {
+            if (testBookIds.length === 0) {
+                displayResult('delete-result', '❌ No test books to delete. Create some test books first.', 'error');
+                return;
+            }
+            
+            if (!confirm(`Are you sure you want to delete ${testBookIds.length} test books?`)) {
+                return;
+            }
+            
+            displayResult('delete-result', `Deleting ${testBookIds.length} test books...`, 'info');
+            
+            let deleted = 0;
+            let failed = 0;
+            
+            for (const bookId of testBookIds) {
+                const { response, data, error } = await apiCall(`/api/books/${bookId}`, {
+                    method: 'DELETE'
+                });
+                
+                if (response?.ok && data?.success) {
+                    deleted++;
+                } else {
+                    failed++;
+                }
+            }
+            
+            testBookIds = [];
+            displayResult('delete-result', `✅ Cleanup completed!<br>Deleted: ${deleted} books<br>Failed: ${failed} books`, 'success');
+            getAllBooks();
+        }
+        
+        // Display books in grid
+        function displayBooks(books) {
+            const grid = document.getElementById('books-display');
+            
+            if (!books || books.length === 0) {
+                grid.innerHTML = '<p style="text-align: center; color: #666;">No books to display</p>';
+                return;
+            }
+            
+            grid.innerHTML = books.map(book => `
+                <div class="book-card">
+                    <h4>${book.title}</h4>
+                    <p><strong>Author:</strong> ${book.author}</p>
+                    <p><strong>Category:</strong> ${book.category}</p>
+                    <p><strong>Price:</strong> $${book.price}</p>
+                    <p><strong>Stock:</strong> ${book.stock || 'N/A'}</p>
+                    <p><strong>ID:</strong> ${book._id}</p>
+                    <div class="book-actions">
+                        <button class="edit-btn" onclick="selectBookForEdit('${book._id}')">Edit</button>
+                        <button class="delete-btn" onclick="selectBookForDelete('${book._id}')">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Select book for editing
+        function selectBookForEdit(bookId) {
+            const book = allBooks.find(b => b._id === bookId);
+            if (book) {
+                document.getElementById('update-id').value = book._id;
+                document.getElementById('update-title').value = book.title;
+                document.getElementById('update-author').value = book.author;
+                document.getElementById('update-price').value = book.price;
+                document.getElementById('update-category').value = book.category;
+                document.getElementById('update-stock').value = book.stock || '';
+                document.getElementById('update-description').value = book.description || '';
+                
+                // Scroll to update section
+                document.querySelector('h2:contains("Update Book")').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        // Select book for deletion
+        function selectBookForDelete(bookId) {
+            document.getElementById('delete-id').value = bookId;
+            // Scroll to delete section
+            document.querySelector('h2:contains("Delete Book")').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Test validation
+        async function testBookValidation() {
+            displayResult('advanced-result', 'Testing book validation...', 'info');
+            
+            // Test with invalid data
+            const invalidBook = {
+                title: '', // Empty title
+                author: 'Test Author',
+                price: -10, // Negative price
+                category: 'InvalidCategory'
+            };
+            
+            const { response, data, error } = await apiCall('/api/books', {
+                method: 'POST',
+                body: JSON.stringify(invalidBook)
+            });
+            
+            if (response && !response.ok) {
+                displayResult('advanced-result', `✅ Validation working correctly!<br>Status: ${response.status}<br>Error: ${data.message || 'Validation failed as expected'}`, 'success');
+            } else {
+                displayResult('advanced-result', `❌ Validation test failed - invalid data was accepted`, 'error');
+            }
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Auto-load books on page load
+            getAllBooks();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchased Books Management Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        h1, h2 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .form-group {
+            margin: 15px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .delete-btn {
+            background-color: #dc3545;
+        }
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+        .update-btn {
+            background-color: #28a745;
+        }
+        .update-btn:hover {
+            background-color: #218838;
+        }
+        .results {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .purchase-item {
+            padding: 15px;
+            margin: 10px 0;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .purchase-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .purchase-info {
+            flex-grow: 1;
+        }
+        .purchase-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .status-processing {
+            background-color: #cce5ff;
+            color: #004085;
+        }
+        .status-completed {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .status-cancelled {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .error {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Purchased Books Management Test</h1>
+        <p>Comprehensive testing of purchase tracking, user purchase history, and admin purchase management.</p>
+        
+        <!-- Purchase Statistics -->
+        <div class="test-section">
+            <h2>📊 Purchase Statistics</h2>
+            
+            <button onclick="loadPurchaseStats()">Load Purchase Statistics</button>
+            <button onclick="refreshStats()">Refresh Stats</button>
+            
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalPurchases">-</div>
+                    <div class="stat-label">Total Purchases</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="totalRevenue">-</div>
+                    <div class="stat-label">Total Revenue</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="pendingOrders">-</div>
+                    <div class="stat-label">Pending Orders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="completedOrders">-</div>
+                    <div class="stat-label">Completed Orders</div>
+                </div>
+            </div>
+            
+            <div id="statsResults" class="results"></div>
+        </div>
+        
+        <!-- Purchase Management -->
+        <div class="test-section">
+            <h2>🛒 Purchase Management</h2>
+            
+            <div class="form-group">
+                <label>Filter by Status:</label>
+                <select id="statusFilter">
+                    <option value="">All Statuses</option>
+                    <option value="pending">Pending</option>
+                    <option value="processing">Processing</option>
+                    <option value="completed">Completed</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Search Purchases:</label>
+                <input type="text" id="searchInput" placeholder="Search by customer name, email, or order ID">
+            </div>
+            
+            <div class="form-group">
+                <button onclick="loadAllPurchases()">Load All Purchases</button>
+                <button onclick="searchPurchases()">Search Purchases</button>
+                <button onclick="exportPurchases()">Export to CSV</button>
+            </div>
+            
+            <div id="purchasesList" class="results"></div>
+        </div>
+        
+        <!-- User Purchase History -->
+        <div class="test-section">
+            <h2>👤 User Purchase History</h2>
+            
+            <div class="form-group">
+                <label>User Email:</label>
+                <input type="email" id="userEmail" placeholder="Enter user email to view purchase history">
+                <button onclick="loadUserPurchases()">Load User Purchases</button>
+            </div>
+            
+            <div id="userPurchasesResults" class="results"></div>
+        </div>
+        
+        <!-- Create Test Purchase -->
+        <div class="test-section">
+            <h2>➕ Create Test Purchase</h2>
+            
+            <div class="form-group">
+                <label>Customer Name:</label>
+                <input type="text" id="customerName" placeholder="Enter customer name">
+            </div>
+            
+            <div class="form-group">
+                <label>Customer Email:</label>
+                <input type="email" id="customerEmail" placeholder="Enter customer email">
+            </div>
+            
+            <div class="form-group">
+                <label>Customer Phone:</label>
+                <input type="tel" id="customerPhone" placeholder="Enter customer phone">
+            </div>
+            
+            <div class="form-group">
+                <label>Book ID:</label>
+                <input type="text" id="bookId" placeholder="Enter book ID">
+                <button onclick="loadAvailableBooks()">Load Available Books</button>
+            </div>
+            
+            <div class="form-group">
+                <label>Quantity:</label>
+                <input type="number" id="quantity" value="1" min="1">
+            </div>
+            
+            <div class="form-group">
+                <label>Payment Method:</label>
+                <select id="paymentMethod">
+                    <option value="online">Online Payment</option>
+                    <option value="cod">Cash on Delivery</option>
+                    <option value="bank_transfer">Bank Transfer</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Shipping Address:</label>
+                <textarea id="shippingAddress" placeholder="Enter shipping address"></textarea>
+            </div>
+            
+            <button onclick="createTestPurchase()">Create Test Purchase</button>
+            
+            <div id="createPurchaseResults" class="results"></div>
+        </div>
+    </div>
+    
+    <!-- Purchase Details Modal -->
+    <div id="purchaseModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePurchaseModal()">&times;</span>
+            <h2>Purchase Details</h2>
+            <div id="purchaseDetails"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8080/api';
+        let allPurchases = [];
+        
+        // Get auth token
+        function getAuthToken() {
+            return localStorage.getItem('token') || sessionStorage.getItem('token');
+        }
+        
+        // Load purchase statistics
+        async function loadPurchaseStats() {
+            const resultsDiv = document.getElementById('statsResults');
+            resultsDiv.innerHTML = 'Loading purchase statistics...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/purchases/stats`, {
+                    headers: {
+                        'Authorization': `Bearer ${getAuthToken()}`
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    updateStatsDisplay(result.data);
+                    resultsDiv.innerHTML = `<span class="success">✅ Statistics loaded successfully</span>\n${JSON.stringify(result.data, null, 2)}`;
+                } else {
+                    resultsDiv.innerHTML = `<span class="error">❌ Failed to load statistics: ${result.message}</span>`;
+                }
+            } catch (error) {
+                resultsDiv.innerHTML = `<span class="error">❌ Error loading statistics: ${error.message}</span>`;
+            }
+        }
+        
+        function updateStatsDisplay(stats) {
+            document.getElementById('totalPurchases').textContent = stats.totalPurchases || 0;
+            document.getElementById('totalRevenue').textContent = `₹${(stats.totalRevenue || 0).toFixed(2)}`;
+            document.getElementById('pendingOrders').textContent = stats.pendingOrders || 0;
+            document.getElementById('completedOrders').textContent = stats.completedOrders || 0;
+        }
+        
+        function refreshStats() {
+            loadPurchaseStats();
+        }
+        
+        // Load all purchases
+        async function loadAllPurchases() {
+            const resultsDiv = document.getElementById('purchasesList');
+            resultsDiv.innerHTML = 'Loading all purchases...';
+            
+            try {
+                const statusFilter = document.getElementById('statusFilter').value;
+                let url = `${API_BASE}/purchases`;
+                if (statusFilter) {
+                    url += `?status=${statusFilter}`;
+                }
+                
+                const response = await fetch(url, {
+                    headers: {
+                        'Authorization': `Bearer ${getAuthToken()}`
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    allPurchases = result.data || [];
+                    displayPurchases(allPurchases);
+                } else {
+                    resultsDiv.innerHTML = `<span class="error">❌ Failed to load purchases: ${result.message}</span>`;
+                }
+            } catch (error) {
+                resultsDiv.innerHTML = `<span class="error">❌ Error loading purchases: ${error.message}</span>`;
+            }
+        }
+        
+        function displayPurchases(purchases) {
+            const resultsDiv = document.getElementById('purchasesList');
+            
+            if (purchases.length === 0) {
+                resultsDiv.innerHTML = '<span class="error">No purchases found</span>';
+                return;
+            }
+            
+            resultsDiv.innerHTML = '';
+            purchases.forEach(purchase => {
+                const purchaseDiv = document.createElement('div');
+                purchaseDiv.className = 'purchase-item';
+                
+                const statusClass = `status-${purchase.orderStatus || 'pending'}`;
+                const totalAmount = purchase.totalAmount || 0;
+                const orderDate = new Date(purchase.createdAt).toLocaleDateString();
+                
+                purchaseDiv.innerHTML = `
+                    <div class="purchase-header">
+                        <div class="purchase-info">
+                            <strong>Order #${purchase.orderNumber || purchase._id?.substring(0, 8).toUpperCase()}</strong>
+                            <span class="status-badge ${statusClass}">${purchase.orderStatus || 'pending'}</span>
+                        </div>
+                        <div class="purchase-actions">
+                            <button onclick="viewPurchaseDetails('${purchase._id}')">View Details</button>
+                            <button class="update-btn" onclick="updatePurchaseStatus('${purchase._id}')">Update Status</button>
+                        </div>
+                    </div>
+                    <div>
+                        <strong>Customer:</strong> ${purchase.customerName} (${purchase.customerEmail})<br>
+                        <strong>Total:</strong> ₹${totalAmount.toFixed(2)}<br>
+                        <strong>Date:</strong> ${orderDate}<br>
+                        <strong>Payment:</strong> ${purchase.paymentMethod || 'N/A'}<br>
+                        <strong>Books:</strong> ${purchase.books?.length || 0} item(s)
+                    </div>
+                `;
+                
+                resultsDiv.appendChild(purchaseDiv);
+            });
+        }
+        
+        // Search purchases
+        function searchPurchases() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+            
+            let filteredPurchases = allPurchases.filter(purchase => {
+                const matchesSearch = !searchTerm || 
+                    purchase.customerName?.toLowerCase().includes(searchTerm) ||
+                    purchase.customerEmail?.toLowerCase().includes(searchTerm) ||
+                    purchase.orderNumber?.toLowerCase().includes(searchTerm) ||
+                    purchase._id?.toLowerCase().includes(searchTerm);
+                
+                const matchesStatus = !statusFilter || purchase.orderStatus === statusFilter;
+                
+                return matchesSearch && matchesStatus;
+            });
+            
+            displayPurchases(filteredPurchases);
+        }
+        
+        // Load user purchases
+        async function loadUserPurchases() {
+            const userEmail = document.getElementById('userEmail').value;
+            if (!userEmail) {
+                document.getElementById('userPurchasesResults').innerHTML = '<span class="error">Please enter a user email</span>';
+                return;
+            }
+            
+            const resultsDiv = document.getElementById('userPurchasesResults');
+            resultsDiv.innerHTML = 'Loading user purchases...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/purchases/user/${encodeURIComponent(userEmail)}`, {
+                    headers: {
+                        'Authorization': `Bearer ${getAuthToken()}`
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    const purchases = result.data || [];
+                    if (purchases.length > 0) {
+                        resultsDiv.innerHTML = `<span class="success">✅ Found ${purchases.length} purchase(s) for ${userEmail}</span>\n`;
+                        resultsDiv.innerHTML += JSON.stringify(purchases, null, 2);
+                    } else {
+                        resultsDiv.innerHTML = `<span class="error">No purchases found for ${userEmail}</span>`;
+                    }
+                } else {
+                    resultsDiv.innerHTML = `<span class="error">❌ Failed to load user purchases: ${result.message}</span>`;
+                }
+            } catch (error) {
+                resultsDiv.innerHTML = `<span class="error">❌ Error loading user purchases: ${error.message}</span>`;
+            }
+        }
+        
+        // Create test purchase
+        async function createTestPurchase() {
+            const customerName = document.getElementById('customerName').value;
+            const customerEmail = document.getElementById('customerEmail').value;
+            const customerPhone = document.getElementById('customerPhone').value;
+            const bookId = document.getElementById('bookId').value;
+            const quantity = document.getElementById('quantity').value;
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            const shippingAddress = document.getElementById('shippingAddress').value;
+            
+            if (!customerName || !customerEmail || !bookId) {
+                document.getElementById('createPurchaseResults').innerHTML = '<span class="error">Please fill in required fields</span>';
+                return;
+            }
+            
+            const resultsDiv = document.getElementById('createPurchaseResults');
+            resultsDiv.innerHTML = 'Creating test purchase...';
+            
+            try {
+                const purchaseData = {
+                    customerName,
+                    customerEmail,
+                    customerPhone,
+                    books: [{ bookId, quantity: parseInt(quantity) }],
+                    paymentMethod,
+                    shippingAddress
+                };
+                
+                const response = await fetch(`${API_BASE}/purchases`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${getAuthToken()}`
+                    },
+                    body: JSON.stringify(purchaseData)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    resultsDiv.innerHTML = `<span class="success">✅ Test purchase created successfully</span>\n`;
+                    resultsDiv.innerHTML += `Order ID: ${result.data._id}\n`;
+                    resultsDiv.innerHTML += `Order Number: ${result.data.orderNumber}\n`;
+                    resultsDiv.innerHTML += JSON.stringify(result.data, null, 2);
+                    
+                    // Clear form
+                    document.getElementById('customerName').value = '';
+                    document.getElementById('customerEmail').value = '';
+                    document.getElementById('customerPhone').value = '';
+                    document.getElementById('bookId').value = '';
+                    document.getElementById('quantity').value = '1';
+                    document.getElementById('shippingAddress').value = '';
+                } else {
+                    resultsDiv.innerHTML = `<span class="error">❌ Failed to create purchase: ${result.message}</span>`;
+                }
+            } catch (error) {
+                resultsDiv.innerHTML = `<span class="error">❌ Error creating purchase: ${error.message}</span>`;
+            }
+        }
+        
+        // Load available books
+        async function loadAvailableBooks() {
+            try {
+                const response = await fetch(`${API_BASE}/books`, {
+                    headers: {
+                        'Authorization': `Bearer ${getAuthToken()}`
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok && result.data?.length > 0) {
+                    const bookSelect = document.createElement('select');
+                    bookSelect.id = 'bookSelect';
+                    bookSelect.innerHTML = '<option value="">Select a book</option>';
+                    
+                    result.data.forEach(book => {
+                        const option = document.createElement('option');
+                        option.value = book._id;
+                        option.textContent = `${book.title} - ₹${book.price}`;
+                        bookSelect.appendChild(option);
+                    });
+                    
+                    bookSelect.addEventListener('change', (e) => {
+                        document.getElementById('bookId').value = e.target.value;
+                    });
+                    
+                    const bookIdInput = document.getElementById('bookId');
+                    bookIdInput.parentNode.insertBefore(bookSelect, bookIdInput.nextSibling);
+                }
+            } catch (error) {
+                console.error('Error loading books:', error);
+            }
+        }
+        
+        // View purchase details
+        async function viewPurchaseDetails(purchaseId) {
+            try {
+                const response = await fetch(`${API_BASE}/purchases/${purchaseId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${getAuthToken()}`
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    document.getElementById('purchaseDetails').innerHTML = `
+                        <h3>Purchase Details</h3>
+                        <pre>${JSON.stringify(result.data, null, 2)}</pre>
+                    `;
+                    document.getElementById('purchaseModal').style.display = 'block';
+                } else {
+                    alert(`Failed to load purchase details: ${result.message}`);
+                }
+            } catch (error) {
+                alert(`Error loading purchase details: ${error.message}`);
+            }
+        }
+        
+        // Update purchase status
+        async function updatePurchaseStatus(purchaseId) {
+            const newStatus = prompt('Enter new status (pending, processing, completed, cancelled):');
+            if (!newStatus) return;
+            
+            try {
+                const response = await fetch(`${API_BASE}/purchases/${purchaseId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${getAuthToken()}`
+                    },
+                    body: JSON.stringify({ orderStatus: newStatus })
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    alert('Purchase status updated successfully');
+                    loadAllPurchases(); // Refresh the list
+                } else {
+                    alert(`Failed to update status: ${result.message}`);
+                }
+            } catch (error) {
+                alert(`Error updating status: ${error.message}`);
+            }
+        }
+        
+        // Export purchases
+        function exportPurchases() {
+            if (allPurchases.length === 0) {
+                alert('No purchases to export. Please load purchases first.');
+                return;
+            }
+            
+            const csvContent = generatePurchasesCSV(allPurchases);
+            downloadCSV(csvContent, 'purchases.csv');
+        }
+        
+        function generatePurchasesCSV(purchases) {
+            const headers = ['Order ID', 'Customer Name', 'Customer Email', 'Total Amount', 'Status', 'Payment Method', 'Date'];
+            const rows = purchases.map(purchase => [
+                purchase.orderNumber || purchase._id?.substring(0, 8).toUpperCase(),
+                purchase.customerName,
+                purchase.customerEmail,
+                purchase.totalAmount,
+                purchase.orderStatus,
+                purchase.paymentMethod,
+                new Date(purchase.createdAt).toLocaleDateString()
+            ]);
+            
+            return [headers, ...rows].map(row => row.join(',')).join('\n');
+        }
+        
+        function downloadCSV(content, filename) {
+            const blob = new Blob([content], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        }
+        
+        function closePurchaseModal() {
+            document.getElementById('purchaseModal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('purchaseModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+        
+        // Auto-load data on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const token = getAuthToken();
+            if (!token) {
+                document.body.innerHTML = `
+                    <div class="container">
+                        <h1>🔒 Authentication Required</h1>
+                        <p>Please <a href="login.html">login</a> to access the purchased books management system.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Load initial data
+            setTimeout(() => {
+                loadPurchaseStats();
+                loadAllPurchases();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

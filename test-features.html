@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feature Testing Dashboard - TLS</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .test-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 5px solid #007bff;
+            transition: transform 0.3s ease;
+        }
+        .test-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .test-card h3 {
+            color: #007bff;
+            margin-top: 0;
+            font-size: 1.3em;
+        }
+        .test-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .test-link {
+            display: inline-block;
+            padding: 8px 15px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9em;
+            transition: background 0.3s ease;
+        }
+        .test-link:hover {
+            background: #0056b3;
+        }
+        .admin-link {
+            background: #dc3545;
+        }
+        .admin-link:hover {
+            background: #c82333;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-pending {
+            background: #ffc107;
+        }
+        .status-testing {
+            background: #17a2b8;
+        }
+        .status-passed {
+            background: #28a745;
+        }
+        .status-failed {
+            background: #dc3545;
+        }
+        .instructions {
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .instructions h2 {
+            color: #495057;
+            margin-top: 0;
+        }
+        .instructions ol {
+            color: #6c757d;
+        }
+        .api-test {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        .api-test h4 {
+            margin: 0 0 10px 0;
+            color: #856404;
+        }
+        .api-endpoint {
+            font-family: monospace;
+            background: #f8f9fa;
+            padding: 5px 8px;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 TLS Feature Testing Dashboard</h1>
+        
+        <div class="instructions">
+            <h2>📋 Testing Instructions</h2>
+            <ol>
+                <li>Click on each <strong>Admin Panel</strong> link to test CRUD operations</li>
+                <li>Click on each <strong>Public Page</strong> link to verify content display</li>
+                <li>Test API endpoints using browser developer tools or Postman</li>
+                <li>Verify that content edited in admin panel appears on public pages</li>
+                <li>Check database integration and real content vs dummy data</li>
+            </ol>
+        </div>
+
+        <div class="test-grid">
+            <!-- Content Management -->
+            <div class="test-card">
+                <h3><span class="status-indicator status-testing"></span>📝 Content Management</h3>
+                <p>Test website content editor, create sections, and public display</p>
+                <div class="test-links">
+                    <a href="http://localhost:8080/admin.html" class="test-link admin-link" target="_blank">Admin Panel</a>
+                    <a href="http://localhost:8080/" class="test-link" target="_blank">Home Page</a>
+                    <a href="http://localhost:8080/about.html" class="test-link" target="_blank">About Page</a>
+                </div>
+                <div class="api-test">
+                    <h4>API Endpoints to Test:</h4>
+                    <div class="api-endpoint">GET /api/website-content/sections/home</div>
+                    <div class="api-endpoint">PUT /api/website-content</div>
+                    <div class="api-endpoint">POST /api/website-content</div>
+                </div>
+            </div>
+
+            <!-- Books Management -->
+            <div class="test-card">
+                <h3><span class="status-indicator status-pending"></span>📚 Books Management</h3>
+                <p>Test book CRUD operations, search, filter, sort, and public display</p>
+                <div class="test-links">
+                    <a href="http://localhost:8080/admin.html" class="test-link admin-link" target="_blank">Admin Books</a>
+                    <a href="http://localhost:8080/books.html" class="test-link" target="_blank">Public Books</a>
+                </div>
+                <div class="api-test">
+                    <h4>API Endpoints to Test:</h4>
+                    <div class="api-endpoint">GET /api/books</div>
+                    <div class="api-endpoint">POST /api/books</div>
+                    <div class="api-endpoint">PUT /api/books/:id</div>
+                    <div class="api-endpoint">DELETE /api/books/:id</div>
+                </div>
+            </div>
+
+            <!-- Ebooks Management -->
+            <div class="test-card">
+                <h3><span class="status-indicator status-pending"></span>📖 Ebooks Management</h3>
+                <p>Test ebook CRUD operations, PDF downloads, and public display</p>
+                <div class="test-links">
+                    <a href="http://localhost:8080/admin.html" class="test-link admin-link" target="_blank">Admin Ebooks</a>
+                    <a href="http://localhost:8080/ebooks.html" class="test-link" target="_blank">Public Ebooks</a>
+                </div>
+                <div class="api-test">
+                    <h4>API Endpoints to Test:</h4>
+                    <div class="api-endpoint">GET /api/ebooks</div>
+                    <div class="api-endpoint">POST /api/ebooks</div>
+                    <div class="api-endpoint">PUT /api/ebooks/:id</div>
+                    <div class="api-endpoint">DELETE /api/ebooks/:id</div>
+                </div>
+            </div>
+
+            <!-- Projects Management -->
+            <div class="test-card">
+                <h3><span class="status-indicator status-pending"></span>🚀 Projects Management</h3>
+                <p>Test project CRUD operations and public display</p>
+                <div class="test-links">
+                    <a href="http://localhost:8080/admin.html" class="test-link admin-link" target="_blank">Admin Projects</a>
+                    <a href="http://localhost:8080/projects.html" class="test-link" target="_blank">Public Projects</a>
+                </div>
+                <div class="api-test">
+                    <h4>API Endpoints to Test:</h4>
+                    <div class="api-endpoint">GET /api/projects</div>
+                    <div class="api-endpoint">POST /api/projects</div>
+                    <div class="api-endpoint">PUT /api/projects/:id</div>
+                    <div class="api-endpoint">DELETE /api/projects/:id</div>
+                </div>
+            </div>
+
+            <!-- Activities & Initiatives -->
+            <div class="test-card">
+                <h3><span class="status-indicator status-pending"></span>🎯 Activities & Initiatives</h3>
+                <p>Test activities and initiatives CRUD operations</p>
+                <div class="test-links">
+                    <a href="http://localhost:8080/admin.html" class="test-link admin-link" target="_blank">Admin Activities</a>
+                    <a href="http://localhost:8080/" class="test-link" target="_blank">Public Display</a>
+                </div>
+                <div class="api-test">
+                    <h4>API Endpoints to Test:</h4>
+                    <div class="api-endpoint">GET /api/admin/activities</div>
+                    <div class="api-endpoint">POST /api/admin/activities</div>
+                    <div class="api-endpoint">PUT /api/admin/activities/:id</div>
+                    <div class="api-endpoint">DELETE /api/admin/activities/:id</div>
+                </div>
+            </div>
+
+            <!-- Chat System -->
+            <div class="test-card">
+                <h3><span class="status-indicator status-pending"></span>💬 Chat System</h3>
+                <p>Test admin chat functionality and public chat widget</p>
+                <div class="test-links">
+                    <a href="http://localhost:8080/admin.html" class="test-link admin-link" target="_blank">Admin Chat</a>
+                    <a href="http://localhost:8080/" class="test-link" target="_blank">Public Chat Widget</a>
+                </div>
+                <div class="api-test">
+                    <h4>API Endpoints to Test:</h4>
+                    <div class="api-endpoint">GET /api/admin/messages</div>
+                    <div class="api-endpoint">POST /api/messages</div>
+                    <div class="api-endpoint">PUT /api/messages/:id</div>
+                </div>
+            </div>
+
+            <!-- Users Management -->
+            <div class="test-card">
+                <h3><span class="status-indicator status-pending"></span>👥 Users Management</h3>
+                <p>Test user CRUD operations, profiles, and authentication</p>
+                <div class="test-links">
+                    <a href="http://localhost:8080/admin.html" class="test-link admin-link" target="_blank">Admin Users</a>
+                    <a href="http://localhost:8080/login.html" class="test-link" target="_blank">Login</a>
+                    <a href="http://localhost:8080/signup.html" class="test-link" target="_blank">Signup</a>
+                </div>
+                <div class="api-test">
+                    <h4>API Endpoints to Test:</h4>
+                    <div class="api-endpoint">GET /api/users</div>
+                    <div class="api-endpoint">POST /api/auth/register</div>
+                    <div class="api-endpoint">POST /api/auth/login</div>
+                    <div class="api-endpoint">PUT /api/users/:id</div>
+                </div>
+            </div>
+
+            <!-- Slideshow Management -->
+            <div class="test-card">
+                <h3><span class="status-indicator status-pending"></span>🎠 Slideshow Management</h3>
+                <p>Test slide CRUD operations and homepage display</p>
+                <div class="test-links">
+                    <a href="http://localhost:8080/admin.html" class="test-link admin-link" target="_blank">Admin Slideshow</a>
+                    <a href="http://localhost:8080/" class="test-link" target="_blank">Homepage Slideshow</a>
+                </div>
+                <div class="api-test">
+                    <h4>API Endpoints to Test:</h4>
+                    <div class="api-endpoint">GET /api/slides</div>
+                    <div class="api-endpoint">POST /api/slides</div>
+                    <div class="api-endpoint">PUT /api/slides/:id</div>
+                    <div class="api-endpoint">DELETE /api/slides/:id</div>
+                </div>
+            </div>
+
+            <!-- File Storage -->
+            <div class="test-card">
+                <h3><span class="status-indicator status-pending"></span>📁 File Storage</h3>
+                <p>Test file uploads and storage system</p>
+                <div class="test-links">
+                    <a href="http://localhost:8080/admin.html" class="test-link admin-link" target="_blank">Admin File Manager</a>
+                </div>
+                <div class="api-test">
+                    <h4>API Endpoints to Test:</h4>
+                    <div class="api-endpoint">POST /api/upload</div>
+                    <div class="api-endpoint">GET /api/files</div>
+                    <div class="api-endpoint">DELETE /api/files/:id</div>
+                </div>
+            </div>
+
+            <!-- Purchased Books -->
+            <div class="test-card">
+                <h3><span class="status-indicator status-pending"></span>🛒 Purchased Books</h3>
+                <p>Test purchase tracking and user purchase history</p>
+                <div class="test-links">
+                    <a href="http://localhost:8080/admin.html" class="test-link admin-link" target="_blank">Admin Purchases</a>
+                    <a href="http://localhost:8080/profile.html" class="test-link" target="_blank">User Profile</a>
+                </div>
+                <div class="api-test">
+                    <h4>API Endpoints to Test:</h4>
+                    <div class="api-endpoint">GET /api/purchases</div>
+                    <div class="api-endpoint">POST /api/purchases</div>
+                    <div class="api-endpoint">GET /api/users/:id/purchases</div>
+                </div>
+            </div>
+
+            <!-- Payment Settings -->
+            <div class="test-card">
+                <h3><span class="status-indicator status-pending"></span>💳 Payment Settings</h3>
+                <p>Test payment configuration and processing</p>
+                <div class="test-links">
+                    <a href="http://localhost:8080/admin.html" class="test-link admin-link" target="_blank">Admin Payments</a>
+                </div>
+                <div class="api-test">
+                    <h4>API Endpoints to Test:</h4>
+                    <div class="api-endpoint">GET /api/admin/settings</div>
+                    <div class="api-endpoint">PUT /api/admin/settings</div>
+                    <div class="api-endpoint">POST /api/payments/process</div>
+                </div>
+            </div>
+
+            <!-- Announcements -->
+            <div class="test-card">
+                <h3><span class="status-indicator status-pending"></span>📢 Announcements</h3>
+                <p>Test announcement CRUD operations and public display</p>
+                <div class="test-links">
+                    <a href="http://localhost:8080/admin.html" class="test-link admin-link" target="_blank">Admin Announcements</a>
+                    <a href="http://localhost:8080/" class="test-link" target="_blank">Public Announcements</a>
+                </div>
+                <div class="api-test">
+                    <h4>API Endpoints to Test:</h4>
+                    <div class="api-endpoint">GET /api/announcements</div>
+                    <div class="api-endpoint">POST /api/announcements</div>
+                    <div class="api-endpoint">PUT /api/announcements/:id</div>
+                    <div class="api-endpoint">DELETE /api/announcements/:id</div>
+                </div>
+            </div>
+
+            <!-- Posters -->
+            <div class="test-card">
+                <h3><span class="status-indicator status-pending"></span>🖼️ Posters</h3>
+                <p>Test poster CRUD operations and public display</p>
+                <div class="test-links">
+                    <a href="http://localhost:8080/admin.html" class="test-link admin-link" target="_blank">Admin Posters</a>
+                    <a href="http://localhost:8080/" class="test-link" target="_blank">Public Posters</a>
+                </div>
+                <div class="api-test">
+                    <h4>API Endpoints to Test:</h4>
+                    <div class="api-endpoint">GET /api/posters</div>
+                    <div class="api-endpoint">POST /api/posters</div>
+                    <div class="api-endpoint">PUT /api/posters/:id</div>
+                    <div class="api-endpoint">DELETE /api/posters/:id</div>
+                </div>
+            </div>
+
+            <!-- Recruitment Management -->
+            <div class="test-card">
+                <h3><span class="status-indicator status-pending"></span>🎯 Recruitment Management</h3>
+                <p>Test recruitment CRUD operations and application processing</p>
+                <div class="test-links">
+                    <a href="http://localhost:8080/admin.html" class="test-link admin-link" target="_blank">Admin Recruitment</a>
+                    <a href="http://localhost:8080/careers.html" class="test-link" target="_blank">Public Careers</a>
+                </div>
+                <div class="api-test">
+                    <h4>API Endpoints to Test:</h4>
+                    <div class="api-endpoint">GET /api/recruitment</div>
+                    <div class="api-endpoint">POST /api/recruitment</div>
+                    <div class="api-endpoint">PUT /api/recruitment/:id</div>
+                    <div class="api-endpoint">DELETE /api/recruitment/:id</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+            <h3>🔍 Testing Checklist</h3>
+            <p><strong>For each feature, verify:</strong></p>
+            <ul style="text-align: left; display: inline-block;">
+                <li>✅ Admin CRUD operations work correctly</li>
+                <li>✅ Data persists in database (not dummy data)</li>
+                <li>✅ Public pages display real content from database</li>
+                <li>✅ Content editor changes appear on public website</li>
+                <li>✅ API endpoints return proper responses</li>
+                <li>✅ Error handling works appropriately</li>
+                <li>✅ Authentication and authorization function correctly</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Add click tracking for testing
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('test-link')) {
+                console.log('Testing:', e.target.textContent, 'URL:', e.target.href);
+            }
+        });
+
+        // Auto-refresh status indicators (placeholder for future implementation)
+        function updateTestStatus(feature, status) {
+            // This could be connected to actual test results
+            console.log(`Feature: ${feature}, Status: ${status}`);
+        }
+    </script>
+</body>
+</html>
