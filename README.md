@@ -1,4 +1,5 @@
-# Tamil Language Society Website
+# TLS-PROJECTS
+TAMIL LANGUAGE SOCIETY WEBSITE
 
 A full-stack web application for the Tamil Language Society, featuring user authentication, content management, and admin dashboard.
 
