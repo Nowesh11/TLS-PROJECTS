@@ -35,24 +35,26 @@ const upload = multer({
 // @access  Public
 exports.getInitiatives = async (req, res, next) => {
     try {
-        let query = Initiative.find();
+        // Build query object
+        let queryObj = {};
 
         // Search functionality
         if (req.query.q) {
-            query = query.find({
-                $text: { $search: req.query.q }
-            });
+            queryObj.$text = { $search: req.query.q };
         }
 
         // Filter by bureau
         if (req.query.bureau) {
-            query = query.find({ bureau: req.query.bureau });
+            queryObj.bureau = req.query.bureau;
         }
 
         // Filter by status
         if (req.query.status) {
-            query = query.find({ status: req.query.status });
+            queryObj.status = req.query.status;
         }
+
+        // Create query with filters
+        let query = Initiative.find(queryObj);
 
         // Sort
         if (req.query.sort) {
@@ -67,12 +69,30 @@ exports.getInitiatives = async (req, res, next) => {
         const limit = parseInt(req.query.limit, 10) || 10;
         const startIndex = (page - 1) * limit;
         const endIndex = page * limit;
-        const total = await Initiative.countDocuments(query.getQuery());
+        const total = await Initiative.countDocuments(queryObj);
 
         query = query.skip(startIndex).limit(limit);
 
         // Execute query
         const initiatives = await query;
+
+        // Language filtering
+        let processedInitiatives = initiatives;
+        if (req.query.lang && (req.query.lang === 'en' || req.query.lang === 'ta')) {
+            processedInitiatives = initiatives.map(initiative => {
+                const initiativeObj = initiative.toObject();
+                
+                // Transform bilingual fields to single language
+                if (initiativeObj.title && typeof initiativeObj.title === 'object') {
+                    initiativeObj.title = initiativeObj.title[req.query.lang] || initiativeObj.title.en;
+                }
+                if (initiativeObj.description && typeof initiativeObj.description === 'object') {
+                    initiativeObj.description = initiativeObj.description[req.query.lang] || initiativeObj.description.en;
+                }
+                
+                return initiativeObj;
+            });
+        }
 
         // Pagination result
         const pagination = {};
@@ -91,10 +111,10 @@ exports.getInitiatives = async (req, res, next) => {
 
         res.status(200).json({
             success: true,
-            count: initiatives.length,
+            count: processedInitiatives.length,
             total,
             pagination,
-            data: initiatives
+            data: processedInitiatives
         });
     } catch (error) {
         console.error("Error fetching initiatives:", error);
@@ -113,9 +133,31 @@ exports.getInitiative = async (req, res, next) => {
             return next(new ErrorResponse(`Initiative not found with id of ${req.params.id}`, 404));
         }
 
+        // Language filtering
+        let processedInitiative = initiative;
+        if (req.query.lang && (req.query.lang === 'en' || req.query.lang === 'ta')) {
+            const initiativeObj = initiative.toObject();
+            
+            // Transform bilingual fields to single language
+            if (initiativeObj.title && typeof initiativeObj.title === 'object') {
+                initiativeObj.title = initiativeObj.title[req.query.lang] || initiativeObj.title.en;
+            }
+            if (initiativeObj.description && typeof initiativeObj.description === 'object') {
+                initiativeObj.description = initiativeObj.description[req.query.lang] || initiativeObj.description.en;
+            }
+            if (initiativeObj.goals && typeof initiativeObj.goals === 'object') {
+                initiativeObj.goals = initiativeObj.goals[req.query.lang] || initiativeObj.goals.en;
+            }
+            if (initiativeObj.director && typeof initiativeObj.director === 'object') {
+                initiativeObj.director = initiativeObj.director[req.query.lang] || initiativeObj.director.en;
+            }
+            
+            processedInitiative = initiativeObj;
+        }
+
         res.status(200).json({
             success: true,
-            data: initiative
+            data: processedInitiative
         });
     } catch (error) {
         next(error);

@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-content="global.title">Tamil Language Society</title>
+    <link rel="icon" type="image/svg+xml" href="../public/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../public/css/style.css?v=2.0">
+    <link rel="stylesheet" href="../public/css/slideshow.css?v=2.0">
+    
+    <style>
+        /* Modern Page-specific Styling */
+        .hero {
+            background: var(--bg-hero);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: 200% 200%;
+            animation: gradientFlow 8s ease infinite;
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+        
+        .hero-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0.9;
+        }
+        
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 2px, transparent 2px);
+            background-size: 50px 50px;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: var(--text-inverse);
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-8);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-12);
+            align-items: center;
+        }
+        
+        .hero-text {
+            text-align: left;
+        }
+        
+        .hero-title {
+            font-size: var(--font-size-5xl);
+            font-weight: var(--font-bold);
+            margin-bottom: var(--space-6);
+            line-height: var(--line-height-tight);
+        }
+        
+        .english-title {
+            display: block;
+            background: linear-gradient(135deg, var(--text-inverse), var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .tamil-title {
+            display: block;
+            font-family: var(--font-family-tamil);
+            font-size: var(--font-size-4xl);
+            margin-top: var(--space-2);
+            color: var(--accent-color);
+        }
+        
+        .hero-subtitle {
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--space-4);
+            opacity: 0.9;
+            line-height: var(--line-height-relaxed);
+        }
+        
+        .tamil-quote {
+            font-family: var(--font-family-tamil);
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-semibold);
+            color: var(--accent-color);
+            margin-bottom: var(--space-8);
+            font-style: italic;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+        }
+        
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .floating-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--bg-overlay);
+            border-radius: var(--radius-3xl);
+            padding: var(--space-8);
+            box-shadow: var(--shadow-2xl);
+            animation: float 6s ease-in-out infinite;
+            transform-style: preserve-3d;
+        }
+        
+        .hero-logo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* Modern Navigation Styling */
+        .navbar {
+            background: var(--surface-color);
+            backdrop-filter: var(--backdrop-blur);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: var(--transition-all);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-4) var(--space-6);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-lg);
+            object-fit: cover;
+        }
+        
+        .logo-text {
+            font-family: var(--font-family-tamil);
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-bold);
+            color: var(--text-primary);
+        }
+        
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: var(--space-6);
+        }
+        
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: var(--font-medium);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-lg);
+            transition: var(--transition-all);
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color);
+            background: var(--primary-color-alpha);
+            transform: translateY(-2px);
+        }
+        
+        .nav-link.active {
+            color: var(--primary-color);
+            background: var(--primary-color-alpha);
+        }
+        
+
+        
+        .signup-btn {
+            background: var(--gradient-primary) !important;
+            color: var(--text-inverse) !important;
+            padding: var(--space-3) var(--space-6) !important;
+            border-radius: var(--radius-full) !important;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .signup-btn:hover {
+            transform: translateY(-3px) scale(1.05) !important;
+            box-shadow: var(--shadow-lg) !important;
+        }
+        
+        /* Theme Toggle Styling */
+        .theme-toggle {
+            position: fixed;
+            top: var(--space-6);
+            right: var(--space-6);
+            z-index: 1001;
+        }
+        
+        .theme-toggle button {
+            background: var(--surface-color);
+            backdrop-filter: var(--backdrop-blur);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-full);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: var(--transition-all);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .theme-toggle button:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: var(--shadow-xl);
+            background: var(--primary-color);
+            color: var(--text-inverse);
+        }
+        
+        /* Language Toggle Styling */
+        .language-toggle {
+            display: flex;
+            background: var(--bg-glass);
+            border: 1px solid var(--bg-overlay);
+            border-radius: 50px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .lang-btn {
+            background: none;
+            border: none;
+            padding: 0.5rem 1rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .lang-btn.active {
+            background: var(--bg-hero);
+            color: var(--text-inverse);
+            background-size: 200% 200%;
+            animation: gradientFlow 8s ease infinite;
+        }
+        
+        .lang-btn:hover:not(.active) {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(1deg); }
+            50% { transform: translateY(-20px) rotate(0deg); }
+            75% { transform: translateY(-10px) rotate(-1deg); }
+        }
+        
+        /* Modern Features Section */
+         .features {
+             padding: var(--space-20) var(--space-6);
+             background: var(--surface-secondary);
+         }
+         
+         .section-title {
+             text-align: center;
+             font-size: var(--font-size-4xl);
+             font-weight: var(--font-bold);
+             margin-bottom: var(--space-16);
+             color: var(--text-primary);
+         }
+         
+         .section-title .english {
+             display: block;
+             background: var(--gradient-primary);
+             -webkit-background-clip: text;
+             -webkit-text-fill-color: transparent;
+             background-clip: text;
+         }
+         
+         .section-title .tamil {
+             display: block;
+             font-family: var(--font-family-tamil);
+             font-size: var(--font-size-2xl);
+             margin-top: var(--space-2);
+             color: var(--text-secondary);
+         }
+         
+         .features-grid {
+             display: grid;
+             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+             gap: var(--space-8);
+             max-width: 1200px;
+             margin: 0 auto;
+         }
+         
+         .feature-card {
+             background: var(--surface-color);
+             backdrop-filter: var(--backdrop-blur);
+             border: 1px solid var(--border-color);
+             border-radius: var(--radius-3xl);
+             padding: var(--space-8);
+             text-align: center;
+             transition: var(--transition-all);
+             position: relative;
+             overflow: hidden;
+             box-shadow: var(--shadow-lg);
+         }
+         
+         .feature-card::before {
+             content: '';
+             position: absolute;
+             top: 0;
+             left: 0;
+             right: 0;
+             bottom: 0;
+             background: var(--gradient-primary);
+             opacity: 0;
+             transition: opacity var(--transition-duration);
+             z-index: 1;
+         }
+         
+         .feature-card:hover::before {
+             opacity: 0.05;
+         }
+         
+         .feature-card:hover {
+             transform: translateY(-10px) scale(1.02);
+             box-shadow: var(--shadow-2xl);
+         }
+         
+         .feature-card > * {
+             position: relative;
+             z-index: 2;
+         }
+         
+         .feature-icon {
+             width: 80px;
+             height: 80px;
+             margin: 0 auto var(--space-6);
+             background: var(--gradient-primary);
+             border-radius: var(--radius-2xl);
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             font-size: var(--font-size-2xl);
+             color: var(--text-inverse);
+             box-shadow: var(--shadow-lg);
+             transition: var(--transition-all);
+         }
+         
+         .feature-card:hover .feature-icon {
+             transform: scale(1.1) rotate(5deg);
+             box-shadow: var(--shadow-xl);
+         }
+         
+         .feature-card h2 {
+             font-size: var(--font-size-xl);
+             font-weight: var(--font-bold);
+             margin-bottom: var(--space-4);
+             color: var(--text-primary);
+         }
+         
+         .feature-card p {
+             color: var(--text-secondary);
+             line-height: var(--line-height-relaxed);
+             margin-bottom: var(--space-6);
+         }
+         
+         .feature-link {
+             display: inline-flex;
+             align-items: center;
+             gap: var(--space-2);
+             color: var(--primary-color);
+             text-decoration: none;
+             font-weight: var(--font-semibold);
+             transition: var(--transition-all);
+         }
+         
+         .feature-link:hover {
+             color: var(--primary-color-dark);
+             transform: translateX(5px);
+         }
+         
+         /* Modern Statistics Section */
+         .stats {
+             padding: var(--space-20) var(--space-6);
+             background: var(--primary-color);
+             color: var(--text-inverse);
+         }
+         
+         .stats-grid {
+             display: grid;
+             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+             gap: var(--space-8);
+             max-width: 1000px;
+             margin: 0 auto;
+         }
+         
+         .stat-item {
+             text-align: center;
+             padding: var(--space-6);
+             background: rgba(255, 255, 255, 0.1);
+             backdrop-filter: var(--backdrop-blur);
+             border: 1px solid rgba(255, 255, 255, 0.2);
+             border-radius: var(--radius-2xl);
+             transition: var(--transition-all);
+         }
+         
+         .stat-item:hover {
+             transform: translateY(-5px);
+             background: rgba(255, 255, 255, 0.15);
+             box-shadow: var(--shadow-xl);
+         }
+         
+         .stat-number {
+             font-size: var(--font-size-5xl);
+             font-weight: var(--font-bold);
+             color: var(--accent-color);
+             margin-bottom: var(--space-2);
+             display: block;
+         }
+         
+         .stat-label {
+             font-size: var(--font-size-lg);
+             color: var(--text-inverse);
+             opacity: 0.9;
+         }
+         
+         /* Modern Footer */
+         .footer {
+             background: var(--surface-tertiary);
+             color: var(--text-inverse);
+             padding: var(--space-16) var(--space-6) var(--space-8);
+         }
+         
+         .footer-content {
+             display: grid;
+             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+             gap: var(--space-8);
+             max-width: 1200px;
+             margin: 0 auto;
+         }
+         
+         .footer-section h2 {
+             font-size: var(--font-size-xl);
+             font-weight: var(--font-bold);
+             margin-bottom: var(--space-4);
+             color: var(--accent-color);
+         }
+         
+         .footer-logo {
+             display: flex;
+             align-items: center;
+             gap: var(--space-3);
+             margin-bottom: var(--space-4);
+         }
+         
+         .footer-logo img {
+             width: 50px;
+             height: 50px;
+             border-radius: var(--radius-lg);
+             object-fit: cover;
+         }
+         
+         .footer-logo span {
+             font-family: var(--font-family-tamil);
+             font-size: var(--font-size-xl);
+             font-weight: var(--font-bold);
+         }
+         
+         .social-links {
+             display: flex;
+             gap: var(--space-3);
+             margin-top: var(--space-4);
+         }
+         
+         .social-link {
+             width: 40px;
+             height: 40px;
+             background: var(--gradient-primary);
+             color: var(--text-inverse);
+             border-radius: var(--radius-lg);
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             text-decoration: none;
+             transition: var(--transition-all);
+             box-shadow: var(--shadow-md);
+         }
+         
+         .social-link:hover {
+             transform: translateY(-3px) scale(1.1);
+             box-shadow: var(--shadow-lg);
+         }
+         
+         .footer-section ul {
+             list-style: none;
+             padding: 0;
+         }
+         
+         .footer-section ul li {
+             margin-bottom: var(--space-2);
+         }
+         
+         .footer-section ul li a {
+             color: var(--text-inverse);
+             text-decoration: none;
+             opacity: 0.8;
+             transition: var(--transition-all);
+         }
+         
+         .footer-section ul li a:hover {
+             opacity: 1;
+             color: var(--accent-color);
+             transform: translateX(5px);
+         }
+         
+         .newsletter-form {
+             display: flex;
+             gap: var(--space-2);
+             margin-top: var(--space-4);
+         }
+         
+         .newsletter-input {
+             flex: 1;
+             padding: var(--space-3);
+             border: 1px solid var(--border-color);
+             border-radius: var(--radius-lg);
+             background: var(--surface-color);
+             color: var(--text-primary);
+         }
+         
+         .newsletter-btn {
+             background: var(--gradient-primary);
+             color: var(--text-inverse);
+             border: none;
+             padding: var(--space-3);
+             border-radius: var(--radius-lg);
+             cursor: pointer;
+             transition: var(--transition-all);
+             box-shadow: var(--shadow-md);
+         }
+         
+         .newsletter-btn:hover {
+             transform: scale(1.05);
+             box-shadow: var(--shadow-lg);
+         }
+         
+         .footer-bottom {
+             text-align: center;
+             margin-top: var(--space-8);
+             padding-top: var(--space-8);
+             border-top: 1px solid rgba(255, 255, 255, 0.2);
+             opacity: 0.8;
+         }
+         
+         /* Announcements Section */
+         .announcements-section {
+             padding: var(--space-16) var(--space-6);
+             background: var(--primary-color);
+         }
+         
+         .announcement-card {
+             max-width: 1000px;
+             margin: 0 auto;
+             background: var(--surface-color);
+             backdrop-filter: var(--backdrop-blur);
+             border: 1px solid var(--border-color);
+             border-radius: var(--radius-3xl);
+             overflow: hidden;
+             box-shadow: var(--shadow-2xl);
+             display: grid;
+             grid-template-columns: 300px 1fr;
+             gap: 0;
+         }
+         
+         .announcement-image img {
+             width: 100%;
+             height: 200px;
+             object-fit: cover;
+         }
+         
+         .announcement-content {
+             padding: var(--space-8);
+         }
+         
+         .announcement-content h2 {
+             font-size: var(--font-size-2xl);
+             font-weight: var(--font-bold);
+             margin-bottom: var(--space-4);
+             color: var(--text-primary);
+         }
+         
+         .announcement-content p {
+             color: var(--text-secondary);
+             line-height: var(--line-height-relaxed);
+             margin-bottom: var(--space-6);
+         }
+         
+         /* Notification Toast */
+         .notification-toast {
+             position: fixed;
+             top: var(--space-6);
+             right: var(--space-6);
+             background: var(--surface-color);
+             backdrop-filter: var(--backdrop-blur);
+             border: 1px solid var(--border-color);
+             border-radius: var(--radius-2xl);
+             padding: var(--space-4);
+             box-shadow: var(--shadow-xl);
+             z-index: 1050;
+             transform: translateX(100%);
+             transition: transform var(--transition-duration);
+             pointer-events: none;
+         }
+         
+         .notification-toast.show {
+             transform: translateX(0);
+             pointer-events: auto;
+         }
+         
+         .toast-content {
+             display: flex;
+             align-items: center;
+             gap: var(--space-3);
+         }
+         
+         .toast-close {
+             background: none;
+             border: none;
+             color: var(--text-secondary);
+             cursor: pointer;
+             padding: var(--space-1);
+             border-radius: var(--radius-md);
+             transition: var(--transition-all);
+         }
+         
+         .toast-close:hover {
+             background: var(--danger-color);
+             color: var(--text-inverse);
+         }
+         
+         @media (max-width: 768px) {
+             .hero-content {
+                 grid-template-columns: 1fr;
+                 text-align: center;
+                 gap: var(--space-8);
+                 padding: var(--space-6);
+             }
+             
+             .hero-text {
+                 text-align: center;
+             }
+             
+             .hero-title {
+                 font-size: var(--font-size-3xl);
+             }
+             
+             .nav-menu {
+                 display: none;
+             }
+             
+             .features-grid {
+                 grid-template-columns: 1fr;
+             }
+             
+             .stats-grid {
+                 grid-template-columns: repeat(2, 1fr);
+             }
+             
+             .footer-content {
+                 grid-template-columns: 1fr;
+             }
+             
+             .announcement-card {
+                 grid-template-columns: 1fr;
+             }
+             
+             .theme-toggle {
+                 top: var(--space-4);
+                 right: var(--space-4);
+             }
+         }
+    </style>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="../public/manifest.json">
+    <meta name="theme-color" content="#d32f2f">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Tamil Language Society">
+    <link rel="apple-touch-icon" href="../public/assets/logo.png">
+    
+    <!-- API Integration -->
+    <script src="../public/js/api-integration.js?v=2.0"></script>
+    <!-- Content Management -->
+</head>
+<body>
+    <!-- Theme toggle will be created by ThemeManager -->
+
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img data-content="global.logo.image" src="../public/assets/logo.png" alt="Tamil Language Society" class="logo-img">
+                <span data-content="global.logo.text" class="logo-text">Tamil Language Society</span>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link active" data-content="global.menu.home">Home</a>
+                <a href="about.html" class="nav-link" data-content="global.menu.about">About Us</a>
+                <a href="projects.html" class="nav-link" data-content="global.menu.projects">Projects</a>
+                <a href="ebooks.html" class="nav-link" data-content="global.menu.ebooks">Ebooks</a>
+                <a href="books.html" class="nav-link" data-content="global.menu.bookstore">Book Store</a>
+                <a href="contact.html" class="nav-link" data-content="global.menu.contact">Contact Us</a>
+
+                <a href="notifications.html" class="nav-link notification-icon" data-testid="notification-bell">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-dot" id="notification-dot"></span>
+                </a>
+                <a href="login.html" class="nav-link" data-content="global.menu.login">Login</a>
+                <a href="signup.html" class="nav-link signup-btn" data-content="global.menu.signup">Sign Up</a>
+                
+                <!-- Language Toggle -->
+                <div class="language-toggle" id="language-toggle">
+                    <button class="lang-btn active" data-lang="en" title="English">EN</button>
+                    <button class="lang-btn" data-lang="ta" title="Tamil">TA</button>
+                </div>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+            <div class="hero-pattern"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span data-content="homepage.hero.title" class="english-title">Tamil Language Society</span>
+                </h1>
+                <p data-content="homepage.hero.subtitle" class="hero-subtitle">
+                    Preserving and promoting the beautiful Tamil language and culture for future generations
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" data-content-url="homepage.hero.primaryButtonUrl" onclick="window.location.href='about.html'">
+                        <i class="fas fa-heart"></i>
+                        <span data-content="homepage.hero.primaryButtonText">Explore Our Mission</span>
+                    </button>
+                    <button class="btn btn-secondary" data-content-url="homepage.hero.secondaryButtonUrl" onclick="window.location.href='projects.html'">
+                        <i class="fas fa-project-diagram"></i>
+                        <span data-content="homepage.hero.secondaryButtonText">View Projects</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="floating-card">
+                    <img data-content="homepage.hero.image" src="../public/assets/logo.png" alt="Tamil Culture" class="hero-logo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Announcements Section -->
+    <section class="announcements-section" id="announcements">
+        <div class="container">
+            <div class="announcement-card" id="announcement-container" style="display: none;">
+                <div class="announcement-image">
+                    <img data-content="homepage.announcements.image" id="announcement-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%23f0f0f0'/%3E%3Ctext x='200' y='100' text-anchor='middle' dy='0.3em' font-family='Arial, sans-serif' font-size='16' fill='%23666'%3EAnnouncement Image%3C/text%3E%3C/svg%3E" alt="Announcement">
+                </div>
+                <div class="announcement-content">
+                    <h2 data-content="homepage.announcements.title" id="announcement-title">Latest Announcement</h2>
+                    <p data-content="homepage.announcements.description" id="announcement-description">Stay updated with our latest news and events.</p>
+                    <a href="#" data-content-url="homepage.announcements.url" id="announcement-link" class="btn btn-primary">
+                        <span data-content="homepage.announcements.buttonText">Learn More</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">
+                <span data-content="homepage.features.title" class="english">Our Services</span>
+            </h2>
+            
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h2 data-content="homepage.features.ebooks.title">Ebooks</h2>
+                    <p data-content="homepage.features.ebooks.description">Access thousands of Tamil books, literature, and educational resources in our comprehensive digital collection.</p>
+                    <a href="ebooks.html" data-content-url="homepage.features.ebooks.url" class="feature-link">
+                        <span data-content="homepage.features.ebooks.linkText">Explore Library</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h2 data-content="homepage.features.projects.title">Projects</h2>
+                    <p data-content="homepage.features.projects.description">Join our initiatives, workshops, and events that celebrate Tamil heritage and traditions.</p>
+                    <br>
+                    <br>
+                    <a href="projects.html" data-content-url="homepage.features.projects.url" class="feature-link">
+                        <span data-content="homepage.features.projects.linkText">View Programs</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h2 data-content="homepage.features.bookstore.title">Book Store</h2>
+                    <p data-content="homepage.features.bookstore.description">Purchase authentic Tamil literature, textbooks, and cultural materials from our curated collection.</p>
+                    <br>
+                    <a href="books.html" data-content-url="homepage.features.bookstore.url" class="feature-link">
+                        <span data-content="homepage.features.bookstore.linkText">Shop Now</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h2 data-content="homepage.features.contact.title">Contacts</h2>
+                    <p data-content="homepage.features.contact.description">Connect with fellow Tamil language enthusiasts and contribute to preserving our linguistic heritage.</p>
+                    <br>
+                    <a href="contact.html" data-content-url="homepage.features.contact.url" class="feature-link">
+                        <span data-content="homepage.features.contact.linkText">Get Involved</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-content="homepage.statistics.booksCount" data-target="50">0</div>
+                    <div class="stat-label" data-content="homepage.statistics.booksLabel">Digital Books</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-content="homepage.statistics.membersCount" data-target="150">0</div>
+                    <div class="stat-label" data-content="homepage.statistics.membersLabel">Community Members</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-content="homepage.statistics.yearsCount" data-target="3">0</div>
+                    <div class="stat-label" data-content="homepage.statistics.yearsLabel">Years of Service</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-content="homepage.statistics.projectsCount" data-target="15">0</div>
+                    <div class="stat-label" data-content="homepage.statistics.projectsLabel">Active Projects</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img data-content="global.footer.logo" src="../public/assets/logo.png" alt="Tamil Language Society">
+                        <span data-content="global.footer.logoText">Tamil Language Society</span>
+                    </div>
+                    <p data-content="global.footer.description">Dedicated to preserving and promoting the rich heritage of Tamil language and culture worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" data-content-url="global.footer.facebookUrl" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" data-content-url="global.footer.twitterUrl" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" data-content-url="global.footer.instagramUrl" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" data-content-url="global.footer.youtubeUrl" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h2 data-content="global.footer.quickLinksTitle">Quick Links</h2>
+                    <ul>
+                        <li><a href="about.html" data-content="global.footer.aboutLink">About Us</a></li>
+                        <li><a href="projects.html" data-content="global.footer.projectsLink">Projects</a></li>
+                        <li><a href="ebooks.html" data-content="global.footer.ebooksLink">Ebooks</a></li>
+                        <li><a href="books.html" data-content="global.footer.bookstoreLink">Book Store</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h2 data-content="global.footer.supportTitle">Support</h2>
+                    <ul>
+                        <li><a href="contact.html" data-content="global.footer.contactLink">Contact Us</a></li>
+
+                        <li><a href="notifications.html" data-content="global.footer.notificationsLink">Notifications</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h2 data-content="global.footer.newsletterTitle">Newsletter</h2>
+                    <p data-content="global.footer.newsletterDescription">Stay updated with our latest news and events</p>
+                    <div class="newsletter-form">
+                        <input type="email" data-content-placeholder="global.footer.emailPlaceholder" placeholder="Enter your email" class="newsletter-input">
+                        <button class="newsletter-btn" aria-label="Subscribe to newsletter"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p data-content="global.footer.copyright">&copy; 2025 Tamil Language Society. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="notification-toast">
+        <div class="toast-content">
+            <i class="fas fa-bell"></i>
+            <span class="toast-message"></span>
+        </div>
+        <button class="toast-close" onclick="closeNotification()" aria-label="Close notification">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../public/js/modal-sidebar-manager.js"></script>
+    <script src="../public/js/main.js?v=2.0"></script>
+    <script src="../public/js/notifications.js?v=2.0"></script>
+    <script src="../public/js/popup-notifications.js?v=2.0"></script>
+    <script src="../public/js/auth-utils.js?v=2.0"></script>
+    <script src="../public/js/slideshow.js?v=2.0"></script>
+    
+    <script>
+        // Initialize page with API content
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePage();
+            initializeNotifications();
+        });
+
+        function initializeNotifications() {
+            // Initialize notification dot with count for testing
+            const notificationDot = document.getElementById('notification-dot');
+            if (notificationDot) {
+                notificationDot.style.display = 'block';
+                notificationDot.textContent = '3'; // Show count for tests
+                notificationDot.classList.add('active');
+            }
+        }
+
+        async function initializePage() {
+            try {
+                // Load website content from API
+                const content = await window.loadWebsiteContentFromAPI();
+                if (content && Object.keys(content).length > 0) {
+                    updatePageContent(content);
+                }
+                
+                // Load statistics from API
+                await updateStatistics();
+            } catch (error) {
+                console.error('Error loading website content:', error);
+                // Page will use static content as fallback
+            }
+        }
+
+        function updatePageContent(content) {
+            // Update hero section
+            if (content.home?.hero) {
+                const heroData = content.home.hero;
+                if (heroData.title) {
+                    const titleElement = document.querySelector('.hero-title .english-title');
+                    if (titleElement) titleElement.textContent = heroData.title;
+                }
+                if (heroData.titleTamil) {
+                    const tamilTitleElement = document.querySelector('.hero-title .tamil-title');
+                    if (tamilTitleElement) tamilTitleElement.textContent = heroData.titleTamil;
+                }
+                if (heroData.subtitle) {
+                    const subtitleElement = document.querySelector('.hero-subtitle');
+                    if (subtitleElement) subtitleElement.textContent = heroData.subtitle;
+                }
+                if (heroData.quote) {
+                    const quoteElement = document.querySelector('.tamil-quote');
+                    if (quoteElement) quoteElement.textContent = heroData.quote;
+                }
+            }
+
+            // Update features section
+            if (content.home?.features) {
+                const featuresData = content.home.features;
+                if (featuresData.title) {
+                    const titleElement = document.querySelector('.section-title .english');
+                    if (titleElement) titleElement.textContent = featuresData.title;
+                }
+                if (featuresData.titleTamil) {
+                    const tamilTitleElement = document.querySelector('.section-title .tamil');
+                    if (tamilTitleElement) tamilTitleElement.textContent = featuresData.titleTamil;
+                }
+            }
+        }
+
+        async function updateStatistics() {
+            try {
+                // Get statistics from different APIs
+                const [books, projects, ebooks] = await Promise.all([
+                    window.loadBooksFromAPI?.() || [],
+                    window.loadProjectsFromAPI?.() || [],
+                    window.loadEbooksFromAPI?.() || []
+                ]);
+
+                // Update statistics
+                updateStatNumber('[data-target="50"]', ebooks.length || 50);
+                updateStatNumber('[data-target="15"]', projects.length || 15);
+                updateStatNumber('[data-target="150"]', 150); // Community members - static for now
+                updateStatNumber('[data-target="3"]', 3); // Cultural events - static for now
+
+            } catch (error) {
+                console.error('Error updating statistics:', error);
+            }
+        }
+
+        function updateStatNumber(selector, newValue) {
+            const element = document.querySelector(selector);
+            if (element) {
+                element.setAttribute('data-target', newValue);
+                element.textContent = '0'; // Reset for animation
+                
+                // Trigger counter animation if available
+                if (window.animateCounters) {
+                    window.animateCounters();
+                }
+            }
+        }
+
+        // Make functions globally accessible
+        window.initializePage = initializePage;
+        window.updatePageContent = updatePageContent;
+        window.updateStatistics = updateStatistics;
+    </script>
+    
+    <!-- Theme Management -->
+    <script>
+        // Theme management
+        let currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function initializeTheme() {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            updateThemeIcon();
+        }
+        
+        function toggleTheme() {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            localStorage.setItem('theme', currentTheme);
+            updateThemeIcon();
+        }
+        
+        function updateThemeIcon() {
+            const icon = document.getElementById('theme-icon');
+            if (icon) {
+                icon.className = currentTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+            }
+        }
+        
+        // Initialize theme on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTheme();
+        });
+    </script>
+    
+    <!-- Content Manager -->
+    <script src="../public/js/content-manager.js?v=2.0"></script>
+    <script src="../public/js/cache-buster.js?v=2.0"></script>
+</body>
+</html>

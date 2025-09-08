@@ -65,7 +65,7 @@ async function seedComprehensiveContent() {
           ta: ["தமிழ்", "மொழி", "சங்கம்", "பண்பாடு", "பாரம்பரியம்"]
         },
         images: [{
-          url: "/assets/logo.jpeg",
+          url: "/assets/logo.png",
           alt: {
             en: "Tamil Heritage and Culture",
             ta: "தமிழ் பாரம்பரியம் மற்றும் பண்பாடு"
@@ -328,7 +328,7 @@ async function seedComprehensiveContent() {
           ta: ["வரலாறு", "நிறுவப்பட்டது", "வளர்ச்சி", "சமூகம்"]
         },
         images: [{
-          url: "/assets/logo.jpeg",
+          url: "/assets/logo.png",
           alt: {
             en: "Historical Timeline of Tamil Language Society",
             ta: "தமிழ் மொழி சங்கத்தின் வரலாற்று காலவரிசை"
@@ -559,7 +559,7 @@ async function seedComprehensiveContent() {
           ta: ["நன்கொடை", "ஆதரவு", "நோக்கம்", "தலைமுறைகள்"]
         },
         images: [{
-          url: "/assets/logo.jpeg",
+          url: "/assets/logo.png",
           alt: {
             en: "Support Tamil Language Mission",
             ta: "தமிழ் மொழி நோக்கத்தை ஆதரியுங்கள்"

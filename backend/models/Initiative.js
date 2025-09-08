@@ -1,18 +1,24 @@
 const getMongoose = require("../utils/mongooseHelper");
 const mongoose = getMongoose();
 
+// Helper function to create bilingual field with validation
+const createBilingualField = (maxLength, fieldName) => ({
+    en: {
+        type: String,
+        required: [true, `English ${fieldName} is required`],
+        trim: true,
+        maxlength: [maxLength, `English ${fieldName} cannot exceed ${maxLength} characters`]
+    },
+    ta: {
+        type: String,
+        required: [true, `Tamil ${fieldName} is required`],
+        trim: true,
+        maxlength: [maxLength, `Tamil ${fieldName} cannot exceed ${maxLength} characters`]
+    }
+});
+
 const initiativeSchema = new mongoose.Schema({
-    title_en: {
-        type: String,
-        required: [true, "English title is required"],
-        trim: true,
-        maxlength: [200, "English title cannot exceed 200 characters"]
-    },
-    title_ta: {
-        type: String,
-        trim: true,
-        maxlength: [200, "Tamil title cannot exceed 200 characters"]
-    },
+    title: createBilingualField(200, "title"),
     slug: {
         type: String,
         required: [true, "Slug is required"],
@@ -33,15 +39,8 @@ const initiativeSchema = new mongoose.Schema({
             "language-literature"
         ]
     },
-    description_en: {
-        type: String,
-        required: [true, "English description is required"],
-        maxlength: [3000, "English description cannot exceed 3000 characters"]
-    },
-    description_ta: {
-        type: String,
-        maxlength: [3000, "Tamil description cannot exceed 3000 characters"]
-    },
+    description: createBilingualField(3000, "description"),
+    director: createBilingualField(100, "director"),
     director_name: {
         type: String,
         required: [true, "Director name is required"],
@@ -73,6 +72,13 @@ const initiativeSchema = new mongoose.Schema({
     images_count: {
         type: Number,
         default: 0
+    },
+    goals: createBilingualField(2000, "goals"),
+    progress: {
+        type: Number,
+        min: [0, "Progress cannot be negative"],
+        max: [100, "Progress cannot exceed 100%"],
+        default: 0
     }
 }, {
     timestamps: true
@@ -93,25 +99,61 @@ initiativeSchema.virtual("images", {
     foreignField: "initiative_id"
 });
 
-// Indexes
-initiativeSchema.index({ title_en: "text", title_ta: "text", description_en: "text", description_ta: "text", director_name: "text" });
+// Indexes with bilingual fields
+initiativeSchema.index({ "title.en": "text", "title.ta": "text", "description.en": "text", "description.ta": "text", director_name: "text" });
 initiativeSchema.index({ bureau: 1 });
 initiativeSchema.index({ status: 1 });
 initiativeSchema.index({ slug: 1 });
 initiativeSchema.index({ createdAt: 1 });
 initiativeSchema.index({ updatedAt: 1 });
 
-// Pre-save middleware to generate slug
+// Pre-save middleware to generate slug and validate bilingual content
 initiativeSchema.pre("save", function(next) {
-    if (this.isModified("title_en") || this.isNew) {
-        this.slug = this.title_en
-            .toLowerCase()
-            .replace(/[^a-z0-9\s-]/g, "")
-            .replace(/\s+/g, "-")
-            .replace(/-+/g, "-")
-            .trim("-");
+    // Generate slug from English title
+    if (this.isModified("title") || this.isNew) {
+        if (this.title && this.title.en) {
+            this.slug = this.title.en
+                .toLowerCase()
+                .replace(/[^a-z0-9\s-]/g, "")
+                .replace(/\s+/g, "-")
+                .replace(/-+/g, "-")
+                .trim("-");
+        }
     }
+    
+    // Validate bilingual content
+    const validation = this.constructor.validateBilingualContent(this);
+    if (!validation.isValid) {
+        return next(new Error(`Bilingual validation failed: ${validation.errors.join(', ')}`));
+    }
+    
     next();
 });
+
+// Static method to validate bilingual content
+initiativeSchema.statics.validateBilingualContent = function(doc) {
+    const errors = [];
+    const requiredFields = ['title', 'description', 'goals', 'director'];
+    
+    for (const field of requiredFields) {
+        if (!doc[field] || typeof doc[field] !== 'object') {
+            errors.push(`${field} must be an object with en and ta properties`);
+            continue;
+        }
+        
+        if (!doc[field].en || !doc[field].en.trim()) {
+            errors.push(`English ${field} is required`);
+        }
+        
+        if (!doc[field].ta || !doc[field].ta.trim()) {
+            errors.push(`Tamil ${field} is required`);
+        }
+    }
+    
+    return {
+        isValid: errors.length === 0,
+        errors: errors
+    };
+};
 
 module.exports = mongoose.model("Initiative", initiativeSchema);

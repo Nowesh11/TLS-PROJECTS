@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-content="projects-page-title">Projects - Tamil Language Society</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../public/css/style.css?v=2.0">
+    <link rel="stylesheet" href="../public/css/slideshow.css?v=2.0">
+    
+    <style>
+        /* Modern Projects Page Styling with Theme Variables */
+        body {
+            font-family: var(--font-primary);
+            line-height: var(--line-height-normal);
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            margin: 0;
+            padding: 0;
+            transition: var(--transition-normal);
+            background-size: 200% 200%;
+            animation: gradientFlow 8s ease infinite;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: var(--bg-glass);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--bg-overlay);
+            box-shadow: var(--shadow-sm);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: var(--transition-normal);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-bold);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: var(--space-8);
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: var(--font-medium);
+            transition: var(--transition-normal);
+            position: relative;
+            padding: var(--space-2) 0;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-xs);
+        }
+
+
+
+        .signup-btn {
+            background: var(--gradient-primary) !important;
+            color: var(--text-inverse) !important;
+            padding: var(--space-2) var(--space-4) !important;
+            border-radius: var(--radius-full) !important;
+            font-weight: var(--font-semibold) !important;
+            transition: var(--transition-normal) !important;
+        }
+        
+        .signup-btn:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: var(--shadow-lg) !important;
+        }
+
+        .signup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .notification-icon {
+            position: relative;
+        }
+
+        .notification-dot {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-red);
+            border-radius: 50%;
+            display: none;
+        }
+
+        .theme-toggle {
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-dark);
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .theme-toggle button {
+            background: none;
+            border: none;
+            color: inherit;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            display: flex;
+            background: var(--bg-glass);
+            border: 1px solid var(--bg-overlay);
+            border-radius: 50px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .lang-btn {
+            background: none;
+            border: none;
+            padding: 0.5rem 1rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .lang-btn.active {
+            background: var(--bg-hero);
+            color: var(--text-inverse);
+            background-size: 200% 200%;
+            animation: gradientFlow 8s ease infinite;
+        }
+        
+        .lang-btn:hover:not(.active) {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            margin-top: 70px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .english-title {
+            display: block;
+        }
+
+        .tamil-title {
+            display: block;
+            font-family: 'Noto Sans Tamil', serif;
+            font-size: 2rem;
+            margin-top: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .tamil-quote {
+            font-family: 'Noto Sans Tamil', serif;
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 600;
+            font-style: italic;
+        }
+        
+        /* Main Content */
+        .features {
+            padding: 4rem 1rem;
+            background: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+        }
+
+        .section-title .english {
+            display: block;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title .tamil {
+            display: block;
+            font-family: 'Noto Sans Tamil', serif;
+            font-size: 1.5rem;
+            margin-top: 0.5rem;
+            color: var(--text-muted);
+        }
+        
+        /* Project Filters */
+        .project-filters {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            background: var(--bg-white);
+            color: var(--primary-color);
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.875rem;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .filter-btn:hover {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .filter-btn.active {
+            background: var(--gradient-primary);
+            color: white;
+            border-color: transparent;
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .project-card {
+            background: var(--bg-white);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-light);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .project-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .project-card > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-image {
+            height: 200px;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-category {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-blue);
+            padding: 0.25rem 0.75rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .project-card h3 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .project-card h4 {
+            color: var(--text-muted);
+            font-family: 'Noto Sans Tamil', serif;
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .project-card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .project-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-green);
+        }
+        
+        .project-progress {
+            margin-bottom: 1rem;
+        }
+
+        .project-progress > div:first-child {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-progress > div:last-child {
+            background: var(--bg-light);
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .project-progress > div:last-child > div {
+            background: var(--gradient-primary);
+            height: 100%;
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        /* Activities and Initiatives */
+        .activities-grid,
+        .initiatives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .activity-card,
+        .initiative-card {
+            background: var(--bg-white);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-light);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .activity-card::before,
+        .initiative-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-accent);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .activity-card:hover::before,
+        .initiative-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .activity-card:hover,
+        .initiative-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .activity-card > *,
+        .initiative-card > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .activity-header,
+        .initiative-header {
+            height: 120px;
+            background: var(--gradient-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .activity-content,
+        .initiative-content {
+            padding: 1.25rem;
+        }
+
+        .activity-content h4,
+        .initiative-content h4 {
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-semibold);
+        }
+        
+        /* Statistics Section */
+        .stats {
+            padding: 5rem 1.5rem;
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--bg-white);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-light);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-accent);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .stat-item:hover::before {
+            opacity: 0.1;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .stat-item > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--gradient-accent);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--gradient-dark);
+            color: white;
+            padding: 4rem 1.5rem 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--border-radius);
+            object-fit: cover;
+        }
+
+        .footer-logo span {
+            font-family: 'Noto Sans Tamil', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .footer-section ul li a:hover {
+            opacity: 1;
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid var(--border-light);
+            border-radius: var(--border-radius);
+            background: var(--bg-white);
+            color: var(--text-dark);
+        }
+
+        .newsletter-btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+        }
+
+        .newsletter-btn:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.8;
+        }
+        
+        /* Notification Toast */
+        .notification-toast {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--bg-white);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-light);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            box-shadow: var(--shadow-xl);
+            z-index: 1050;
+            transform: translateX(100%);
+            transition: var(--transition);
+        }
+
+        .notification-toast.show {
+            transform: translateX(0);
+        }
+
+        .toast-content {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .toast-close:hover {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        /* Tamil Text Styling */
+        .tamil-text {
+            font-family: 'Noto Sans Tamil', sans-serif;
+            color: var(--primary-color);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-title {
+                font-size: 1.875rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .activities-grid,
+            .initiatives-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .theme-toggle {
+                top: 1rem;
+                right: 1rem;
+            }
+        }
+    </style>
+    
+    <!-- API Integration -->
+    <script src="../public/js/api-integration.js?v=2.0"></script>
+    <script src="../public/js/projects-api.js?v=2.0"></script>
+
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button onclick="toggleTheme()" title="Toggle Theme" aria-label="Toggle between light and dark theme">
+            <i id="theme-icon" class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../public/assets/logo.png" alt="Tamil Language Society" class="logo-img" data-content="logo-image">
+                <span class="logo-text" data-content="logo-text">Tamil Language Society</span>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link" data-content="nav-home" data-content-tamil="nav-home-tamil">Home</a>
+                <a href="about.html" class="nav-link" data-content="nav-about" data-content-tamil="nav-about-tamil">About Us</a>
+                <a href="projects.html" class="nav-link active" data-content="nav-projects" data-content-tamil="nav-projects-tamil">Projects</a>
+                <a href="ebooks.html" class="nav-link" data-content="nav-ebooks" data-content-tamil="nav-ebooks-tamil">Ebooks</a>
+                <a href="books.html" class="nav-link" data-content="nav-books" data-content-tamil="nav-books-tamil">Book Store</a>
+                <a href="contact.html" class="nav-link" data-content="nav-contact" data-content-tamil="nav-contact-tamil">Contact Us</a>
+
+                <a href="notifications.html" class="nav-link notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-dot" id="notification-dot"></span>
+                </a>
+                <a href="login.html" class="nav-link" data-content="nav-login" data-content-tamil="nav-login-tamil">Login</a>
+                <a href="signup.html" class="nav-link signup-btn" data-content="nav-signup" data-content-tamil="nav-signup-tamil">Sign Up</a>
+                
+                <!-- Language Toggle -->
+                <div class="language-toggle" id="language-toggle">
+                    <button class="lang-btn active" data-lang="en" title="English">EN</button>
+                    <button class="lang-btn" data-lang="ta" title="Tamil">TA</button>
+                </div>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 60vh;">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+            <div class="hero-pattern"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text" style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <h1 class="hero-title">
+                    <span class="english-title" data-content="projects-hero-title">Our Projects</span>
+    
+                </h1>
+                <p class="hero-subtitle" data-content="projects-hero-subtitle">
+                    Innovative initiatives to preserve, promote, and advance Tamil language and culture
+                </p>
+                <p class="tamil-quote" data-content="projects-hero-quote-tamil">
+                    "Action is life"
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Categories -->
+    <section class="features" style="padding-top: 2rem;">
+        <div class="container">
+            <div class="project-filters" style="text-align: center; margin-bottom: 3rem;">
+                <button class="filter-btn active" data-category="all" data-content="projects-filter-all">All Projects</button>
+                <button class="filter-btn" data-category="media-public-relations" data-content="projects-filter-media">Media & Public Relations Bureau</button>
+                <button class="filter-btn" data-category="sports-leadership" data-content="projects-filter-sports">Sports & Leadership Bureau</button>
+                <button class="filter-btn" data-category="education-intellectual" data-content="projects-filter-education">Education & Intellectual Bureau</button>
+                <button class="filter-btn" data-category="arts-culture" data-content="projects-filter-arts">Arts & Culture Bureau</button>
+                <button class="filter-btn" data-category="social-welfare-voluntary" data-content="projects-filter-social">Social Welfare & Voluntary Bureau</button>
+                <button class="filter-btn" data-category="language-literature" data-content="projects-filter-language">Language & Literature Bureau</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="english" data-content="projects-title">Projects</span>
+
+            </h2>
+            
+            <div class="projects-grid" id="projects-grid">
+                <!-- Projects will be loaded dynamically from the API -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities -->
+    <section class="features" style="background-color: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="english" data-content="activities-title">Activities</span>
+
+            </h2>
+            
+            <div class="activities-grid" id="activities-grid">
+                <!-- Activities will be loaded dynamically from the API -->
+            </div>
+            
+            <div class="text-center" style="margin-top: 2rem;">
+                <a href="#" class="btn btn-primary" id="view-all-activities" data-content="activities-view-all">View All Activities</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Initiatives -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="english" data-content="initiatives-title">Initiatives</span>
+
+            </h2>
+            
+            <div class="initiatives-grid" id="initiatives-grid">
+                <!-- Initiatives will be loaded dynamically from the API -->
+            </div>
+            
+            <div class="text-center" style="margin-top: 2rem;">
+                <a href="#" class="btn btn-primary" id="view-all-initiatives" data-content="initiatives-view-all">View All Initiatives</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Statistics -->
+    <section class="stats">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 3rem;">
+                <span class="english" data-content="projects-stats-title">Project Impact</span>
+
+            </h2>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="15">0</div>
+                    <div class="stat-label" data-content="projects-stats-active">Active Projects</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="50000">0</div>
+                    <div class="stat-label" data-content="projects-stats-lives">Lives Impacted</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="25">0</div>
+                    <div class="stat-label" data-content="projects-stats-countries">Countries Reached</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="1000000">0</div>
+                    <div class="stat-label" data-content="projects-stats-resources">Resources Created</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="features">
+        <div class="container">
+            <div class="card" style="text-align: center; max-width: 800px; margin: 0 auto; padding: 3rem;">
+                <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;" data-content="projects-cta-title">Get Involved</h2>
+    
+                <p style="font-size: 1.125rem; color: var(--gray-600); margin-bottom: 2rem; line-height: 1.8;" data-content="projects-cta-description">
+                    Join our mission to preserve and promote Tamil language and culture. Contribute to our projects, share your expertise, or support our initiatives.
+                </p>
+                <div class="hero-buttons" style="justify-content: center;">
+                    <a href="contact.html" class="btn btn-primary" data-content-url="projects-cta-volunteer-url">
+                        <i class="fas fa-handshake"></i>
+                        <span data-content="projects-cta-volunteer">Volunteer</span>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="../public/assets/logo.png" alt="Tamil Language Society" data-content="footer-logo-alt">
+                        <span data-content="footer-logo-text">Tamil Language Society</span>
+                    </div>
+                    <p data-content="footer-description">Dedicated to preserving and promoting the rich heritage of Tamil language and culture worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" data-content-url="footer-facebook-url"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link" data-content-url="footer-twitter-url"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" data-content-url="footer-instagram-url"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" data-content-url="footer-youtube-url"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-content="footer-quicklinks-title">Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html" data-content="footer-about" data-content-url="footer-about-url">About Us</a></li>
+                        <li><a href="projects.html" data-content="footer-projects" data-content-url="footer-projects-url">Projects</a></li>
+                        <li><a href="ebooks.html" data-content="footer-ebooks" data-content-url="footer-ebooks-url">Ebooks</a></li>
+                        <li><a href="books.html" data-content="footer-bookstore" data-content-url="footer-bookstore-url">Book Store</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-content="footer-support-title">Support</h3>
+                    <ul>
+                        <li><a href="contact.html" data-content="footer-contact" data-content-url="footer-contact-url">Contact Us</a></li>
+
+                        <li><a href="notifications.html" data-content="footer-notifications" data-content-url="footer-notifications-url">Notifications</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-content="footer-newsletter-title">Newsletter</h3>
+                    <p data-content="footer-newsletter-description">Stay updated with our latest news and events</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" class="newsletter-input" data-content="footer-newsletter-placeholder">
+                        <button class="newsletter-btn" aria-label="Subscribe to newsletter"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p data-content="footer-copyright">&copy; 2025 Tamil Language Society. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="notification-toast">
+        <div class="toast-content">
+            <i class="fas fa-bell"></i>
+            <span class="toast-message"></span>
+        </div>
+        <button class="toast-close" onclick="closeNotification()" aria-label="Close notification">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../public/js/main.js?v=2.0"></script>
+    <script src="../public/js/notifications.js?v=2.0"></script>
+    <script src="../public/js/popup-notifications.js?v=2.0"></script>
+    <script src="../public/js/slideshow.js?v=2.0"></script>
+    
+    <script>
+        // Global variables
+        let projectsAPI;
+        let allProjects = [];
+        let filteredProjects = [];
+
+        // Project filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePage();
+        });
+
+        async function initializePage() {
+            try {
+                // Initialize ProjectsAPI
+                projectsAPI = new ProjectsAPI();
+                await projectsAPI.initialize();
+                
+                // Get projects from API
+                allProjects = projectsAPI.allProjects;
+                filteredProjects = [...allProjects];
+                
+                if (allProjects && allProjects.length > 0) {
+                    // Projects are already rendered by ProjectsAPI.initialize()
+                    // No need to call renderProjects again
+                } else {
+                    // Fallback to static projects if API fails
+                    renderStaticProjects();
+                }
+                
+                // Initialize filter functionality
+                initializeFilters();
+            } catch (error) {
+                console.error('Error loading projects:', error);
+                renderStaticProjects();
+                initializeFilters();
+            }
+        }
+
+        function renderProjects(projects) {
+            const projectsGrid = document.getElementById('projects-grid');
+            if (!projectsGrid) return;
+
+            projectsGrid.innerHTML = '';
+
+            projects.forEach((project, index) => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'project-card card-3d';
+                projectCard.setAttribute('data-category', project.category || 'general');
+                projectCard.style.animationDelay = `${index * 0.1}s`;
+
+                projectCard.innerHTML = `
+                    <div class="card-3d-inner">
+                        <div class="card-3d-front">
+                            <div class="project-image" style="height: 200px; background: ${project.gradient || 'linear-gradient(135deg, var(--primary-color), var(--secondary-color))'}; display: flex; align-items: center; justify-content: center; border-radius: 1rem 1rem 0 0;">
+                                <i class="${project.icon || 'fas fa-project-diagram'}" style="font-size: 4rem; color: var(--text-inverse);"></i>
+                            </div>
+                            <div class="project-content" style="padding: 1.5rem;">
+                                <div class="project-category" style="background: var(--accent-color); color: var(--primary-color); padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem; display: inline-block; margin-bottom: 1rem;">${project.category || 'General'}</div>
+                                <h3 style="color: var(--gray-900); margin-bottom: 0.5rem; font-weight: 600;">${project.title}</h3>
+                                ${project.titleTamil || project.tamilTitle ? `<h4 style="color: var(--gray-700); font-family: 'Noto Sans Tamil', var(--font-tamil), sans-serif; font-weight: 600; margin-bottom: 1rem; font-size: 1rem; line-height: 1.4;">${project.titleTamil || project.tamilTitle}</h4>` : ''}
+                                ${project.budget ? `<div style="background: var(--surface-light); padding: 0.75rem; border-radius: 0.5rem; margin-bottom: 1rem; border-left: 4px solid var(--primary-color);">
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <i class="fas fa-money-bill-wave" style="color: var(--primary-color);"></i>
+                                        <span style="font-size: 0.8rem; color: var(--gray-600);">Budget:</span>
+                                        <span style="font-weight: 600; color: var(--gray-900);">RM ${parseFloat(project.budget).toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                                    </div>
+                                </div>` : ''}
+                                <p style="color: var(--gray-600); margin-bottom: 1.5rem;">${project.description}</p>
+                                <div class="project-status" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                                    <div class="status-indicator" style="width: 8px; height: 8px; background: ${getStatusColor(project.status)}; border-radius: 50%;"></div>
+                                    <span style="font-size: 0.875rem; color: ${getStatusColor(project.status)}; font-weight: 500;">${project.status || 'Active'}</span>
+                                </div>
+                                <div class="project-progress" style="margin-bottom: 1rem;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                        <span style="font-size: 0.875rem; color: var(--gray-600);">Progress</span>
+                                        <span style="font-size: 0.875rem; color: var(--primary-color); font-weight: 600;">${project.progress || 0}%</span>
+                                    </div>
+                                    <div style="background: var(--border-light); height: 6px; border-radius: 3px; overflow: hidden;">
+                                        <div style="background: var(--primary-color); height: 100%; width: ${project.progress || 0}%; border-radius: 3px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-3d-back" style="background: var(--primary-color); color: var(--text-inverse); padding: 2rem; display: flex; flex-direction: column; justify-content: center; text-align: center;">
+                            <h4 style="margin-bottom: 1rem;">Project Details</h4>
+                            <p style="margin-bottom: 1.5rem; opacity: 0.9;">${project.details || project.description}</p>
+                            <button class="btn btn-secondary" style="background: white; color: var(--primary-color);" onclick="viewProject('${project._id}')">
+                                <i class="fas fa-external-link-alt"></i>
+                                View Project
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                projectsGrid.appendChild(projectCard);
+            });
+
+            // Add animation classes
+            setTimeout(() => {
+                document.querySelectorAll('.project-card').forEach(card => {
+                    card.classList.add('animate-fadeInUp');
+                });
+            }, 100);
+        }
+
+        function renderStaticProjects() {
+            // Get static projects from api-integration.js
+            const staticProjects = window.getStaticProjects ? window.getStaticProjects() : [];
+            
+            if (staticProjects.length > 0) {
+                // Set global variables for filtering
+                allProjects = staticProjects;
+                filteredProjects = [...staticProjects];
+                
+                // Render the static projects
+                renderProjects(staticProjects);
+                
+                console.log(`Loaded ${staticProjects.length} static fallback projects`);
+            } else {
+                // If no static projects available, show a message
+                const projectsGrid = document.getElementById('projects-grid');
+                if (projectsGrid) {
+                    projectsGrid.innerHTML = `
+                        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+                            <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--accent-gold); margin-bottom: 1rem;"></i>
+                            <h3 style="color: var(--gray-700); margin-bottom: 1rem;">Projects Temporarily Unavailable</h3>
+                            <p style="color: var(--gray-600);">We're experiencing technical difficulties. Please try again later.</p>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        function getStatusColor(status) {
+            const statusStr = (status && typeof status === 'string') ? status.toLowerCase() : 'active';
+            switch (statusStr) {
+                case 'active': return 'var(--accent-green)';
+                case 'in development': return 'var(--accent-gold)';
+                case 'completed': return 'var(--primary-color)';
+                case 'on hold': return 'var(--gray-500)';
+                default: return 'var(--accent-green)';
+            }
+        }
+
+        function initializeFilters() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const category = this.dataset.category;
+                    filterProjects(category);
+                });
+            });
+        }
+
+        function filterProjects(category) {
+            if (projectsAPI && allProjects && allProjects.length > 0) {
+                // Use ProjectsAPI's built-in filter method
+                projectsAPI.filterProjects(category);
+                filteredProjects = projectsAPI.filteredProjects;
+            } else {
+                // Filter static projects
+                const projectCards = document.querySelectorAll('.project-card');
+                projectCards.forEach(card => {
+                    if (category === 'all' || card.dataset.category.includes(category)) {
+                        card.style.display = 'block';
+                        card.classList.add('animate-fadeInUp');
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        function viewProject(projectId) {
+            // Check authentication before viewing project details
+            if (typeof AuthUtils !== 'undefined' && !AuthUtils.requireAuth()) {
+                return;
+            }
+
+            if (projectId) {
+                // In a real application, this would navigate to a project detail page
+                window.TamilSociety?.showNotification('Project details page coming soon!');
+            }
+        }
+
+        // Initialize authentication requirements
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AuthUtils !== 'undefined') {
+                window.authUtils = new AuthUtils();
+            }
+        });
+
+        // Activities and Initiatives functionality
+        async function loadActivities() {
+            try {
+                const response = await apiCall('/api/activities?limit=6&featured=true');
+                const activities = response.data || [];
+                renderActivities(activities);
+            } catch (error) {
+                console.error('Error loading activities:', error);
+                document.getElementById('activities-grid').innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
+                        <p style="color: var(--gray-600);">Activities will be available soon.</p>
+                    </div>
+                `;
+            }
+        }
+
+        async function loadInitiatives() {
+            try {
+                const response = await apiCall('/api/initiatives?limit=6&featured=true');
+                const initiatives = response.data || [];
+                renderInitiatives(initiatives);
+            } catch (error) {
+                console.error('Error loading initiatives:', error);
+                document.getElementById('initiatives-grid').innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
+                        <p style="color: var(--gray-600);">Initiatives will be available soon.</p>
+                    </div>
+                `;
+            }
+        }
+
+        function renderActivities(activities) {
+            const grid = document.getElementById('activities-grid');
+            if (!grid) return;
+
+            if (activities.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
+                        <i class="fas fa-calendar-alt" style="font-size: 2rem; color: var(--gray-400); margin-bottom: 1rem;"></i>
+                        <p style="color: var(--gray-600);">No activities available at the moment.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = activities.map((activity, index) => `
+                <div class="activity-card" style="animation-delay: ${index * 0.1}s; background: var(--bg-primary); border-radius: 1rem; box-shadow: var(--shadow-md); overflow: hidden; transition: all 0.3s ease;">
+                    <div class="activity-header" style="height: 120px; background: linear-gradient(135deg, #28a745, #20c997); display: flex; align-items: center; justify-content: center; color: var(--brand-white);">
+                        <div style="text-align: center;">
+                            <i class="fas fa-${getCategoryIcon(activity.category)}" style="font-size: 2.5rem; margin-bottom: 0.5rem;"></i>
+                            <div style="font-size: 0.9rem; opacity: 0.9;">${activity.category}</div>
+                        </div>
+                    </div>
+                    <div class="activity-content" style="padding: 1.25rem;">
+                        <h4 style="margin-bottom: 0.75rem; color: var(--text-primary);">${activity.title}</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.5;">${activity.description ? activity.description.substring(0, 100) + '...' : 'No description available'}</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <span style="background: var(--primary-blue); color: var(--brand-white); padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem;">${activity.status}</span>
+                            <span style="color: var(--text-secondary); font-size: 0.85rem;">
+                                <i class="fas fa-calendar"></i> ${activity.startDate ? new Date(activity.startDate).toLocaleDateString() : 'TBD'}
+                            </span>
+                        </div>
+                        <button class="btn btn-outline-primary btn-sm" onclick="viewActivity('${activity._id}')" style="width: 100%;">
+                            <i class="fas fa-info-circle"></i> Learn More
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderInitiatives(initiatives) {
+            const grid = document.getElementById('initiatives-grid');
+            if (!grid) return;
+
+            if (initiatives.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
+                        <i class="fas fa-lightbulb" style="font-size: 2rem; color: var(--gray-400); margin-bottom: 1rem;"></i>
+                        <p style="color: var(--gray-600);">No initiatives available at the moment.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = initiatives.map((initiative, index) => `
+                <div class="initiative-card" style="animation-delay: ${index * 0.1}s; background: var(--bg-primary); border-radius: 1rem; box-shadow: var(--shadow-md); overflow: hidden; transition: all 0.3s ease;">
+                    <div class="initiative-header" style="height: 120px; background: linear-gradient(135deg, #6f42c1, #e83e8c); display: flex; align-items: center; justify-content: center; color: var(--brand-white);">
+                        <div style="text-align: center;">
+                            <i class="fas fa-${getScopeIcon(initiative.scope)}" style="font-size: 2.5rem; margin-bottom: 0.5rem;"></i>
+                            <div style="font-size: 0.9rem; opacity: 0.9;">${initiative.scope}</div>
+                        </div>
+                    </div>
+                    <div class="initiative-content" style="padding: 1.25rem;">
+                        <h4 style="margin-bottom: 0.75rem; color: var(--text-primary);">${initiative.title}</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.5;">${initiative.description ? initiative.description.substring(0, 100) + '...' : 'No description available'}</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <span style="background: var(--secondary-blue); color: var(--brand-white); padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem;">${initiative.status}</span>
+                            <span style="color: var(--text-secondary); font-size: 0.85rem;">
+                                <i class="fas fa-chart-line"></i> ${initiative.progress || 0}%
+                            </span>
+                        </div>
+                        <button class="btn btn-outline-secondary btn-sm" onclick="viewInitiative('${initiative._id}')" style="width: 100%;">
+                            <i class="fas fa-eye"></i> View Details
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getCategoryIcon(category) {
+            const icons = {
+                'media-public-relations': 'bullhorn',
+                'sports-leadership': 'trophy',
+                'education-intellectual': 'graduation-cap',
+                'arts-culture': 'palette',
+                'social-welfare-voluntary': 'hands-helping',
+                'language-literature': 'book-open'
+            };
+            return icons[category] || 'calendar-alt';
+        }
+
+        function getScopeIcon(scope) {
+            const icons = {
+                'local': 'map-marker-alt',
+                'regional': 'map',
+                'national': 'flag',
+                'international': 'globe',
+                'global': 'world'
+            };
+            return icons[scope] || 'lightbulb';
+        }
+
+        function viewActivity(activityId) {
+            if (activityId) {
+                window.location.href = `detail.html?type=activity&id=${activityId}`;
+            }
+        }
+
+        function viewInitiative(initiativeId) {
+            if (initiativeId) {
+                window.location.href = `detail.html?type=initiative&id=${initiativeId}`;
+            }
+        }
+
+        // Load activities and initiatives when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                loadActivities();
+                loadInitiatives();
+            }, 1000); // Load after projects are loaded
+        });
+
+        // Make functions globally accessible
+        window.initializePage = initializePage;
+        window.renderProjects = renderProjects;
+        window.filterProjects = filterProjects;
+        window.loadActivities = loadActivities;
+        window.loadInitiatives = loadInitiatives;
+    </script>
+    <script src="../public/js/auth-utils.js?v=2.0"></script>
+    
+    <style>
+        /* Projects Section Spacing */
+        .projects {
+            padding: 2rem 0 1rem 0; /* Reduced padding */
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem; /* Reduced gap */
+            margin-bottom: 2rem; /* Reduced margin */
+        }
+        
+        .project-card {
+            height: 380px; /* Reduced height */
+            background: white;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .project-filters {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1.25rem; /* Reduced padding */
+            border: 2px solid var(--primary-blue);
+            background: white;
+            color: var(--primary-blue);
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.875rem; /* Smaller font */
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* Compact project content */
+        .project-content {
+            padding: 1.25rem !important; /* Reduced padding */
+        }
+        
+        .project-image {
+            height: 150px !important; /* Reduced height */
+        }
+        
+        .project-category {
+            font-size: 0.7rem !important; /* Smaller category text */
+            padding: 0.2rem 0.6rem !important;
+            margin-bottom: 0.75rem !important;
+        }
+        
+        .project-card h3 {
+            font-size: 1.1rem !important; /* Smaller title */
+            margin-bottom: 0.4rem !important;
+        }
+        
+        .project-card h4 {
+            font-size: 0.9rem !important; /* Smaller Tamil title */
+            margin-bottom: 0.75rem !important;
+        }
+        
+        .project-card p {
+            font-size: 0.875rem !important; /* Smaller description */
+            margin-bottom: 1rem !important;
+            line-height: 1.4 !important;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* Limit to 2 lines */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        /* Statistics section spacing */
+        .stats {
+            padding: 2rem 0; /* Reduced padding */
+        }
+        
+        /* Call to action section spacing */
+        .features {
+            padding: 2rem 0; /* Reduced padding */
+        }
+        
+        .features .card {
+            padding: 2rem !important; /* Reduced padding */
+        }
+        
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .project-card {
+                height: auto;
+                min-height: 320px;
+            }
+            
+            .projects {
+                padding: 1rem 0;
+            }
+            
+            .stats {
+                padding: 1.5rem 0;
+            }
+            
+            .features {
+                padding: 1.5rem 0;
+            }
+        }
+    </style>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- API Integration -->
+    <!-- Mock API removed - using real backend API -->
+    
+    <!-- Content Management -->
+    <script src="../public/js/content-manager.js?v=2.0"></script>
+    <script src="../public/js/cache-buster.js?v=2.0"></script>
+    
+    <!-- Theme Management -->
+    <script>
+        // Theme management
+        let currentTheme = localStorage.getItem('theme') || 'light';
+        
+        function initializeTheme() {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            updateThemeIcon();
+        }
+        
+        function toggleTheme() {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            localStorage.setItem('theme', currentTheme);
+            updateThemeIcon();
+        }
+        
+        function updateThemeIcon() {
+            const icon = document.getElementById('theme-icon');
+            if (icon) {
+                icon.className = currentTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+            }
+        }
+        
+        // Initialize theme on page load
+         document.addEventListener('DOMContentLoaded', function() {
+             initializeTheme();
+         });
+     </script>
+</body>
+</html>

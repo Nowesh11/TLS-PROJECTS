@@ -1,18 +1,38 @@
 const getMongoose = require("../utils/mongooseHelper");
 const mongoose = getMongoose();
 
+// Helper function to create bilingual field with validation
+const createBilingualField = (maxLength, fieldName) => ({
+    en: {
+        type: String,
+        required: [true, `English ${fieldName} is required`],
+        trim: true,
+        maxlength: [maxLength, `English ${fieldName} cannot exceed ${maxLength} characters`]
+    },
+    ta: {
+        type: String,
+        required: [true, `Tamil ${fieldName} is required`],
+        trim: true,
+        maxlength: [maxLength, `Tamil ${fieldName} cannot exceed ${maxLength} characters`]
+    }
+});
+
+// Helper function for optional bilingual field
+const createOptionalBilingualField = (maxLength, fieldName) => ({
+    en: {
+        type: String,
+        trim: true,
+        maxlength: [maxLength, `English ${fieldName} cannot exceed ${maxLength} characters`]
+    },
+    ta: {
+        type: String,
+        trim: true,
+        maxlength: [maxLength, `Tamil ${fieldName} cannot exceed ${maxLength} characters`]
+    }
+});
+
 const TeamMemberSchema = new mongoose.Schema({
-    name_en: {
-        type: String,
-        required: [true, "English name is required"],
-        trim: true,
-        maxlength: [100, "English name cannot be more than 100 characters"]
-    },
-    name_ta: {
-        type: String,
-        trim: true,
-        maxlength: [100, "Tamil name cannot be more than 100 characters"]
-    },
+    name: createBilingualField(100, "name"),
     role: {
         type: String,
         required: [true, "Role is required"],
@@ -21,12 +41,13 @@ const TeamMemberSchema = new mongoose.Schema({
             "Vice President", 
             "Secretary",
             "Treasurer",
-            "Executive Committee Member",
-            "Auditor",
-            "Advisor",
-            "Coordinator",
-            "Volunteer",
-            "Other"
+            "Executive Committee - Media & Public Relations",
+            "Executive Committee - Sports & Leadership",
+            "Executive Committee - Education & Intellectual",
+            "Executive Committee - Arts & Culture",
+            "Executive Committee - Social Welfare & Voluntary",
+            "Executive Committee - Language & Literature",
+            "Auditor"
         ]
     },
     slug: {
@@ -35,14 +56,7 @@ const TeamMemberSchema = new mongoose.Schema({
         lowercase: true,
         trim: true
     },
-    bio_en: {
-        type: String,
-        maxlength: [2000, "English bio cannot be more than 2000 characters"]
-    },
-    bio_ta: {
-        type: String,
-        maxlength: [2000, "Tamil bio cannot be more than 2000 characters"]
-    },
+    bio: createOptionalBilingualField(2000, "bio"),
     email: {
         type: String,
         match: [

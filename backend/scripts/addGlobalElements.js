@@ -23,7 +23,7 @@ const addGlobalElements = async () => {
                     ta: "தமிழ் மொழி சங்கத்தின் அதிகாரப்பூர்வ சின்னம்"
                 },
                 images: [{
-                    url: "/assets/logo.jpeg",
+                    url: "/assets/logo.png",
                     alt: {
                         en: "Tamil Language Society Logo",
                         ta: "தமிழ் மொழி சங்கம் சின்னம்"

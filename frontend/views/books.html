@@ -1,0 +1,2934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-content="books-page-title">Book Store - Tamil Language Society</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../public/css/style.css?v=2.0">
+    <link rel="stylesheet" href="../public/css/slideshow.css?v=2.0">
+    
+    <!-- API Integration -->
+    <script src="../public/js/api-integration.js?v=2.0"></script>
+    <script src="../public/js/books-api.js?v=2.0"></script>
+    <script src="../public/js/auth.js?v=2.0"></script>
+    <script src="../public/js/rating-system.js?v=2.0"></script>
+    <!-- Enhanced Cart System -->
+    <script src="../public/js/enhanced-cart.js?v=2.0"></script>
+    <script src="../public/js/image-manager.js?v=2.0"></script>
+    
+    <style>
+        /* Enhanced animations */
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Modal styles */
+        .modal-overlay {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-content {
+            animation: slideInUp 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Theme-aware form styling */
+        .blue-gradient-form {
+            background: var(--bg-accent);
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg);
+        }
+
+        /* Loading animation */
+        .loading-animation {
+            border: 3px solid var(--border-secondary);
+            border-top: 3px solid var(--accent-primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        /* Theme-aware hover effects */
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Theme-aware text colors */
+        .book-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: var(--radius-lg);
+        }
+
+        .book-title {
+            color: var(--text-primary) !important;
+        }
+
+        .book-author {
+            color: var(--text-secondary) !important;
+        }
+
+        .book-price {
+            color: var(--accent-primary) !important;
+        }
+
+        .btn-primary {
+            background: var(--bg-accent);
+            border: 1px solid var(--border-accent);
+            color: var(--text-inverse);
+            border-radius: var(--radius-md);
+        }
+
+        .btn-primary:hover {
+            background: var(--bg-accent-light);
+            box-shadow: var(--shadow-primary);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive modal */
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 1rem;
+                max-width: calc(100% - 2rem);
+            }
+            
+            .modal-content > div {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            
+            .book-cover-large {
+                height: 250px !important;
+            }
+        }
+
+        /* Enhanced book card styles */
+        .book-card {
+            cursor: pointer;
+        }
+
+        .book-card .book-cover {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Star rating styles */
+        .star-rating {
+            display: inline-flex;
+            gap: 2px;
+        }
+
+        .star {
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .star.filled {
+            color: var(--accent-gold);
+        }
+
+        .star:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Modern Books Page Styling */
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        
+        /* Modern Navigation */
+        .navbar {
+            background: var(--surface-color);
+            backdrop-filter: var(--backdrop-blur);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow-lg);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all var(--transition-fast);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-4) var(--space-6);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            text-decoration: none;
+        }
+        
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-lg);
+            object-fit: cover;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .logo-text {
+            font-family: var(--font-tamil);
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-bold);
+            color: var(--primary-color);
+        }
+        
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: var(--space-6);
+        }
+        
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: var(--font-weight-medium);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-lg);
+            transition: all var(--transition-fast);
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color);
+            background: var(--bg-secondary);
+            transform: translateY(-2px);
+        }
+        
+        .nav-link.active {
+            color: var(--primary-color);
+            background: var(--gradient-primary);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+
+        
+        .signup-btn {
+            background: var(--gradient-secondary);
+            color: var(--text-inverse) !important;
+            -webkit-text-fill-color: var(--text-inverse) !important;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .signup-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .notification-icon {
+            position: relative;
+        }
+        
+        .notification-dot {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 12px;
+            height: 12px;
+            background: var(--bg-danger);
+            border-radius: 50%;
+            border: 2px solid var(--surface-color);
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+        
+        .bar {
+            width: 25px;
+            height: 3px;
+            background: var(--text-primary);
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-fast);
+        }
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: var(--space-6);
+            right: var(--space-6);
+            z-index: 1100;
+            background: var(--surface-color);
+            backdrop-filter: var(--backdrop-blur);
+            border: 1px solid var(--border-primary);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-fast);
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .theme-toggle button {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: var(--font-size-lg);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        
+        /* Modern Hero Section */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+            background: var(--bg-hero);
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+        
+        .hero-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0.1;
+        }
+        
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                              radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--space-8);
+        }
+        
+        .hero-title {
+            font-size: var(--font-size-5xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-6);
+            line-height: var(--line-height-tight);
+        }
+        
+        .english-title {
+            display: block;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .tamil-title {
+            display: block;
+            font-family: var(--font-tamil);
+            font-size: var(--font-size-3xl);
+            margin-top: var(--space-2);
+            color: var(--text-secondary);
+        }
+        
+        .hero-subtitle {
+            font-size: var(--font-size-xl);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-6);
+            line-height: var(--line-height-relaxed);
+        }
+        
+        .tamil-quote {
+            font-family: var(--font-tamil);
+            font-size: var(--font-size-2xl);
+            color: var(--accent-color);
+            font-weight: var(--font-weight-semibold);
+            font-style: italic;
+        }
+        
+        /* Modern Sections */
+        .features {
+            padding: var(--space-20) var(--space-6);
+            background: var(--bg-secondary);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: var(--font-size-4xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-16);
+            color: var(--text-primary);
+        }
+        
+        .section-title .english {
+            display: block;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .section-title .tamil {
+            display: block;
+            font-family: var(--font-tamil);
+            font-size: var(--font-size-2xl);
+            margin-top: var(--space-2);
+            color: var(--text-secondary);
+        }
+        
+        /* Shopping Cart */
+        .cart-summary {
+            background: var(--surface-color) !important;
+            backdrop-filter: var(--glass-backdrop);
+            border: 1px solid var(--border-color) !important;
+            box-shadow: var(--shadow-xl) !important;
+        }
+        
+        .cart-header h3 {
+            color: var(--text-primary) !important;
+        }
+        
+        .cart-close {
+            color: var(--text-secondary) !important;
+        }
+        
+        .cart-close:hover {
+            color: var(--primary-color) !important;
+        }
+        
+        .cart-total span {
+            color: var(--text-primary) !important;
+        }
+        
+        #cart-total-amount {
+            color: var(--primary-color) !important;
+        }
+        
+        /* Search and Filter Section */
+        .search-bar input {
+            background: var(--surface-color) !important;
+            color: var(--text-primary) !important;
+            border: 2px solid var(--border-color) !important;
+            box-shadow: var(--shadow-md) !important;
+        }
+        
+        .search-bar input:focus {
+            border-color: var(--primary-color) !important;
+            box-shadow: var(--shadow-primary) !important;
+        }
+        
+        .search-btn {
+            background: var(--gradient-primary) !important;
+            color: var(--text-inverse) !important;
+            box-shadow: var(--shadow-md) !important;
+        }
+        
+        .search-btn:hover {
+            box-shadow: var(--shadow-lg) !important;
+        }
+        
+        .filter-section select {
+            background: var(--surface-color) !important;
+            color: var(--text-primary) !important;
+            border: 2px solid var(--border-primary) !important;
+            box-shadow: var(--shadow-md) !important;
+        }
+        
+        .filter-section select:focus {
+            border-color: var(--primary-color) !important;
+            box-shadow: var(--shadow-primary) !important;
+        }
+        
+        /* Book Cards */
+        .book-card {
+            background: var(--surface-color) !important;
+            backdrop-filter: var(--glass-backdrop);
+            border: 1px solid var(--border-primary) !important;
+            border-radius: var(--radius-3xl) !important;
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-slow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .book-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity var(--transition-slow);
+            z-index: 1;
+        }
+        
+        .book-card:hover::before {
+            opacity: 0.05;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-2xl);
+        }
+        
+        .book-card > * {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .book-title {
+            color: var(--text-primary) !important;
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-2);
+        }
+        
+        .book-author {
+            color: var(--text-secondary) !important;
+            font-family: var(--font-tamil);
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-4);
+        }
+        
+        .book-price {
+            color: var(--primary-color) !important;
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
+        }
+        
+        .book-cover {
+            height: 200px;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-inverse);
+            font-size: var(--font-size-4xl);
+            border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+        }
+        
+        .book-content {
+            padding: var(--space-6);
+        }
+        
+        .book-category {
+            background: var(--bg-info);
+            color: var(--primary-color);
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-semibold);
+            display: inline-block;
+            margin-bottom: var(--space-4);
+            text-transform: uppercase;
+            letter-spacing: var(--letter-spacing-wide);
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-6);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-weight: var(--font-weight-semibold);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-primary {
+            background: var(--gradient-primary) !important;
+            color: var(--text-inverse) !important;
+            border: none !important;
+        }
+        
+        .btn-secondary {
+            background: var(--gradient-secondary);
+            color: var(--text-inverse);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg) !important;
+        }
+        
+        /* Statistics Section */
+        .stats {
+            padding: var(--space-20) var(--space-6);
+            background: var(--bg-primary);
+            color: var(--text-inverse);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-8);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: var(--space-6);
+            background: var(--surface-color);
+            backdrop-filter: var(--glass-backdrop);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-slow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-accent);
+            opacity: 0;
+            transition: opacity var(--transition-slow);
+            z-index: 1;
+        }
+        
+        .stat-item:hover::before {
+            opacity: 0.1;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .stat-item > * {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .stat-number {
+            font-size: var(--font-size-4xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--accent-color);
+            margin-bottom: var(--space-2);
+        }
+        
+        .stat-label {
+            color: var(--text-primary);
+            font-weight: var(--font-weight-medium);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--bg-tertiary);
+            color: var(--text-inverse);
+            padding: var(--space-16) var(--space-6) var(--space-8);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-8);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-section h3 {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-4);
+            color: var(--accent-light);
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-4);
+        }
+        
+        .footer-logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-lg);
+            object-fit: cover;
+        }
+        
+        .footer-logo span {
+            font-family: var(--font-tamil);
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: var(--space-3);
+            margin-top: var(--space-4);
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            color: var(--text-inverse);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .social-link:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: var(--space-2);
+        }
+        
+        .footer-section ul li a {
+            color: var(--text-inverse);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: all var(--transition-fast);
+        }
+        
+        .footer-section ul li a:hover {
+            opacity: 1;
+            color: var(--accent-light);
+            transform: translateX(5px);
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: var(--space-2);
+            margin-top: var(--space-4);
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: var(--space-3);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--radius-lg);
+            background: var(--surface-color);
+            color: var(--text-primary);
+        }
+        
+        .newsletter-btn {
+            background: var(--gradient-primary);
+            color: var(--text-inverse);
+            border: none;
+            padding: var(--space-3);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .newsletter-btn:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: var(--space-8);
+            padding-top: var(--space-8);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.8;
+        }
+        
+        /* Notification Toast */
+        .notification-toast {
+            position: fixed;
+            top: var(--space-6);
+            right: var(--space-6);
+            background: var(--surface-color);
+            backdrop-filter: var(--glass-backdrop);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-4);
+            box-shadow: var(--shadow-xl);
+            z-index: 1050;
+            transform: translateX(100%);
+            transition: transform var(--transition-slow);
+        }
+        
+        .notification-toast.show {
+            transform: translateX(0);
+        }
+        
+        .toast-content {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        
+        .toast-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: var(--space-1);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+        }
+        
+        .toast-close:hover {
+            background: var(--bg-danger);
+            color: var(--text-inverse);
+        }
+        
+        /* Star Rating */
+        .star-rating {
+            display: inline-flex;
+            gap: 2px;
+        }
+        
+        .star {
+            color: var(--border-secondary);
+            cursor: pointer;
+            transition: color var(--transition-fast);
+        }
+        
+        .star.filled {
+            color: var(--accent-color);
+        }
+        
+        .star:hover {
+            color: var(--accent-color);
+        }
+        
+        /* Tamil Text Styling */
+        .tamil-text {
+            font-family: var(--font-tamil);
+            color: var(--primary-color);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .hero-title {
+                font-size: var(--font-size-3xl);
+            }
+            
+            .books-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .books-showcase {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .theme-toggle {
+                top: var(--space-4);
+                right: var(--space-4);
+            }
+            
+            .cart-summary {
+                right: 1rem !important;
+                max-width: calc(100% - 2rem) !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../public/assets/logo.png" alt="Tamil Language Society" class="logo-img" data-content="nav-logo-alt">
+                <span class="logo-text" data-content="nav-logo-text">Tamil Language Society</span>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link active" data-content="nav-home" data-content-url="nav-home-url">Home</a>
+                <a href="about.html" class="nav-link" data-content="nav-about" data-content-url="nav-about-url">About Us</a>
+                <a href="projects.html" class="nav-link" data-content="nav-projects" data-content-url="nav-projects-url">Projects</a>
+                <a href="ebooks.html" class="nav-link" data-content="nav-ebooks" data-content-url="nav-ebooks-url">Ebooks</a>
+                <a href="books.html" class="nav-link" data-content="nav-books" data-content-url="nav-books-url">Book Store</a>
+                <a href="contact.html" class="nav-link" data-content="nav-contact" data-content-url="nav-contact-url">Contact Us</a>
+
+                <a href="notifications.html" class="nav-link notification-icon" data-content-url="nav-notifications-url">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-dot" id="notification-dot"></span>
+                </a>
+                <a href="login.html" class="nav-link" data-content="nav-login" data-content-url="nav-login-url">Login</a>
+                <a href="signup.html" class="nav-link signup-btn" data-content="nav-signup" data-content-url="nav-signup-url">Sign Up</a>
+            </div>
+            
+            <div class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">
+                <i class="fas fa-sun" id="theme-icon"></i>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 60vh;">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+            <div class="hero-pattern"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text" style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <h1 class="hero-title">
+                    <span class="english-title" data-content="books-hero-title">Tamil Book Store</span>
+                </h1>
+                <p class="hero-subtitle" data-content="books-hero-subtitle">
+                    Discover and purchase authentic Tamil literature, educational materials, and cultural treasures
+                </p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Summary -->
+    <div class="cart-summary" id="cart-summary" style="position: fixed; top: 100px; right: 2rem; background: var(--bg-secondary); border-radius: 1rem; box-shadow: var(--shadow-xl); padding: 1.5rem; max-width: 300px; transform: translateX(120%); transition: transform 0.3s ease; z-index: 1000; border: 1px solid var(--border-color);">
+        <div class="cart-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
+            <h3 style="color: var(--text-primary); margin: 0;" data-content="books-cart-title">Shopping Cart</h3>
+            <button class="cart-close" onclick="toggleCart()" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1.25rem; transition: color 0.3s ease;" onmouseover="this.style.color='var(--accent-primary)'" onmouseout="this.style.color='var(--text-secondary)'">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cart-items" style="max-height: 300px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--accent-primary) var(--border-color);">
+            <p style="color: var(--text-secondary); text-align: center;" data-content="books-cart-empty">Your cart is empty</p>
+        </div>
+        <div class="cart-footer" id="cart-footer" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color); display: none;">
+            <div class="cart-total" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="font-weight: 600; color: var(--text-primary);" data-content="books-cart-total">Total:</span>
+                <span id="cart-total-amount" style="font-weight: 700; color: var(--accent-primary); font-size: 1.25rem;">RM 0</span>
+            </div>
+            <button class="btn btn-primary" style="width: 100%; background: var(--bg-gradient-accent); color: var(--light-tertiary); border: none; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: var(--glow-primary);" onmouseover="this.style.background='var(--bg-gradient-secondary)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.background='var(--bg-gradient-accent)'; this.style.transform='translateY(0)';" onclick="proceedToCheckout()">
+                <i class="fas fa-shopping-cart"></i>
+                <span data-content="books-cart-checkout">Checkout</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Search and Filter Section -->
+    <section class="features" style="padding-top: 2rem;">
+        <div class="container">
+            <div class="search-section" style="max-width: 800px; margin: 0 auto;">
+                <div class="search-bar" style="position: relative; margin-bottom: 2rem;">
+                    <input type="text" id="search-input" placeholder="Search for books, authors, or topics..." style="width: 100%; padding: 1rem 3rem 1rem 1rem; border: 2px solid var(--border-color); border-radius: 2rem; font-size: 1rem; transition: all 0.3s ease; background: var(--bg-secondary); color: var(--text-primary); box-shadow: var(--shadow-sm);" data-content="books-search-placeholder" onfocus="this.style.borderColor='var(--accent-primary)'; this.style.boxShadow='var(--glow-primary)';" onblur="this.style.borderColor='var(--border-color)'; this.style.boxShadow='var(--shadow-sm)';">
+                    <button class="search-btn" style="position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%); background: var(--bg-gradient-accent); color: var(--light-tertiary); border: none; padding: 0.75rem 1.5rem; border-radius: 1.5rem; cursor: pointer; transition: all 0.3s ease; box-shadow: var(--glow-primary);" onmouseover="this.style.background='var(--bg-gradient-secondary)'; this.style.transform='translateY(-50%) scale(1.05)';" onmouseout="this.style.background='var(--bg-gradient-accent)'; this.style.transform='translateY(-50%) scale(1)';">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <div class="filter-section" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem;">
+                    <select id="category-filter" style="padding: 0.5rem 1rem; border: 2px solid var(--border-color); border-radius: 0.5rem; background: var(--bg-secondary); color: var(--text-primary); transition: all 0.3s ease; box-shadow: var(--shadow-sm); cursor: pointer;" onfocus="this.style.borderColor='var(--accent-primary)'; this.style.boxShadow='var(--glow-primary)';" onblur="this.style.borderColor='var(--border-color)'; this.style.boxShadow='var(--shadow-sm)';">                        <option value="all" data-content="books-filter-all-categories">All Categories</option>
+                        <option value="literature" data-content="books-filter-literature">Literature</option>
+                        <option value="education" data-content="books-filter-education">Education</option>
+                        <option value="culture" data-content="books-filter-culture">Culture</option>
+                        <option value="children" data-content="books-filter-children">Children's Books</option>
+                        <option value="religion" data-content="books-filter-religion">Religious</option>
+                        <option value="history" data-content="books-filter-history">History</option>
+                    </select>
+                    
+                    <select id="price-filter" style="padding: 0.5rem 1rem; border: 2px solid var(--border-color); border-radius: 0.5rem; background: var(--bg-secondary); color: var(--text-primary); transition: all 0.3s ease; box-shadow: var(--shadow-sm); cursor: pointer;" onfocus="this.style.borderColor='var(--accent-primary)'; this.style.boxShadow='var(--glow-primary)';" onblur="this.style.borderColor='var(--border-color)'; this.style.boxShadow='var(--shadow-sm)';">                        <option value="all" data-content="books-filter-all-prices">All Prices</option>
+                        <option value="0-500" data-content="books-filter-under-50">Under RM 50</option>
+                        <option value="500-1000" data-content="books-filter-50-100">RM 50 - RM 100</option>
+                        <option value="1000-2000" data-content="books-filter-100-200">RM 100 - RM 200</option>
+                        <option value="2000+" data-content="books-filter-above-200">Above RM 200</option>
+                    </select>
+                    
+                    <select id="sort-filter" style="padding: 0.5rem 1rem; border: 2px solid var(--border-color); border-radius: 0.5rem; background: var(--bg-secondary); color: var(--text-primary); transition: all 0.3s ease; box-shadow: var(--shadow-sm); cursor: pointer;" onfocus="this.style.borderColor='var(--accent-primary)'; this.style.boxShadow='var(--glow-primary)';" onblur="this.style.borderColor='var(--border-color)'; this.style.boxShadow='var(--shadow-sm)';">                        <option value="featured" data-content="books-sort-featured">Featured</option>
+                        <option value="price-low" data-content="books-sort-price-low">Price: Low to High</option>
+                        <option value="price-high" data-content="books-sort-price-high">Price: High to Low</option>
+                        <option value="alphabetical" data-content="books-sort-alphabetical">A-Z</option>
+                        <option value="rating" data-content="books-sort-rating">Highest Rated</option>
+                    </select>
+                </div>
+
+                <div class="cart-toggle" style="text-align: center;">
+                    <button class="btn btn-secondary" onclick="toggleCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span data-content="books-view-cart">View Cart</span> (<span id="cart-count">0</span>)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Books -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="english" data-content="books-featured-title">Featured Books</span>
+            </h2>
+            
+            <div class="books-showcase" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+                <!-- Featured books will be populated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Books Catalog -->
+    <section class="features" style="background: var(--gray-50);">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="english" data-content="books-browse-title">Browse Our Collection</span>
+            </h2>
+            
+            <!-- Test Buy Now Button -->
+            <div style="margin: 20px 0; padding: 20px; background: #f8f9fa; border-radius: 8px; text-align: center; border: 2px dashed #dee2e6;">
+                <h3 style="color: #495057; margin-bottom: 10px;">🧪 Test Buy Now Form</h3>
+                <p style="color: #6c757d; margin-bottom: 15px;">Click the button below to test the Buy Now form with sample data</p>
+                <button onclick="testBuyNowForm()" style="background: #28a745; color: white; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 16px; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#218838'" onmouseout="this.style.backgroundColor='#28a745'">
+                    <i class="fas fa-play"></i> Test Buy Now Form
+                </button>
+            </div>
+
+            <div class="books-grid" id="books-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem;">
+                <!-- Book catalog will be populated here -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <button id="load-more" class="btn btn-primary">
+                    <i class="fas fa-plus"></i>
+                    <span data-content="books-load-more">Load More Books</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Store Statistics -->
+    <section class="stats">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 3rem;">
+                <span class="english" data-content="books-stats-title">Store Statistics</span>
+            </h2>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="40">0</div>
+                    <div class="stat-label" data-content="books-stats-available">Books Available</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="1000">0</div>
+                    <div class="stat-label" data-content="books-stats-sold">Books Sold</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="958">0</div>
+                    <div class="stat-label" data-content="books-stats-customers">Happy Customers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="4.8">0</div>
+                    <div class="stat-label" data-content="books-stats-rating">Average Rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="../public/assets/logo.png" alt="Tamil Language Society" data-content="footer-logo-alt">
+                        <span data-content="footer-logo-text">Tamil Language Society</span>
+                    </div>
+                    <p data-content="footer-description">Dedicated to preserving and promoting the rich heritage of Tamil language and culture worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" data-content-url="footer-facebook-url"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link" data-content-url="footer-twitter-url"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" data-content-url="footer-instagram-url"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" data-content-url="footer-youtube-url"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-content="footer-quicklinks-title">Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html" data-content="footer-about" data-content-url="footer-about-url">About Us</a></li>
+                        <li><a href="projects.html" data-content="footer-projects" data-content-url="footer-projects-url">Projects</a></li>
+                        <li><a href="ebooks.html" data-content="footer-ebooks" data-content-url="footer-ebooks-url">Ebooks</a></li>
+                        <li><a href="books.html" data-content="footer-bookstore" data-content-url="footer-bookstore-url">Book Store</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-content="footer-support-title">Support</h3>
+                    <ul>
+                        <li><a href="contact.html" data-content="footer-contact" data-content-url="footer-contact-url">Contact Us</a></li>
+
+                        <li><a href="notifications.html" data-content="footer-notifications" data-content-url="footer-notifications-url">Notifications</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-content="footer-newsletter-title">Newsletter</h3>
+                    <p data-content="footer-newsletter-description">Stay updated with our latest news and events</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" class="newsletter-input" data-content="footer-newsletter-placeholder">
+                        <button class="newsletter-btn" aria-label="Subscribe to newsletter"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p data-content="footer-copyright">&copy; 2025 Tamil Language Society. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="notification-toast">
+        <div class="toast-content">
+            <i class="fas fa-bell"></i>
+            <span class="toast-message"></span>
+        </div>
+        <button class="toast-close" onclick="closeNotification()" aria-label="Close notification">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../public/js/main.js?v=2.0"></script>
+    <script src="../public/js/notifications.js?v=2.0"></script>
+    <script src="../public/js/popup-notifications.js?v=2.0"></script>
+    <script src="../public/js/slideshow.js?v=2.0"></script>
+    
+    <script>
+        // Shopping cart functionality
+        let cart = JSON.parse(localStorage.getItem('tamil_society_cart') || '[]');
+        let cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+        // Sample book data for the store (will be replaced by API data)
+        let storeBooks = [
+            {
+                id: 'book_001',
+                title: "Thirukkural Commentary",
+                tamilTitle: "திருக்குறள் உரை",
+                author: "Dr. M. Karunanidhi",
+                category: "literature",
+                price: 48,
+                originalPrice: 50,
+                rating: 4.9,
+                reviews: 245,
+                description: "Complete commentary on Thirukkural with detailed explanations and modern interpretations.",
+                image: "linear-gradient(135deg, #2563eb, #1e40af)",
+                inStock: true,
+                bestseller: true,
+                featured: true
+            },
+            {
+                id: 'book_002',
+                title: "Tamil Grammar Made Easy",
+
+                author: "Prof. S. Vellaiyan",
+                category: "education",
+                price: 48,
+                originalPrice: 50,
+                rating: 4.7,
+                reviews: 156,
+                description: "Comprehensive guide to Tamil grammar for students and language enthusiasts.",
+                image: "linear-gradient(135deg, #f59e0b, #f97316)",
+                inStock: true,
+                bestseller: false,
+                featured: true
+            },
+            {
+                id: 'book_003',
+                title: "Sangam Literature Collection",
+
+                author: "Various Authors",
+                category: "literature",
+                price: 48,
+                originalPrice: 50,
+                rating: 4.8,
+                reviews: 89,
+                description: "Complete collection of Sangam period literature with modern translations.",
+                image: "linear-gradient(135deg, #10b981, #059669)",
+                inStock: true,
+                bestseller: true,
+                featured: true
+            },
+            {
+                id: 'book_004',
+                title: "Tamil Folk Tales",
+
+                author: "S. Meera Devi",
+                category: "children",
+                price: 48,
+                originalPrice: 50,
+                rating: 4.6,
+                reviews: 312,
+                description: "Collection of traditional Tamil folk stories for children and families.",
+                image: "linear-gradient(135deg, #8b5cf6, #7c3aed)",
+                inStock: true,
+                bestseller: false,
+                featured: true
+            },
+            {
+                id: 'book_005',
+                title: "Tamil Culture and Traditions",
+
+                author: "Dr. A. Ramanathan",
+                category: "culture",
+                price: 48,
+                originalPrice: 50,
+                rating: 4.5,
+                reviews: 78,
+                description: "Detailed study of Tamil cultural practices and traditional customs.",
+                image: "linear-gradient(135deg, #ef4444, #dc2626)",
+                inStock: true,
+                bestseller: false,
+                featured: true
+            },
+            {
+                id: 'book_006',
+                title: "Ancient Tamil History",
+                tamilTitle: "பண்டைய தமிழர் வரலாறு",
+                author: "Prof. K. Srinivasan",
+                category: "history",
+                price: 48,
+                originalPrice: 50,
+                rating: 4.7,
+                reviews: 124,
+                description: "Comprehensive history of ancient Tamil civilization and kingdoms.",
+                image: "linear-gradient(135deg, #06b6d4, #0891b2)",
+                inStock: true,
+                bestseller: false,
+                featured: true
+            }
+        ];
+
+        let filteredBooks = [...storeBooks];
+
+        // Function to initialize the page with current data
+        async function initializePage() {
+            try {
+                console.log('Initializing books page...');
+                
+                // Wait for API data to load if BooksAPI is available
+                if (window.BooksAPI && typeof window.BooksAPI.initializeBooksPage === 'function') {
+                    console.log('Loading data from API...');
+                    
+                    // Show loading state
+                    showLoadingState();
+                    
+                    try {
+                        const apiData = await window.BooksAPI.initializeBooksPage();
+                        if (apiData && apiData.books && apiData.books.length > 0) {
+                            storeBooks = apiData.books;
+                            window.storeBooks = storeBooks;
+                            console.log('Successfully loaded', storeBooks.length, 'books from API');
+                            
+                            // Update filtered books and render
+                            filteredBooks = [...storeBooks];
+                            window.filteredBooks = filteredBooks;
+                            
+                            hideLoadingState();
+                            updateCartDisplay();
+                            renderFeaturedBooks();
+                            renderBooks();
+                            
+                            console.log('Books page initialized with API data:', storeBooks.length, 'books');
+                            return;
+                        }
+                    } catch (apiError) {
+                        console.error('API loading failed:', apiError);
+                        hideLoadingState();
+                    }
+                }
+                
+                // Fallback to static data
+                console.log('Using static book data as fallback');
+                filteredBooks = [...storeBooks];
+                window.filteredBooks = filteredBooks;
+                updateCartDisplay();
+                renderFeaturedBooks();
+                renderBooks();
+                
+                console.log('Books page initialized with static data:', storeBooks.length, 'books');
+            } catch (error) {
+                console.error('Error during page initialization:', error);
+                hideLoadingState();
+                // Final fallback to static data
+                filteredBooks = [...storeBooks];
+                updateCartDisplay();
+                renderFeaturedBooks();
+                renderBooks();
+            }
+        }
+
+        // Loading state functions
+        function showLoadingState() {
+            const booksGrid = document.getElementById('books-grid');
+            const featuredContainer = document.querySelector('.books-showcase');
+            
+            const loadingHTML = `
+                <div class="loading-state" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+                    <div style="display: inline-block; width: 40px; height: 40px; border: 4px solid var(--border-secondary); border-top: 4px solid var(--border-accent); border-radius: 50%; animation: spin 1s linear infinite;"></div>
+        <p style="margin-top: 1rem; color: var(--text-tertiary);">Loading books from database...</p>
+                </div>
+            `;
+            
+            if (booksGrid) {
+                booksGrid.innerHTML = loadingHTML;
+            }
+            if (featuredContainer) {
+                featuredContainer.innerHTML = loadingHTML;
+            }
+        }
+
+        function hideLoadingState() {
+            const loadingStates = document.querySelectorAll('.loading-state');
+            loadingStates.forEach(state => state.remove());
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for all scripts to load and API to be available
+            function waitForAPI() {
+                if (window.BooksAPI && window.apiCall) {
+                    console.log('API is ready, initializing page...');
+                    initializePage();
+                } else {
+                    console.log('Waiting for API to load...');
+                    setTimeout(waitForAPI, 100);
+                }
+            }
+            
+            // Start checking for API availability
+            waitForAPI();
+        });
+
+        // Helper function to format book image background
+        function getBookImageStyle(imageValue) {
+            // Use BooksAPI processImageUrl if available for better image handling
+            if (typeof window.BooksAPI !== 'undefined' && window.BooksAPI.processImageUrl) {
+                const processedUrl = window.BooksAPI.processImageUrl(imageValue);
+                
+                // If it's a gradient, return as background
+                if (processedUrl && processedUrl.startsWith('linear-gradient')) {
+                    return `background: ${processedUrl};`;
+                }
+                
+                // If it's an image URL, use with fallback gradient
+                if (processedUrl && !processedUrl.startsWith('linear-gradient')) {
+                    return `background: url('${processedUrl}') center/cover no-repeat, linear-gradient(135deg, #6366f1, #8b5cf6);`;
+                }
+            }
+            
+            // Fallback to original logic if BooksAPI is not available
+            if (!imageValue || imageValue.trim() === '') {
+                return `background: url('assets/default-book-cover.svg') center/cover no-repeat, linear-gradient(135deg, #6366f1, #8b5cf6);`;
+            }
+            
+            // If it's already a gradient, use as is
+            if (imageValue.includes('linear-gradient') || imageValue.includes('radial-gradient')) {
+                return `background: ${imageValue};`;
+            }
+            
+            // If it's a URL (starts with http or https)
+            if (imageValue.startsWith('http')) {
+                return `background: url('${imageValue}') center/cover no-repeat, linear-gradient(135deg, #6366f1, #8b5cf6);`;
+            }
+            
+            // If it's a relative path from backend - handle various formats
+            if (imageValue.startsWith('/uploads/') || imageValue.startsWith('uploads/') || imageValue.includes('uploads')) {
+                let imageUrl;
+                if (imageValue.startsWith('/')) {
+                    imageUrl = `${window.TLS_API_BASE_URL || 'http://localhost:8080'}${imageValue}`;
+                } else if (imageValue.startsWith('uploads/')) {
+                    imageUrl = `${window.TLS_API_BASE_URL || 'http://localhost:8080'}/${imageValue}`;
+                } else {
+                    // Handle cases where the path might be just the filename or partial path
+                    imageUrl = `${window.TLS_API_BASE_URL || 'http://localhost:8080'}/uploads/books/${imageValue}`;
+                }
+                return `background: url('${imageUrl}') center/cover no-repeat, linear-gradient(135deg, #6366f1, #8b5cf6);`;
+            }
+            
+            // If it's a public path
+            if (imageValue.startsWith('/public/') || imageValue.startsWith('public/')) {
+                const imageUrl = imageValue.startsWith('/') ? `${window.TLS_API_BASE_URL || 'http://localhost:8080'}${imageValue}` : `${window.TLS_API_BASE_URL || 'http://localhost:8080'}/${imageValue}`;
+                return `background: url('${imageUrl}') center/cover no-repeat, linear-gradient(135deg, #6366f1, #8b5cf6);`;
+            }
+            
+            // Handle default book cover references
+            if (imageValue === '/assets/default-book-cover.svg' || 
+                imageValue === 'assets/default-book-cover.svg' ||
+                imageValue === '/assets/images/default-book.svg' ||
+                imageValue === 'assets/images/default-book.svg') {
+                return `background: url('assets/default-book-cover.svg') center/cover no-repeat, linear-gradient(135deg, #6366f1, #8b5cf6);`;
+            }
+            
+            // If it's just a filename, assume it's in uploads/books folder
+            if (imageValue && !imageValue.includes('/') && (imageValue.includes('.jpg') || imageValue.includes('.jpeg') || imageValue.includes('.png') || imageValue.includes('.gif') || imageValue.includes('.webp'))) {
+                const imageUrl = `${window.TLS_API_BASE_URL || 'http://localhost:8080'}/uploads/books/${imageValue}`;
+                return `background: url('${imageUrl}') center/cover no-repeat, linear-gradient(135deg, #6366f1, #8b5cf6);`;
+            }
+            
+            // If it's other asset paths
+            if (imageValue.startsWith('/') || imageValue.startsWith('assets/')) {
+                return `background: url('${imageValue}') center/cover no-repeat, linear-gradient(135deg, #6366f1, #8b5cf6);`;
+            }
+            
+            // Default fallback to default book cover
+            return `background: url('assets/default-book-cover.svg') center/cover no-repeat, linear-gradient(135deg, #6366f1, #8b5cf6);`;
+        }
+
+        // Image error handling function
+        function handleImageError(element, bookId) {
+            console.warn(`Image failed to load for book ${bookId}, using default cover`);
+            const defaultStyle = `background: url('assets/default-book-cover.svg') center/cover no-repeat, linear-gradient(135deg, #6366f1, #8b5cf6);`;
+            element.style.cssText = element.style.cssText.replace(/background:[^;]+;?/, '') + defaultStyle;
+        }
+
+        // Function to validate and fix broken images after rendering
+        function validateBookImages() {
+            const bookCovers = document.querySelectorAll('.book-cover');
+            bookCovers.forEach(cover => {
+                const backgroundImage = getComputedStyle(cover).backgroundImage;
+                if (backgroundImage && backgroundImage !== 'none') {
+                    // Extract URL from background-image CSS property
+                    const urlMatch = backgroundImage.match(/url\(["']?([^"'\)]+)["']?\)/);
+                    if (urlMatch && urlMatch[1]) {
+                        const imageUrl = urlMatch[1];
+                        // Skip gradients and data URLs
+                        if (!imageUrl.startsWith('data:') && !imageUrl.includes('linear-gradient')) {
+                            const img = new Image();
+                            img.onerror = () => {
+                                console.warn(`Image failed to load: ${imageUrl}`);
+                                const defaultStyle = `background: url('assets/default-book-cover.svg') center/cover no-repeat, linear-gradient(135deg, #6366f1, #8b5cf6);`;
+                                cover.style.cssText = cover.style.cssText.replace(/background:[^;]+;?/, '') + defaultStyle;
+                            };
+                            img.src = imageUrl;
+                        }
+                    }
+                }
+            });
+        }
+
+        // Make functions globally accessible for API integration
+        window.storeBooks = storeBooks;
+        window.filteredBooks = filteredBooks;
+        window.renderFeaturedBooks = renderFeaturedBooks;
+        window.renderBooks = renderBooks;
+        window.initializePage = initializePage;
+        window.validateBookImages = validateBookImages;
+
+        function renderFeaturedBooks() {
+            const container = document.querySelector('.books-showcase');
+            if (!container) return;
+            
+            let featured = storeBooks.filter(book => book.featured);
+            
+            // If no featured books, show first 3 books
+            if (featured.length === 0) {
+                featured = storeBooks.slice(0, 3);
+            }
+            
+            // Render featured books with async rating loading
+            const featuredCards = featured.map(book => {
+                const imageStyle = getBookImageStyle(book.image);
+                return `
+                    <div class="featured-book-card hover-lift" style="background: white; border-radius: 1rem; box-shadow: var(--shadow-xl); overflow: hidden; position: relative;">
+                        ${book.bestseller ? '<div style="position: absolute; top: 1rem; left: 1rem; background: var(--accent-red); color: white; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem; font-weight: 600; z-index: 10;">Bestseller</div>' : ''}
+                        <div class="book-cover" style="height: 250px; ${imageStyle} position: relative; overflow: hidden;">
+                            <div style="position: absolute; top: 2rem; left: 2rem; right: 2rem; text-align: center; color: white;">
+                                <h4 style="font-family: var(--font-tamil); font-size: 1.25rem; margin-bottom: 0.5rem;">${book.tamilTitle}</h4>
+                                <h5 style="font-size: 1rem; opacity: 0.9; margin-bottom: 1rem;">${book.title}</h5>
+                                <p style="font-size: 0.9rem; opacity: 0.8;">by ${book.author}</p>
+                            </div>
+                        </div>
+                        <div class="book-info" style="padding: 2rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                                <div class="price-info">
+                                    <span style="font-size: 1.5rem; font-weight: 700; color: var(--primary-blue);">RM${book.price}</span>
+                    ${book.originalPrice > book.price ? `<span style="font-size: 1rem; color: var(--gray-400); text-decoration: line-through; margin-left: 0.5rem;">RM${book.originalPrice}</span>` : ''}
+                                </div>
+                                <div class="rating" style="color: var(--accent-gold); font-size: 0.9rem;" data-book-rating="${book.id}">
+                                    ${generateStars(book.rating)}
+                                    <span style="margin-left: 0.5rem; color: var(--gray-600);">${book.rating}</span>
+                                </div>
+                            </div>
+                            <p style="color: var(--gray-600); margin-bottom: 1.5rem; line-height: 1.5;">${book.description}</p>
+                            <div style="display: flex; gap: 0.75rem;">
+                                <button class="btn-add-cart" data-book-id="${book.id}" style="flex: 1; background: var(--primary-blue); color: white; border: none; padding: 0.75rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease; font-weight: 600;">
+                                    <i class="fas fa-cart-plus"></i> Add to Cart
+                                </button>
+                                <button class="btn-buy-now" data-book-id="${book.id}" style="flex: 1; background: var(--accent-gold); color: white; border: none; padding: 0.75rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease; font-weight: 600;">
+                                    <i class="fas fa-bolt"></i> Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = featuredCards.join('');
+            
+            // Validate and fix broken images
+            setTimeout(() => validateBookImages(), 100);
+            
+            // Load clickable ratings asynchronously
+            featured.forEach(async (book) => {
+                const ratingElement = document.querySelector(`[data-book-rating="${book.id}"]`);
+                if (ratingElement) {
+                    const clickableStars = await generateClickableStars(book.rating, book.id);
+                    ratingElement.innerHTML = `${clickableStars}<span style="margin-left: 0.5rem; color: var(--gray-600);">${book.rating}</span>`;
+                }
+            });
+            
+            // Add event listeners after rendering
+            addButtonEventListeners();
+        }
+
+        function renderBooks(books = filteredBooks) {
+            const container = document.getElementById('books-grid');
+            if (!container) return;
+            
+            // Ensure we have books to display
+            const booksToRender = books && books.length > 0 ? books : storeBooks;
+            
+            // Render books with async rating loading
+            const bookCards = booksToRender.map((book, index) => {
+                const imageStyle = getBookImageStyle(book.image);
+                return `
+                    <div class="book-card hover-lift animate-fadeInUp" style="background: white; border-radius: 1rem; box-shadow: var(--shadow-lg); overflow: hidden; transition: all 0.3s ease; animation-delay: ${index * 0.1}s; position: relative;">
+                        ${book.bestseller ? '<div style="position: absolute; top: 1rem; left: 1rem; background: var(--accent-red); color: white; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem; font-weight: 600; z-index: 10;">Bestseller</div>' : ''}
+                        <div class="book-cover" style="height: 200px; ${imageStyle} position: relative; overflow: hidden;">
+                            <div style="position: absolute; top: 1.5rem; left: 1.5rem; right: 1.5rem; text-align: center; color: white;">
+                                <h4 style="font-family: var(--font-tamil); font-size: 1.1rem; margin-bottom: 0.5rem;">${book.tamilTitle}</h4>
+                                <h5 style="font-size: 0.9rem; opacity: 0.9;">${book.title}</h5>
+                            </div>
+                        </div>
+                        <div class="book-info" style="padding: 1.5rem;">
+                            <p style="color: var(--gray-600); font-size: 0.9rem; margin-bottom: 0.5rem;">by ${book.author}</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                                <div class="price-info">
+                                    <span style="font-size: 1.25rem; font-weight: 700; color: var(--primary-blue);">RM${book.price}</span>
+                                    ${book.originalPrice > book.price ? `<span style="font-size: 0.9rem; color: var(--gray-400); text-decoration: line-through; margin-left: 0.5rem;">RM${book.originalPrice}</span>` : ''}
+                                </div>
+                                <div class="rating" style="color: var(--accent-gold); font-size: 0.8rem;" data-book-rating="${book.id}">
+                                    ${generateStars(book.rating)}
+                                    <span style="margin-left: 0.25rem; color: var(--gray-600);">(${book.reviews || book.reviewCount || 0})</span>
+                                </div>
+                            </div>
+                            <p style="color: var(--gray-600); font-size: 0.85rem; margin-bottom: 1.5rem; line-height: 1.4;">${book.description.substring(0, 100)}...</p>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button class="btn-add-cart" data-book-id="${book.id}" style="flex: 1; background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-300); padding: 0.5rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease; font-size: 0.85rem;">
+                                    <i class="fas fa-cart-plus"></i> Add to Cart
+                                </button>
+                                <button class="btn-buy-now" data-book-id="${book.id}" style="flex: 1; background: var(--primary-blue); color: white; border: none; padding: 0.5rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease; font-size: 0.85rem;">
+                                    <i class="fas fa-bolt"></i> Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = bookCards.join('');
+            
+            // Validate and fix broken images
+            setTimeout(() => validateBookImages(), 100);
+            
+            // Load clickable ratings asynchronously
+            booksToRender.forEach(async (book) => {
+                const ratingElement = document.querySelector(`[data-book-rating="${book.id}"]`);
+                if (ratingElement) {
+                    const clickableStars = await generateClickableStars(book.rating, book.id);
+                    ratingElement.innerHTML = `${clickableStars}<span style="margin-left: 0.25rem; color: var(--gray-600);">(${book.reviews || book.reviewCount || 0})</span>`;
+                }
+            });
+
+            // Add event listeners for buttons (only if not already added)
+            if (!window.bookButtonListenersAdded) {
+                addButtonEventListeners();
+                window.bookButtonListenersAdded = true;
+            }
+        }
+
+        function addButtonEventListeners() {
+            // Use event delegation to avoid duplicate listeners
+            document.addEventListener('click', function(e) {
+                // Handle add to cart buttons
+                if (e.target.closest('.btn-add-cart')) {
+                    const button = e.target.closest('.btn-add-cart');
+                    const bookId = button.dataset.bookId;
+                    addToCart(bookId);
+                    
+                    // Animation effect
+                    button.style.background = 'var(--accent-green)';
+                    button.innerHTML = '<i class="fas fa-check"></i> Added';
+                    setTimeout(() => {
+                        button.style.background = '';
+                        button.innerHTML = '<i class="fas fa-cart-plus"></i> Add to Cart';
+                    }, 2000);
+                }
+                
+                // Handle buy now buttons
+                if (e.target.closest('.btn-buy-now')) {
+                    const button = e.target.closest('.btn-buy-now');
+                    const bookId = button.dataset.bookId;
+                    buyNow(bookId);
+                }
+            });
+        }
+
+        async function addToCart(bookId) {
+            const book = storeBooks.find(b => b.id === bookId);
+            if (!book) return;
+
+            try {
+                const result = await enhancedCart.addToCart(bookId, book);
+                
+                if (result.success) {
+                    // Use proper notification system
+                    if (typeof showNotification !== 'undefined') {
+                        showNotification(`${book.tamilTitle} added to cart!`);
+                    } else if (window.TamilSociety && window.TamilSociety.showNotification) {
+                        window.TamilSociety.showNotification(`${book.tamilTitle} added to cart!`);
+                    }
+                } else {
+                    throw new Error(result.message || 'Failed to add to cart');
+                }
+            } catch (error) {
+                console.error('Add to cart error:', error);
+                if (typeof showNotification !== 'undefined') {
+                    showNotification(`Failed to add to cart: ${error.message}`);
+                } else if (window.TamilSociety && window.TamilSociety.showNotification) {
+                    window.TamilSociety.showNotification(`Failed to add to cart: ${error.message}`);
+                }
+            }
+        }
+
+        async function buyNow(bookId) {
+            const book = storeBooks.find(b => b.id === bookId);
+            if (!book) return;
+
+            // Show buy now form for individual book purchase
+            showBuyNowForm(book);
+        }
+
+        async function removeFromCart(bookId) {
+            await enhancedCart.removeFromCart(bookId);
+        }
+
+        async function updateQuantity(bookId, newQuantity) {
+            await enhancedCart.updateQuantity(bookId, newQuantity);
+        }
+
+        function saveCart() {
+            // This is now handled by enhancedCart
+            enhancedCart.saveLocalCart();
+        }
+
+        function updateCartDisplay() {
+            // This is now handled by enhancedCart
+            enhancedCart.updateCartDisplay();
+        }
+
+        function toggleCart() {
+            enhancedCart.toggleCart();
+        }
+
+        function renderCartItems() {
+            enhancedCart.renderCartItems();
+        }
+
+        async function proceedToCheckout() {
+            if (enhancedCart.getCartCount() === 0) {
+                if (typeof showNotification !== 'undefined') {
+                    showNotification('Your cart is empty!');
+                } else if (window.TamilSociety && window.TamilSociety.showNotification) {
+                    window.TamilSociety.showNotification('Your cart is empty!');
+                }
+                return;
+            }
+
+            // Show checkout form
+            showCheckoutForm();
+        }
+
+        function generateStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            let stars = '';
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star"></i>';
+            }
+            
+            if (hasHalfStar) {
+                stars += '<i class="fas fa-star-half-alt"></i>';
+            }
+            
+            const emptyStars = 5 - Math.ceil(rating);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="far fa-star"></i>';
+            }
+            
+            return stars;
+        }
+
+        async function generateClickableStars(rating, bookId) {
+            // Use the RatingSystem class for consistent rating functionality
+            if (window.RatingSystem) {
+                return window.RatingSystem.generateStarRating(bookId, rating, true);
+            }
+            
+            // Fallback implementation if RatingSystem is not available
+            let userRating = rating;
+            
+            if (localStorage.getItem('token')) {
+                try {
+                    const response = await fetch(`http://localhost:8080/api/books/${bookId}/my-rating`, {
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        userRating = data.rating || rating;
+                    }
+                } catch (error) {
+                    console.log('Could not fetch user rating:', error);
+                }
+            }
+            
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                const starClass = i <= userRating ? 'fas fa-star' : 'far fa-star';
+                stars += `<i class="${starClass}" data-rating="${i}" data-book-id="${bookId}" style="cursor: pointer; transition: color 0.2s; color: var(--accent-gold); margin-right: 2px;" onclick="event.stopPropagation(); event.preventDefault(); rateBook('${bookId}', ${i})" onmouseover="highlightStars(this, ${i})" onmouseout="resetStars(this)"></i>`;
+            }
+            return stars;
+        }
+
+        async function rateBook(bookId, rating) {
+            // Check authentication before rating
+            if (window.authUtils && !window.authUtils.requireAuth('rate books')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:8080/api/books/${bookId}/rate`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify({ rating })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    const book = storeBooks.find(b => b.id === bookId);
+                    
+                    // Update display
+                    if (typeof showNotification !== 'undefined') {
+                        showNotification(`You rated "${book.tamilTitle || book.title}" ${rating} stars!`);
+                    } else if (window.TamilSociety && window.TamilSociety.showNotification) {
+                        window.TamilSociety.showNotification(`You rated "${book.tamilTitle || book.title}" ${rating} stars!`);
+                    }
+                    
+                    // Update the visual rating immediately
+                    updateBookRating(bookId, rating);
+                    
+                    // Update the book's average rating in the local data
+                    if (book) {
+                        book.rating = result.averageRating;
+                        book.reviewCount = result.reviewCount;
+                    }
+                    
+                    // Re-attach event listeners to ensure buttons still work
+                    setTimeout(() => {
+                        addButtonEventListeners();
+                    }, 100);
+                } else {
+                    throw new Error(result.message || 'Failed to submit rating');
+                }
+            } catch (error) {
+                console.error('Rating error:', error);
+                if (typeof showNotification !== 'undefined') {
+                    showNotification(`Failed to submit rating: ${error.message}`);
+                } else if (window.TamilSociety && window.TamilSociety.showNotification) {
+                    window.TamilSociety.showNotification(`Failed to submit rating: ${error.message}`);
+                }
+            }
+        }
+
+        function updateBookRating(bookId, rating) {
+            const ratingElements = document.querySelectorAll(`[data-book-id="${bookId}"]`);
+            ratingElements.forEach(element => {
+                const starRating = parseInt(element.dataset.rating);
+                if (starRating <= rating) {
+                    element.className = 'fas fa-star';
+                } else {
+                    element.className = 'far fa-star';
+                }
+            });
+        }
+
+        function highlightStars(element, rating) {
+            const bookId = element.dataset.bookId;
+            const stars = document.querySelectorAll(`[data-book-id="${bookId}"]`);
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.style.color = 'var(--accent-gold)';
+                } else {
+                    star.style.color = 'var(--gray-300)';
+                }
+            });
+        }
+
+        async function resetStars(element) {
+            const bookId = element.dataset.bookId;
+            let userRating = 0;
+            
+            // Get user's actual rating from API if authenticated
+            if (localStorage.getItem('token')) {
+                try {
+                    const response = await fetch(`http://localhost:8080/api/books/${bookId}/my-rating`, {
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        userRating = data.rating || 0;
+                    }
+                } catch (error) {
+                    console.log('Could not fetch user rating:', error);
+                }
+            }
+            
+            const stars = document.querySelectorAll(`[data-book-id="${bookId}"]`);
+            stars.forEach((star, index) => {
+                const starRating = index + 1;
+                if (starRating <= userRating) {
+                    star.style.color = 'var(--accent-gold)';
+                    star.className = 'fas fa-star';
+                } else {
+                    star.style.color = 'var(--accent-gold)';
+                    star.className = 'far fa-star';
+                }
+            });
+        }
+
+        // Filter functionality
+        document.getElementById('category-filter').addEventListener('change', applyFilters);
+        document.getElementById('price-filter').addEventListener('change', applyFilters);
+        document.getElementById('sort-filter').addEventListener('change', applyFilters);
+        document.getElementById('search-input').addEventListener('input', applyFilters);
+
+        function applyFilters() {
+            const category = document.getElementById('category-filter').value;
+            const priceRange = document.getElementById('price-filter').value;
+            const sortBy = document.getElementById('sort-filter').value;
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+
+            filteredBooks = storeBooks.filter(book => {
+                // Category filter
+                if (category !== 'all' && book.category !== category) return false;
+                
+                // Price filter
+                if (priceRange !== 'all') {
+                    const [min, max] = priceRange === '30+' ? [30, Infinity] : priceRange.split('-').map(Number);
+                    if (book.price < min || book.price > max) return false;
+                }
+                
+                // Search filter
+                if (searchTerm && !book.title.toLowerCase().includes(searchTerm) && 
+                    !book.tamilTitle.includes(searchTerm) && 
+                    !book.author.toLowerCase().includes(searchTerm)) {
+                    return false;
+                }
+                
+                return true;
+            });
+
+            // Sort
+            switch (sortBy) {
+                case 'price-low':
+                    filteredBooks.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    filteredBooks.sort((a, b) => b.price - a.price);
+                    break;
+                case 'alphabetical':
+                    filteredBooks.sort((a, b) => a.title.localeCompare(b.title));
+                    break;
+                case 'rating':
+                    filteredBooks.sort((a, b) => b.rating - a.rating);
+                    break;
+                default:
+                    // Keep original order for featured
+                    break;
+            }
+
+            renderBooks(filteredBooks);
+        }
+
+        // Enhanced load more functionality
+        let booksCurrentPage = 1;
+        const booksPerPage = 12;
+
+        document.getElementById('load-more').addEventListener('click', function() {
+            booksCurrentPage++;
+            const startIndex = (booksCurrentPage - 1) * booksPerPage;
+            const endIndex = startIndex + booksPerPage;
+            const additionalBooks = filteredBooks.slice(startIndex, endIndex);
+            
+            if (additionalBooks.length > 0) {
+                appendBooks(additionalBooks);
+                window.TamilSociety.showNotification(`Loaded ${additionalBooks.length} more books!`);
+            } else {
+                window.TamilSociety.showNotification('All books loaded!');
+                this.style.display = 'none';
+            }
+        });
+
+        function appendBooks(books) {
+            const container = document.getElementById('books-grid');
+            const bookCards = books.map((book, index) => {
+                const imageStyle = getBookImageStyle(book.image);
+                return `
+                    <div class="book-card hover-lift animate-fadeInUp" style="background: white; border-radius: 1rem; box-shadow: var(--shadow-lg); overflow: hidden; transition: all 0.3s ease; animation-delay: ${index * 0.1}s; position: relative;">
+                        ${book.bestseller ? '<div style="position: absolute; top: 1rem; left: 1rem; background: var(--accent-red); color: white; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem; font-weight: 600; z-index: 10;">Bestseller</div>' : ''}
+                        <div class="book-cover" style="height: 200px; ${imageStyle} position: relative; overflow: hidden; cursor: pointer;" onclick="showBookDetails('${book.id}')">
+                            <div style="position: absolute; top: 1.5rem; left: 1.5rem; right: 1.5rem; text-align: center; color: white;">
+                                <h4 style="font-family: var(--font-tamil); font-size: 1.1rem; margin-bottom: 0.5rem;">${book.tamilTitle}</h4>
+                                <h5 style="font-size: 0.9rem; opacity: 0.9;">${book.title}</h5>
+                            </div>
+                        </div>
+                        <div class="book-info" style="padding: 1.5rem;">
+                            <p style="color: var(--gray-600); font-size: 0.9rem; margin-bottom: 0.5rem;">by ${book.author}</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                                <div class="price-info">
+                                    <span style="font-size: 1.25rem; font-weight: 700; color: var(--primary-blue);">RM${book.price}</span>
+                                    ${book.originalPrice > book.price ? `<span style="font-size: 0.9rem; color: var(--gray-400); text-decoration: line-through; margin-left: 0.5rem;">RM${book.originalPrice}</span>` : ''}
+                                </div>
+                                <div class="rating" style="color: var(--accent-gold); font-size: 0.8rem;" data-book-rating="${book.id}">
+                                    ${generateStars(book.rating)}
+                                    <span style="margin-left: 0.25rem; color: var(--gray-600);">(${book.reviews || book.reviewCount || 0})</span>
+                                </div>
+                            </div>
+                            <p style="color: var(--gray-600); font-size: 0.85rem; margin-bottom: 1.5rem; line-height: 1.4;">${book.description.substring(0, 100)}...</p>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button class="btn-add-cart btn-gradient-primary" data-book-id="${book.id}" style="flex: 1; padding: 0.5rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease; font-size: 0.85rem; border: none;">
+                                    <i class="fas fa-cart-plus"></i> Add to Cart
+                                </button>
+                                <button class="btn-buy-now btn-gradient-primary" data-book-id="${book.id}" style="flex: 1; padding: 0.5rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease; font-size: 0.85rem; border: none;">
+                                    <i class="fas fa-bolt"></i> Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.insertAdjacentHTML('beforeend', bookCards.join(''));
+            
+            // Load clickable ratings asynchronously for new books
+            books.forEach(async (book) => {
+                const ratingElement = document.querySelector(`[data-book-rating="${book.id}"]`);
+                if (ratingElement) {
+                    const clickableStars = await generateClickableStars(book.rating, book.id);
+                    ratingElement.innerHTML = `${clickableStars}<span style="margin-left: 0.25rem; color: var(--gray-600);">(${book.reviews || book.reviewCount || 0})</span>`;
+                }
+            });
+
+            // Add event listeners for new buttons
+            addButtonEventListeners();
+        }
+
+        // Book details modal
+        function showBookDetails(bookId) {
+            const book = storeBooks.find(b => b.id === bookId);
+            if (!book) return;
+
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 10000;
+                backdrop-filter: blur(5px);
+            `;
+
+            const imageStyle = getBookImageStyle(book.image);
+            modal.innerHTML = `
+                <div class="modal-content blue-gradient-form" style="max-width: 800px; max-height: 90vh; overflow-y: auto; margin: 2rem; border-radius: 1rem; position: relative;">
+                    <button class="modal-close" onclick="this.closest('.modal-overlay').remove()" style="position: absolute; top: 1rem; right: 1rem; background: rgba(255, 255, 255, 0.2); border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.25rem; z-index: 10;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; padding: 2rem;">
+                        <div class="book-cover-large" style="height: 400px; ${imageStyle} border-radius: 1rem; position: relative;">
+                            ${book.bestseller ? '<div style="position: absolute; top: 1rem; left: 1rem; background: var(--accent-red); color: white; padding: 0.5rem 1rem; border-radius: 1rem; font-size: 0.9rem; font-weight: 600;">Bestseller</div>' : ''}
+                        </div>
+                        
+                        <div class="book-details" style="color: white;">
+                            <h2 style="font-family: var(--font-tamil); font-size: 2rem; margin-bottom: 0.5rem; color: white;">${book.tamilTitle}</h2>
+                            <h3 style="font-size: 1.5rem; margin-bottom: 1rem; opacity: 0.9; color: white;">${book.title}</h3>
+                            <p style="font-size: 1.1rem; margin-bottom: 1rem; opacity: 0.8; color: white;">by ${book.author}</p>
+                            
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                                <div class="rating" style="color: var(--accent-gold); font-size: 1.1rem;" data-book-rating="${book.id}">
+                                    ${generateStars(book.rating)}
+                                    <span style="margin-left: 0.5rem; color: white;">${book.rating} (${book.reviews || book.reviewCount || 0} reviews)</span>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-bottom: 1.5rem;">
+                                <span style="font-size: 2rem; font-weight: 700; color: var(--accent-gold);">RM${book.price}</span>
+                                ${book.originalPrice > book.price ? `<span style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.6); text-decoration: line-through; margin-left: 1rem;">RM${book.originalPrice}</span>` : ''}
+                            </div>
+                            
+                            <p style="line-height: 1.6; margin-bottom: 2rem; color: rgba(255, 255, 255, 0.9);">${book.description}</p>
+                            
+                            <div style="display: flex; gap: 1rem;">
+                                <button class="btn-add-cart btn-gradient-primary" data-book-id="${book.id}" style="flex: 1; padding: 1rem; border-radius: 0.75rem; cursor: pointer; transition: all 0.3s ease; font-size: 1rem; font-weight: 600; border: none;">
+                                    <i class="fas fa-cart-plus"></i> Add to Cart
+                                </button>
+                                <button class="btn-buy-now btn-gradient-primary" data-book-id="${book.id}" style="flex: 1; padding: 1rem; border-radius: 0.75rem; cursor: pointer; transition: all 0.3s ease; font-size: 1rem; font-weight: 600; border: none;">
+                                    <i class="fas fa-bolt"></i> Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+            
+            // Load clickable rating for modal
+            setTimeout(async () => {
+                const ratingElement = modal.querySelector(`[data-book-rating="${book.id}"]`);
+                if (ratingElement) {
+                    const clickableStars = await generateClickableStars(book.rating, book.id);
+                    ratingElement.innerHTML = `${clickableStars}<span style="margin-left: 0.5rem; color: white;">${book.rating} (${book.reviews || book.reviewCount || 0} reviews)</span>`;
+                }
+                
+                // Add event listeners for modal buttons
+                addButtonEventListeners();
+            }, 100);
+
+            // Close modal on outside click
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+        }
+
+        // Buy Now form functionality for individual books
+        async function showBuyNowForm(book) {
+            // Get payment settings
+            let paymentSettings = {};
+            try {
+                const response = await fetch('/api/payment-settings/public');
+                if (response.ok) {
+                    paymentSettings = await response.json();
+                }
+            } catch (error) {
+                console.error('Error fetching payment settings:', error);
+            }
+
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 10000;
+                backdrop-filter: blur(5px);
+            `;
+
+            const imageStyle = getBookImageStyle(book.image);
+            modal.innerHTML = `
+                <div class="modal-content blue-gradient-form" style="max-width: 600px; max-height: 90vh; overflow-y: auto; margin: 2rem; border-radius: 1rem; position: relative;">
+                    <button class="modal-close" onclick="this.closest('.modal-overlay').remove()" style="position: absolute; top: 1rem; right: 1rem; background: rgba(255, 255, 255, 0.2); border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.25rem; z-index: 10;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    
+                    <div style="padding: 2rem;">
+                        <h2 style="color: white; text-align: center; margin-bottom: 2rem; font-size: 1.8rem;">Buy Now</h2>
+                        
+                        <!-- Book Summary -->
+                        <div style="background: rgba(255, 255, 255, 0.1); border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 2rem; display: flex; gap: 1rem;">
+                            <div style="width: 80px; height: 100px; ${imageStyle} border-radius: 0.5rem; flex-shrink: 0;"></div>
+                            <div style="flex: 1; color: white;">
+                                <h3 style="font-family: var(--font-tamil); margin-bottom: 0.5rem;">${book.tamilTitle}</h3>
+                                <h4 style="margin-bottom: 0.5rem; opacity: 0.9;">${book.title}</h4>
+                                <p style="margin-bottom: 1rem; opacity: 0.8;">by ${book.author}</p>
+                                <div style="font-size: 1.5rem; font-weight: bold; color: var(--accent-gold);">RM${book.price}</div>
+                            </div>
+                        </div>
+
+                        <!-- Purchase Form -->
+                        <form id="buynow-form" class="blue-gradient-form" style="color: white;">
+                            <div style="margin-bottom: 1.5rem;">
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Name *</label>
+                                <input type="text" id="buynow-name" required style="width: 100%; padding: 0.75rem; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 0.5rem; background: rgba(255, 255, 255, 0.95); color: #333; font-size: 1rem; backdrop-filter: blur(10px);" placeholder="Enter your full name">
+                            </div>
+                            
+                            <div style="margin-bottom: 1.5rem;">
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Email *</label>
+                                <input type="email" id="buynow-email" required style="width: 100%; padding: 0.75rem; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 0.5rem; background: rgba(255, 255, 255, 0.95); color: #333; font-size: 1rem; backdrop-filter: blur(10px);" placeholder="Enter your email address">
+                            </div>
+                            
+                            <div style="margin-bottom: 1.5rem;">
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Phone Number *</label>
+                                <input type="tel" id="buynow-phone" required style="width: 100%; padding: 0.75rem; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 0.5rem; background: rgba(255, 255, 255, 0.95); color: #333; font-size: 1rem; backdrop-filter: blur(10px);" placeholder="Enter your phone number">
+                            </div>
+
+                            <!-- Price Breakdown -->
+                            <div style="margin-bottom: 1.5rem;">
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Price Breakdown</label>
+                                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 0.5rem; padding: 1rem;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <span>Book Price:</span>
+                                        <span id="buynow-book-price">RM${book.price}</span>
+                                    </div>
+                                    <div id="buynow-shipping-fee-row" style="display: none; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <span>Shipping Fee:</span>
+                                        <span id="buynow-shipping-fee">RM0.00</span>
+                                    </div>
+                                    <div style="border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 0.5rem; display: flex; justify-content: space-between; font-weight: 600;">
+                                        <span>Total Amount:</span>
+                                        <span id="buynow-total-amount">RM${book.price}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Payment Method Selection -->
+                            <div style="margin-bottom: 1.5rem;">
+                                <label style="display: block; margin-bottom: 1rem; font-weight: 600;">Payment Method *</label>
+                                <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                                    <label style="flex: 1; cursor: pointer;">
+                                        <input type="radio" name="buynow-payment-method" value="epay" style="margin-right: 0.5rem;">
+                                        <span style="padding: 0.75rem; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 0.5rem; display: block; text-align: center; background: rgba(255, 255, 255, 0.1);">E-PAY UM</span>
+                                    </label>
+                                    <label style="flex: 1; cursor: pointer;">
+                                        <input type="radio" name="buynow-payment-method" value="fbx" style="margin-right: 0.5rem;">
+                                        <span style="padding: 0.75rem; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 0.5rem; display: block; text-align: center; background: rgba(255, 255, 255, 0.1);">FBX</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Payment Details -->
+                            <div id="buynow-payment-details" style="margin-bottom: 1.5rem; display: none;">
+                                <!-- E-PAY Details -->
+                                <div id="buynow-epay-details" style="display: none;">
+                                    <div style="background: rgba(255, 255, 255, 0.1); border-radius: 0.5rem; padding: 1rem; margin-bottom: 1rem;">
+                                        <h4 style="margin-bottom: 0.5rem;">E-PAY UM Payment</h4>
+                                        <p style="margin-bottom: 1rem; opacity: 0.9;">${paymentSettings.data?.epayUm?.instructions || 'Please do the transaction and upload the payment proof file'}</p>
+                                        ${paymentSettings.data?.epayUm?.paymentLink ? `<a href="${paymentSettings.data.epayUm.paymentLink}" target="_blank" style="color: var(--accent-gold); text-decoration: underline; font-weight: 600;">Pay Now via E-PAY UM</a>` : '<p style="color: var(--text-danger);">E-PAY link not configured</p>'}
+                                    </div>
+                                </div>
+
+                                <!-- FBX Details -->
+                                <div id="buynow-fbx-details" style="display: none;">
+                                    <div style="background: rgba(255, 255, 255, 0.1); border-radius: 0.5rem; padding: 1rem; margin-bottom: 1rem;">
+                                        <h4 style="margin-bottom: 1rem;">Bank Transfer Details</h4>
+                                        <div style="margin-bottom: 0.5rem;"><strong>Bank Name:</strong> ${paymentSettings.data?.fbx?.bankName || 'MAYBANK'}</div>
+                                        <div style="margin-bottom: 0.5rem;"><strong>Account Number:</strong> ${paymentSettings.data?.fbx?.accountNumber || '157223402785'}</div>
+                                        <div style="margin-bottom: 1rem;"><strong>Account Holder Name:</strong> ${paymentSettings.data?.fbx?.accountOwner || 'NOWESH KUMAR'}</div>
+                                        <p style="opacity: 0.9;">${paymentSettings.data?.fbx?.instructions || 'Transfer the amount to the above account and upload your payment proof below.'}</p>
+                                    </div>
+                                </div>
+
+                                <!-- Payment Proof Upload -->
+                                <div style="margin-top: 1rem;">
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Payment Proof (PDF) *</label>
+                                    <input type="file" id="buynow-payment-proof" accept=".pdf" required style="width: 100%; padding: 0.75rem; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 0.5rem; background: rgba(255, 255, 255, 0.95); color: #333; font-size: 1rem; backdrop-filter: blur(10px);">
+                                    <small style="opacity: 0.8; display: block; margin-top: 0.25rem;">Please upload a PDF file of your payment receipt/proof</small>
+                                </div>
+                            </div>
+
+                            <!-- Shipping Toggle -->
+                            <div style="margin-bottom: 1.5rem;">
+                                <label style="display: flex; align-items: center; cursor: pointer; font-weight: 600;">
+                                    <input type="checkbox" id="buynow-require-shipping" style="margin-right: 0.75rem; transform: scale(1.2);">
+                                    <span>I need physical shipping</span>
+                                </label>
+                                <small style="opacity: 0.8; display: block; margin-top: 0.5rem;">Check this if you need the book to be shipped to your address</small>
+                            </div>
+
+                            <!-- Shipping Address Fields -->
+                            <div id="buynow-shipping-fields" style="margin-bottom: 1.5rem; display: none;">
+                                <h4 style="margin-bottom: 1rem; color: var(--accent-gold);">Shipping Address</h4>
+                                
+                                <div style="margin-bottom: 1rem;">
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Street Address *</label>
+                                    <input type="text" id="buynow-street" style="width: 100%; padding: 0.75rem; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 0.5rem; background: rgba(255, 255, 255, 0.95); color: #333; font-size: 1rem; backdrop-filter: blur(10px);" placeholder="Enter your street address">
+                                </div>
+                                
+                                <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                                    <div style="flex: 1;">
+                                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">City *</label>
+                                        <input type="text" id="buynow-city" style="width: 100%; padding: 0.75rem; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 0.5rem; background: rgba(255, 255, 255, 0.95); color: #333; font-size: 1rem; backdrop-filter: blur(10px);" placeholder="City">
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">State *</label>
+                                        <input type="text" id="buynow-state" style="width: 100%; padding: 0.75rem; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 0.5rem; background: rgba(255, 255, 255, 0.95); color: #333; font-size: 1rem; backdrop-filter: blur(10px);" placeholder="State">
+                                    </div>
+                                </div>
+                                
+                                <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                                    <div style="flex: 1;">
+                                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Zip Code *</label>
+                                        <input type="text" id="buynow-zipcode" style="width: 100%; padding: 0.75rem; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 0.5rem; background: rgba(255, 255, 255, 0.95); color: #333; font-size: 1rem; backdrop-filter: blur(10px);" placeholder="Zip Code">
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Country *</label>
+                                        <input type="text" id="buynow-country" value="Malaysia" style="width: 100%; padding: 0.75rem; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 0.5rem; background: rgba(255, 255, 255, 0.95); color: #333; font-size: 1rem; backdrop-filter: blur(10px);">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" style="width: 100%; padding: 1rem; background: linear-gradient(135deg, var(--accent-gold), #f39c12); color: white; border: none; border-radius: 0.75rem; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+                                <i class="fas fa-bolt"></i> Complete Purchase
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+
+            // Handle payment method selection
+            const paymentRadios = modal.querySelectorAll('input[name="buynow-payment-method"]');
+            const paymentDetails = modal.getElementById('buynow-payment-details');
+            const epayDetails = modal.getElementById('buynow-epay-details');
+            const fbxDetails = modal.getElementById('buynow-fbx-details');
+
+            paymentRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    if (this.checked) {
+                        paymentDetails.style.display = 'block';
+                        if (this.value === 'epay') {
+                            epayDetails.style.display = 'block';
+                            fbxDetails.style.display = 'none';
+                        } else if (this.value === 'fbx') {
+                            epayDetails.style.display = 'none';
+                            fbxDetails.style.display = 'block';
+                        }
+                    }
+                });
+            });
+
+            // Handle shipping toggle
+            const shippingToggle = modal.getElementById('checkout-require-shipping');
+            const shippingFields = modal.getElementById('checkout-shipping-fields');
+            const shippingInputs = shippingFields.querySelectorAll('input[required]');
+
+            shippingToggle.addEventListener('change', function() {
+                const shippingFeeRow = modal.getElementById('checkout-shipping-fee-row');
+                const shippingFeeSpan = modal.getElementById('checkout-shipping-fee');
+                const totalAmountSpan = modal.getElementById('checkout-total-amount');
+                const subtotal = enhancedCart.getCartTotal();
+                
+                if (this.checked) {
+                    shippingFields.style.display = 'block';
+                    // Make shipping fields required
+                    shippingInputs.forEach(input => {
+                        input.setAttribute('required', 'required');
+                    });
+                    
+                    // Calculate and show shipping fee
+                    const shippingFee = paymentSettings.shipping?.enabled ? 
+                        (subtotal >= paymentSettings.shipping.freeShippingThreshold ? 0 : paymentSettings.shipping.domesticFee) : 5.00;
+                    const totalAmount = subtotal + shippingFee;
+                    
+                    shippingFeeRow.style.display = 'flex';
+                    shippingFeeSpan.textContent = `RM${shippingFee.toFixed(2)}`;
+                    totalAmountSpan.textContent = `RM${totalAmount.toFixed(2)}`;
+                } else {
+                    shippingFields.style.display = 'none';
+                    // Remove required attribute from shipping fields
+                    shippingInputs.forEach(input => {
+                        input.removeAttribute('required');
+                        input.value = '';
+                    });
+                    
+                    // Hide shipping fee and reset total
+                    shippingFeeRow.style.display = 'none';
+                    totalAmountSpan.textContent = `RM${subtotal.toFixed(2)}`;
+                }
+            });
+            
+            // Add country change handler for international shipping
+            const countrySelect = modal.getElementById('checkout-country');
+            if (countrySelect) {
+                countrySelect.addEventListener('change', function() {
+                    if (shippingToggle.checked) {
+                        const shippingFeeSpan = modal.getElementById('checkout-shipping-fee');
+                        const totalAmountSpan = modal.getElementById('checkout-total-amount');
+                        const subtotal = enhancedCart.getCartTotal();
+                        
+                        const isInternational = this.value !== 'Malaysia';
+                        const shippingFee = paymentSettings.shipping?.enabled ? 
+                            (subtotal >= paymentSettings.shipping.freeShippingThreshold ? 0 : 
+                             (isInternational ? paymentSettings.shipping.internationalFee : paymentSettings.shipping.domesticFee)) : 
+                            (isInternational ? 15.00 : 5.00);
+                        const totalAmount = subtotal + shippingFee;
+                        
+                        shippingFeeSpan.textContent = `RM${shippingFee.toFixed(2)}`;
+                        totalAmountSpan.textContent = `RM${totalAmount.toFixed(2)}`;
+                    }
+                });
+            }
+
+            // Handle Buy Now shipping toggle
+            const buyNowShippingToggle = modal.getElementById('buynow-require-shipping');
+            const buyNowShippingFields = modal.getElementById('buynow-shipping-fields');
+            const buyNowShippingInputs = buyNowShippingFields.querySelectorAll('input[required]');
+
+            buyNowShippingToggle.addEventListener('change', function() {
+                const shippingFeeRow = modal.getElementById('buynow-shipping-fee-row');
+                const shippingFeeSpan = modal.getElementById('buynow-shipping-fee');
+                const totalAmountSpan = modal.getElementById('buynow-total-amount');
+                const bookPrice = parseFloat(book.price);
+                
+                if (this.checked) {
+                    buyNowShippingFields.style.display = 'block';
+                    // Make shipping fields required
+                    buyNowShippingInputs.forEach(input => {
+                        input.setAttribute('required', 'required');
+                    });
+                    
+                    // Calculate and show shipping fee
+                    const shippingFee = paymentSettings.shipping?.enabled ? 
+                        (bookPrice >= paymentSettings.shipping.freeShippingThreshold ? 0 : paymentSettings.shipping.domesticFee) : 5.00;
+                    const totalAmount = bookPrice + shippingFee;
+                    
+                    shippingFeeRow.style.display = 'flex';
+                    shippingFeeSpan.textContent = `RM${shippingFee.toFixed(2)}`;
+                    totalAmountSpan.textContent = `RM${totalAmount.toFixed(2)}`;
+                } else {
+                    buyNowShippingFields.style.display = 'none';
+                    // Remove required attribute from shipping fields
+                    buyNowShippingInputs.forEach(input => {
+                        input.removeAttribute('required');
+                        input.value = '';
+                    });
+                    
+                    // Hide shipping fee and reset total
+                    shippingFeeRow.style.display = 'none';
+                    totalAmountSpan.textContent = `RM${bookPrice.toFixed(2)}`;
+                }
+            });
+            
+            // Add country change handler for international shipping
+            const buyNowCountrySelect = modal.getElementById('buynow-country');
+            if (buyNowCountrySelect) {
+                buyNowCountrySelect.addEventListener('change', function() {
+                    if (buyNowShippingToggle.checked) {
+                        const shippingFeeSpan = modal.getElementById('buynow-shipping-fee');
+                        const totalAmountSpan = modal.getElementById('buynow-total-amount');
+                        const bookPrice = parseFloat(book.price);
+                        
+                        const isInternational = this.value !== 'Malaysia';
+                        const shippingFee = paymentSettings.shipping?.enabled ? 
+                            (bookPrice >= paymentSettings.shipping.freeShippingThreshold ? 0 : 
+                             (isInternational ? paymentSettings.shipping.internationalFee : paymentSettings.shipping.domesticFee)) : 
+                            (isInternational ? 15.00 : 5.00);
+                        const totalAmount = bookPrice + shippingFee;
+                        
+                        shippingFeeSpan.textContent = `RM${shippingFee.toFixed(2)}`;
+                        totalAmountSpan.textContent = `RM${totalAmount.toFixed(2)}`;
+                    }
+                });
+            }
+
+            // Handle form submission
+            modal.getElementById('buynow-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                await handleBuyNowSubmission(modal, book);
+            });
+
+            // Close modal on outside click
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+        }
+
+        async function handleBuyNowSubmission(modal, book) {
+            const form = modal.getElementById('buynow-form');
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+
+            try {
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                submitBtn.disabled = true;
+
+                const formData = new FormData();
+                formData.append('name', modal.getElementById('buynow-name').value);
+                formData.append('email', modal.getElementById('buynow-email').value);
+                formData.append('paymentMethod', modal.querySelector('input[name="buynow-payment-method"]:checked').value);
+
+                const paymentProof = modal.getElementById('buynow-payment-proof').files[0];
+                if (paymentProof) {
+                    formData.append('paymentProof', paymentProof);
+                }
+
+                // Add shipping information if required
+                const requireShipping = modal.getElementById('buynow-require-shipping').checked;
+                if (requireShipping) {
+                    const shippingAddress = {
+                        street: modal.getElementById('buynow-street').value,
+                        city: modal.getElementById('buynow-city').value,
+                        state: modal.getElementById('buynow-state').value,
+                        zipCode: modal.getElementById('buynow-zipcode').value,
+                        country: modal.getElementById('buynow-country').value
+                    };
+                    formData.append('shippingAddress', JSON.stringify(shippingAddress));
+                }
+
+                // Submit individual book purchase
+                const response = await fetch(`http://localhost:8080/api/books/${book.id}/purchase`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': localStorage.getItem('token') ? `Bearer ${localStorage.getItem('token')}` : ''
+                    },
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    modal.remove();
+                    if (typeof showNotification !== 'undefined') {
+                        showNotification('Purchase completed successfully! Check your email for details.');
+                    } else if (window.TamilSociety && window.TamilSociety.showNotification) {
+                        window.TamilSociety.showNotification('Purchase completed successfully! Check your email for details.');
+                    }
+                } else {
+                    throw new Error(result.message || 'Purchase failed');
+                }
+
+            } catch (error) {
+                console.error('Purchase error:', error);
+                if (typeof showNotification !== 'undefined') {
+                    showNotification('Error: ' + error.message);
+                } else if (window.TamilSociety && window.TamilSociety.showNotification) {
+                    window.TamilSociety.showNotification('Error: ' + error.message);
+                }
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        }
+
+        // Checkout form functionality
+        async function showCheckoutForm() {
+            const cart = enhancedCart.getCart();
+            const total = enhancedCart.getCartTotal();
+
+            // Get payment settings
+            let paymentSettings = {};
+            try {
+                const response = await fetch('/api/payment-settings/public');
+                if (response.ok) {
+                    paymentSettings = await response.json();
+                }
+            } catch (error) {
+                console.error('Error fetching payment settings:', error);
+            }
+
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 10000;
+                backdrop-filter: blur(5px);
+            `;
+
+            modal.innerHTML = `
+                <div class="modal-content blue-gradient-form" style="max-width: 600px; max-height: 90vh; overflow-y: auto; margin: 2rem; border-radius: 1rem; position: relative;">
+                    <button class="modal-close" onclick="this.closest('.modal-overlay').remove()" style="position: absolute; top: 1rem; right: 1rem; background: rgba(255, 255, 255, 0.2); border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.25rem; z-index: 10;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    
+                    <div style="padding: 2rem;">
+                        <h2 style="color: white; text-align: center; margin-bottom: 2rem; font-size: 1.8rem;">Checkout</h2>
+                        
+                        <!-- Cart Summary -->
+                        <div style="background: rgba(255, 255, 255, 0.1); border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 2rem;">
+                            <h3 style="color: white; margin-bottom: 1rem;">Order Summary</h3>
+                            <div id="checkout-cart-items" style="margin-bottom: 1rem;">
+                                ${cart.map(item => `
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; color: white;">
+                                        <span>${item.tamilTitle || item.title} (x${item.quantity})</span>
+                                        <span>RM${(item.price * item.quantity).toFixed(2)}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <div style="border-top: 1px solid rgba(255, 255, 255, 0.3); padding-top: 1rem;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; color: white; margin-bottom: 0.5rem;">
+                                    <span>Subtotal:</span>
+                                    <span id="checkout-subtotal">RM${total.toFixed(2)}</span>
+                                </div>
+                                <div id="checkout-shipping-fee-row" style="display: none; justify-content: space-between; align-items: center; color: white; margin-bottom: 0.5rem;">
+                                    <span>Shipping Fee:</span>
+                                    <span id="checkout-shipping-fee">RM0.00</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; color: white; font-weight: bold; font-size: 1.2rem; border-top: 1px solid rgba(255, 255, 255, 0.3); padding-top: 0.5rem;">
+                                    <span>Total:</span>
+                                    <span id="checkout-total-amount">RM${total.toFixed(2)}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Checkout Form -->
+                        <form id="checkout-form" class="blue-gradient-form" style="color: white;">
+                            <div style="margin-bottom: 1.5rem;">
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Name *</label>
+                                <input type="text" id="checkout-name" required style="width: 100%; padding: 0.75rem; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 0.5rem; background: rgba(255, 255, 255, 0.95); color: #333; font-size: 1rem; backdrop-filter: blur(10px);" placeholder="Enter your full name">
+                            </div>
+                            
+                            <div style="margin-bottom: 1.5rem;">
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Email *</label>
+                                <input type="email" id="checkout-email" required style="width: 100%; padding: 0.75rem; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 0.5rem; background: rgba(255, 255, 255, 0.95); color: #333; font-size: 1rem; backdrop-filter: blur(10px);" placeholder="Enter your email address">
+                            </div>
+                            
+                            <div style="margin-bottom: 1.5rem;">
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Phone Number *</label>
+                                <input type="tel" id="checkout-phone" required style="width: 100%; padding: 0.75rem; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 0.5rem; background: rgba(255, 255, 255, 0.95); color: #333; font-size: 1rem; backdrop-filter: blur(10px);" placeholder="Enter your phone number">
+                            </div>
+
+                            <!-- Payment Method Selection -->
+                            <div style="margin-bottom: 1.5rem;">
+                                <label style="display: block; margin-bottom: 1rem; font-weight: 600;">Payment Method *</label>
+                                <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                                    <label style="flex: 1; cursor: pointer;">
+                                        <input type="radio" name="payment-method" value="epay" style="margin-right: 0.5rem;">
+                                        <span style="padding: 0.75rem; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 0.5rem; display: block; text-align: center; background: rgba(255, 255, 255, 0.1);">E-PAY UM</span>
+                                    </label>
+                                    <label style="flex: 1; cursor: pointer;">
+                                        <input type="radio" name="payment-method" value="fbx" style="margin-right: 0.5rem;">
+                                        <span style="padding: 0.75rem; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 0.5rem; display: block; text-align: center; background: rgba(255, 255, 255, 0.1);">FBX</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Payment Details -->
+                            <div id="payment-details" style="margin-bottom: 1.5rem; display: none;">
+                                <!-- E-PAY Details -->
+                                <div id="epay-details" style="display: none;">
+                                    <div style="background: rgba(255, 255, 255, 0.1); border-radius: 0.5rem; padding: 1rem; margin-bottom: 1rem;">
+                                        <h4 style="margin-bottom: 0.5rem;">E-PAY UM Payment</h4>
+                                        <p style="margin-bottom: 1rem; opacity: 0.9;">${paymentSettings.data?.epayDescription || 'Please do the transaction and upload the payment proof file'}</p>
+                                        ${paymentSettings.data?.epayLink ? `<a href="${paymentSettings.data.epayLink}" target="_blank" style="color: var(--accent-gold); text-decoration: underline;">Pay Now via E-PAY UM</a>` : '<a href="https://epay.um.edu.my/sistem/admin/login" target="_blank" style="color: var(--accent-gold); text-decoration: underline;">Pay Now via E-PAY UM</a>'}
+                                    </div>
+                                </div>
+
+                                <!-- FBX Details -->
+                                <div id="fbx-details" style="display: none;">
+                                    <div style="background: rgba(255, 255, 255, 0.1); border-radius: 0.5rem; padding: 1rem; margin-bottom: 1rem;">
+                                        <h4 style="margin-bottom: 1rem;">Bank Transfer Details</h4>
+                                        <div style="margin-bottom: 0.5rem;"><strong>Bank Name:</strong> ${paymentSettings.data?.bankName || 'MAYBANK'}</div>
+                                        <div style="margin-bottom: 0.5rem;"><strong>Account Number:</strong> ${paymentSettings.data?.accountNumber || '157223402785'}</div>
+                                        <div style="margin-bottom: 1rem;"><strong>Account Owner:</strong> ${paymentSettings.data?.accountHolderName || 'NOWESH KUMAR'}</div>
+                                        <p style="opacity: 0.9;">Transfer the amount to the above account and upload your payment proof below.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Payment Proof Upload -->
+                                <div style="margin-top: 1rem;">
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Payment Proof (PDF) *</label>
+                                    <input type="file" id="payment-proof" accept=".pdf" required style="width: 100%; padding: 0.75rem; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 0.5rem; background: rgba(255, 255, 255, 0.95); color: #333; font-size: 1rem; backdrop-filter: blur(10px);">
+                                    <small style="opacity: 0.8; display: block; margin-top: 0.25rem;">Please upload a PDF file of your payment receipt/proof</small>
+                                </div>
+                            </div>
+
+                            <!-- Shipping Toggle -->
+                            <div style="margin-bottom: 1.5rem;">
+                                <label style="display: flex; align-items: center; cursor: pointer; font-weight: 600;">
+                                    <input type="checkbox" id="checkout-require-shipping" style="margin-right: 0.75rem; transform: scale(1.2);">
+                                    <span>I need physical shipping</span>
+                                </label>
+                                <small style="opacity: 0.8; display: block; margin-top: 0.5rem;">Check this if you need the books to be shipped to your address</small>
+                            </div>
+
+                            <!-- Shipping Address Fields -->
+                            <div id="checkout-shipping-fields" style="margin-bottom: 1.5rem; display: none;">
+                                <h4 style="margin-bottom: 1rem; color: var(--accent-gold);">Shipping Address</h4>
+                                
+                                <div style="margin-bottom: 1rem;">
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Street Address *</label>
+                                    <input type="text" id="checkout-street" style="width: 100%; padding: 0.75rem; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 0.5rem; background: rgba(255, 255, 255, 0.95); color: #333; font-size: 1rem; backdrop-filter: blur(10px);" placeholder="Enter your street address">
+                                </div>
+                                
+                                <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                                    <div style="flex: 1;">
+                                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">City *</label>
+                                        <input type="text" id="checkout-city" style="width: 100%; padding: 0.75rem; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 0.5rem; background: rgba(255, 255, 255, 0.95); color: #333; font-size: 1rem; backdrop-filter: blur(10px);" placeholder="City">
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">State *</label>
+                                        <input type="text" id="checkout-state" style="width: 100%; padding: 0.75rem; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 0.5rem; background: rgba(255, 255, 255, 0.95); color: #333; font-size: 1rem; backdrop-filter: blur(10px);" placeholder="State">
+                                    </div>
+                                </div>
+                                
+                                <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                                    <div style="flex: 1;">
+                                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Zip Code *</label>
+                                        <input type="text" id="checkout-zip" style="width: 100%; padding: 0.75rem; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 0.5rem; background: rgba(255, 255, 255, 0.95); color: #333; font-size: 1rem; backdrop-filter: blur(10px);" placeholder="Zip Code">
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Country *</label>
+                                        <select id="checkout-country" style="width: 100%; padding: 0.75rem; border: 2px solid var(--border-secondary, #4B5563); border-radius: 0.5rem; background: var(--bg-secondary, #2A2A4F); color: var(--text-primary, #ffffff); font-size: 1rem; transition: all 0.3s ease;">
+                            <option value="Malaysia" style="background: var(--bg-secondary, #2A2A4F); color: var(--text-primary, #ffffff);">Malaysia</option>
+                            <option value="Singapore" style="background: var(--bg-secondary, #2A2A4F); color: var(--text-primary, #ffffff);">Singapore</option>
+                            <option value="Thailand" style="background: var(--bg-secondary, #2A2A4F); color: var(--text-primary, #ffffff);">Thailand</option>
+                            <option value="Indonesia" style="background: var(--bg-secondary, #2A2A4F); color: var(--text-primary, #ffffff);">Indonesia</option>
+                            <option value="India" style="background: var(--bg-secondary, #2A2A4F); color: var(--text-primary, #ffffff);">India</option>
+                            <option value="Sri Lanka" style="background: var(--bg-secondary, #2A2A4F); color: var(--text-primary, #ffffff);">Sri Lanka</option>
+                            <option value="Other" style="background: var(--bg-secondary, #2A2A4F); color: var(--text-primary, #ffffff);">Other</option>
+                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" style="width: 100%; padding: 1rem; background: linear-gradient(135deg, var(--accent-gold), #f39c12); color: white; border: none; border-radius: 0.75rem; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+                                <i class="fas fa-credit-card"></i> Complete Order
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+
+            // Handle payment method selection
+            const paymentRadios = modal.querySelectorAll('input[name="payment-method"]');
+            const paymentDetails = modal.getElementById('payment-details');
+            const epayDetails = modal.getElementById('epay-details');
+            const fbxDetails = modal.getElementById('fbx-details');
+
+            paymentRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    if (this.checked) {
+                        paymentDetails.style.display = 'block';
+                        if (this.value === 'epay') {
+                            epayDetails.style.display = 'block';
+                            fbxDetails.style.display = 'none';
+                        } else if (this.value === 'fbx') {
+                            epayDetails.style.display = 'none';
+                            fbxDetails.style.display = 'block';
+                        }
+                    }
+                });
+            });
+
+            // Handle form submission
+            modal.getElementById('checkout-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                await handleCheckoutSubmission(modal);
+            });
+
+            // Close modal on outside click
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+        }
+
+        async function handleCheckoutSubmission(modal) {
+            const form = modal.getElementById('checkout-form');
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+
+            try {
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                submitBtn.disabled = true;
+
+                const formData = new FormData();
+                formData.append('name', modal.getElementById('checkout-name').value);
+                formData.append('email', modal.getElementById('checkout-email').value);
+                formData.append('paymentMethod', modal.querySelector('input[name="payment-method"]:checked').value);
+
+                const paymentProof = modal.getElementById('payment-proof').files[0];
+                if (paymentProof) {
+                    formData.append('paymentProof', paymentProof);
+                }
+
+                // Add shipping information if required
+                const requireShipping = modal.getElementById('checkout-require-shipping').checked;
+                if (requireShipping) {
+                    const shippingAddress = {
+                        street: modal.getElementById('checkout-street').value,
+                        city: modal.getElementById('checkout-city').value,
+                        state: modal.getElementById('checkout-state').value,
+                        zipCode: modal.getElementById('checkout-zip').value,
+                        country: modal.getElementById('checkout-country').value
+                    };
+                    formData.append('shippingAddress', JSON.stringify(shippingAddress));
+                    formData.append('requireShipping', 'true');
+                }
+
+                // Submit checkout
+                const response = await enhancedCart.checkout(formData);
+
+                if (response.success) {
+                    modal.remove();
+                    if (typeof showNotification !== 'undefined') {
+                        showNotification('Order placed successfully! Check your email for details.');
+                    } else if (window.TamilSociety && window.TamilSociety.showNotification) {
+                        window.TamilSociety.showNotification('Order placed successfully! Check your email for details.');
+                    }
+                } else {
+                    throw new Error(response.message || 'Checkout failed');
+                }
+
+            } catch (error) {
+                console.error('Checkout error:', error);
+                if (typeof showNotification !== 'undefined') {
+                    showNotification('Error: ' + error.message);
+                } else if (window.TamilSociety && window.TamilSociety.showNotification) {
+                    window.TamilSociety.showNotification('Error: ' + error.message);
+                }
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        }
+
+        // Test function for Buy Now form
+        function testBuyNowForm() {
+            const testBook = {
+                id: 999,
+                title: "Test Book for Buy Now",
+                tamilTitle: "வாங்குதல் சோதனை நூல்",
+                author: "Test Author",
+                price: 19.99,
+                originalPrice: 25.99,
+                description: "This is a test book to demonstrate the Buy Now functionality with payment options and shipping address.",
+                image: "/assets/books/default-book.jpg",
+                category: "Test",
+                stock: 5,
+                rating: 4.5,
+                reviews: 10,
+                inStock: true
+            };
+            showBuyNowForm(testBook);
+        }
+
+        // Initialize authentication requirements
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.authUtils) {
+                // AuthUtils is already initialized in the main script
+                console.log('AuthUtils is available');
+            }
+        });
+    </script>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- API Integration -->
+    <!-- <script src="js/mock-api.js"></script> -->
+    
+    <!-- Content Management -->
+    <script src="../public/js/content-manager.js?v=2.0"></script>
+    <script src="../public/js/cache-buster.js?v=2.0"></script>
+
+    <!-- Initialize Content Manager -->
+    <script>
+        // ContentManager is automatically initialized by content-manager.js
+    </script>
+
+    <!-- Theme Management -->
+    <script>
+        // Initialize theme on page load
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        }
+
+        // Toggle between light and dark themes
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        // Update theme toggle icon
+        function updateThemeIcon(theme) {
+            const themeIcon = document.getElementById('theme-icon');
+            if (themeIcon) {
+                themeIcon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+            }
+        }
+
+        // Initialize theme when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializeTheme);
+    </script>
+    
+    <script src="../public/js/auth-utils.js?v=2.0"></script>
+</body>
+</html>

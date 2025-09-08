@@ -11,7 +11,7 @@ const globalSections = [
         contentHtml: `<nav class="navbar" id="navbar">
             <div class="nav-container">
                 <div class="nav-logo">
-                    <img data-content="global.logo.image" src="assets/logo.jpeg" alt="Tamil Language Society" class="logo-img">
+                    <img data-content="global.logo.image" src="assets/logo.png" alt="Tamil Language Society" class="logo-img">
                     <span data-content="global.logo.text" data-content-tamil="global.logo.textTamil" class="logo-text">தமிழ்ப் பேரவை</span>
                 </div>
                 <div class="nav-menu" id="nav-menu">
@@ -103,12 +103,12 @@ const globalSections = [
         <meta name="author" content="Tamil Language Society">
         <meta property="og:title" content="Tamil Language Society - தமிழ்ப் பேரவை">
         <meta property="og:description" content="Dedicated to preserving and promoting Tamil language, literature, and culture.">
-        <meta property="og:image" content="assets/logo.jpeg">
+        <meta property="og:image" content="assets/logo.png">
         <meta property="og:url" content="https://tamilsociety.org">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="Tamil Language Society">
         <meta name="twitter:description" content="Preserving Tamil language and culture through education and community.">
-        <meta name="twitter:image" content="assets/logo.jpeg">`,
+        <meta name="twitter:image" content="assets/logo.png">`,
         contentTamil: "",
         order: 3,
         isActive: true,
@@ -134,7 +134,7 @@ const globalSections = [
             "siteNameTamil": "தமிழ்ப் பேரவை",
             "tagline": "Preserving Tamil Heritage",
             "taglineTamil": "தமிழ் பாரம்பரியத்தை பாதுகாத்தல்",
-            "logo": "assets/logo.jpeg",
+            "logo": "assets/logo.png",
             "favicon": "favicon.ico",
             "primaryColor": "#d32f2f",
             "secondaryColor": "#1976d2",

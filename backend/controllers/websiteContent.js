@@ -14,7 +14,7 @@ const translationService = require("../utils/translationService");
 // @access  Public
 const getPageContent = asyncHandler(async (req, res) => {
     const { page } = req.params;
-    const { language = "english" } = req.query;
+    const { language = "en" } = req.query;
 
     const content = await WebsiteContent.find({
         page,
@@ -22,38 +22,47 @@ const getPageContent = asyncHandler(async (req, res) => {
         isVisible: true
     }).sort({ order: 1 });
 
-    // Transform content based on language preference
-    const transformedContent = content.map(item => {
-        const transformed = {
-            _id: item._id,
-            page: item.page,
-            section: item.section,
-            order: item.order,
+    // Transform content to bilingual key-value structure
+    const bilingualContent = {};
+    
+    content.forEach(item => {
+        const key = item.sectionKey || `${item.section}-${item._id}`;
+        
+        bilingualContent[key] = {
+            en: {
+                title: item.title?.en || '',
+                content: item.content?.en || '',
+                subtitle: item.subtitle?.en || '',
+                buttonText: item.buttonText?.en || ''
+            },
+            ta: {
+                title: item.title?.ta || '',
+                content: item.content?.ta || '',
+                subtitle: item.subtitle?.ta || '',
+                buttonText: item.buttonText?.ta || ''
+            },
             metadata: item.metadata,
             image: item.image,
-            images: item.images,
-            buttonUrl: item.buttonUrl
+            images: item.images?.map(img => ({
+                url: img.url,
+                alt: {
+                    en: img.alt?.en || '',
+                    ta: img.alt?.ta || ''
+                },
+                caption: {
+                    en: img.caption?.en || '',
+                    ta: img.caption?.ta || ''
+                },
+                order: img.order
+            })) || [],
+            buttonUrl: item.buttonUrl,
+            order: item.order
         };
-
-        // Add language-specific content
-        if (language === "tamil") {
-            transformed.title = item.titleTamil || item.title;
-            transformed.content = item.contentTamil || item.content;
-            transformed.subtitle = item.subtitleTamil || item.subtitle;
-            transformed.buttonText = item.buttonTextTamil || item.buttonText;
-        } else {
-            transformed.title = item.title;
-            transformed.content = item.content;
-            transformed.subtitle = item.subtitle;
-            transformed.buttonText = item.buttonText;
-        }
-
-        return transformed;
     });
 
     res.json({
         success: true,
-        data: transformedContent
+        data: bilingualContent
     });
 });
 
@@ -70,10 +79,10 @@ const getAllContent = asyncHandler(async (req, res) => {
     
     if (search) {
         query.$or = [
-            { title: { $regex: search, $options: "i" } },
-            { titleTamil: { $regex: search, $options: "i" } },
-            { content: { $regex: search, $options: "i" } },
-            { contentTamil: { $regex: search, $options: "i" } }
+            { "title.en": { $regex: search, $options: "i" } },
+            { "title.ta": { $regex: search, $options: "i" } },
+            { "content.en": { $regex: search, $options: "i" } },
+            { "content.ta": { $regex: search, $options: "i" } }
         ];
     }
 
@@ -117,6 +126,13 @@ const createContent = asyncHandler(async (req, res) => {
         createdBy: req.user._id
     };
 
+    // Validate bilingual content before processing
+    const validationErrors = WebsiteContent.validateBilingualContent(contentData);
+    if (validationErrors.length > 0) {
+        res.status(400);
+        throw new Error(`Bilingual validation failed: ${validationErrors.join(', ')}`);
+    }
+
     // Auto-translate English content to Tamil if Tamil fields are empty
     if (req.body.autoTranslate !== false) {
         const translatedFields = await translationService.translateContentObject(contentData);
@@ -134,11 +150,19 @@ const createContent = asyncHandler(async (req, res) => {
         }
     }
 
+    // Final validation after auto-translation
+    const finalValidationErrors = WebsiteContent.validateBilingualContent(contentData);
+    if (finalValidationErrors.length > 0) {
+        res.status(400);
+        throw new Error(`Content must have both English and Tamil translations: ${finalValidationErrors.join(', ')}`);
+    }
+
     const content = await WebsiteContent.create(contentData);
 
     res.status(201).json({
         success: true,
-        data: content
+        data: content,
+        message: 'Content created successfully with bilingual validation'
     });
 });
 
@@ -158,6 +182,13 @@ const updateContent = asyncHandler(async (req, res) => {
         updatedBy: req.user._id
     };
 
+    // Validate bilingual content before processing
+    const validationErrors = WebsiteContent.validateBilingualContent(updateData);
+    if (validationErrors.length > 0) {
+        res.status(400);
+        throw new Error(`Bilingual validation failed: ${validationErrors.join(', ')}`);
+    }
+
     // Auto-translate English content to Tamil if Tamil fields are empty or auto-translate is requested
     if (req.body.autoTranslate !== false) {
         const translatedFields = await translationService.translateContentObject(updateData);
@@ -175,6 +206,13 @@ const updateContent = asyncHandler(async (req, res) => {
         }
     }
 
+    // Final validation after auto-translation
+    const finalValidationErrors = WebsiteContent.validateBilingualContent(updateData);
+    if (finalValidationErrors.length > 0) {
+        res.status(400);
+        throw new Error(`Content must have both English and Tamil translations: ${finalValidationErrors.join(', ')}`);
+    }
+
     content = await WebsiteContent.findByIdAndUpdate(
         req.params.id,
         updateData,
@@ -186,7 +224,8 @@ const updateContent = asyncHandler(async (req, res) => {
 
     res.json({
         success: true,
-        data: content
+        data: content,
+        message: 'Content updated successfully with bilingual validation'
     });
 });
 
@@ -1690,6 +1729,93 @@ const refreshPageContent = asyncHandler(async (req, res) => {
     }
 });
 
+// @desc    Create a new page section
+// @route   POST /api/website-content/sections/:page
+// @access  Private/Admin
+const createPageSection = asyncHandler(async (req, res) => {
+    const { page } = req.params;
+    const {
+        sectionKey,
+        section,
+        sectionType,
+        layout,
+        position,
+        title,
+        content,
+        subtitle,
+        buttonText,
+        buttonUrl,
+        images,
+        stylePreset,
+        customStyles,
+        isRequired,
+        hasTamilTranslation
+    } = req.body;
+
+    // Handle bilingual content structure - support both nested and flat formats
+    const bilingualTitle = title && typeof title === 'object' ? title : {
+        en: title || '',
+        ta: req.body.titleTamil || ''
+    };
+    
+    const bilingualContent = content && typeof content === 'object' ? content : {
+        en: content || '',
+        ta: req.body.contentTamil || ''
+    };
+    
+    const bilingualSubtitle = subtitle && typeof subtitle === 'object' ? subtitle : {
+        en: subtitle || '',
+        ta: req.body.subtitleTamil || ''
+    };
+    
+    const bilingualButtonText = buttonText && typeof buttonText === 'object' ? buttonText : {
+        en: buttonText || '',
+        ta: req.body.buttonTextTamil || ''
+    };
+
+    // Check if section key already exists for this page
+    const existingSection = await WebsiteContent.findOne({ page, sectionKey });
+    if (existingSection) {
+        return res.status(400).json({
+            success: false,
+            message: `Section with key '${sectionKey}' already exists on page '${page}'`
+        });
+    }
+
+    // Get the next order number for this page
+    const lastSection = await WebsiteContent.findOne({ page }).sort({ order: -1 });
+    const nextOrder = lastSection ? lastSection.order + 1 : 1;
+
+    const newSection = await WebsiteContent.create({
+        page,
+        sectionKey,
+        section: section || sectionKey,
+        sectionType: sectionType || "text",
+        layout: layout || "full-width",
+        position: position || 0,
+        order: nextOrder,
+        title: bilingualTitle,
+        content: bilingualContent,
+        subtitle: bilingualSubtitle,
+        buttonText: bilingualButtonText,
+        buttonUrl,
+        images,
+        stylePreset: stylePreset || "default",
+        customStyles,
+        isRequired: isRequired || false,
+        hasTamilTranslation: hasTamilTranslation || (bilingualTitle.ta || bilingualContent.ta || bilingualSubtitle.ta || bilingualButtonText.ta) ? true : false,
+        createdBy: req.user ? req.user.id : null,
+        isActive: true,
+        isVisible: true
+    });
+
+    res.status(201).json({
+        success: true,
+        message: `Section '${sectionKey}' created successfully on page '${page}'`,
+        data: newSection
+    });
+});
+
 module.exports = {
     getPageContent,
     getAllContent,
@@ -1711,6 +1837,7 @@ module.exports = {
     createFallbackContent,
     // New section-based functions
     getPageSections,
+    createPageSection,
     updatePageSection,
     deletePageSection,
     getPageSection,

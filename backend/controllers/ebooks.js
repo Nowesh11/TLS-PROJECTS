@@ -7,41 +7,40 @@ const translationService = require("../utils/translationService");
 // @access  Public
 exports.getEbooks = async (req, res, next) => {
     try {
-        let query = Ebook.find();
+        // Build query object
+        let queryObj = {};
 
         // Search functionality
         if (req.query.search) {
-            query = query.find({
-                $text: { $search: req.query.search }
-            });
+            queryObj.$text = { $search: req.query.search };
         }
 
         // Filter by category
         if (req.query.category) {
-            query = query.find({ category: req.query.category });
+            queryObj.category = req.query.category;
         }
 
         // Filter by status
         if (req.query.status) {
-            query = query.find({ status: req.query.status });
+            queryObj.status = req.query.status;
         } else {
             // Default to active ebooks for public access
-            query = query.find({ status: "active" });
+            queryObj.status = "active";
         }
 
         // Filter by featured
         if (req.query.featured) {
-            query = query.find({ featured: req.query.featured === "true" });
+            queryObj.featured = req.query.featured === "true";
         }
 
         // Filter by free ebooks
         if (req.query.isFree) {
-            query = query.find({ isFree: req.query.isFree === "true" });
+            queryObj.isFree = req.query.isFree === "true";
         }
 
         // Filter by file format
         if (req.query.format) {
-            query = query.find({ fileFormat: req.query.format });
+            queryObj.fileFormat = req.query.format;
         }
 
         // Filter by price range
@@ -49,8 +48,11 @@ exports.getEbooks = async (req, res, next) => {
             const priceFilter = {};
             if (req.query.minPrice) priceFilter.$gte = parseFloat(req.query.minPrice);
             if (req.query.maxPrice) priceFilter.$lte = parseFloat(req.query.maxPrice);
-            query = query.find({ price: priceFilter });
+            queryObj.price = priceFilter;
         }
+
+        // Create query with filters
+        let query = Ebook.find(queryObj);
 
         // Sort
         if (req.query.sort) {
@@ -65,7 +67,7 @@ exports.getEbooks = async (req, res, next) => {
         const limit = parseInt(req.query.limit, 10) || 10;
         const startIndex = (page - 1) * limit;
         const endIndex = page * limit;
-        const total = await Ebook.countDocuments(query.getQuery());
+        const total = await Ebook.countDocuments(queryObj);
 
         query = query.skip(startIndex).limit(limit);
 
@@ -73,6 +75,27 @@ exports.getEbooks = async (req, res, next) => {
         query = query.populate("createdBy", "name email");
 
         const ebooks = await query;
+
+        // Language filtering
+        let processedEbooks = ebooks;
+        if (req.query.lang && (req.query.lang === 'en' || req.query.lang === 'ta')) {
+            processedEbooks = ebooks.map(ebook => {
+                const ebookObj = ebook.toObject();
+                
+                // Transform bilingual fields to single language
+                if (ebookObj.title && typeof ebookObj.title === 'object') {
+                    ebookObj.title = ebookObj.title[req.query.lang] || ebookObj.title.en;
+                }
+                if (ebookObj.author && typeof ebookObj.author === 'object') {
+                    ebookObj.author = ebookObj.author[req.query.lang] || ebookObj.author.en;
+                }
+                if (ebookObj.description && typeof ebookObj.description === 'object') {
+                    ebookObj.description = ebookObj.description[req.query.lang] || ebookObj.description.en;
+                }
+                
+                return ebookObj;
+            });
+        }
 
         // Pagination result
         const pagination = {};
@@ -93,10 +116,10 @@ exports.getEbooks = async (req, res, next) => {
 
         res.status(200).json({
             success: true,
-            count: ebooks.length,
+            count: processedEbooks.length,
             total,
             pagination,
-            data: ebooks
+            data: processedEbooks
         });
     } catch (error) {
         next(error);
@@ -195,9 +218,28 @@ exports.getEbook = async (req, res, next) => {
             return next(new ErrorResponse(`Ebook not found with id of ${req.params.id}`, 404));
         }
 
+        // Language filtering
+        let processedEbook = ebook;
+        if (req.query.lang && (req.query.lang === 'en' || req.query.lang === 'ta')) {
+            const ebookObj = ebook.toObject();
+            
+            // Transform bilingual fields to single language
+            if (ebookObj.title && typeof ebookObj.title === 'object') {
+                ebookObj.title = ebookObj.title[req.query.lang] || ebookObj.title.en;
+            }
+            if (ebookObj.author && typeof ebookObj.author === 'object') {
+                ebookObj.author = ebookObj.author[req.query.lang] || ebookObj.author.en;
+            }
+            if (ebookObj.description && typeof ebookObj.description === 'object') {
+                ebookObj.description = ebookObj.description[req.query.lang] || ebookObj.description.en;
+            }
+            
+            processedEbook = ebookObj;
+        }
+
         res.status(200).json({
             success: true,
-            data: ebook
+            data: processedEbook
         });
     } catch (error) {
         next(error);

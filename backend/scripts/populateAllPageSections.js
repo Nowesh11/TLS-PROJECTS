@@ -1008,7 +1008,7 @@ const allPageSections = {
             section: "logo-image",
             sectionKey: "global.logo.image",
             sectionType: "image",
-            image: "assets/logo.jpeg",
+            image: "assets/logo.png",
             imageAlt: "Tamil Language Society Logo",
             order: 1
         },

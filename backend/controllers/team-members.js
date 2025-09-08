@@ -55,8 +55,8 @@ exports.getTeamMembers = asyncHandler(async (req, res, next) => {
     if (req.query.q) {
         const searchRegex = new RegExp(req.query.q, 'i');
         query.$or = [
-            { name_en: searchRegex },
-            { name_ta: searchRegex },
+            { 'name.en': searchRegex },
+            { 'name.ta': searchRegex },
             { role: searchRegex },
             { email: searchRegex }
         ];
@@ -79,8 +79,8 @@ exports.getTeamMembers = asyncHandler(async (req, res, next) => {
         const sortOrder = req.query.order === 'desc' ? -1 : 1;
         sortOptions[sortBy] = sortOrder;
     } else {
-        // Default sort by order_num and then by name_en
-        sortOptions = { order_num: 1, name_en: 1 };
+        // Default sort by order_num and then by name.en
+        sortOptions = { order_num: 1, 'name.en': 1 };
     }
     
     try {
@@ -92,12 +92,27 @@ exports.getTeamMembers = asyncHandler(async (req, res, next) => {
         
         const total = await TeamMember.countDocuments(query);
         
-        // Add image URLs to response
-        const teamMembersWithImages = teamMembers.map(member => {
+        // Add image URLs and handle language filtering
+        let processedTeamMembers = teamMembers.map(member => {
             const memberObj = member.toObject();
             memberObj.image_url = member.getImageUrl();
             return memberObj;
         });
+
+        // Language filtering
+        if (req.query.lang && (req.query.lang === 'en' || req.query.lang === 'ta')) {
+            processedTeamMembers = processedTeamMembers.map(member => {
+                // Transform bilingual fields to single language
+                if (member.name && typeof member.name === 'object') {
+                    member.name = member.name[req.query.lang] || member.name.en;
+                }
+                if (member.bio && typeof member.bio === 'object') {
+                    member.bio = member.bio[req.query.lang] || member.bio.en;
+                }
+                
+                return member;
+            });
+        }
         
         res.status(200).json({
             success: true,
@@ -108,7 +123,7 @@ exports.getTeamMembers = asyncHandler(async (req, res, next) => {
                 limit: limit,
                 pages: Math.ceil(total / limit)
             },
-            data: teamMembersWithImages
+            data: processedTeamMembers
         });
     } catch (error) {
         return next(new ErrorResponse('Server Error', 500));

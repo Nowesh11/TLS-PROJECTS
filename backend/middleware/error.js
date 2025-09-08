@@ -37,7 +37,7 @@ const errorHandler = (err, req, res, next) => {
   // Check if the request accepts HTML (for non-API requests)
   if (req.accepts("html")) {
     // Send the error.html file for HTML requests
-    return res.status(error.statusCode || 500).sendFile("error.html", { root: "../" });
+    return res.status(error.statusCode || 500).sendFile("error.html", { root: "c:\\Users\\22004\\OneDrive\\Desktop\\TLS PROJECTS\\frontend\\views" });
   }
   
   // Send JSON response for other requests

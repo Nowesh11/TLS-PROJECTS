@@ -1,6 +1,8 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
+const validator = require("validator");
+const { validateInput } = require("../middleware/security");
 
 // @desc    Register user
 // @route   POST /api/auth/register
@@ -9,8 +11,36 @@ exports.register = async (req, res, next) => {
   try {
     const { name, email, password, primaryInterest, preferences } = req.body;
 
+    // Input validation and sanitization
+    if (!name || !email || !password) {
+      return res.status(400).json({
+        success: false,
+        error: "Name, email, and password are required"
+      });
+    }
+
+    // Validate email format
+    if (!validator.isEmail(email)) {
+      return res.status(400).json({
+        success: false,
+        error: "Please provide a valid email address"
+      });
+    }
+
+    // Validate password strength
+    if (password.length < 8) {
+      return res.status(400).json({
+        success: false,
+        error: "Password must be at least 8 characters long"
+      });
+    }
+
+    // Sanitize inputs
+    const sanitizedName = validator.escape(name.trim());
+    const sanitizedEmail = validator.normalizeEmail(email.trim());
+
     // Check if user already exists
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email: sanitizedEmail });
     if (existingUser) {
       return res.status(400).json({
         success: false,
@@ -18,10 +48,10 @@ exports.register = async (req, res, next) => {
       });
     }
 
-    // Create user
+    // Create user with sanitized inputs
     const user = await User.create({
-      name,
-      email,
+      name: sanitizedName,
+      email: sanitizedEmail,
       password,
       primaryInterest: primaryInterest || "Books",
       preferences: {
@@ -54,8 +84,19 @@ exports.login = async (req, res, next) => {
       });
     }
 
+    // Validate email format
+    if (!validator.isEmail(email)) {
+      return res.status(400).json({
+        success: false,
+        error: "Please provide a valid email address"
+      });
+    }
+
+    // Sanitize email input
+    const sanitizedEmail = validator.normalizeEmail(email.trim());
+
     // Check for user
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: sanitizedEmail });
     // Note: Mock database doesn't support .select() method
 
     if (!user) {

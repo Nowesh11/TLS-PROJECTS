@@ -42,10 +42,28 @@ exports.getTeamMembers = asyncHandler(async (req, res, next) => {
         return a.order - b.order;
     });
     
+    // Language filtering
+    let processedTeamMembers = teamMembers;
+    if (req.query.lang && (req.query.lang === 'en' || req.query.lang === 'ta')) {
+        processedTeamMembers = teamMembers.map(member => {
+            const memberObj = member.toObject();
+            
+            // Transform bilingual fields to single language
+            if (memberObj.name && typeof memberObj.name === 'object') {
+                memberObj.name = memberObj.name[req.query.lang] || memberObj.name.en;
+            }
+            if (memberObj.bio && typeof memberObj.bio === 'object') {
+                memberObj.bio = memberObj.bio[req.query.lang] || memberObj.bio.en;
+            }
+            
+            return memberObj;
+        });
+    }
+    
     res.status(200).json({
         success: true,
-        count: teamMembers.length,
-        data: teamMembers
+        count: processedTeamMembers.length,
+        data: processedTeamMembers
     });
 });
 
@@ -69,9 +87,25 @@ exports.getTeamMember = asyncHandler(async (req, res, next) => {
         }
     }
     
+    // Language filtering
+    let processedTeamMember = teamMember;
+    if (req.query.lang && (req.query.lang === 'en' || req.query.lang === 'ta')) {
+        const memberObj = teamMember.toObject();
+        
+        // Transform bilingual fields to single language
+        if (memberObj.name && typeof memberObj.name === 'object') {
+            memberObj.name = memberObj.name[req.query.lang] || memberObj.name.en;
+        }
+        if (memberObj.bio && typeof memberObj.bio === 'object') {
+            memberObj.bio = memberObj.bio[req.query.lang] || memberObj.bio.en;
+        }
+        
+        processedTeamMember = memberObj;
+    }
+    
     res.status(200).json({
         success: true,
-        data: teamMember
+        data: processedTeamMember
     });
 });
 

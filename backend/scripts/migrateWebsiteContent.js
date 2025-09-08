@@ -179,7 +179,7 @@ const websiteContentData = [
     layout: "full-width",
     position: 6,
     images: [{
-      url: "/assets/logo.jpeg",
+      url: "/assets/logo.png",
       alt: "Tamil Language Society Logo",
                 caption: "Tamil Language Society",
       order: 1

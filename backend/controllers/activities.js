@@ -35,24 +35,24 @@ const upload = multer({
 // @access  Public
 exports.getActivities = async (req, res, next) => {
     try {
-        let query = Activity.find();
+        let queryObj = {};
 
         // Search functionality
         if (req.query.q) {
-            query = query.find({
-                $text: { $search: req.query.q }
-            });
+            queryObj.$text = { $search: req.query.q };
         }
 
         // Filter by bureau
         if (req.query.bureau) {
-            query = query.find({ bureau: req.query.bureau });
+            queryObj.bureau = req.query.bureau;
         }
 
         // Filter by status
         if (req.query.status) {
-            query = query.find({ status: req.query.status });
+            queryObj.status = req.query.status;
         }
+
+        let query = Activity.find(queryObj);
 
         // Sort
         if (req.query.sort) {
@@ -67,12 +67,30 @@ exports.getActivities = async (req, res, next) => {
         const limit = parseInt(req.query.limit, 10) || 10;
         const startIndex = (page - 1) * limit;
         const endIndex = page * limit;
-        const total = await Activity.countDocuments(query.getQuery());
+        const total = await Activity.countDocuments(queryObj);
 
         query = query.skip(startIndex).limit(limit);
 
         // Execute query
         const activities = await query;
+
+        // Language filtering
+        let processedActivities = activities;
+        if (req.query.lang && (req.query.lang === 'en' || req.query.lang === 'ta')) {
+            processedActivities = activities.map(activity => {
+                const activityObj = activity.toObject();
+                
+                // Transform bilingual fields to single language
+                if (activityObj.title && typeof activityObj.title === 'object') {
+                    activityObj.title = activityObj.title[req.query.lang] || activityObj.title.en;
+                }
+                if (activityObj.description && typeof activityObj.description === 'object') {
+                    activityObj.description = activityObj.description[req.query.lang] || activityObj.description.en;
+                }
+                
+                return activityObj;
+            });
+        }
 
         // Pagination result
         const pagination = {};
@@ -91,10 +109,10 @@ exports.getActivities = async (req, res, next) => {
 
         res.status(200).json({
             success: true,
-            count: activities.length,
+            count: processedActivities.length,
             total,
             pagination,
-            data: activities
+            data: processedActivities
         });
     } catch (error) {
         console.error("Error fetching activities:", error);
@@ -113,9 +131,31 @@ exports.getActivity = async (req, res, next) => {
             return next(new ErrorResponse(`Activity not found with id of ${req.params.id}`, 404));
         }
 
+        // Language filtering
+        let processedActivity = activity;
+        if (req.query.lang && (req.query.lang === 'en' || req.query.lang === 'ta')) {
+            const activityObj = activity.toObject();
+            
+            // Transform bilingual fields to single language
+            if (activityObj.title && typeof activityObj.title === 'object') {
+                activityObj.title = activityObj.title[req.query.lang] || activityObj.title.en;
+            }
+            if (activityObj.description && typeof activityObj.description === 'object') {
+                activityObj.description = activityObj.description[req.query.lang] || activityObj.description.en;
+            }
+            if (activityObj.goals && typeof activityObj.goals === 'object') {
+                activityObj.goals = activityObj.goals[req.query.lang] || activityObj.goals.en;
+            }
+            if (activityObj.director && typeof activityObj.director === 'object') {
+                activityObj.director = activityObj.director[req.query.lang] || activityObj.director.en;
+            }
+            
+            processedActivity = activityObj;
+        }
+
         res.status(200).json({
             success: true,
-            data: activity
+            data: processedActivity
         });
     } catch (error) {
         next(error);

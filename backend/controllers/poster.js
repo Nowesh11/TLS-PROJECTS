@@ -62,9 +62,10 @@ const getAllPosters = async (req, res) => {
         // Search by title
         if (req.query.search) {
             query.$or = [
-                { title: { $regex: req.query.search, $options: "i" } },
-                { titleTamil: { $regex: req.query.search, $options: "i" } },
-                { description: { $regex: req.query.search, $options: "i" } }
+                { 'title.en': { $regex: req.query.search, $options: "i" } },
+                { 'title.ta': { $regex: req.query.search, $options: "i" } },
+                { 'description.en': { $regex: req.query.search, $options: "i" } },
+                { 'description.ta': { $regex: req.query.search, $options: "i" } }
             ];
         }
 
@@ -76,9 +77,30 @@ const getAllPosters = async (req, res) => {
 
         const total = await Poster.countDocuments(query);
 
+        // Language filtering
+        let processedPosters = posters;
+        if (req.query.lang && (req.query.lang === 'en' || req.query.lang === 'ta')) {
+            processedPosters = posters.map(poster => {
+                const posterObj = poster.toObject();
+                
+                // Transform bilingual fields to single language
+                if (posterObj.title && typeof posterObj.title === 'object') {
+                    posterObj.title = posterObj.title[req.query.lang] || posterObj.title.en;
+                }
+                if (posterObj.description && typeof posterObj.description === 'object') {
+                    posterObj.description = posterObj.description[req.query.lang] || posterObj.description.en;
+                }
+                if (posterObj.buttonText && typeof posterObj.buttonText === 'object') {
+                    posterObj.buttonText = posterObj.buttonText[req.query.lang] || posterObj.buttonText.en;
+                }
+                
+                return posterObj;
+            });
+        }
+
         res.json({
             success: true,
-            data: posters,
+            data: processedPosters,
             pagination: {
                 current: page,
                 pages: Math.ceil(total / limit),

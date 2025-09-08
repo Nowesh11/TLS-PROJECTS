@@ -77,9 +77,9 @@ const seedContent = async () => {
         page: "home",
         section: "heroImage",
         sectionKey: "home.heroImage",
-        image: "assets/logo.jpeg",
-        title: "Tamil Language Society Logo",
-        titleTamil: "தமிழ்ப் பேரவை சின்னம்",
+        image: "assets/logo.png",
+            title: "Tamil Language Society Logo",
+            titleTamil: "தமிழ்ப் பேரவை சின்னம்",
         createdBy: adminUser._id
       },
       // Announcements Section
@@ -330,9 +330,9 @@ const seedContent = async () => {
         page: "navigation",
         section: "logoImage",
         sectionKey: "navigation.logoImage",
-        image: "assets/logo.jpeg",
-        title: "Tamil Language Society",
-        titleTamil: "தமிழ்ப் பேரவை",
+        image: "assets/logo.png",
+            title: "Tamil Language Society",
+            titleTamil: "தமிழ்ப் பேரவை",
         createdBy: adminUser._id
       },
       {

@@ -1,38 +1,40 @@
 const getMongoose = require("../utils/mongooseHelper");
 const mongoose = getMongoose();
 
+// Helper function to create bilingual field with validation
+const createBilingualField = (maxLength, fieldName) => ({
+    en: {
+        type: String,
+        required: [true, `English ${fieldName} is required`],
+        trim: true,
+        maxlength: [maxLength, `English ${fieldName} cannot exceed ${maxLength} characters`]
+    },
+    ta: {
+        type: String,
+        required: [true, `Tamil ${fieldName} is required`],
+        trim: true,
+        maxlength: [maxLength, `Tamil ${fieldName} cannot exceed ${maxLength} characters`]
+    }
+});
+
+// Helper function for optional bilingual field
+const createOptionalBilingualField = (maxLength, fieldName) => ({
+    en: {
+        type: String,
+        trim: true,
+        maxlength: [maxLength, `English ${fieldName} cannot exceed ${maxLength} characters`]
+    },
+    ta: {
+        type: String,
+        trim: true,
+        maxlength: [maxLength, `Tamil ${fieldName} cannot exceed ${maxLength} characters`]
+    }
+});
+
 const bookSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: [true, "Book title is required"],
-        trim: true,
-        maxlength: [200, "Title cannot exceed 200 characters"]
-    },
-    titleTamil: {
-        type: String,
-        trim: true,
-        maxlength: [200, "Tamil title cannot exceed 200 characters"]
-    },
-    author: {
-        type: String,
-        required: [true, "Author name is required"],
-        trim: true,
-        maxlength: [100, "Author name cannot exceed 100 characters"]
-    },
-    authorTamil: {
-        type: String,
-        trim: true,
-        maxlength: [100, "Tamil author name cannot exceed 100 characters"]
-    },
-    description: {
-        type: String,
-        required: [true, "Book description is required"],
-        maxlength: [2000, "Description cannot exceed 2000 characters"]
-    },
-    descriptionTamil: {
-        type: String,
-        maxlength: [2000, "Tamil description cannot exceed 2000 characters"]
-    },
+    title: createBilingualField(200, "title"),
+    author: createBilingualField(100, "author"),
+    description: createBilingualField(2000, "description"),
     category: {
         type: String,
         required: [true, "Book category is required"],
@@ -181,14 +183,14 @@ bookSchema.virtual("savings").get(function() {
     return 0;
 });
 
-// Index for search functionality
+// Index for search functionality with bilingual fields
 bookSchema.index({
-    title: "text",
-    titleTamil: "text",
-    author: "text",
-    authorTamil: "text",
-    description: "text",
-    descriptionTamil: "text",
+    "title.en": "text",
+    "title.ta": "text",
+    "author.en": "text",
+    "author.ta": "text",
+    "description.en": "text",
+    "description.ta": "text",
     tags: "text"
 }, {
     default_language: "none"
@@ -199,5 +201,40 @@ bookSchema.index({ category: 1, status: 1 });
 bookSchema.index({ featured: 1, status: 1 });
 bookSchema.index({ bestseller: 1, status: 1 });
 bookSchema.index({ newRelease: 1, status: 1 });
+
+// Pre-save validation for bilingual content
+bookSchema.pre('save', function(next) {
+    const validation = this.constructor.validateBilingualContent(this);
+    if (!validation.isValid) {
+        return next(new Error(`Bilingual validation failed: ${validation.errors.join(', ')}`));
+    }
+    next();
+});
+
+// Static method to validate bilingual content
+bookSchema.statics.validateBilingualContent = function(doc) {
+    const errors = [];
+    const requiredFields = ['title', 'author', 'description'];
+    
+    for (const field of requiredFields) {
+        if (!doc[field] || typeof doc[field] !== 'object') {
+            errors.push(`${field} must be an object with en and ta properties`);
+            continue;
+        }
+        
+        if (!doc[field].en || !doc[field].en.trim()) {
+            errors.push(`English ${field} is required`);
+        }
+        
+        if (!doc[field].ta || !doc[field].ta.trim()) {
+            errors.push(`Tamil ${field} is required`);
+        }
+    }
+    
+    return {
+        isValid: errors.length === 0,
+        errors: errors
+    };
+};
 
 module.exports = mongoose.model("Book", bookSchema);

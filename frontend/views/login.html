@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-content="login-page-title">Login - Tamil Language Society</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1e40af">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Tamil Society">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../public/css/style.css?v=2.0">
+    
+    <style>
+        /* Page-specific overrides can be added here if needed */
+    </style>
+</head>
+<body style="background: var(--gradient-primary);">
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../public/assets/logo.png" alt="Tamil Language Society" class="logo-img" data-content="logo-image">
+                <span class="logo-text" data-content="logo-text">Tamil Language Society</span>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link active" data-content="nav-home" data-content-url="nav-home-url" data-content-tamil="nav-home-tamil">Home</a>
+                <a href="about.html" class="nav-link" data-content="nav-about" data-content-url="nav-about-url" data-content-tamil="nav-about-tamil">About Us</a>
+                <a href="projects.html" class="nav-link" data-content="nav-projects" data-content-url="nav-projects-url" data-content-tamil="nav-projects-tamil">Projects</a>
+                <a href="ebooks.html" class="nav-link" data-content="nav-ebooks" data-content-url="nav-ebooks-url" data-content-tamil="nav-ebooks-tamil">Ebooks</a>
+                <a href="books.html" class="nav-link" data-content="nav-books" data-content-url="nav-books-url" data-content-tamil="nav-books-tamil">Book Store</a>
+                <a href="contact.html" class="nav-link" data-content="nav-contact" data-content-url="nav-contact-url" data-content-tamil="nav-contact-tamil">Contact Us</a>
+
+                <a href="notifications.html" class="nav-link notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-dot" id="notification-dot"></span>
+                </a>
+                <a href="login.html" class="nav-link" data-content="nav-login" data-content-url="nav-login-url" data-content-tamil="nav-login-tamil">Login</a>
+                <a href="signup.html" class="nav-link signup-btn" data-content="nav-signup" data-content-url="nav-signup-url" data-content-tamil="nav-signup-tamil">Sign Up</a>
+                
+                <!-- Language Toggle -->
+                <div class="language-toggle" id="language-toggle">
+                    <button class="lang-btn active" data-lang="en" title="English">EN</button>
+                    <button class="lang-btn" data-lang="ta" title="Tamil">TA</button>
+                </div>
+            </div>
+            
+            <div class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Container -->
+    <div class="auth-container" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 120px 1rem 2rem;">
+        <div class="auth-card animate-fadeInUp" style="background: var(--surface-secondary); border-radius: 2rem; box-shadow: var(--shadow-2xl); overflow: hidden; max-width: 1000px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; min-height: 600px; border: 1px solid var(--border-color);">
+            
+            <!-- Welcome Section -->
+            <div class="auth-welcome" style="background: var(--gradient-primary); padding: var(--space-12); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--text-inverse); position: relative; overflow: hidden;">
+                <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: var(--glass-light); border-radius: var(--radius-full); z-index: 1;"></div>
+                <div style="position: absolute; bottom: -100px; left: -100px; width: 300px; height: 300px; background: var(--glass-subtle); border-radius: var(--radius-full); z-index: 1;"></div>
+                
+                <div style="position: relative; z-index: 2;">
+        
+                    <h2 style="font-size: var(--font-size-2xl); margin-bottom: var(--space-8); font-weight: var(--font-semibold);" data-content="login-welcome-title">Welcome Back</h2>
+                    <p style="opacity: 0.9; margin-bottom: var(--space-8); line-height: var(--line-height-relaxed);" data-content="login-welcome-description">
+                        Continue your journey with Tamil Language Society. Access your account to explore our rich collection of Tamil literature and connect with our community.
+                    </p>
+                    
+                    <div class="features-list" style="text-align: left; max-width: 300px;">
+                        <div style="display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-4);">
+                            <i class="fas fa-book" style="color: var(--accent-secondary); font-size: var(--font-size-xl);"></i>
+                            <span data-content="login-feature-library">Access your library</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-4);">
+                            <i class="fas fa-heart" style="color: var(--accent-secondary); font-size: var(--font-size-xl);"></i>
+                            <span data-content="login-feature-favorites">Track your favorites</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: var(--space-4);">
+                            <i class="fas fa-users" style="color: var(--accent-secondary); font-size: var(--font-size-xl);"></i>
+                            <span data-content="login-feature-community">Connect with community</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Form Section -->
+            <div class="auth-form-container" style="padding: var(--space-12); display: flex; flex-direction: column; justify-content: center;">
+                <div class="form-header" style="text-align: center; margin-bottom: var(--space-8);">
+                    <h2 style="color: var(--text-primary); font-size: var(--font-size-3xl); margin-bottom: var(--space-2);" data-content="login-form-title">Sign In</h2>
+                    <p style="color: var(--text-secondary);" data-content="login-form-subtitle">Enter your credentials to access your account</p>
+                </div>
+                
+                <form id="login-form" class="auth-form" action="javascript:void(0)">
+                    <div class="input-group" style="margin-bottom: var(--space-6);">
+                        <label for="login-email" style="display: block; margin-bottom: var(--space-2); color: var(--text-primary); font-weight: var(--font-medium);" data-content="login-email-label">Email Address</label>
+                        <input type="email" id="login-email" name="email" required style="width: 100%; padding: var(--space-3) var(--space-4); border: 2px solid var(--border-color); border-radius: var(--radius-xl); font-size: var(--font-size-base); transition: var(--transition-all); background: var(--surface-color); color: var(--text-primary);" onfocus="this.style.borderColor='var(--primary-color)'; this.style.boxShadow='var(--glow-primary)';" onblur="this.style.borderColor='var(--border-color)'; this.style.boxShadow='none';">
+                    </div>
+                    
+                    <div class="input-group" style="margin-bottom: var(--space-6);">
+                        <label for="login-password" style="display: block; margin-bottom: var(--space-2); color: var(--text-primary); font-weight: var(--font-medium);" data-content="login-password-label">Password</label>
+                        <div class="password-input-container" style="position: relative;">
+                            <input type="password" id="login-password" name="password" required style="width: 100%; padding: var(--space-3) var(--space-4); border: 2px solid var(--border-color); border-radius: var(--radius-xl); font-size: var(--font-size-base); transition: var(--transition-all); background: var(--surface-color); color: var(--text-primary); padding-right: var(--space-12);" onfocus="this.style.borderColor='var(--primary-color)'; this.style.boxShadow='var(--glow-primary)';" onblur="this.style.borderColor='var(--border-color)'; this.style.boxShadow='none';">
+                            <button type="button" class="password-toggle" onclick="togglePassword('login-password')" style="position: absolute; right: var(--space-4); top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: var(--font-size-lg);" onmouseover="this.style.color='var(--primary-color)';" onmouseout="this.style.color='var(--text-secondary)';">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-options" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-6);">
+                        <label style="display: flex; align-items: center; gap: var(--space-2); cursor: pointer; color: var(--text-secondary);">
+                            <input type="checkbox" name="remember" style="margin: 0;">
+                            <span data-content="login-remember-me">Remember me</span>
+                        </label>
+                        <a href="forgot-password.html" style="color: var(--primary-color); text-decoration: none; font-weight: var(--font-medium);" data-content="login-forgot-password" data-content-url="login-forgot-password-url">
+                            Forgot Password?
+                        </a>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: var(--space-3); background: var(--gradient-primary); color: var(--text-inverse); border: none; border-radius: var(--radius-xl); font-size: var(--font-size-base); font-weight: var(--font-semibold); cursor: pointer; transition: var(--transition-all); margin-bottom: var(--space-6);">
+                        <i class="fas fa-sign-in-alt" style="margin-right: var(--space-2);"></i>
+                        <span data-content="login-signin-button">Sign In</span>
+                    </button>
+                    
+                    <div class="social-login" style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin-bottom: var(--space-6);">
+                        <button type="button" class="social-btn" onclick="loginWithGoogle()" style="padding: var(--space-3); border: 2px solid var(--border-color); border-radius: var(--radius-xl); background: var(--surface-color); color: var(--text-primary); font-weight: var(--font-medium); cursor: pointer; transition: var(--transition-all); display: flex; align-items: center; justify-content: center; gap: var(--space-2);">
+                            <i class="fab fa-google" style="color: var(--brand-google);"></i>
+                            <span data-content="login-google-button">Google</span>
+                        </button>
+                        <button type="button" class="social-btn" onclick="loginWithFacebook()" style="padding: var(--space-3); border: 2px solid var(--border-color); border-radius: var(--radius-xl); background: var(--surface-color); color: var(--text-primary); font-weight: var(--font-medium); cursor: pointer; transition: var(--transition-all); display: flex; align-items: center; justify-content: center; gap: var(--space-2);">
+                            <i class="fab fa-facebook" style="color: var(--brand-facebook);"></i>
+                            <span data-content="login-facebook-button">Facebook</span>
+                        </button>
+                    </div>
+                    
+                    <div class="form-footer" style="text-align: center;">
+                        <p style="color: var(--text-secondary);">
+                            <span data-content="login-no-account">Don't have an account?</span> 
+                            <a href="signup.html" style="color: var(--primary-color); font-weight: var(--font-semibold); text-decoration: none;" data-content="login-signup-link" data-content-url="login-signup-url">
+                                Sign up here
+                            </a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgot-password-modal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center;">
+        <div class="modal-content" style="background: var(--primary-color); border-radius: 1rem; padding: 2rem; max-width: 500px; width: 90%; box-shadow: var(--shadow-xl); position: relative;">
+            <button class="modal-close" onclick="closeForgotPasswordModal()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; color: var(--text-secondary); cursor: pointer;">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 style="color: var(--text-primary); margin-bottom: 1rem; text-align: center;">Reset Password</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem; text-align: center;">Enter your email address and we'll send you a link to reset your password.</p>
+            <form id="forgot-password-form" onsubmit="handleForgotPassword(event)">
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label for="reset-email" style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 500;">Email Address</label>
+                    <input type="email" id="reset-email" name="email" required style="width: 100%; padding: 0.875rem 1rem; border: 2px solid var(--border-color); border-radius: 0.75rem; font-size: 1rem; background: var(--primary-color); color: var(--text-primary);">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.875rem; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: var(--text-inverse); border: none; border-radius: 0.75rem; font-size: 1rem; font-weight: 600; cursor: pointer;">
+                    <i class="fas fa-paper-plane" style="margin-right: 0.5rem;"></i>
+                    Send Reset Link
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Two-Factor Authentication Modal -->
+    <div id="2fa-modal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center;">
+        <div class="modal-content" style="background: var(--primary-color); border-radius: 1rem; padding: 2rem; max-width: 400px; width: 90%; box-shadow: var(--shadow-xl); text-align: center;">
+            <h2 style="color: var(--text-primary); margin-bottom: 1rem;">Two-Factor Authentication</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Enter the 6-digit code from your authenticator app</p>
+            <div class="code-input-container" style="display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1.5rem;">
+                <input type="text" maxlength="1" class="code-digit" style="width: 3rem; height: 3rem; text-align: center; border: 2px solid var(--border-color); border-radius: 0.5rem; font-size: 1.5rem; font-weight: bold; background: var(--primary-color); color: var(--text-primary);">
+                <input type="text" maxlength="1" class="code-digit" style="width: 3rem; height: 3rem; text-align: center; border: 2px solid var(--border-color); border-radius: 0.5rem; font-size: 1.5rem; font-weight: bold; background: var(--primary-color); color: var(--text-primary);">
+                <input type="text" maxlength="1" class="code-digit" style="width: 3rem; height: 3rem; text-align: center; border: 2px solid var(--border-color); border-radius: 0.5rem; font-size: 1.5rem; font-weight: bold; background: var(--primary-color); color: var(--text-primary);">
+                <input type="text" maxlength="1" class="code-digit" style="width: 3rem; height: 3rem; text-align: center; border: 2px solid var(--border-color); border-radius: 0.5rem; font-size: 1.5rem; font-weight: bold; background: var(--primary-color); color: var(--text-primary);">
+                <input type="text" maxlength="1" class="code-digit" style="width: 3rem; height: 3rem; text-align: center; border: 2px solid var(--border-color); border-radius: 0.5rem; font-size: 1.5rem; font-weight: bold; background: var(--primary-color); color: var(--text-primary);">
+                <input type="text" maxlength="1" class="code-digit" style="width: 3rem; height: 3rem; text-align: center; border: 2px solid var(--border-color); border-radius: 0.5rem; font-size: 1.5rem; font-weight: bold; background: var(--primary-color); color: var(--text-primary);">
+            </div>
+            <div style="display: flex; gap: 1rem;">
+                <button onclick="close2FAModal()" class="btn" style="flex: 1; padding: var(--space-3); border: 2px solid var(--border-color); background: transparent; color: var(--text-primary); border-radius: var(--radius-xl); cursor: pointer;">Cancel</button>
+                <button onclick="verify2FA()" class="btn btn-primary" style="flex: 1; padding: var(--space-3); background: var(--gradient-primary); color: var(--text-inverse); border: none; border-radius: var(--radius-xl); cursor: pointer;">Verify</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Account Recovery Options -->
+    <div id="recovery-options-modal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center;">
+        <div class="modal-content" style="background: var(--surface-color); border-radius: var(--radius-2xl); padding: var(--space-8); max-width: 500px; width: 90%; box-shadow: var(--shadow-xl);">
+            <h2 style="color: var(--text-primary); margin-bottom: var(--space-4); text-align: center;">Account Recovery</h2>
+            <p style="color: var(--text-secondary); margin-bottom: var(--space-6); text-align: center;">Choose how you'd like to recover your account</p>
+            <div class="recovery-options" style="display: grid; gap: var(--space-4);">
+                <button onclick="recoverByEmail()" class="recovery-option" style="padding: var(--space-4); border: 2px solid var(--border-color); border-radius: var(--radius-xl); background: var(--surface-color); color: var(--text-primary); cursor: pointer; text-align: left; transition: var(--transition-all);">
+                    <div style="display: flex; align-items: center; gap: var(--space-4);">
+                        <i class="fas fa-envelope" style="color: var(--primary-color); font-size: var(--font-size-xl);"></i>
+                        <div>
+                            <h3 style="margin: 0; font-size: 1.1rem;">Email Recovery</h3>
+                            <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Reset password via email</p>
+                        </div>
+                    </div>
+                </button>
+                <button onclick="recoverByPhone()" class="recovery-option" style="padding: var(--space-4); border: 2px solid var(--border-color); border-radius: var(--radius-xl); background: var(--surface-color); color: var(--text-primary); cursor: pointer; text-align: left; transition: var(--transition-all);">
+                    <div style="display: flex; align-items: center; gap: var(--space-4);">
+                        <i class="fas fa-phone" style="color: var(--primary-color); font-size: var(--font-size-xl);"></i>
+                        <div>
+                            <h3 style="margin: 0; font-size: 1.1rem;">SMS Recovery</h3>
+                            <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Reset password via SMS</p>
+                        </div>
+                    </div>
+                </button>
+                <button onclick="recoverBySecurityQuestions()" class="recovery-option" style="padding: var(--space-4); border: 2px solid var(--border-color); border-radius: var(--radius-xl); background: var(--surface-color); color: var(--text-primary); cursor: pointer; text-align: left; transition: var(--transition-all);">
+                    <div style="display: flex; align-items: center; gap: var(--space-4);">
+                        <i class="fas fa-question-circle" style="color: var(--primary-color); font-size: var(--font-size-xl);"></i>
+                        <div>
+                            <h3 style="margin: 0; font-size: 1.1rem;">Security Questions</h3>
+                            <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Answer security questions</p>
+                        </div>
+                    </div>
+                </button>
+            </div>
+            <button onclick="closeRecoveryModal()" style="width: 100%; margin-top: var(--space-6); padding: var(--space-3); border: 2px solid var(--border-color); background: transparent; color: var(--text-primary); border-radius: var(--radius-xl); cursor: pointer;">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Security Features Panel -->
+    <div id="security-panel" class="security-panel" style="position: fixed; top: 100px; right: -400px; width: 350px; height: calc(100vh - 200px); background: var(--surface-color); border-radius: var(--radius-2xl) 0 0 var(--radius-2xl); box-shadow: var(--shadow-xl); z-index: 999; transition: right var(--transition-duration) ease; overflow-y: auto;">
+        <div style="padding: var(--space-6);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-6);">
+                <h3 style="color: var(--text-primary); margin: 0;">Security Center</h3>
+                <button onclick="closeSecurityPanel()" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: var(--font-size-xl);">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="security-features">
+                <div class="security-item" style="padding: var(--space-4); border: 1px solid var(--border-color); border-radius: var(--radius-lg); margin-bottom: var(--space-4);">
+                    <h4 style="color: var(--text-primary); margin: 0 0 var(--space-2) 0; display: flex; align-items: center; gap: var(--space-2);">
+                        <i class="fas fa-shield-alt" style="color: var(--success-color);"></i>
+                        Two-Factor Authentication
+                    </h4>
+                    <p style="color: var(--text-secondary); font-size: var(--font-size-sm); margin: 0 0 var(--space-4) 0;">Add an extra layer of security to your account</p>
+                    <button onclick="setup2FA()" class="btn btn-primary" style="padding: var(--space-2) var(--space-4); background: var(--gradient-primary); color: var(--text-inverse); border: none; border-radius: var(--radius-lg); cursor: pointer; font-size: var(--font-size-sm);">Enable 2FA</button>
+                </div>
+                <div class="security-item" style="padding: var(--space-4); border: 1px solid var(--border-color); border-radius: var(--radius-lg); margin-bottom: var(--space-4);">
+                    <h4 style="color: var(--text-primary); margin: 0 0 var(--space-2) 0; display: flex; align-items: center; gap: var(--space-2);">
+                        <i class="fas fa-key" style="color: var(--warning-color);"></i>
+                        Password Strength
+                    </h4>
+                    <p style="color: var(--text-secondary); font-size: var(--font-size-sm); margin: 0 0 var(--space-4) 0;">Check and improve your password security</p>
+                    <button onclick="checkPasswordStrength()" class="btn" style="padding: var(--space-2) var(--space-4); border: 1px solid var(--border-color); background: transparent; color: var(--text-primary); border-radius: var(--radius-lg); cursor: pointer; font-size: var(--font-size-sm);">Check Strength</button>
+                </div>
+                <div class="security-item" style="padding: var(--space-4); border: 1px solid var(--border-color); border-radius: var(--radius-lg); margin-bottom: var(--space-4);">
+                    <h4 style="color: var(--text-primary); margin: 0 0 var(--space-2) 0; display: flex; align-items: center; gap: var(--space-2);">
+                        <i class="fas fa-history" style="color: var(--info-color);"></i>
+                        Login History
+                    </h4>
+                    <p style="color: var(--text-secondary); font-size: var(--font-size-sm); margin: 0 0 var(--space-4) 0;">View recent login attempts and devices</p>
+                    <button onclick="viewLoginHistory()" class="btn" style="padding: var(--space-2) var(--space-4); border: 1px solid var(--border-color); background: transparent; color: var(--text-primary); border-radius: var(--radius-lg); cursor: pointer; font-size: var(--font-size-sm);">View History</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Security Toggle Button -->
+    <button id="security-toggle" onclick="toggleSecurityPanel()" style="position: fixed; top: 150px; right: var(--space-5); width: 50px; height: 50px; border-radius: var(--radius-full); background: var(--gradient-primary); color: var(--text-inverse); border: none; cursor: pointer; box-shadow: var(--shadow-lg); z-index: 998; transition: var(--transition-all);" title="Security Center">
+        <i class="fas fa-shield-alt"></i>
+    </button>
+
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="notification-toast" style="position: fixed; top: var(--space-5); right: var(--space-5); background: var(--surface-color); color: var(--text-primary); padding: var(--space-4) var(--space-6); border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); z-index: 1001; transform: translateX(400px); transition: transform var(--transition-duration) ease; border-left: 4px solid var(--success-color);">
+        <div class="toast-content" style="display: flex; align-items: center; gap: var(--space-3);">
+            <i class="fas fa-bell" style="color: var(--success-color);"></i>
+            <span class="toast-message"></span>
+        </div>
+        <button class="toast-close" onclick="closeNotification()" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; margin-left: var(--space-4);">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../public/js/api-integration.js?v=2.0"></script>
+    <script src="../public/js/main.js?v=2.0"></script>
+    <script src="../public/js/notifications.js?v=2.0"></script>
+    <script src="../public/js/auth.js?v=2.0"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for redirect parameter in URL and store it
+            const urlParams = new URLSearchParams(window.location.search);
+            const redirectParam = urlParams.get('redirect');
+            
+            if (redirectParam) {
+                console.log('Redirect parameter found:', redirectParam);
+                // Store the redirect URL in sessionStorage
+                sessionStorage.setItem('redirect_after_login', redirectParam);
+            }
+            
+            // Override the default login form handler to support admin authentication
+            const loginForm = document.getElementById('login-form');
+            if (loginForm) {
+                loginForm.removeEventListener('submit', window.authManager?.handleLogin);
+                loginForm.addEventListener('submit', handleUnifiedLogin);
+            }
+        });
+        
+        // Unified login handler for both regular users and admins
+        async function handleUnifiedLogin(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const email = formData.get('email');
+            const password = formData.get('password');
+            const remember = formData.get('remember');
+            
+            // Show loading state
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
+            
+            try {
+                const response = await apiCall('/api/auth/login', {
+                    method: 'POST',
+                    body: JSON.stringify({ email, password })
+                });
+                
+                if (response.success) {
+                    // Create session data with permanent token
+                    const sessionData = {
+                        user: response.user,
+                        token: response.token,
+                        refreshToken: response.refreshToken,
+                        createdAt: new Date().toISOString(),
+                        expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(), // 7 days
+                        isAdmin: response.user.role === 'admin'
+                    };
+                    
+                    // Store session based on remember me preference
+                    if (remember) {
+                        localStorage.setItem('tamil_society_session', JSON.stringify(sessionData));
+                    } else {
+                        sessionStorage.setItem('tamil_society_session', JSON.stringify(sessionData));
+                    }
+                    
+                    // Show success message
+                    window.TamilSociety?.showNotification('Login successful!', 'success');
+                    
+                    // Redirect based on user role and stored redirect URL
+                    const storedRedirect = sessionStorage.getItem('redirect_after_login');
+                    let redirectUrl;
+                    
+                    if (storedRedirect) {
+                        redirectUrl = storedRedirect;
+                        sessionStorage.removeItem('redirect_after_login');
+                    } else if (response.user.role === 'admin') {
+                        redirectUrl = 'admin.html';
+                    } else {
+                        redirectUrl = 'index.html';
+                    }
+                    
+                    setTimeout(() => {
+                        window.location.href = redirectUrl;
+                    }, 1000);
+                    
+                } else {
+                    throw new Error(response.error || 'Login failed');
+                }
+                
+            } catch (error) {
+                console.error('Login error:', error);
+                window.TamilSociety?.showNotification(error.message || 'Login failed. Please try again.', 'error');
+            } finally {
+                // Reset button state
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        }
+        
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const toggle = input.parentElement.querySelector('.password-toggle i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                toggle.classList.remove('fa-eye');
+                toggle.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                toggle.classList.remove('fa-eye-slash');
+                toggle.classList.add('fa-eye');
+            }
+        }
+        
+        function loginWithGoogle() {
+            window.TamilSociety.showNotification('Google login functionality coming soon!');
+        }
+        
+        function loginWithFacebook() {
+            window.TamilSociety.showNotification('Facebook login functionality coming soon!');
+        }
+
+        // Forgot Password Modal Functions
+        function openForgotPasswordModal() {
+            document.getElementById('forgot-password-modal').style.display = 'flex';
+        }
+
+        function closeForgotPasswordModal() {
+            document.getElementById('forgot-password-modal').style.display = 'none';
+        }
+
+        function handleForgotPassword(event) {
+            event.preventDefault();
+            const email = document.getElementById('reset-email').value;
+            // Placeholder for forgot password functionality
+            window.TamilSociety.showNotification('Password reset link sent to ' + email);
+            closeForgotPasswordModal();
+        }
+
+        // Two-Factor Authentication Functions
+        function open2FAModal() {
+            document.getElementById('2fa-modal').style.display = 'flex';
+            setupCodeInputs();
+        }
+
+        function close2FAModal() {
+            document.getElementById('2fa-modal').style.display = 'none';
+        }
+
+        function setupCodeInputs() {
+            const inputs = document.querySelectorAll('.code-digit');
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', (e) => {
+                    if (e.target.value.length === 1 && index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    }
+                });
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Backspace' && e.target.value === '' && index > 0) {
+                        inputs[index - 1].focus();
+                    }
+                });
+            });
+        }
+
+        function verify2FA() {
+            const inputs = document.querySelectorAll('.code-digit');
+            const code = Array.from(inputs).map(input => input.value).join('');
+            if (code.length === 6) {
+                // Placeholder for 2FA verification
+                window.TamilSociety.showNotification('2FA verification successful!');
+                close2FAModal();
+            } else {
+                window.TamilSociety.showNotification('Please enter all 6 digits', 'error');
+            }
+        }
+
+        // Account Recovery Functions
+        function openRecoveryModal() {
+            document.getElementById('recovery-options-modal').style.display = 'flex';
+        }
+
+        function closeRecoveryModal() {
+            document.getElementById('recovery-options-modal').style.display = 'none';
+        }
+
+        function recoverByEmail() {
+            window.TamilSociety.showNotification('Email recovery initiated');
+            closeRecoveryModal();
+            openForgotPasswordModal();
+        }
+
+        function recoverByPhone() {
+            window.TamilSociety.showNotification('SMS recovery functionality coming soon!');
+            closeRecoveryModal();
+        }
+
+        function recoverBySecurityQuestions() {
+            window.TamilSociety.showNotification('Security questions recovery coming soon!');
+            closeRecoveryModal();
+        }
+
+        // Security Panel Functions
+        function toggleSecurityPanel() {
+            const panel = document.getElementById('security-panel');
+            const isOpen = panel.style.right === '0px';
+            panel.style.right = isOpen ? '-400px' : '0px';
+        }
+
+        function closeSecurityPanel() {
+            document.getElementById('security-panel').style.right = '-400px';
+        }
+
+        function setup2FA() {
+            window.TamilSociety.showNotification('2FA setup functionality coming soon!');
+        }
+
+        function checkPasswordStrength() {
+            const password = document.getElementById('login-password').value;
+            if (!password) {
+                window.TamilSociety.showNotification('Please enter a password first', 'warning');
+                return;
+            }
+            // Simple password strength check
+            let strength = 0;
+            if (password.length >= 8) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[a-z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+            
+            const strengthText = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong'][strength];
+            window.TamilSociety.showNotification(`Password strength: ${strengthText}`);
+        }
+
+        function viewLoginHistory() {
+            window.TamilSociety.showNotification('Login history functionality coming soon!');
+        }
+
+        // Update forgot password link to open modal instead
+        document.addEventListener('DOMContentLoaded', function() {
+            const forgotLink = document.querySelector('a[href="forgot-password.html"]');
+            if (forgotLink) {
+                forgotLink.href = '#';
+                forgotLink.onclick = function(e) {
+                    e.preventDefault();
+                    openForgotPasswordModal();
+                };
+            }
+        });
+    </script>
+    
+    <style>
+        /* Input focus styles */
+        .auth-form input:focus {
+            outline: none;
+            border-color: var(--primary-color) !important;
+            box-shadow: 0 0 0 3px var(--primary-color-alpha);
+        }
+        
+        /* Button hover effects */
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .social-btn:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .auth-card {
+                grid-template-columns: 1fr !important;
+                max-width: 500px !important;
+                margin: var(--space-4);
+            }
+            
+            .auth-welcome {
+                padding: var(--space-8) !important;
+                min-height: auto;
+            }
+            
+            .auth-form-container {
+                padding: var(--space-8) !important;
+            }
+            
+            .social-login {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        
+        /* Animation for auth card */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+    
+    <!-- API Integration Scripts -->
+    <!-- Mock API removed - using real backend API -->
+
+    <script src="../public/js/content-manager.js?v=2.0"></script>
+    <script src="../public/js/cache-buster.js?v=2.0"></script>
+    
+    <!-- Initialize ContentManager -->
+    <script>
+        // ContentManager is automatically initialized by content-manager.js
+    </script>
+    
+    <!-- Theme Management -->
+    <script>
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        }
+        
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+        
+        function updateThemeIcon(theme) {
+            const themeIcon = document.getElementById('theme-icon');
+            if (themeIcon) {
+                themeIcon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+            }
+        }
+        
+        // Initialize theme on page load
+        document.addEventListener('DOMContentLoaded', initializeTheme);
+    </script>
+</body>
+</html>

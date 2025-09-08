@@ -7,27 +7,31 @@ const ErrorResponse = require("../utils/errorResponse");
 // @access  Private (Admin only)
 exports.getFormConfigurations = async (req, res, next) => {
     try {
-        let query = FormConfiguration.find();
+        // Build query object
+        let queryObj = {};
 
         // Filter by item type
         if (req.query.itemType) {
-            query = query.find({ itemType: req.query.itemType });
+            queryObj.itemType = req.query.itemType;
         }
 
         // Filter by item ID
         if (req.query.itemId) {
-            query = query.find({ itemId: req.query.itemId });
+            queryObj.itemId = req.query.itemId;
         }
 
         // Filter by form types
         if (req.query.formType) {
-            query = query.find({ formTypes: { $in: [req.query.formType] } });
+            queryObj.formTypes = { $in: [req.query.formType] };
         }
 
         // Filter by active status
         if (req.query.isActive !== undefined) {
-            query = query.find({ isActive: req.query.isActive === "true" });
+            queryObj.isActive = req.query.isActive === "true";
         }
+
+        // Create query with filters
+        let query = FormConfiguration.find(queryObj);
 
         // Sort by creation date (newest first)
         query = query.sort("-createdAt");

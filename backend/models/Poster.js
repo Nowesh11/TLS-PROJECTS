@@ -1,27 +1,39 @@
 const getMongoose = require("../utils/mongooseHelper");
 const mongoose = getMongoose();
 
+// Helper function to create bilingual field with validation
+const createBilingualField = (maxLength, fieldName) => ({
+    en: {
+        type: String,
+        required: [true, `English ${fieldName} is required`],
+        trim: true,
+        maxlength: [maxLength, `English ${fieldName} cannot exceed ${maxLength} characters`]
+    },
+    ta: {
+        type: String,
+        required: [true, `Tamil ${fieldName} is required`],
+        trim: true,
+        maxlength: [maxLength, `Tamil ${fieldName} cannot exceed ${maxLength} characters`]
+    }
+});
+
+// Helper function for optional bilingual field
+const createOptionalBilingualField = (maxLength, fieldName) => ({
+    en: {
+        type: String,
+        trim: true,
+        maxlength: [maxLength, `English ${fieldName} cannot exceed ${maxLength} characters`]
+    },
+    ta: {
+        type: String,
+        trim: true,
+        maxlength: [maxLength, `Tamil ${fieldName} cannot exceed ${maxLength} characters`]
+    }
+});
+
 const posterSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: [true, "Title is required"],
-        trim: true,
-        maxlength: [200, "Title cannot exceed 200 characters"]
-    },
-    titleTamil: {
-        type: String,
-        trim: true,
-        maxlength: [200, "Tamil title cannot exceed 200 characters"]
-    },
-    description: {
-        type: String,
-        required: [true, "Description is required"],
-        maxlength: [1000, "Description cannot exceed 1000 characters"]
-    },
-    descriptionTamil: {
-        type: String,
-        maxlength: [1000, "Tamil description cannot exceed 1000 characters"]
-    },
+    title: createBilingualField(200, "title"),
+    description: createBilingualField(1000, "description"),
     
     // Image
     image_path: {
@@ -34,16 +46,7 @@ const posterSchema = new mongoose.Schema({
     },
     
     // Action Button (optional)
-    buttonText: {
-        type: String,
-        trim: true,
-        maxlength: [50, "Button text cannot exceed 50 characters"]
-    },
-    buttonTextTamil: {
-        type: String,
-        trim: true,
-        maxlength: [50, "Tamil button text cannot exceed 50 characters"]
-    },
+    buttonText: createOptionalBilingualField(50, "button text"),
     link_url: {
         type: String,
         trim: true,

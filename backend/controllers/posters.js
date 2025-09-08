@@ -6,22 +6,24 @@ const ErrorResponse = require("../utils/errorResponse");
 // @access  Private (Admin only)
 exports.getPosters = async (req, res, next) => {
     try {
-        let query = Poster.find();
+        // Build query object
+        let queryObj = {};
 
         // Filter by status
         if (req.query.status) {
-            query = query.find({ status: req.query.status });
+            queryObj.status = req.query.status;
         }
 
         // Filter by date range
         if (req.query.startDate && req.query.endDate) {
-            query = query.find({
-                createdAt: {
-                    $gte: new Date(req.query.startDate),
-                    $lte: new Date(req.query.endDate)
-                }
-            });
+            queryObj.createdAt = {
+                $gte: new Date(req.query.startDate),
+                $lte: new Date(req.query.endDate)
+            };
         }
+
+        // Create query with filters
+        let query = Poster.find(queryObj);
 
         // Sort by priority and creation date
         query = query.sort("-priority -createdAt");

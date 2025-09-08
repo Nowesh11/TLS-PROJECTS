@@ -19,6 +19,7 @@ const {
     saveSimplePageContent,
     // New section-based functions
     getPageSections,
+    createPageSection,
     updatePageSection,
     deletePageSection,
     getPageSection,
@@ -40,6 +41,10 @@ router.get("/structure/:page", getPageStructure);
 router.get("/sections", getPageSections);
 router.get("/sections/:page", getPageSections);
 router.get("/sections/:page/:sectionId", getPageSection);
+
+// Public API for frontend dynamic content replacement
+router.get("/fetch-content/:page", getPageContent);
+router.get("/fetch-sections/:page", getPageSections);
 
 // Diagnostic route (public for debugging)
 router.get("/diagnose/:page", diagnoseContent);
@@ -78,6 +83,7 @@ router.post("/:id/duplicate", duplicateContent);
 router.put("/:id/toggle-visibility", toggleVisibility);
 
 // New section-based protected routes
+router.post("/sections/:page", createPageSection);
 router.put("/sections/:page/:sectionId", updatePageSection);
 router.delete("/sections/:page/:sectionId", deletePageSection);
 router.put("/sections/:page/reorder", reorderPageSections);

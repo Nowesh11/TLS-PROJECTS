@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-content="contact-page-title">Contact Us - Tamil Language Society</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico" data-content="favicon">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../public/css/style.css?v=2.0">
+    <link rel="stylesheet" href="../public/css/slideshow.css?v=2.0">
+    
+    <!-- Cache Buster -->
+    <script src="../public/js/cache-buster.js?v=2.0"></script>
+    
+    <style>
+        /* Modern Contact Page Styling with Theme Variables */
+        body {
+            font-family: var(--font-primary);
+            line-height: var(--line-height-normal);
+            color: var(--text-primary);
+            background: var(--primary-color);
+            margin: 0;
+            padding: 0;
+            transition: var(--transition-normal);
+        }
+
+        /* Contact Info Cards */
+        .contact-info-card {
+            background: var(--surface-color);
+            padding: var(--space-10) var(--space-8);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: var(--transition-normal);
+            border: 1px solid var(--border-color);
+        }
+        
+        .contact-info-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-color);
+        }
+        
+        .contact-info-card i {
+            font-size: var(--font-size-5xl);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--space-6);
+            display: block;
+        }
+        
+        .contact-info-card h3 {
+            color: var(--text-primary);
+            margin-bottom: var(--space-3);
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-semibold);
+        }
+        
+        .contact-info-card p {
+            color: var(--text-muted);
+            margin: 0;
+            font-size: var(--font-size-base);
+        }
+
+        /* FAQ Section */
+        .faq-item {
+            background: var(--surface-color);
+            border-radius: var(--radius-xl);
+            margin-bottom: var(--space-4);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        
+        .faq-question {
+            background: var(--gradient-primary);
+            color: var(--text-inverse);
+            padding: var(--space-5);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-normal);
+            font-weight: var(--font-medium);
+            border: none;
+            width: 100%;
+            text-align: left;
+        }
+        
+        .faq-question:hover {
+            background: var(--gradient-accent);
+        }
+        
+        .faq-answer {
+            padding: var(--space-5);
+            display: none;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .faq-answer.active {
+            display: block;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            margin: var(--space-8) 0;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.25rem;
+        }
+        
+        .social-link:hover {
+            background: var(--gradient-accent);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Map Container */
+        .map-container {
+            position: relative;
+            height: 400px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-light);
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .map-overlay {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--bg-white);
+            padding: 0.75rem 1rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-light);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .contact-info-card {
+                padding: 1.5rem;
+            }
+            
+            .map-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../public/assets/logo.png" alt="Tamil Language Society" class="logo-img" data-content="logo-image">
+                <span class="logo-text" data-content="logo-text">Tamil Language Society</span>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link" data-content="nav-home">Home</a>
+                <a href="about.html" class="nav-link" data-content="nav-about">About Us</a>
+                <a href="projects.html" class="nav-link" data-content="nav-projects">Projects</a>
+                <a href="ebooks.html" class="nav-link" data-content="nav-ebooks">Ebooks</a>
+                <a href="books.html" class="nav-link" data-content="nav-books">Book Store</a>
+                <a href="contact.html" class="nav-link active" data-content="nav-contact">Contact Us</a>
+
+                <a href="notifications.html" class="nav-link notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-dot" id="notification-dot"></span>
+                </a>
+                <a href="login.html" class="nav-link">Login</a>
+                <a href="signup.html" class="nav-link signup-btn">Sign Up</a>
+            </div>
+            
+            <div class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">
+                <i class="fas fa-sun" id="theme-icon"></i>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 60vh;">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+            <div class="hero-pattern"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text" style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <h1 class="hero-title">
+                    <span class="english-title" data-content="contact-hero-title">Contact Us</span>
+                </h1>
+                <p class="hero-subtitle" data-content="contact-hero-subtitle">
+                    We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+                </p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="features" style="padding-top: 2rem;">
+        <div class="container">
+            <div class="contact-info-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
+                <div class="contact-info-card hover-lift" style="background: var(--bg-secondary); padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg); text-align: center; border: 1px solid var(--border-primary); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='var(--shadow-glow)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-lg)';">
+                    <div class="contact-icon" style="width: 80px; height: 80px; background: var(--gradient-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: var(--text-inverse); font-size: 2rem; box-shadow: var(--shadow-glow);">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 style="color: var(--text-primary); margin-bottom: 1rem;" data-content="contact-address-title">Visit Us</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;" data-content="contact-address-text">
+                        Tamil Language Society<br>
+                        123 Tamil Heritage Street<br>
+                        Chennai, Tamil Nadu 600001<br>
+                        India
+                    </p>
+                </div>
+                
+                <div class="contact-info-card hover-lift" style="background: var(--bg-secondary); padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg); text-align: center; border: 1px solid var(--border-primary); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='var(--shadow-glow)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-lg)';">
+                    <div class="contact-icon" style="width: 80px; height: 80px; background: var(--gradient-secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: var(--text-inverse); font-size: 2rem; box-shadow: var(--shadow-glow);">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3 style="color: var(--text-primary); margin-bottom: 1rem;" data-content="contact-phone-title">Call Us</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;" data-content="contact-phone-text">
+                        Phone: +91 44 2345 6789<br>
+                        Mobile: +91 98765 43210<br>
+                        Toll Free: 1800 123 4567
+                    </p>
+                </div>
+                
+                <div class="contact-info-card hover-lift" style="background: var(--bg-secondary); padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg); text-align: center; border: 1px solid var(--border-primary); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='var(--shadow-glow)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-lg)';">
+                    <div class="contact-icon" style="width: 80px; height: 80px; background: var(--accent-success); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: var(--text-inverse); font-size: 2rem; box-shadow: var(--shadow-glow);">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 style="color: var(--text-primary); margin-bottom: 1rem;" data-content="contact-email-title">Email Us</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;" data-content="contact-email-text">
+                        info@tamillanguagesociety.org<br>
+                        support@tamillanguagesociety.org<br>
+                        media@tamillanguagesociety.org
+                    </p>
+                </div>
+                
+                <div class="contact-info-card hover-lift" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg); text-align: center;">
+                    <div class="contact-icon" style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--accent-purple), #7c3aed); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 2rem;">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 style="color: var(--gray-900); margin-bottom: 1rem;" data-content="contact-hours-title">Office Hours</h3>
+                    <p style="color: var(--gray-600); line-height: 1.6;" data-content="contact-hours-text">
+                        Monday - Friday: 9:00 AM - 6:00 PM<br>
+                        Saturday: 10:00 AM - 4:00 PM<br>
+                        Sunday: Closed
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Section -->
+    <section class="features" style="background: var(--gray-50);">
+        <div class="container">
+            <div style="display: flex; justify-content: center; align-items: center; min-height: 300px;">
+                <!-- Chat Only -->
+                <div class="chat-container" style="text-align: center; max-width: 500px;">
+                    <h2 class="section-title" style="margin-bottom: 2rem;">
+                        <span class="english" data-content="contact-chat-title">Connect with Us</span>
+                    </h2>
+                    
+                    <p style="color: var(--gray-600); margin-bottom: 2rem; line-height: 1.6;">
+                        <span class="english" data-content="contact-chat-description">Start a live chat with our admin team for immediate assistance and support.</span>
+                        <span class="tamil" data-content="contact-chat-description-tamil">உடனடி உதவி மற்றும் ஆதரவிற்காக எங்கள் நிர்வாக குழுவுடன் நேரடி அரட்டையைத் தொடங்குங்கள்.</span>
+                    </p>
+                    
+                    <button type="button" id="directChatBtn" class="btn" style="padding: 1.5rem 3rem; font-size: 1.2rem; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white; border: none; border-radius: 0.75rem; cursor: pointer; transition: all 0.3s ease; box-shadow: var(--shadow-lg);" onclick="startLiveChat()">
+                        <i class="fas fa-comments" style="margin-right: 0.5rem;"></i>
+                        <span data-content="contact-form-chat">Start Live Chat with Admin</span>
+                    </button>
+                </div>
+                
+                <!-- Additional Information -->
+                <div class="contact-additional">
+                    <h3 style="color: var(--gray-900); margin-bottom: 1.5rem;" data-content="contact-additional-title">Get in Touch</h3>
+                    <p style="color: var(--gray-600); margin-bottom: 2rem; line-height: 1.8;" data-content="contact-additional-description">
+                        We're here to help and answer any questions you might have. We look forward to hearing from you! 
+                        Whether you're interested in learning Tamil, contributing to our projects, or just want to connect 
+                        with our community, don't hesitate to reach out.
+                    </p>
+                    
+                    <div class="contact-features" style="margin-bottom: 2rem;">
+                        <div class="feature-item" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="width: 40px; height: 40px; background: var(--primary-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                                <i class="fas fa-reply"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--gray-900); margin-bottom: 0.25rem;" data-content="contact-feature-response-title">Quick Response</h4>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.9rem;" data-content="contact-feature-response-description">We typically respond within 24 hours</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="width: 40px; height: 40px; background: var(--accent-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--gray-900); margin-bottom: 0.25rem;" data-content="contact-feature-community-title">Community Support</h4>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.9rem;" data-content="contact-feature-community-description">Join our vibrant Tamil community</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="width: 40px; height: 40px; background: var(--accent-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--gray-900); margin-bottom: 0.25rem;" data-content="contact-feature-global-title">Global Reach</h4>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.9rem;" data-content="contact-feature-global-description">Connect with Tamil speakers worldwide</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-contact" style="padding: 2rem; background: white; border-radius: 1rem; box-shadow: var(--shadow-lg);">
+                        <h4 style="color: var(--gray-900); margin-bottom: 1rem;">Follow Us</h4>
+                        <div class="social-links" style="display: flex; gap: 1rem;">
+                            <a href="#" class="social-link" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="social-link" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="social-link" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="english" data-content="contact-map-title">Find Us</span>
+            </h2>
+            
+            <div class="map-container" style="background: var(--gray-200); height: 400px; border-radius: 1rem; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center;">
+                <div style="text-align: center; color: var(--gray-600);">
+                    <i class="fas fa-map-marked-alt" style="font-size: 4rem; margin-bottom: 1rem; color: var(--primary-blue);"></i>
+                    <h3 style="margin-bottom: 0.5rem;" data-content="contact-map-interactive-title">Interactive Map</h3>
+                    <p data-content="contact-map-location">Chennai, Tamil Nadu, India</p>
+                    <button class="btn btn-primary" style="margin-top: 1rem;" onclick="openMaps()">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span data-content="contact-map-button">Open in Maps</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="features" style="background: var(--gray-50);">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="english" data-content="contact-faq-title">Frequently Asked Questions</span>
+            </h2>
+            
+            <div class="faq-container" style="max-width: 800px; margin: 0 auto;">
+                <div class="faq-item" style="background: white; margin-bottom: 1rem; border-radius: 1rem; overflow: hidden; box-shadow: var(--shadow-md);">
+                    <button class="faq-question" style="width: 100%; padding: 1.5rem; text-align: left; background: none; border: none; color: var(--gray-900); font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center;" data-content="contact-faq-1-question">
+                        How can I join the Tamil Language Society?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer" style="padding: 0 1.5rem 1.5rem; color: var(--gray-600); line-height: 1.6;" data-content="contact-faq-1-answer">
+                        You can join our society by signing up on our website or visiting our office. Membership is open to all Tamil language enthusiasts regardless of their proficiency level.
+                    </div>
+                </div>
+                
+                <div class="faq-item" style="background: white; margin-bottom: 1rem; border-radius: 1rem; overflow: hidden; box-shadow: var(--shadow-md);">
+                    <button class="faq-question" style="width: 100%; padding: 1.5rem; text-align: left; background: none; border: none; color: var(--gray-900); font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center;" data-content="contact-faq-2-question">
+                        Do you offer Tamil language classes?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer" style="padding: 0 1.5rem 1.5rem; color: var(--gray-600); line-height: 1.6; display: none;" data-content="contact-faq-2-answer">
+                        Yes, we offer various Tamil language classes for different skill levels, from beginners to advanced speakers. We also have specialized courses for children and adults.
+                    </div>
+                </div>
+                
+                <div class="faq-item" style="background: white; margin-bottom: 1rem; border-radius: 1rem; overflow: hidden; box-shadow: var(--shadow-md);">
+                    <button class="faq-question" style="width: 100%; padding: 1.5rem; text-align: left; background: none; border: none; color: var(--gray-900); font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center;" data-content="contact-faq-3-question">
+                        How can I contribute to your projects?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer" style="padding: 0 1.5rem 1.5rem; color: var(--gray-600); line-height: 1.6; display: none;" data-content="contact-faq-3-answer">
+                        There are many ways to contribute: volunteering for events, donating to our projects, sharing your expertise, or helping with translations and content creation.
+                    </div>
+                </div>
+                
+                <div class="faq-item" style="background: white; margin-bottom: 1rem; border-radius: 1rem; overflow: hidden; box-shadow: var(--shadow-md);">
+                    <button class="faq-question" style="width: 100%; padding: 1.5rem; text-align: left; background: none; border: none; color: var(--gray-900); font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center;" data-content="contact-faq-4-question">
+                        Are your digital resources free to access?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer" style="padding: 0 1.5rem 1.5rem; color: var(--gray-600); line-height: 1.6; display: none;" data-content="contact-faq-4-answer">
+                        Most of our digital resources are free to access for registered members. Some premium content and specialized courses may require a subscription or one-time fee.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="../public/assets/logo.png" alt="Tamil Language Society" data-content="footer-logo">
+                        <span data-content="footer-logo-text">Tamil Language Society</span>
+                    </div>
+                    <p data-content="footer-description">Dedicated to preserving and promoting the rich heritage of Tamil language and culture worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-content="footer-quicklinks-title">Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html" data-content="footer-link-about">About Us</a></li>
+                        <li><a href="projects.html" data-content="footer-link-projects">Projects</a></li>
+                        <li><a href="ebooks.html" data-content="footer-link-ebooks">Ebooks</a></li>
+                        <li><a href="books.html" data-content="footer-link-books">Book Store</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-content="footer-support-title">Support</h3>
+                    <ul>
+                        <li><a href="contact.html" data-content="footer-link-contact">Contact Us</a></li>
+
+                        <li><a href="notifications.html" data-content="footer-link-notifications">Notifications</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-content="footer-newsletter-title">Newsletter</h3>
+                    <p data-content="footer-newsletter-description">Stay updated with our latest news and events</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" class="newsletter-input" data-content="footer-newsletter-placeholder">
+                        <button class="newsletter-btn" data-content="footer-newsletter-button" aria-label="Subscribe to newsletter"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p data-content="footer-copyright">&copy; 2025 Tamil Language Society. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="notification-toast">
+        <div class="toast-content">
+            <i class="fas fa-bell"></i>
+            <span class="toast-message"></span>
+        </div>
+        <button class="toast-close" onclick="closeNotification()" aria-label="Close notification">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../public/js/api-integration.js?v=2.0"></script>
+    <script src="../public/js/content-manager.js?v=2.0"></script>
+    <script src="../public/js/main.js?v=2.0"></script>
+    <script src="../public/js/notifications.js?v=2.0"></script>
+    <script src="../public/js/slideshow.js?v=2.0"></script>
+    <script src="../public/js/cache-buster.js?v=2.0"></script>
+    
+    <script>
+        // Floating label functionality removed
+
+        // Contact form removed - form submission functionality disabled
+
+        // Contact form thank you function removed
+
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                
+                if (answer.style.display === 'none' || !answer.style.display) {
+                    answer.style.display = 'block';
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    answer.style.display = 'none';
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+
+        function openMaps() {
+            window.open('https://maps.google.com/maps?q=Chennai,Tamil+Nadu,India', '_blank');
+        }
+
+        // Start live chat function
+        async function startLiveChat() {
+            const chatBtn = document.getElementById('liveChatBtn') || document.getElementById('directChatBtn');
+            const originalText = chatBtn.innerHTML;
+            
+            try {
+                chatBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Starting Chat...';
+                chatBtn.disabled = true;
+
+                const response = await fetch('http://127.0.0.1:8080/api/chat/public', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: 'Guest User',
+                        email: 'guest@example.com',
+                        subject: 'Live Chat Request',
+                        message: 'User started a live chat session.',
+                        priority: 'medium'
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Show success message
+                    window.TamilSociety.showNotification('Chat started successfully! An admin will respond shortly.', 'success');
+                    
+                    // Show chat interface or redirect to chat page
+                    showChatInterface(result.data);
+                } else {
+                    throw new Error(result.error || 'Failed to start chat');
+                }
+            } catch (error) {
+                console.error('Error starting chat:', error);
+                window.TamilSociety.showNotification('Sorry, there was an error starting the chat. Please try again.', 'error');
+            } finally {
+                chatBtn.innerHTML = originalText;
+                chatBtn.disabled = false;
+            }
+        }
+
+        // Enhanced chat interface with comprehensive features
+        function showChatInterface(chatData) {
+            const overlay = document.createElement('div');
+            overlay.id = 'chatOverlay';
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+                animation: fadeIn 0.3s ease;
+            `;
+            
+            overlay.innerHTML = `
+                <div class="chat-modal" style="background: var(--bg-white); width: 95%; max-width: 900px; height: 90%; border-radius: 1rem; display: flex; overflow: hidden; box-shadow: var(--shadow-xl); border: 1px solid var(--border-light);">
+                    <!-- Conversation List Sidebar -->
+                    <div class="conversation-sidebar" style="width: 300px; background: var(--bg-light); border-right: 1px solid var(--border-light); display: flex; flex-direction: column;">
+                        <div class="sidebar-header" style="padding: 1rem; border-bottom: 1px solid var(--border-light); background: var(--gradient-primary); color: white;">
+                            <h3 style="margin: 0; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="fas fa-comments"></i>
+                                Chat Conversations
+                            </h3>
+                            <div class="search-container" style="margin-top: 0.75rem; position: relative;">
+                                <input type="text" id="conversationSearch" placeholder="Search conversations..." style="width: 100%; padding: 0.5rem 0.75rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 0.5rem; background: rgba(255,255,255,0.1); color: white; font-size: 0.9rem;">
+                                <i class="fas fa-search" style="position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.7);"></i>
+                            </div>
+                        </div>
+                        <div class="conversation-list" id="conversationList" style="flex: 1; overflow-y: auto; padding: 0.5rem;">
+                            <div class="conversation-item active" data-conversation-id="${chatData._id}" style="padding: 0.75rem; border-radius: 0.5rem; cursor: pointer; margin-bottom: 0.25rem; background: var(--primary-blue); color: white; transition: all 0.2s ease;">
+                                <div class="conversation-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+                                    <span class="conversation-title" style="font-weight: 600; font-size: 0.9rem;">Current Chat</span>
+                                    <div class="conversation-meta" style="display: flex; align-items: center; gap: 0.25rem;">
+                                        <span class="unread-badge" style="background: #ff4444; color: white; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold;">1</span>
+                                        <span class="conversation-time" style="font-size: 0.7rem; opacity: 0.8;">Just now</span>
+                                    </div>
+                                </div>
+                                <div class="conversation-preview" style="font-size: 0.8rem; opacity: 0.9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Live Chat Request</div>
+                            </div>
+                        </div>
+                        <div class="sidebar-footer" style="padding: 0.75rem; border-top: 1px solid var(--border-light); background: var(--bg-white);">
+                            <button class="new-chat-btn" onclick="startNewChat()" style="width: 100%; padding: 0.75rem; background: var(--gradient-accent); color: white; border: none; border-radius: 0.5rem; cursor: pointer; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                                <i class="fas fa-plus"></i>
+                                New Chat
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Main Chat Area -->
+                    <div class="chat-main" style="flex: 1; display: flex; flex-direction: column;">
+                        <!-- Chat Header -->
+                        <div class="chat-header" style="padding: 1rem; border-bottom: 1px solid var(--border-light); background: var(--bg-white); display: flex; justify-content: space-between; align-items: center;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <button class="mobile-menu-btn" onclick="toggleMobileSidebar()" style="padding: 0.5rem; border: 1px solid var(--border-light); background: transparent; border-radius: 6px; cursor: pointer; display: none; align-items: center; justify-content: center;">
+                                    <i class="fas fa-bars" style="color: var(--text-muted);"></i>
+                                </button>
+                                <div class="chat-info">
+                                    <h3 style="margin: 0; font-size: 1.2rem; color: var(--text-primary);">Live Chat with Admin</h3>
+                                    <div style="display: flex; align-items: center; gap: 1rem; margin-top: 0.25rem;">
+                                        <span style="font-size: 0.9rem; color: var(--text-secondary);">Chat ID: ${chatData._id}</span>
+                                        <div class="status-indicator" style="display: flex; align-items: center; gap: 0.25rem;">
+                                            <div style="width: 8px; height: 8px; background: #4CAF50; border-radius: 50%;"></div>
+                                            <span style="font-size: 0.8rem; color: var(--text-secondary);">Online</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-actions" style="display: flex; gap: 0.5rem;">
+                                <button class="action-btn" onclick="toggleChatSettings()" style="background: none; border: 1px solid var(--border-light); color: var(--text-secondary); padding: 0.5rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.2s ease;" title="Chat Settings">
+                                    <i class="fas fa-cog"></i>
+                                </button>
+                                <button class="action-btn" onclick="exportChatHistory()" style="background: none; border: 1px solid var(--border-light); color: var(--text-secondary); padding: 0.5rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.2s ease;" title="Export Chat">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button onclick="closeChatInterface()" style="background: none; border: 1px solid var(--border-light); color: var(--text-secondary); padding: 0.5rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.2s ease;" title="Close Chat">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Messages Area -->
+                        <div id="chatMessages" class="chat-messages" style="flex: 1; padding: 1rem; overflow-y: auto; background: var(--bg-light); position: relative;">
+                            <div class="message-group" style="margin-bottom: 1rem;">
+                                <div class="message user-message" style="background: var(--primary-blue); color: white; padding: 0.75rem 1rem; border-radius: 1rem 1rem 0.25rem 1rem; margin-left: auto; max-width: 70%; margin-bottom: 0.5rem; box-shadow: var(--shadow-sm);">
+                                    <div class="message-content">${chatData.messages[0].content}</div>
+                                    <div class="message-meta" style="font-size: 0.7rem; opacity: 0.8; margin-top: 0.25rem; text-align: right;">Just now</div>
+                                </div>
+                            </div>
+                            <div class="message-group" style="margin-bottom: 1rem;">
+                                <div class="message system-message" style="background: var(--bg-white); color: var(--text-primary); padding: 0.75rem 1rem; border-radius: 1rem 1rem 1rem 0.25rem; max-width: 70%; margin-bottom: 0.5rem; box-shadow: var(--shadow-sm); border-left: 3px solid var(--accent-gold);">
+                                    <div class="message-sender" style="font-weight: 600; font-size: 0.8rem; color: var(--accent-gold); margin-bottom: 0.25rem;">System</div>
+                                    <div class="message-content">Your chat has been created successfully. An admin will respond shortly. You can attach files, send voice messages, and use emoji reactions.</div>
+                                    <div class="message-meta" style="font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.25rem;">Just now</div>
+                                </div>
+                            </div>
+                            <div class="typing-indicator" id="typingIndicator" style="display: none; padding: 0.5rem 1rem; color: var(--text-secondary); font-style: italic; font-size: 0.9rem;">
+                                <i class="fas fa-circle" style="animation: pulse 1.5s infinite;"></i>
+                                <i class="fas fa-circle" style="animation: pulse 1.5s infinite 0.2s;"></i>
+                                <i class="fas fa-circle" style="animation: pulse 1.5s infinite 0.4s;"></i>
+                                Admin is typing...
+                            </div>
+                        </div>
+                        
+                        <!-- Message Input Area -->
+                        <div class="message-input-area" style="padding: 1rem; border-top: 1px solid var(--border-light); background: var(--bg-white);">
+                            <!-- File Upload Preview -->
+                            <div id="filePreview" class="file-preview" style="display: none; margin-bottom: 0.75rem; padding: 0.75rem; background: var(--bg-light); border-radius: 0.5rem; border: 1px solid var(--border-light);">
+                                <div class="preview-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                    <span style="font-weight: 500; color: var(--text-primary);">File to send:</span>
+                                    <button onclick="clearFilePreview()" style="background: none; border: none; color: var(--text-secondary); cursor: pointer;">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                                <div id="previewContent" class="preview-content"></div>
+                            </div>
+                            
+                            <!-- Message Input -->
+                            <div class="input-container" style="display: flex; gap: 0.5rem; align-items: end;">
+                                <div class="input-actions" style="display: flex; flex-direction: column; gap: 0.25rem;">
+                                    <input type="file" id="fileInput" accept="image/*,video/*,audio/*,.pdf,.doc,.docx,.txt" style="display: none;" onchange="handleFileSelect(event)">
+                                    <button class="input-action-btn" onclick="document.getElementById('fileInput').click()" style="background: none; border: 1px solid var(--border-light); color: var(--text-secondary); padding: 0.5rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.2s ease;" title="Attach File">
+                                        <i class="fas fa-paperclip"></i>
+                                    </button>
+                                    <button class="input-action-btn" onclick="toggleEmojiPicker()" style="background: none; border: 1px solid var(--border-light); color: var(--text-secondary); padding: 0.5rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.2s ease;" title="Add Emoji">
+                                        <i class="fas fa-smile"></i>
+                                    </button>
+                                </div>
+                                <div class="message-input-wrapper" style="flex: 1; position: relative;">
+                                    <textarea id="chatInput" placeholder="Type your message..." style="width: 100%; min-height: 40px; max-height: 120px; padding: 0.75rem 3rem 0.75rem 0.75rem; border: 1px solid var(--border-light); border-radius: 0.75rem; resize: none; font-family: inherit; font-size: 0.9rem; line-height: 1.4; background: var(--bg-white);" rows="1"></textarea>
+                                    <div class="input-meta" style="position: absolute; bottom: 0.25rem; right: 0.75rem; font-size: 0.7rem; color: var(--text-secondary);">
+                                        <span id="charCount">0</span>/1000
+                                    </div>
+                                </div>
+                                <button id="sendButton" onclick="sendChatMessage('${chatData._id}')" style="background: var(--gradient-primary); color: white; border: none; padding: 0.75rem 1rem; border-radius: 0.75rem; cursor: pointer; transition: all 0.2s ease; min-width: 50px;" title="Send Message">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                            
+                            <!-- Quick Actions -->
+                            <div class="quick-actions" style="margin-top: 0.75rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                <button class="quick-action" onclick="insertQuickMessage('Hello! I need help with...')" style="background: var(--bg-light); border: 1px solid var(--border-light); color: var(--text-secondary); padding: 0.25rem 0.5rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.8rem; transition: all 0.2s ease;">
+                                    Quick Help
+                                </button>
+                                <button class="quick-action" onclick="insertQuickMessage('Can you provide more information about...')" style="background: var(--bg-light); border: 1px solid var(--border-light); color: var(--text-secondary); padding: 0.25rem 0.5rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.8rem; transition: all 0.2s ease;">
+                                    More Info
+                                </button>
+                                <button class="quick-action" onclick="insertQuickMessage('Thank you for your assistance!')" style="background: var(--bg-light); border: 1px solid var(--border-light); color: var(--text-secondary); padding: 0.25rem 0.5rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.8rem; transition: all 0.2s ease;">
+                                    Thank You
+                                </button>
+                            </div>
+                            
+                            <!-- Emoji Picker -->
+                            <div id="emojiPicker" class="emoji-picker" style="display: none; position: absolute; bottom: 100%; right: 1rem; background: var(--bg-white); border: 1px solid var(--border-light); border-radius: 0.5rem; padding: 0.75rem; box-shadow: var(--shadow-lg); z-index: 1000; max-width: 300px;">
+                                <div class="emoji-grid" style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 0.25rem;">
+                                    <span class="emoji-item" onclick="insertEmoji('😊')" style="cursor: pointer; padding: 0.25rem; border-radius: 0.25rem; text-align: center; transition: background 0.2s ease;">😊</span>
+                                    <span class="emoji-item" onclick="insertEmoji('👍')" style="cursor: pointer; padding: 0.25rem; border-radius: 0.25rem; text-align: center; transition: background 0.2s ease;">👍</span>
+                                    <span class="emoji-item" onclick="insertEmoji('❤️')" style="cursor: pointer; padding: 0.25rem; border-radius: 0.25rem; text-align: center; transition: background 0.2s ease;">❤️</span>
+                                    <span class="emoji-item" onclick="insertEmoji('🎉')" style="cursor: pointer; padding: 0.25rem; border-radius: 0.25rem; text-align: center; transition: background 0.2s ease;">🎉</span>
+                                    <span class="emoji-item" onclick="insertEmoji('🤔')" style="cursor: pointer; padding: 0.25rem; border-radius: 0.25rem; text-align: center; transition: background 0.2s ease;">🤔</span>
+                                    <span class="emoji-item" onclick="insertEmoji('😢')" style="cursor: pointer; padding: 0.25rem; border-radius: 0.25rem; text-align: center; transition: background 0.2s ease;">😢</span>
+                                    <span class="emoji-item" onclick="insertEmoji('🔥')" style="cursor: pointer; padding: 0.25rem; border-radius: 0.25rem; text-align: center; transition: background 0.2s ease;">🔥</span>
+                                    <span class="emoji-item" onclick="insertEmoji('💯')" style="cursor: pointer; padding: 0.25rem; border-radius: 0.25rem; text-align: center; transition: background 0.2s ease;">💯</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(overlay);
+            
+            // Focus on input
+            setTimeout(() => {
+                document.getElementById('chatInput').focus();
+            }, 100);
+            
+            window.closeChatInterface = function() {
+                overlay.style.animation = 'fadeOut 0.3s ease';
+                setTimeout(() => {
+                    if (overlay.parentNode) {
+                        document.body.removeChild(overlay);
+                    }
+                }, 300);
+            };
+            
+            // Enhanced chat message sending with file support
+            window.sendChatMessage = function(chatId) {
+                const input = document.getElementById('chatInput');
+                const message = input.value.trim();
+                const fileInput = document.getElementById('fileInput');
+                
+                if (message || (fileInput && fileInput.files.length > 0)) {
+                    const messagesContainer = document.getElementById('chatMessages');
+                    const messageGroup = document.createElement('div');
+                    messageGroup.className = 'message-group';
+                    messageGroup.style.marginBottom = '1rem';
+                    
+                    let messageContent = '';
+                    
+                    // Handle file attachment
+                    if (fileInput && fileInput.files.length > 0) {
+                        const file = fileInput.files[0];
+                        messageContent = `
+                            <div class="message user-message" style="background: var(--primary-blue); color: white; padding: 0.75rem 1rem; border-radius: 1rem 1rem 0.25rem 1rem; margin-left: auto; max-width: 70%; margin-bottom: 0.5rem; box-shadow: var(--shadow-sm);">
+                                <div class="message-content">
+                                    <div class="file-attachment" style="background: rgba(255,255,255,0.1); padding: 0.5rem; border-radius: 0.5rem; margin-bottom: 0.5rem;">
+                                        <i class="fas fa-paperclip"></i> ${file.name} (${(file.size / 1024).toFixed(1)} KB)
+                                    </div>
+                                    ${message ? message : ''}
+                                </div>
+                                <div class="message-meta" style="font-size: 0.7rem; opacity: 0.8; margin-top: 0.25rem; text-align: right;">Just now</div>
+                            </div>
+                        `;
+                    } else {
+                        messageContent = `
+                            <div class="message user-message" style="background: var(--primary-blue); color: white; padding: 0.75rem 1rem; border-radius: 1rem 1rem 0.25rem 1rem; margin-left: auto; max-width: 70%; margin-bottom: 0.5rem; box-shadow: var(--shadow-sm);">
+                                <div class="message-content">${message}</div>
+                                <div class="message-meta" style="font-size: 0.7rem; opacity: 0.8; margin-top: 0.25rem; text-align: right;">Just now</div>
+                            </div>
+                        `;
+                    }
+                    
+                    messageGroup.innerHTML = messageContent;
+                    messagesContainer.appendChild(messageGroup);
+                    
+                    // Clear inputs
+                    input.value = '';
+                    if (fileInput) {
+                        fileInput.value = '';
+                        window.clearFilePreview && window.clearFilePreview();
+                    }
+                    window.updateCharCount && window.updateCharCount();
+                    
+                    // Show typing indicator
+                    window.showTypingIndicator && window.showTypingIndicator();
+                    
+                    // Scroll to bottom
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                    
+                    // Simulate admin response after delay
+                    setTimeout(() => {
+                        window.hideTypingIndicator && window.hideTypingIndicator();
+                        window.addAdminResponse && window.addAdminResponse('Thank you for your message! An admin will respond to you shortly.');
+                    }, 2000);
+                    
+                    // In a real implementation, this would send the message via API
+                    window.TamilSociety.showNotification('Message sent! (Demo mode)', 'success');
+                }
+            };
+            
+            // Add admin response message
+            window.addAdminResponse = function(message) {
+                const messagesContainer = document.getElementById('chatMessages');
+                const messageGroup = document.createElement('div');
+                messageGroup.className = 'message-group';
+                messageGroup.style.marginBottom = '1rem';
+                
+                messageGroup.innerHTML = `
+                    <div class="message admin-message" style="background: var(--bg-white); color: var(--text-primary); padding: 0.75rem 1rem; border-radius: 1rem 1rem 1rem 0.25rem; max-width: 70%; margin-bottom: 0.5rem; box-shadow: var(--shadow-sm); border-left: 3px solid var(--primary-blue);">
+                        <div class="message-sender" style="font-weight: 600; font-size: 0.8rem; color: var(--primary-blue); margin-bottom: 0.25rem;">Admin</div>
+                        <div class="message-content">${message}</div>
+                        <div class="message-meta" style="font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.25rem;">Just now</div>
+                    </div>
+                `;
+                
+                messagesContainer.appendChild(messageGroup);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            };
+            
+            // File handling functions
+            window.handleFileSelect = function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    window.showFilePreview(file);
+                }
+            };
+            
+            window.showFilePreview = function(file) {
+                const preview = document.getElementById('filePreview');
+                const content = document.getElementById('previewContent');
+                
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        content.innerHTML = `
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <img src="${e.target.result}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 0.5rem; border: 1px solid var(--border-light);">
+                                <div>
+                                    <div style="font-weight: 500; color: var(--text-primary);">${file.name}</div>
+                                    <div style="font-size: 0.8rem; color: var(--text-secondary);">${(file.size / 1024).toFixed(1)} KB • Image</div>
+                                </div>
+                            </div>
+                        `;
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    const icon = window.getFileIcon(file.type);
+                    content.innerHTML = `
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <div style="width: 60px; height: 60px; background: var(--bg-light); border: 1px solid var(--border-light); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--text-secondary);">
+                                <i class="${icon}"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: 500; color: var(--text-primary);">${file.name}</div>
+                                <div style="font-size: 0.8rem; color: var(--text-secondary);">${(file.size / 1024).toFixed(1)} KB • ${file.type || 'File'}</div>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                if (preview) preview.style.display = 'block';
+            };
+            
+            window.clearFilePreview = function() {
+                const preview = document.getElementById('filePreview');
+                const fileInput = document.getElementById('fileInput');
+                if (preview) preview.style.display = 'none';
+                if (fileInput) fileInput.value = '';
+            };
+            
+            window.getFileIcon = function(fileType) {
+                if (fileType.startsWith('image/')) return 'fas fa-image';
+                if (fileType.startsWith('video/')) return 'fas fa-video';
+                if (fileType.startsWith('audio/')) return 'fas fa-music';
+                if (fileType.includes('pdf')) return 'fas fa-file-pdf';
+                if (fileType.includes('word') || fileType.includes('document')) return 'fas fa-file-word';
+                if (fileType.includes('text')) return 'fas fa-file-alt';
+                return 'fas fa-file';
+            };
+            
+            // Emoji and quick message functions
+            window.toggleEmojiPicker = function() {
+                const picker = document.getElementById('emojiPicker');
+                if (picker) {
+                    picker.style.display = picker.style.display === 'none' ? 'block' : 'none';
+                }
+            };
+            
+            window.insertEmoji = function(emoji) {
+                const input = document.getElementById('chatInput');
+                if (input) {
+                    const cursorPos = input.selectionStart;
+                    const textBefore = input.value.substring(0, cursorPos);
+                    const textAfter = input.value.substring(cursorPos);
+                    input.value = textBefore + emoji + textAfter;
+                    input.focus();
+                    input.setSelectionRange(cursorPos + emoji.length, cursorPos + emoji.length);
+                    window.updateCharCount();
+                    window.toggleEmojiPicker();
+                }
+            };
+            
+            window.insertQuickMessage = function(message) {
+                const input = document.getElementById('chatInput');
+                if (input) {
+                    input.value = message;
+                    input.focus();
+                    window.updateCharCount();
+                }
+            };
+            
+            // Typing indicator functions
+            window.showTypingIndicator = function() {
+                const indicator = document.getElementById('typingIndicator');
+                if (indicator) {
+                    indicator.style.display = 'block';
+                    const messagesContainer = document.getElementById('chatMessages');
+                    if (messagesContainer) {
+                        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                    }
+                }
+            };
+            
+            window.hideTypingIndicator = function() {
+                const indicator = document.getElementById('typingIndicator');
+                if (indicator) {
+                    indicator.style.display = 'none';
+                }
+            };
+            
+            // Character count update
+            window.updateCharCount = function() {
+                const input = document.getElementById('chatInput');
+                const counter = document.getElementById('charCount');
+                if (input && counter) {
+                    counter.textContent = input.value.length;
+                }
+            };
+            
+            // Additional chat functions
+            window.startNewChat = function() {
+                window.TamilSociety.showNotification('New chat functionality would be implemented here', 'info');
+            };
+            
+            window.toggleChatSettings = function() {
+                window.TamilSociety.showNotification('Chat settings panel would be implemented here', 'info');
+            };
+            
+            window.exportChatHistory = function() {
+                window.TamilSociety.showNotification('Chat export functionality would be implemented here', 'info');
+            };
+            
+            // Auto-resize textarea and character count
+            setTimeout(() => {
+                const chatInput = document.getElementById('chatInput');
+                if (chatInput) {
+                    chatInput.addEventListener('input', function() {
+                        // Auto-resize textarea
+                        this.style.height = 'auto';
+                        this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+                        
+                        // Update character count
+                        window.updateCharCount();
+                    });
+                    
+                    // Handle Enter key for sending messages
+                    chatInput.addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter' && !e.shiftKey) {
+                            e.preventDefault();
+                            const chatId = document.querySelector('.conversation-item.active')?.dataset.conversationId;
+                            if (chatId) {
+                                window.sendChatMessage(chatId);
+                            }
+                        }
+                    });
+                }
+                
+                // Close emoji picker when clicking outside
+                document.addEventListener('click', function(e) {
+                    const emojiPicker = document.getElementById('emojiPicker');
+                    const emojiButton = e.target.closest('[onclick*="toggleEmojiPicker"]');
+                    if (emojiPicker && !emojiPicker.contains(e.target) && !emojiButton) {
+                        emojiPicker.style.display = 'none';
+                    }
+                });
+            }, 200);
+            
+            // Handle Enter key in chat input
+            document.getElementById('chatInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    window.sendChatMessage(chatData._id);
+                }
+            });
+        }
+
+        // Initialize authentication requirements
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AuthUtils !== 'undefined') {
+                window.authUtils = new AuthUtils();
+            }
+        });
+    </script>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- API Integration -->
+    <!-- Mock API removed - using real backend API -->
+
+    
+    <!-- Chat Widget -->
+    <script src="../public/js/chat-widget.js?v=2.0"></script>
+    <script src="../public/js/auth-utils.js?v=2.0"></script>
+    
+    <!-- ContentManager is automatically initialized by content-manager.js -->
+    
+    <style>
+        /* Floating label styles removed */
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .contact-info-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            div[style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+        }
+        
+        /* Enhanced Chat Interface Styles */
+        .chat-modal .conversation-sidebar {
+            transition: transform 0.3s ease;
+        }
+        
+        .chat-modal .input-action-btn:hover,
+        .chat-modal .action-btn:hover {
+            background: var(--bg-light);
+            border-color: var(--primary-blue);
+            color: var(--primary-blue);
+        }
+        
+        .chat-modal .quick-action:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+        
+        .chat-modal .emoji-item:hover {
+            background: var(--bg-light);
+        }
+        
+        .chat-modal .conversation-item:hover:not(.active) {
+            background: var(--bg-light);
+        }
+        
+        .chat-modal .new-chat-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+        
+        /* Enhanced Chat Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .chat-modal {
+                width: 100% !important;
+                height: 100% !important;
+                border-radius: 0 !important;
+            }
+            
+            .chat-modal .conversation-sidebar {
+                width: 280px !important;
+                position: absolute;
+                left: -280px;
+                z-index: 1001;
+                height: 100%;
+                background: var(--bg-white);
+                box-shadow: var(--shadow-xl);
+            }
+            
+            .chat-modal .conversation-sidebar.mobile-open {
+                transform: translateX(280px);
+            }
+            
+            .chat-modal .mobile-menu-btn {
+                display: flex !important;
+            }
+            
+            .chat-modal .chat-header {
+                padding: 0.75rem 1rem;
+            }
+            
+            .chat-modal .chat-header h3 {
+                font-size: 1rem;
+            }
+            
+            .chat-modal .chat-messages {
+                padding: 0.75rem;
+            }
+            
+            .chat-modal .message {
+                max-width: 85% !important;
+                font-size: 0.9rem;
+            }
+            
+            .chat-modal .message-input-area {
+                padding: 0.75rem;
+            }
+            
+            .chat-modal .input-container {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            .chat-modal .input-actions {
+                flex-direction: row;
+                justify-content: center;
+                order: 2;
+            }
+            
+            .chat-modal .message-input-wrapper {
+                order: 1;
+            }
+            
+            .chat-modal #sendButton {
+                order: 3;
+                align-self: stretch;
+            }
+            
+            .chat-modal .quick-actions {
+                justify-content: center;
+            }
+            
+            .chat-modal .emoji-picker {
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                right: auto;
+                max-width: 90vw;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .chat-modal .conversation-sidebar {
+                width: 100% !important;
+                left: -100%;
+            }
+            
+            .chat-modal .conversation-sidebar.mobile-open {
+                transform: translateX(100%);
+            }
+            
+            .chat-modal .message {
+                max-width: 90% !important;
+                padding: 0.5rem 0.75rem;
+            }
+            
+            .chat-modal .file-attachment {
+                font-size: 0.8rem;
+            }
+            
+            .chat-modal .quick-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .chat-modal .quick-action {
+                text-align: center;
+                padding: 0.5rem;
+            }
+        }
+    </style>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- API Integration Scripts -->
+    <!-- Mock API removed - using real backend API -->
+    
+    <!-- ContentManager is automatically initialized by content-manager.js -->
+    
+    <!-- Theme Management -->
+    <script>
+        // Initialize theme on page load
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        }
+
+        // Toggle between light and dark themes
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        // Update theme toggle icon
+        function updateThemeIcon(theme) {
+            const themeIcon = document.getElementById('theme-icon');
+            if (themeIcon) {
+                themeIcon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+            }
+        }
+
+        // Mobile sidebar toggle function
+        function toggleMobileSidebar() {
+            const sidebar = document.querySelector('.chat-modal .conversation-sidebar');
+            if (sidebar) {
+                sidebar.classList.toggle('mobile-open');
+            }
+        }
+        
+        // Enhanced event listeners for chat interface
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize theme
+            initializeTheme();
+            
+            // Chat input auto-resize and Enter key handling
+            const messageInput = document.getElementById('messageInput');
+            if (messageInput) {
+                messageInput.addEventListener('input', function() {
+                    this.style.height = 'auto';
+                    this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+                    updateCharCount();
+                });
+                
+                messageInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        sendChatMessage();
+                    }
+                });
+            }
+            
+            // Close emoji picker when clicking outside
+            document.addEventListener('click', function(e) {
+                const emojiPicker = document.getElementById('emojiPicker');
+                const emojiBtn = document.querySelector('.input-action-btn[onclick="toggleEmojiPicker()"]');
+                if (emojiPicker && !emojiPicker.contains(e.target) && !emojiBtn.contains(e.target)) {
+                    emojiPicker.style.display = 'none';
+                }
+            });
+            
+            // Close mobile sidebar when clicking outside on mobile
+            document.addEventListener('click', function(e) {
+                const sidebar = document.querySelector('.chat-modal .conversation-sidebar');
+                const chatModal = document.querySelector('.chat-modal');
+                if (window.innerWidth <= 768 && sidebar && chatModal && 
+                    !sidebar.contains(e.target) && chatModal.contains(e.target)) {
+                    sidebar.classList.remove('mobile-open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

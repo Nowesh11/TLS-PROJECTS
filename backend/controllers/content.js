@@ -1,22 +1,49 @@
-const WebsiteContent = require("../models/WebsiteContent");
-const ActivityLog = require("../models/ActivityLog");
-const ErrorResponse = require("../utils/errorResponse");
+const WebsiteContent = require('../models/WebsiteContent');
+const WebsiteContentSection = require('../models/WebsiteContentSection');
+const ActivityLog = require('../models/ActivityLog');
+const ErrorResponse = require('../utils/errorResponse');
+const multer = require('multer');
+const path = require('path');
+
+// Configure multer for logo uploads only
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/content/logos');
+    },
+    filename: (req, file, cb) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, 'logo-' + uniqueSuffix + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({
+    storage,
+    limits: { fileSize: 5 * 1024 * 1024 }, // 5MB max
+    fileFilter: (req, file, cb) => {
+        if (file.fieldname === 'logo') {
+            cb(null, true);
+        } else {
+            cb(new Error('Only logo uploads are allowed'));
+        }
+    }
+}).single('logo');
 
 // @desc    Get all website content
 // @route   GET /api/content
 // @access  Public
 exports.getContent = async (req, res, next) => {
     try {
-        let query = WebsiteContent.find();
+        // Build query object
+        let queryObj = {};
 
         // Filter by page
         if (req.query.page) {
-            query = query.find({ page: req.query.page });
+            queryObj.page = req.query.page;
         }
 
         // Filter by section
         if (req.query.section) {
-            query = query.find({ section: req.query.section });
+            queryObj.section = req.query.section;
         }
 
         // Check if user is authenticated as admin
@@ -24,36 +51,39 @@ exports.getContent = async (req, res, next) => {
         
         // Filter by active status
         if (req.query.active !== undefined) {
-            query = query.find({ isActive: req.query.active === "true" });
+            queryObj.isActive = req.query.active === "true";
         } else if (!isAdmin) {
             // Default to active content for public access only
-            query = query.find({ isActive: true });
+            queryObj.isActive = true;
         }
 
         // Filter by visible status
         if (req.query.visible !== undefined) {
-            query = query.find({ isVisible: req.query.visible === "true" });
+            queryObj.isVisible = req.query.visible === "true";
         } else if (!isAdmin) {
             // Default to visible content for public access only
-            query = query.find({ isVisible: true });
+            queryObj.isVisible = true;
         }
 
         // Filter by published content
         const now = new Date();
-        query = query.find({
-            $or: [
-                { publishedAt: { $lte: now } },
-                { publishedAt: null }
-            ]
-        });
+        queryObj.$and = [
+            {
+                $or: [
+                    { publishedAt: { $lte: now } },
+                    { publishedAt: null }
+                ]
+            },
+            {
+                $or: [
+                    { expiresAt: { $gt: now } },
+                    { expiresAt: null }
+                ]
+            }
+        ];
 
-        // Filter out expired content
-        query = query.find({
-            $or: [
-                { expiresAt: { $gt: now } },
-                { expiresAt: null }
-            ]
-        });
+        // Create query with filters
+        let query = WebsiteContent.find(queryObj);
 
         // Sort by order and creation date
         query = query.sort("order createdAt");
@@ -65,10 +95,40 @@ exports.getContent = async (req, res, next) => {
 
         const content = await query;
 
+        // Language filtering
+        let processedContent = content;
+        if (req.query.lang && (req.query.lang === 'en' || req.query.lang === 'ta')) {
+            processedContent = content.map(item => {
+                const contentObj = item.toObject();
+                
+                // Transform bilingual fields to single language
+                if (contentObj.title && typeof contentObj.title === 'object') {
+                    contentObj.title = contentObj.title[req.query.lang] || contentObj.title.en;
+                }
+                if (contentObj.content && typeof contentObj.content === 'object') {
+                    contentObj.content = contentObj.content[req.query.lang] || contentObj.content.en;
+                }
+                if (contentObj.description && typeof contentObj.description === 'object') {
+                    contentObj.description = contentObj.description[req.query.lang] || contentObj.description.en;
+                }
+                if (contentObj.seoTitle && typeof contentObj.seoTitle === 'object') {
+                    contentObj.seoTitle = contentObj.seoTitle[req.query.lang] || contentObj.seoTitle.en;
+                }
+                if (contentObj.seoDescription && typeof contentObj.seoDescription === 'object') {
+                    contentObj.seoDescription = contentObj.seoDescription[req.query.lang] || contentObj.seoDescription.en;
+                }
+                if (contentObj.seoKeywords && typeof contentObj.seoKeywords === 'object') {
+                    contentObj.seoKeywords = contentObj.seoKeywords[req.query.lang] || contentObj.seoKeywords.en;
+                }
+                
+                return contentObj;
+            });
+        }
+
         res.status(200).json({
             success: true,
-            count: content.length,
-            data: content
+            count: processedContent.length,
+            data: processedContent
         });
     } catch (error) {
         next(error);
@@ -603,6 +663,27 @@ exports.createPageSection = async (req, res, next) => {
             hasTamilTranslation
         } = req.body;
 
+        // Handle bilingual content structure
+        const bilingualTitle = title && typeof title === 'object' ? title : {
+            en: title || '',
+            ta: req.body.titleTamil || ''
+        };
+        
+        const bilingualContent = content && typeof content === 'object' ? content : {
+            en: content || '',
+            ta: req.body.contentTamil || ''
+        };
+        
+        const bilingualSubtitle = subtitle && typeof subtitle === 'object' ? subtitle : {
+            en: subtitle || '',
+            ta: req.body.subtitleTamil || ''
+        };
+        
+        const bilingualButtonText = buttonText && typeof buttonText === 'object' ? buttonText : {
+            en: buttonText || '',
+            ta: req.body.buttonTextTamil || ''
+        };
+
         // Check if section key already exists for this page
         const existingSection = await WebsiteContent.findOne({ page: slug, sectionKey });
         if (existingSection) {
@@ -621,16 +702,16 @@ exports.createPageSection = async (req, res, next) => {
             layout: layout || "full-width",
             position: position || 0,
             order: nextOrder,
-            title,
-            content,
-            subtitle,
-            buttonText,
+            title: bilingualTitle,
+            content: bilingualContent,
+            subtitle: bilingualSubtitle,
+            buttonText: bilingualButtonText,
             buttonUrl,
             images,
             stylePreset: stylePreset || "default",
             customStyles,
             isRequired: isRequired || false,
-            hasTamilTranslation: hasTamilTranslation || false,
+            hasTamilTranslation: hasTamilTranslation || (bilingualTitle.ta || bilingualContent.ta || bilingualSubtitle.ta || bilingualButtonText.ta) ? true : false,
             createdBy: req.user.id,
             isActive: true,
             isVisible: true
@@ -861,3 +942,155 @@ exports.getActivityLog = async (req, res, next) => {
         next(error);
     }
 };
+
+// Get content by page
+exports.getContentByPage = async (req, res) => {
+    try {
+        const { page } = req.query;
+        if (!page) {
+            return res.status(400).json({ error: 'Page parameter is required' });
+        }
+
+        const content = await WebsiteContent.find({ page })
+            .populate('sectionId')
+            .sort({ 'sectionId.order': 1 });
+
+        res.json(content);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch content' });
+    }
+};
+
+// Get all sections
+exports.getSections = async (req, res) => {
+    try {
+        const sections = await WebsiteContentSection.find()
+            .sort({ order: 1 });
+        res.json(sections);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch sections' });
+    }
+};
+
+// Create new section
+exports.createSection = async (req, res) => {
+    try {
+        const { title, type, order } = req.body;
+        
+        const section = await WebsiteContentSection.create({
+            title,
+            type,
+            order: order || await getNextOrder()
+        });
+
+        // Create initial content for all pages
+        const pages = ['home', 'about', 'contact'];
+        await Promise.all(pages.map(page => 
+            WebsiteContent.create({
+                page,
+                sectionId: section._id,
+                content: getInitialContent(type)
+            })
+        ));
+
+        res.json(section);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to create section' });
+    }
+};
+
+// Update content
+exports.updateContent = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { content } = req.body;
+
+        const updatedContent = await WebsiteContent.findByIdAndUpdate(
+            id,
+            { content },
+            { new: true }
+        );
+
+        // Emit update event for real-time sync
+        req.app.get('io')?.emit('contentUpdated', {
+            page: updatedContent.page,
+            sectionId: updatedContent.sectionId
+        });
+
+        res.json(updatedContent);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to update content' });
+    }
+};
+
+// Upload logo
+exports.uploadLogo = async (req, res) => {
+    upload(req, res, async (err) => {
+        if (err) {
+            return res.status(400).json({ error: err.message });
+        }
+        
+        if (!req.file) {
+            return res.status(400).json({ error: 'No file uploaded' });
+        }
+
+        try {
+            const { id } = req.params;
+            const content = await WebsiteContent.findByIdAndUpdate(
+                id,
+                { 'content.logo': `/uploads/content/logos/${req.file.filename}` },
+                { new: true }
+            );
+            res.json(content);
+        } catch (error) {
+            res.status(500).json({ error: 'Failed to update content with logo' });
+        }
+    });
+};
+
+// Get recent changes
+exports.getRecentChanges = async (req, res) => {
+    try {
+        const changes = await WebsiteContent.find()
+            .sort({ updatedAt: -1 })
+            .limit(10)
+            .populate('sectionId');
+        res.json(changes);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch recent changes' });
+    }
+};
+
+// Helper functions
+async function getNextOrder() {
+    const lastSection = await WebsiteContentSection.findOne()
+        .sort({ order: -1 });
+    return (lastSection?.order || 0) + 1;
+}
+
+function getInitialContent(type) {
+    const baseContent = {
+        header: 'New Section',
+        subheader: 'Enter content here'
+    };
+
+    switch (type) {
+        case 'hero':
+            return {
+                ...baseContent,
+                imageUrl: '',
+                buttonText: 'Learn More',
+                buttonUrl: '#'
+            };
+        case 'statistics':
+            return {
+                ...baseContent,
+                stats: [
+                    { label: 'Statistic 1', value: '0' },
+                    { label: 'Statistic 2', value: '0' }
+                ]
+            };
+        default:
+            return baseContent;
+    }
+}

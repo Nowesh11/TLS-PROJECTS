@@ -1,18 +1,38 @@
 const getMongoose = require("../utils/mongooseHelper");
 const mongoose = getMongoose();
 
+// Helper function to create bilingual field with validation
+const createBilingualField = (maxLength, fieldName) => ({
+    en: {
+        type: String,
+        required: [true, `English ${fieldName} is required`],
+        trim: true,
+        maxlength: [maxLength, `English ${fieldName} cannot exceed ${maxLength} characters`]
+    },
+    ta: {
+        type: String,
+        required: [true, `Tamil ${fieldName} is required`],
+        trim: true,
+        maxlength: [maxLength, `Tamil ${fieldName} cannot exceed ${maxLength} characters`]
+    }
+});
+
+// Helper function for optional bilingual field
+const createOptionalBilingualField = (maxLength, fieldName) => ({
+    en: {
+        type: String,
+        trim: true,
+        maxlength: [maxLength, `English ${fieldName} cannot exceed ${maxLength} characters`]
+    },
+    ta: {
+        type: String,
+        trim: true,
+        maxlength: [maxLength, `Tamil ${fieldName} cannot exceed ${maxLength} characters`]
+    }
+});
+
 const TeamSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: [true, "Please add a name"],
-        trim: true,
-        maxlength: [100, "Name cannot be more than 100 characters"]
-    },
-    nameTamil: {
-        type: String,
-        trim: true,
-        maxlength: [100, "Tamil name cannot be more than 100 characters"]
-    },
+    name: createBilingualField(100, "name"),
     position: {
         type: String,
         required: [true, "Please add a position"],
@@ -24,14 +44,7 @@ const TeamSchema = new mongoose.Schema({
         trim: true,
         maxlength: [100, "Department cannot be more than 100 characters"]
     },
-    bio: {
-        type: String,
-        maxlength: [500, "Bio cannot be more than 500 characters"]
-    },
-    bioTamil: {
-        type: String,
-        maxlength: [500, "Tamil bio cannot be more than 500 characters"]
-    },
+    bio: createOptionalBilingualField(500, "bio"),
     profilePicture: {
         type: String,
         default: "/assets/default-avatar.jpg"
@@ -99,6 +112,41 @@ TeamSchema.methods.getPositionDisplayName = function() {
         "auditor": "Auditor"
     };
     return displayNames[this.position] || this.position;
+};
+
+// Pre-save validation for bilingual content
+TeamSchema.pre('save', function(next) {
+    const validation = this.constructor.validateBilingualContent(this);
+    if (!validation.isValid) {
+        return next(new Error(`Bilingual validation failed: ${validation.errors.join(', ')}`));
+    }
+    next();
+});
+
+// Static method to validate bilingual content
+TeamSchema.statics.validateBilingualContent = function(doc) {
+    const errors = [];
+    const requiredFields = ['name'];
+    
+    for (const field of requiredFields) {
+        if (!doc[field] || typeof doc[field] !== 'object') {
+            errors.push(`${field} must be an object with en and ta properties`);
+            continue;
+        }
+        
+        if (!doc[field].en || !doc[field].en.trim()) {
+            errors.push(`English ${field} is required`);
+        }
+        
+        if (!doc[field].ta || !doc[field].ta.trim()) {
+            errors.push(`Tamil ${field} is required`);
+        }
+    }
+    
+    return {
+        isValid: errors.length === 0,
+        errors: errors
+    };
 };
 
 module.exports = mongoose.model("Team", TeamSchema);

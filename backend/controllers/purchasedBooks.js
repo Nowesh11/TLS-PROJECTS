@@ -8,27 +8,29 @@ const ErrorResponse = require("../utils/errorResponse");
 // @access  Private (Admin only)
 exports.getPurchasedBooks = async (req, res, next) => {
     try {
-        let query = PurchasedBook.find();
+        // Build query object
+        let queryObj = {};
 
         // Filter by status
         if (req.query.status) {
-            query = query.find({ status: req.query.status });
+            queryObj.status = req.query.status;
         }
 
         // Filter by payment method
         if (req.query.paymentMethod) {
-            query = query.find({ paymentMethod: req.query.paymentMethod });
+            queryObj.paymentMethod = req.query.paymentMethod;
         }
 
         // Filter by date range
         if (req.query.startDate && req.query.endDate) {
-            query = query.find({
-                createdAt: {
-                    $gte: new Date(req.query.startDate),
-                    $lte: new Date(req.query.endDate)
-                }
-            });
+            queryObj.createdAt = {
+                $gte: new Date(req.query.startDate),
+                $lte: new Date(req.query.endDate)
+            };
         }
+
+        // Create query with filters
+        let query = PurchasedBook.find(queryObj);
 
         // Sort by creation date (newest first)
         query = query.sort("-createdAt");

@@ -1,6 +1,36 @@
 const getMongoose = require("../utils/mongooseHelper");
 const mongoose = getMongoose();
 
+// Helper function to create bilingual required fields
+const createBilingualField = (maxLength, fieldName) => ({
+    en: {
+        type: String,
+        required: [true, `English ${fieldName} is required for bilingual content`],
+        trim: true,
+        maxlength: [maxLength, `English ${fieldName} cannot exceed ${maxLength} characters`]
+    },
+    ta: {
+        type: String,
+        required: [true, `Tamil ${fieldName} is required for bilingual content`],
+        trim: true,
+        maxlength: [maxLength, `Tamil ${fieldName} cannot exceed ${maxLength} characters`]
+    }
+});
+
+// Helper function for optional bilingual fields
+const createOptionalBilingualField = (maxLength, fieldName) => ({
+    en: {
+        type: String,
+        trim: true,
+        maxlength: [maxLength, `English ${fieldName} cannot exceed ${maxLength} characters`]
+    },
+    ta: {
+        type: String,
+        trim: true,
+        maxlength: [maxLength, `Tamil ${fieldName} cannot exceed ${maxLength} characters`]
+    }
+});
+
 const websiteContentSchema = new mongoose.Schema({
     page: {
         type: String,
@@ -34,52 +64,10 @@ const websiteContentSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    title: {
-        en: {
-            type: String,
-            trim: true,
-            maxlength: [200, "English title cannot exceed 200 characters"]
-        },
-        ta: {
-            type: String,
-            trim: true,
-            maxlength: [200, "Tamil title cannot exceed 200 characters"]
-        }
-    },
-    content: {
-        en: {
-            type: String,
-            maxlength: [5000, "English content cannot exceed 5000 characters"]
-        },
-        ta: {
-            type: String,
-            maxlength: [5000, "Tamil content cannot exceed 5000 characters"]
-        }
-    },
-    subtitle: {
-        en: {
-            type: String,
-            trim: true,
-            maxlength: [300, "English subtitle cannot exceed 300 characters"]
-        },
-        ta: {
-            type: String,
-            trim: true,
-            maxlength: [300, "Tamil subtitle cannot exceed 300 characters"]
-        }
-    },
-    buttonText: {
-        en: {
-            type: String,
-            trim: true,
-            maxlength: [50, "English button text cannot exceed 50 characters"]
-        },
-        ta: {
-            type: String,
-            trim: true,
-            maxlength: [50, "Tamil button text cannot exceed 50 characters"]
-        }
-    },
+    title: createBilingualField(200, "title"),
+    content: createBilingualField(5000, "content"),
+    subtitle: createOptionalBilingualField(300, "subtitle"),
+    buttonText: createOptionalBilingualField(50, "button text"),
     buttonUrl: {
         type: String,
         trim: true,
@@ -94,26 +82,8 @@ const websiteContentSchema = new mongoose.Schema({
             type: String,
             required: true
         },
-        alt: {
-            en: {
-                type: String,
-                trim: true
-            },
-            ta: {
-                type: String,
-                trim: true
-            }
-        },
-        caption: {
-            en: {
-                type: String,
-                trim: true
-            },
-            ta: {
-                type: String,
-                trim: true
-            }
-        },
+        alt: createBilingualField(200, "image alt text"),
+        caption: createOptionalBilingualField(300, "image caption"),
         order: {
             type: Number,
             default: 0
@@ -124,26 +94,8 @@ const websiteContentSchema = new mongoose.Schema({
             type: String,
             required: true
         },
-        title: {
-            en: {
-                type: String,
-                trim: true
-            },
-            ta: {
-                type: String,
-                trim: true
-            }
-        },
-        description: {
-            en: {
-                type: String,
-                trim: true
-            },
-            ta: {
-                type: String,
-                trim: true
-            }
-        },
+        title: createOptionalBilingualField(200, "video title"),
+        description: createOptionalBilingualField(500, "video description"),
         thumbnail: String,
         duration: String,
         order: {
@@ -204,14 +156,26 @@ const websiteContentSchema = new mongoose.Schema({
         maxlength: [160, "SEO description cannot exceed 160 characters"]
     },
     seoKeywords: {
-        en: [{
-            type: String,
-            trim: true
-        }],
-        ta: [{
-            type: String,
-            trim: true
-        }]
+        en: {
+            type: [String],
+            required: [true, "English SEO keywords are required for bilingual content"],
+            validate: {
+                validator: function(v) {
+                    return v && v.length > 0;
+                },
+                message: "At least one English SEO keyword is required"
+            }
+        },
+        ta: {
+            type: [String],
+            required: [true, "Tamil SEO keywords are required for bilingual content"],
+            validate: {
+                validator: function(v) {
+                    return v && v.length > 0;
+                },
+                message: "At least one Tamil SEO keyword is required"
+            }
+        }
     },
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
@@ -233,8 +197,8 @@ const websiteContentSchema = new mongoose.Schema({
     timestamps: true
 });
 
-// Compound index for page and section
-websiteContentSchema.index({ page: 1, section: 1 }, { unique: true });
+// Compound index for page, section, and sectionKey (unique combination)
+websiteContentSchema.index({ page: 1, section: 1, sectionKey: 1 }, { unique: true });
 
 // Index for search functionality
 websiteContentSchema.index({
@@ -249,5 +213,76 @@ websiteContentSchema.index({
 // Index for active and visible content
 websiteContentSchema.index({ isActive: 1, isVisible: 1 });
 websiteContentSchema.index({ page: 1, order: 1 });
+
+// Pre-save validation to ensure bilingual content completeness
+websiteContentSchema.pre('save', function(next) {
+    // Validate that both English and Tamil content exist for required fields
+    const requiredBilingualFields = ['title', 'content'];
+    
+    for (const field of requiredBilingualFields) {
+        if (this[field]) {
+            if (!this[field].en || this[field].en.trim() === '') {
+                return next(new Error(`English ${field} is required for bilingual content`));
+            }
+            if (!this[field].ta || this[field].ta.trim() === '') {
+                return next(new Error(`Tamil ${field} is required for bilingual content`));
+            }
+        }
+    }
+    
+    // Validate images have bilingual alt text
+    if (this.images && this.images.length > 0) {
+        for (let i = 0; i < this.images.length; i++) {
+            const image = this.images[i];
+            if (!image.alt || !image.alt.en || image.alt.en.trim() === '') {
+                return next(new Error(`English alt text is required for image ${i + 1}`));
+            }
+            if (!image.alt.ta || image.alt.ta.trim() === '') {
+                return next(new Error(`Tamil alt text is required for image ${i + 1}`));
+            }
+        }
+    }
+    
+    // Validate SEO keywords
+    if (this.seoKeywords) {
+        if (!this.seoKeywords.en || this.seoKeywords.en.length === 0) {
+            return next(new Error('At least one English SEO keyword is required'));
+        }
+        if (!this.seoKeywords.ta || this.seoKeywords.ta.length === 0) {
+            return next(new Error('At least one Tamil SEO keyword is required'));
+        }
+    }
+    
+    // Set hasTamilTranslation flag
+    this.hasTamilTranslation = true;
+    
+    next();
+});
+
+// Static method to validate bilingual content
+websiteContentSchema.statics.validateBilingualContent = function(contentData) {
+    const errors = [];
+    
+    // Check required bilingual fields
+    if (!contentData.title || !contentData.title.en || !contentData.title.ta) {
+        errors.push('Both English and Tamil titles are required');
+    }
+    
+    if (!contentData.content || !contentData.content.en || !contentData.content.ta) {
+        errors.push('Both English and Tamil content are required');
+    }
+    
+    // Check SEO keywords
+    if (contentData.seoKeywords) {
+        if (!contentData.seoKeywords.en || contentData.seoKeywords.en.length === 0) {
+            errors.push('English SEO keywords are required');
+        }
+        if (!contentData.seoKeywords.ta || contentData.seoKeywords.ta.length === 0) {
+            errors.push('Tamil SEO keywords are required');
+        }
+    }
+    
+    return errors;
+};
 
 module.exports = mongoose.model("WebsiteContent", websiteContentSchema);

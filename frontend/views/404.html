@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-content="404-page-title">Page Not Found - Tamil Language Society</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../public/css/style.css?v=2.0">
+  
+  <!-- Cache Buster -->
+  <script src="../public/js/cache-buster.js?v=2.0"></script>
+  
+  <style>
+    /* Theme Variables */
+    :root {
+      /* Light Theme */
+      --bg-primary: #F2F2F2;
+      --bg-secondary: #FFFEFF;
+      --bg-tertiary: #EDEFEE;
+      --bg-accent: #2F3E75;
+      --bg-accent-light: rgba(47, 62, 117, 0.1);
+      --bg-gradient: linear-gradient(135deg, #F2F2F2, #FFFEFF);
+      --bg-gradient-accent: linear-gradient(135deg, #2F3E75, #A83232);
+      --bg-gradient-card: linear-gradient(135deg, #FFFEFF, #F2F2F2);
+      
+      --text-primary: #0D0D0D;
+      --text-secondary: #2F3E75;
+      --text-tertiary: #CFD0D0;
+      --text-accent: #A83232;
+      --text-inverse: #FFFEFF;
+      
+      --border-primary: rgba(47, 62, 117, 0.2);
+      --border-secondary: rgba(168, 50, 50, 0.2);
+      --border-accent: #A83232;
+      
+      --shadow-sm: 0 2px 4px rgba(47, 62, 117, 0.1);
+      --shadow-md: 0 4px 8px rgba(47, 62, 117, 0.15);
+      --shadow-lg: 0 8px 16px rgba(47, 62, 117, 0.2);
+      --shadow-xl: 0 12px 24px rgba(47, 62, 117, 0.25);
+      --shadow-2xl: 0 16px 32px rgba(47, 62, 117, 0.3);
+      
+      --overlay-light: rgba(255, 255, 255, 0.9);
+      --overlay-dark: rgba(13, 13, 13, 0.7);
+      
+      --glass-bg: rgba(255, 255, 255, 0.25);
+      --glass-border: rgba(255, 255, 255, 0.18);
+      
+      --transition-fast: all 0.2s ease-in-out;
+      --transition-normal: all 0.3s ease-in-out;
+      --transition-slow: all 0.5s ease-in-out;
+      
+      --glow-primary: 0 0 20px rgba(47, 62, 117, 0.5);
+      --glow-accent: 0 0 20px rgba(168, 50, 50, 0.5);
+      --glow-success: 0 0 20px rgba(34, 197, 94, 0.5);
+      
+      --accent-primary: #2F3E75;
+      --accent-secondary: #A83232;
+      --status-success: #22C55E;
+      --status-warning: #F59E0B;
+      --status-error: #EF4444;
+      --status-info: #3B82F6;
+      
+      --radius-sm: 0.375rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: 1rem;
+      --radius-2xl: 1.5rem;
+      --radius-3xl: 2rem;
+    }
+    
+    [data-theme="dark"] {
+      /* Dark Theme */
+      --bg-primary: #0D0D0D;
+      --bg-secondary: #182657;
+      --bg-tertiary: #1a1a1a;
+      --bg-accent: #EDEFEE;
+      --bg-accent-light: rgba(237, 239, 238, 0.1);
+      --bg-gradient: linear-gradient(135deg, #0D0D0D, #182657);
+      --bg-gradient-accent: linear-gradient(135deg, #7A1515, #EDEFEE);
+      --bg-gradient-card: linear-gradient(135deg, #182657, #0D0D0D);
+      
+      --text-primary: #EDEFEE;
+      --text-secondary: #AEAEAE;
+      --text-tertiary: #7A1515;
+      --text-accent: #7A1515;
+      --text-inverse: #0D0D0D;
+      
+      --border-color: rgba(237, 239, 238, 0.2);
+      --border-secondary: rgba(122, 21, 21, 0.3);
+      --border-accent: #7A1515;
+      
+      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+      --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.6);
+      --shadow-2xl: 0 16px 32px rgba(0, 0, 0, 0.7);
+      
+      --overlay-light: rgba(24, 38, 87, 0.9);
+      --overlay-dark: rgba(13, 13, 13, 0.9);
+      
+      --glass-bg: rgba(24, 38, 87, 0.25);
+      --glass-border: rgba(237, 239, 238, 0.18);
+      
+      --glow-primary: 0 0 20px rgba(237, 239, 238, 0.3);
+      --glow-accent: 0 0 20px rgba(122, 21, 21, 0.5);
+      --glow-success: 0 0 20px rgba(34, 197, 94, 0.4);
+      
+      --accent-primary: #EDEFEE;
+      --accent-secondary: #7A1515;
+      --status-success: #22C55E;
+      --status-warning: #F59E0B;
+      --status-error: #EF4444;
+      --status-info: #3B82F6;
+    }
+    
+    /* Theme Toggle Button */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    
+    .theme-toggle button {
+      width: 50px;
+      height: 50px;
+      border-radius: var(--radius-xl);
+      background: var(--bg-secondary);
+      border: 2px solid var(--border-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-normal);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .theme-toggle button:hover {
+      background: var(--bg-accent-light);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+    
+    .theme-toggle button i {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      transition: var(--transition-normal);
+    }
+    
+    .theme-toggle button:hover i {
+      color: var(--text-accent);
+      transform: rotate(15deg);
+    }
+    
+    /* Body Theme Styles */
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-primary);
+      transition: var(--transition-normal);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Error Container Styles */
+    .error-container {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-primary);
+      box-shadow: var(--shadow-2xl);
+      border-radius: var(--radius-2xl);
+      padding: 3rem;
+      text-align: center;
+      max-width: 500px;
+      margin: 2rem;
+      transition: var(--transition-normal);
+    }
+    
+    .error-container:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--glow-primary);
+    }
+    
+    .error-icon {
+      font-size: 4rem;
+      color: var(--text-accent);
+      margin-bottom: 1.5rem;
+      transition: var(--transition-normal);
+    }
+    
+    .error-container:hover .error-icon {
+      transform: scale(1.1);
+      filter: drop-shadow(var(--glow-accent));
+    }
+    
+    .error-content h1 {
+      color: var(--text-primary);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    
+    .error-content p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    
+    /* Button Styles */
+    .btn-primary {
+      background: var(--bg-gradient-accent);
+      border: none;
+      color: var(--text-inverse);
+      padding: 0.75rem 2rem;
+      border-radius: var(--radius-lg);
+      font-size: 1.1rem;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-block;
+      transition: var(--transition-normal);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .btn-primary:hover {
+      box-shadow: var(--glow-accent);
+      transform: translateY(-2px);
+      text-decoration: none;
+      color: var(--text-inverse);
+    }
+  </style>
+</head>
+<body>
+  <!-- Theme Toggle Button -->
+  <div class="theme-toggle">
+    <button onclick="toggleTheme()" aria-label="Toggle theme">
+      <i id="themeIcon" class="fas fa-moon"></i>
+    </button>
+  </div>
+
+  <div class="error-container">
+    <div class="error-content">
+      <div class="error-icon">
+        <i class="fas fa-map-signs"></i>
+      </div>
+      <h1 data-content="404-title">404 - Page Not Found</h1>
+      <p data-content="404-message">The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+      <a href="/" class="btn btn-primary" data-content="404-home-button" data-content-url="404-home-url">Go Home</a>
+    </div>
+  </div>
+
+  <!-- API Integration Scripts -->
+  <!-- Mock API removed - using real backend API -->
+
+  <script src="../public/js/content-manager.js?v=2.0"></script>
+  
+  <!-- Initialize Content Manager -->
+  <script>
+    // ContentManager is automatically initialized by content-manager.js
+  </script>
+  
+  <!-- Theme Management JavaScript -->
+  <script>
+    // Initialize theme on page load
+    function initializeTheme() {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      updateThemeIcon(savedTheme);
+    }
+
+    // Toggle between light and dark themes
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
+    }
+
+    // Update theme icon based on current theme
+    function updateThemeIcon(theme) {
+      const themeIcon = document.getElementById('themeIcon');
+      if (themeIcon) {
+        themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+      }
+    }
+
+    // Initialize theme when DOM is loaded
+    document.addEventListener('DOMContentLoaded', initializeTheme);
+  </script>
+
+  <!-- JavaScript Files -->
+  <script src="../public/js/api-integration.js?v=2.0"></script>
+    <script src="../public/js/main.js?v=2.0"></script>
+    <script src="../public/js/notifications.js?v=2.0"></script>
+    <script src="../public/js/auth.js?v=2.0"></script>
+</body>
+</html>

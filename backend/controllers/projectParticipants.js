@@ -8,32 +8,34 @@ const ErrorResponse = require("../utils/errorResponse");
 // @access  Private (Admin only)
 exports.getProjectParticipants = async (req, res, next) => {
     try {
-        let query = ProjectParticipant.find();
+        // Build query object
+        let queryObj = {};
 
         // Filter by project
         if (req.query.project) {
-            query = query.find({ project: req.query.project });
+            queryObj.project = req.query.project;
         }
 
         // Filter by status
         if (req.query.status) {
-            query = query.find({ status: req.query.status });
+            queryObj.status = req.query.status;
         }
 
         // Filter by project type
         if (req.query.projectType) {
-            query = query.find({ projectType: req.query.projectType });
+            queryObj.projectType = req.query.projectType;
         }
 
         // Filter by date range
         if (req.query.startDate && req.query.endDate) {
-            query = query.find({
-                createdAt: {
-                    $gte: new Date(req.query.startDate),
-                    $lte: new Date(req.query.endDate)
-                }
-            });
+            queryObj.createdAt = {
+                $gte: new Date(req.query.startDate),
+                $lte: new Date(req.query.endDate)
+            };
         }
+
+        // Create query with filters
+        let query = ProjectParticipant.find(queryObj);
 
         // Sort by creation date (newest first)
         query = query.sort("-createdAt");
