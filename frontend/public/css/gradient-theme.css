@@ -1,0 +1,1078 @@
+/* ========================================
+   TLS PROJECTS - MASTER THEME SYSTEM
+   Light/Dark Animated Gradient Theme
+   Professional Premium Design
+======================================== */
+
+/* ========================================
+   ROOT VARIABLES - LIGHT THEME (Blue Core)
+======================================== */
+:root {
+  /* Light Theme - 6 Color Gradient System */
+  --light-color-1: #182657;
+  --light-color-2: #4A90E2;
+  --light-color-3: #2EC4B6;
+  --light-color-4: #FFF08A;
+  --light-color-5: #F9FBFF;
+  --light-color-6: #00E5FF;
+  
+  /* Light Theme Gradients - Blue Core (Flowing Sky) */
+  --light-gradient-hero: linear-gradient(135deg, var(--light-color-1) 0%, var(--light-color-2) 16.67%, var(--light-color-3) 33.33%, var(--light-color-4) 50%, var(--light-color-5) 66.67%, var(--light-color-6) 100%);
+  --light-gradient-card: linear-gradient(45deg, var(--light-color-2) 0%, var(--light-color-3) 25%, var(--light-color-4) 50%, var(--light-color-5) 75%, var(--light-color-6) 100%);
+  --light-gradient-button: linear-gradient(90deg, var(--light-color-1) 0%, var(--light-color-2) 20%, var(--light-color-3) 40%, var(--light-color-4) 60%, var(--light-color-5) 80%, var(--light-color-6) 100%);
+  --light-gradient-nav: linear-gradient(180deg, var(--light-color-2) 0%, var(--light-color-3) 33%, var(--light-color-4) 66%, var(--light-color-5) 100%);
+  
+  /* Additional Light Theme Gradients */
+  --light-gradient-primary: linear-gradient(135deg, #182657, #4A90E2, #2EC4B6, #FFF08A, #F9FBFF, #00E5FF);
+  --light-gradient-secondary: linear-gradient(45deg, #182657, #4A90E2, #2EC4B6, #FFF08A, #00E5FF);
+  --light-gradient-accent: linear-gradient(90deg, #4A90E2, #2EC4B6, #FFF08A, #00E5FF);
+  
+  /* Light Theme Text Colors (WCAG AA Compliant) */
+  --light-text-primary: #0D0D0D;
+  --light-text-secondary: #333333;
+  --light-text-muted: #666666;
+  --light-text-button: #FFFFFF;
+  --light-text-contrast: #FFFFFF;
+  --light-text-heading: #0D0D0D;
+  
+  /* Light Theme Glassmorphism & Effects */
+  --light-glass-bg: rgba(255, 255, 255, 0.25);
+  --light-glass-border: rgba(74, 144, 226, 0.3);
+  --light-glass-shadow: 0 8px 32px rgba(74, 144, 226, 0.25);
+  --light-hover-shadow: 0 12px 40px rgba(46, 196, 182, 0.35);
+  --light-glow-primary: 0 0 20px rgba(74, 144, 226, 0.25);
+  --light-glow-secondary: 0 0 30px rgba(46, 196, 182, 0.25);
+  --light-glow-hover: 0 0 40px rgba(255, 240, 138, 0.3);
+  
+  /* Light Theme Animation */
+  --light-animation: light-flow 15s ease-in-out infinite;
+  --light-border-animation: light-border-flow 12s linear infinite;
+  --light-pulse-animation: light-pulse 8s ease-in-out infinite;
+}
+
+/* ========================================
+   DARK THEME VARIABLES (Red Core)
+======================================== */
+[data-theme="dark"] {
+  /* Dark Theme - 6 Color Gradient System */
+  --dark-color-1: #7A1515;
+  --dark-color-2: #FF4B5C;
+  --dark-color-3: #B83280;
+  --dark-color-4: #FF758C;
+  --dark-color-5: #FF5733;
+  --dark-color-6: #C70039;
+  
+  /* Dark Theme Gradients - Red Core (Futuristic Pulse) */
+  --dark-gradient-hero: linear-gradient(135deg, var(--dark-color-1) 0%, var(--dark-color-2) 16.67%, var(--dark-color-3) 33.33%, var(--dark-color-4) 50%, var(--dark-color-5) 66.67%, var(--dark-color-6) 100%);
+  --dark-gradient-card: linear-gradient(45deg, var(--dark-color-2) 0%, var(--dark-color-3) 25%, var(--dark-color-4) 50%, var(--dark-color-5) 75%, var(--dark-color-6) 100%);
+  --dark-gradient-button: linear-gradient(90deg, var(--dark-color-1) 0%, var(--dark-color-2) 20%, var(--dark-color-3) 40%, var(--dark-color-4) 60%, var(--dark-color-5) 80%, var(--dark-color-6) 100%);
+  --dark-gradient-nav: linear-gradient(180deg, var(--dark-color-2) 0%, var(--dark-color-3) 33%, var(--dark-color-4) 66%, var(--dark-color-5) 100%);
+  
+  /* Additional Dark Theme Gradients */
+  --dark-gradient-primary: linear-gradient(135deg, #7A1515, #FF4B5C, #B83280, #FF758C, #FF5733, #C70039);
+  --dark-gradient-secondary: linear-gradient(45deg, #7A1515, #FF4B5C, #B83280, #FF758C, #C70039);
+  --dark-gradient-accent: linear-gradient(90deg, #FF4B5C, #B83280, #FF758C, #C70039);
+  
+  /* Dark Theme Text Colors (WCAG AA Compliant) */
+  --dark-text-primary: #FFFFFF;
+  --dark-text-secondary: #DDDDDD;
+  --dark-text-muted: #9A9A9A;
+  --dark-text-button: #FFFFFF;
+  --dark-text-contrast: #000000;
+  --dark-text-heading: #FFFFFF;
+  
+  /* Dark Theme Glassmorphism & Effects */
+  --dark-glass-bg: rgba(0, 0, 0, 0.3);
+  --dark-glass-border: rgba(184, 50, 128, 0.4);
+  --dark-glass-shadow: 0 8px 32px rgba(184, 50, 128, 0.3);
+  --dark-hover-shadow: 0 12px 40px rgba(255, 75, 92, 0.4);
+  --dark-glow-primary: 0 0 20px rgba(255, 75, 92, 0.4);
+  --dark-glow-secondary: 0 0 30px rgba(184, 50, 128, 0.3);
+  --dark-glow-hover: 0 0 40px rgba(255, 117, 140, 0.35);
+  
+  /* Dark Theme Animation */
+  --dark-animation: dark-pulse 12s ease-in-out infinite;
+  --dark-border-animation: dark-border-pulse 10s linear infinite;
+  --dark-pulse-animation: dark-glow 6s ease-in-out infinite;
+}
+
+/* ========================================
+   THEME SWITCHING SYSTEM
+======================================== */
+:root {
+  /* Default Light Theme Active Variables */
+  --gradient-hero: var(--light-gradient-hero);
+  --gradient-card: var(--light-gradient-card);
+  --gradient-button: var(--light-gradient-button);
+  --gradient-nav: var(--light-gradient-nav);
+  
+  --text-primary: var(--light-text-primary);
+  --text-secondary: var(--light-text-secondary);
+  --text-muted: var(--light-text-muted);
+  --text-button: var(--light-text-button);
+  --text-contrast: var(--light-text-contrast);
+  
+  --glass-bg: var(--light-glass-bg);
+  --glass-border: var(--light-glass-border);
+  --glass-shadow: var(--light-glass-shadow);
+  --hover-shadow: var(--light-hover-shadow);
+  
+  --gradient-animation: var(--light-animation);
+  --border-animation: var(--light-border-animation);
+  --pulse-animation: var(--light-pulse-animation);
+}
+
+[data-theme="dark"] {
+  /* Dark Theme Active Variables */
+  --gradient-hero: var(--dark-gradient-hero);
+  --gradient-card: var(--dark-gradient-card);
+  --gradient-button: var(--dark-gradient-button);
+  --gradient-nav: var(--dark-gradient-nav);
+  
+  --text-primary: var(--dark-text-primary);
+  --text-secondary: var(--dark-text-secondary);
+  --text-muted: var(--dark-text-muted);
+  --text-button: var(--dark-text-button);
+  --text-contrast: var(--dark-text-contrast);
+  
+  --glass-bg: var(--dark-glass-bg);
+  --glass-border: var(--dark-glass-border);
+  --glass-shadow: var(--dark-glass-shadow);
+  --hover-shadow: var(--dark-hover-shadow);
+  
+  --gradient-animation: var(--dark-animation);
+  --border-animation: var(--dark-border-animation);
+  --pulse-animation: var(--dark-pulse-animation);
+}
+
+/* ========================================
+   KEYFRAME ANIMATIONS
+======================================== */
+
+/* Light Theme Animations - Flowing Sky (12-18s smooth) */
+@keyframes light-flow {
+  0% { background-position: 0% 50%; }
+  16.67% { background-position: 25% 25%; }
+  33.33% { background-position: 50% 75%; }
+  50% { background-position: 75% 50%; }
+  66.67% { background-position: 100% 25%; }
+  83.33% { background-position: 75% 75%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes lightGradientFlow {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 100% 25%; }
+  50% { background-position: 50% 100%; }
+  75% { background-position: 0% 75%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes light-border-flow {
+  0% { border-image-source: linear-gradient(90deg, var(--light-color-1), var(--light-color-2)); }
+  16.67% { border-image-source: linear-gradient(90deg, var(--light-color-2), var(--light-color-3)); }
+  33.33% { border-image-source: linear-gradient(90deg, var(--light-color-3), var(--light-color-4)); }
+  50% { border-image-source: linear-gradient(90deg, var(--light-color-4), var(--light-color-5)); }
+  66.67% { border-image-source: linear-gradient(90deg, var(--light-color-5), var(--light-color-6)); }
+  83.33% { border-image-source: linear-gradient(90deg, var(--light-color-6), var(--light-color-1)); }
+  100% { border-image-source: linear-gradient(90deg, var(--light-color-1), var(--light-color-2)); }
+}
+
+@keyframes light-pulse {
+  0%, 100% { box-shadow: var(--glass-shadow); }
+  50% { box-shadow: var(--hover-shadow); }
+}
+
+/* Dark Theme Animations - Futuristic Pulse (10-15s breathing) */
+@keyframes dark-pulse {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 100% 50%; }
+  50% { background-position: 50% 100%; }
+  75% { background-position: 0% 50%; }
+  100% { background-position: 50% 0%; }
+}
+
+@keyframes darkGradientPulse {
+  0% { background-position: 0% 50%; background-size: 300% 300%; }
+  25% { background-position: 50% 25%; background-size: 400% 400%; }
+  50% { background-position: 100% 50%; background-size: 350% 350%; }
+  75% { background-position: 25% 75%; background-size: 400% 400%; }
+  100% { background-position: 0% 50%; background-size: 300% 300%; }
+}
+
+@keyframes dark-border-pulse {
+  0% { border-image-source: linear-gradient(90deg, var(--dark-color-1), var(--dark-color-2)); }
+  16.67% { border-image-source: linear-gradient(90deg, var(--dark-color-2), var(--dark-color-3)); }
+  33.33% { border-image-source: linear-gradient(90deg, var(--dark-color-3), var(--dark-color-4)); }
+  50% { border-image-source: linear-gradient(90deg, var(--dark-color-4), var(--dark-color-5)); }
+  66.67% { border-image-source: linear-gradient(90deg, var(--dark-color-5), var(--dark-color-6)); }
+  83.33% { border-image-source: linear-gradient(90deg, var(--dark-color-6), var(--dark-color-1)); }
+  100% { border-image-source: linear-gradient(90deg, var(--dark-color-1), var(--dark-color-2)); }
+}
+
+@keyframes dark-glow {
+  0%, 100% { box-shadow: var(--glass-shadow); }
+  50% { box-shadow: var(--hover-shadow), 0 0 30px rgba(255, 75, 92, 0.5); }
+}
+
+/* ========================================
+   GLOBAL BODY & HTML STYLES
+======================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  background: var(--gradient-hero);
+  background-size: 400% 400%;
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
+  transition: all 0.3s ease;
+}
+
+/* Light Theme Body Animation */
+body:not([data-theme="dark"]) {
+  animation: lightGradientFlow 15s ease infinite;
+}
+
+/* Dark Theme Body Animation */
+body[data-theme="dark"] {
+  animation: darkGradientPulse 12s ease infinite;
+}
+
+.gradient-body {
+  background: var(--gradient-hero);
+  background-size: 400% 400%;
+  animation: var(--gradient-animation);
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ========================================
+   GLASSMORPHISM NAVIGATION
+======================================== */
+.navbar, .nav, .navigation {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  position: relative;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.navbar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-nav);
+  opacity: 0.15;
+  z-index: -1;
+  animation: var(--gradient-animation);
+  background-size: 400% 400%;
+  transition: opacity 0.3s ease;
+}
+
+.navbar:hover {
+  box-shadow: var(--hover-shadow);
+  transform: translateY(-2px);
+}
+
+.navbar:hover::before {
+  opacity: 0.25;
+}
+
+/* ========================================
+   GLASSMORPHISM BUTTONS WITH ANIMATED BORDERS
+======================================== */
+.btn, .button, button:not(.admin-btn) {
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 2px solid transparent;
+  color: var(--text-button);
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--glass-shadow);
+  background-clip: padding-box;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: var(--gradient-button);
+  background-size: 400% 400%;
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: var(--hover-shadow);
+  border-color: var(--glass-border);
+}
+
+.btn:hover::before {
+  opacity: 1;
+  animation: gradientBorderFlow 2s ease infinite;
+}
+
+.btn:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* Gradient Border Animation */
+@keyframes gradientBorderFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ========================================
+   GLASSMORPHISM CARDS WITH ANIMATED BORDERS
+======================================== */
+.card, .project-card, .initiative-card, .activity-card, .book-card, .glass-card, .content-card, .feature-card, .service-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 2px solid transparent;
+  border-radius: 16px;
+  padding: 24px;
+  margin: 16px 0;
+  box-shadow: var(--glass-shadow);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  background-clip: padding-box;
+}
+
+.card::before, .project-card::before, .initiative-card::before, .activity-card::before, .book-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: var(--gradient-card);
+  background-size: 400% 400%;
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.card:hover, .project-card:hover, .initiative-card:hover, .activity-card:hover, .book-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--hover-shadow);
+  border-color: var(--glass-border);
+}
+
+.card:hover::before, .project-card:hover::before, .initiative-card:hover::before, .activity-card:hover::before, .book-card:hover::before {
+  opacity: 1;
+  animation: cardGradientFlow 3s ease infinite;
+}
+
+/* Card Gradient Animation */
+@keyframes cardGradientFlow {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 100% 25%; }
+  50% { background-position: 50% 100%; }
+  75% { background-position: 0% 75%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ========================================
+   GLASSMORPHISM MODALS
+======================================== */
+.modal, .popup, .dialog {
+  background: var(--glass-bg);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 2px solid var(--glass-border);
+  border-radius: 20px;
+  box-shadow: var(--glass-shadow);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-hero);
+  opacity: 0.08;
+  z-index: -1;
+  animation: var(--gradient-animation);
+  background-size: 400% 400%;
+  transition: opacity 0.3s ease;
+}
+
+.modal:hover::before {
+  opacity: 0.12;
+}
+
+/* ========================================
+   GLASSMORPHISM FOOTER
+======================================== */
+.footer, footer {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 2px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  position: relative;
+  overflow: hidden;
+  margin-top: 60px;
+  transition: all 0.3s ease;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-nav);
+  background-size: 400% 400%;
+  opacity: 0.1;
+  z-index: -1;
+  animation: footerGradientFlow 20s ease infinite;
+}
+
+.footer-content {
+  padding: 40px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Footer Gradient Animation */
+@keyframes footerGradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ========================================
+   TYPOGRAPHY SYSTEM (WCAG AA COMPLIANT)
+======================================== */
+
+/* Headings - Solid colors only for readability */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  text-shadow: none;
+  background: none;
+}
+
+/* Light Theme Headings */
+body:not([data-theme="dark"]) h1,
+body:not([data-theme="dark"]) h2,
+body:not([data-theme="dark"]) h3,
+body:not([data-theme="dark"]) h4,
+body:not([data-theme="dark"]) h5,
+body:not([data-theme="dark"]) h6 {
+  color: #0D0D0D;
+}
+
+/* Dark Theme Headings */
+body[data-theme="dark"] h1,
+body[data-theme="dark"] h2,
+body[data-theme="dark"] h3,
+body[data-theme="dark"] h4,
+body[data-theme="dark"] h5,
+body[data-theme="dark"] h6 {
+  color: #FFFFFF;
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.5rem; }
+h3 { font-size: 2rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
+
+/* Body Text - Solid colors only */
+p, .text, .content {
+  margin-bottom: 16px;
+  line-height: 1.7;
+  text-shadow: none;
+  background: none;
+}
+
+/* Light Theme Body Text */
+body:not([data-theme="dark"]) p,
+body:not([data-theme="dark"]) .text,
+body:not([data-theme="dark"]) .content {
+  color: #333333;
+}
+
+/* Dark Theme Body Text */
+body[data-theme="dark"] p,
+body[data-theme="dark"] .text,
+body[data-theme="dark"] .content {
+  color: #DDDDDD;
+}
+
+/* Muted Text - Solid colors only */
+.text-muted, .muted {
+  text-shadow: none;
+  background: none;
+}
+
+/* Light Theme Muted Text */
+body:not([data-theme="dark"]) .text-muted,
+body:not([data-theme="dark"]) .muted {
+  color: #666666;
+}
+
+/* Dark Theme Muted Text */
+body[data-theme="dark"] .text-muted,
+body[data-theme="dark"] .muted {
+  color: #9A9A9A;
+}
+
+/* Button Text - Always white for contrast */
+.btn, .button, button:not(.admin-btn) {
+  color: #FFFFFF !important;
+}
+
+/* Ensure no gradient text anywhere */
+* {
+  background-clip: border-box !important;
+}
+
+*:not(.btn):not(.button):not(button):not(.card):not(.navbar):not(.footer):not(.modal) {
+  background-image: none !important;
+}
+
+/* ========================================
+   ENHANCED GLASSMORPHISM EFFECTS
+======================================== */
+.glass-effect {
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  box-shadow: var(--glass-shadow);
+}
+
+.form-control, .form-select, .form-textarea {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  border-radius: 8px;
+  padding: 12px 16px;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--glass-border);
+  box-shadow: var(--hover-shadow);
+  outline: none;
+}
+
+/* ========================================
+   GRADIENT BORDER EFFECTS
+======================================== */
+.gradient-border {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: var(--gradient-button);
+  background-size: 400% 400%;
+  animation: var(--border-animation);
+  border-radius: 12px;
+  z-index: -1;
+}
+
+.gradient-border:hover::before {
+  animation: var(--border-animation), var(--pulse-animation);
+  background-size: 200% 200%;
+}
+
+/* ========================================
+   ULTRA-RESPONSIVE DESIGN (320px - 3840px)
+======================================== */
+
+/* Mobile Portrait (320px - 480px) - Compressed gradients, faster animation */
+@media (max-width: 480px) {
+  body:not([data-theme="dark"]) {
+    background-size: 300% 300%;
+    animation: lightGradientFlow 12s ease infinite;
+  }
+  
+  body[data-theme="dark"] {
+    background-size: 250% 250%;
+    animation: darkGradientPulse 10s ease infinite;
+  }
+  
+  .container {
+    padding: 0 15px;
+  }
+  
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.5rem; }
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 8px;
+  }
+  
+  .card {
+    padding: 16px;
+    margin: 12px 0;
+    border-radius: 12px;
+  }
+  
+  .navbar {
+    backdrop-filter: blur(15px);
+  }
+}
+
+/* Small Tablets (481px - 767px) - Compact cards, fluid scaling */
+@media (min-width: 481px) and (max-width: 767px) {
+  body:not([data-theme="dark"]) {
+    background-size: 350% 350%;
+    animation: lightGradientFlow 14s ease infinite;
+  }
+  
+  body[data-theme="dark"] {
+    background-size: 300% 300%;
+    animation: darkGradientPulse 11s ease infinite;
+  }
+  
+  .container {
+    padding: 0 20px;
+  }
+  
+  .card {
+    padding: 20px;
+    border-radius: 14px;
+  }
+  
+  .btn {
+    padding: 11px 22px;
+    border-radius: 10px;
+  }
+}
+
+/* Large Tablets / Small Laptops (768px - 1024px) - 2-column layouts */
+@media (min-width: 768px) and (max-width: 1024px) {
+  body:not([data-theme="dark"]) {
+    background-size: 400% 400%;
+    animation: lightGradientFlow 15s ease infinite;
+  }
+  
+  body[data-theme="dark"] {
+    background-size: 350% 350%;
+    animation: darkGradientPulse 12s ease infinite;
+  }
+  
+  .container {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 0 25px;
+  }
+  
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+/* Laptops (1025px - 1366px) - Full gradients visible, balanced spacing */
+@media (min-width: 1025px) and (max-width: 1366px) {
+  body:not([data-theme="dark"]) {
+    background-size: 450% 450%;
+    animation: lightGradientFlow 16s ease infinite;
+  }
+  
+  body[data-theme="dark"] {
+    background-size: 400% 400%;
+    animation: darkGradientPulse 13s ease infinite;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+  }
+}
+
+/* Desktops (1367px - 1920px) - Extended gradient animations */
+@media (min-width: 1367px) and (max-width: 1920px) {
+  body:not([data-theme="dark"]) {
+    background-size: 500% 500%;
+    animation: lightGradientFlow 18s ease infinite;
+  }
+  
+  body[data-theme="dark"] {
+    background-size: 450% 450%;
+    animation: darkGradientPulse 15s ease infinite;
+  }
+  
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+}
+
+/* Ultrawide Screens (1921px - 3840px) - Stretched gradients, smooth blending */
+@media (min-width: 1921px) {
+  body:not([data-theme="dark"]) {
+    background-size: 600% 600%;
+    animation: lightGradientFlow 20s ease infinite;
+  }
+  
+  body[data-theme="dark"] {
+    background-size: 500% 500%;
+    animation: darkGradientPulse 18s ease infinite;
+  }
+  
+  .container {
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+  
+  h1 { font-size: 4rem; }
+  h2 { font-size: 3.5rem; }
+  h3 { font-size: 3rem; }
+  
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+  }
+  
+  /* Prevent gradient banding on ultrawide */
+  .card::before, .btn::before {
+    background-size: 800% 800%;
+  }
+}
+
+/* ========================================
+   UTILITY CLASSES
+======================================== */
+
+/* Text Alignment */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+/* Display Utilities */
+.d-none { display: none; }
+.d-block { display: block; }
+.d-flex { display: flex; }
+.d-grid { display: grid; }
+
+/* Flex Utilities */
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.align-center { align-items: center; }
+.flex-column { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+
+/* Spacing Utilities */
+.m-0 { margin: 0; }
+.p-0 { padding: 0; }
+.mt-1 { margin-top: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 1rem; }
+.mt-4 { margin-top: 1.5rem; }
+.mt-5 { margin-top: 3rem; }
+
+.mb-1 { margin-bottom: 0.25rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 1rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+.mb-5 { margin-bottom: 3rem; }
+
+.p-1 { padding: 0.25rem; }
+.p-2 { padding: 0.5rem; }
+.p-3 { padding: 1rem; }
+.p-4 { padding: 1.5rem; }
+.p-5 { padding: 3rem; }
+
+/* Size Utilities */
+.w-100 { width: 100%; }
+.h-100 { height: 100%; }
+
+/* Border Radius */
+.rounded { border-radius: 8px; }
+.rounded-lg { border-radius: 12px; }
+.rounded-xl { border-radius: 16px; }
+
+/* Shadow Utilities */
+.shadow-sm { box-shadow: var(--glass-shadow); }
+.shadow-lg { box-shadow: var(--hover-shadow); }
+
+/* Glass Effect Utility */
+.glass-effect {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+}
+
+/* Gradient Border Utility */
+.gradient-border {
+  position: relative;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: var(--gradient-card);
+  background-size: 400% 400%;
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gradient-border:hover::before {
+  opacity: 1;
+  animation: cardGradientFlow 3s ease infinite;
+}
+
+/* ========================================
+   ACCESSIBILITY & HIGH CONTRAST
+======================================== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  body:not([data-theme="dark"]) {
+    animation: none !important;
+    background: linear-gradient(135deg, #182657, #4A90E2, #2EC4B6);
+  }
+  
+  body[data-theme="dark"] {
+    animation: none !important;
+    background: linear-gradient(135deg, #7A1515, #FF4B5C, #B83280);
+  }
+}
+
+@media (prefers-contrast: high) {
+  /* Light Theme High Contrast */
+  body:not([data-theme="dark"]) {
+    --glass-bg: rgba(255, 255, 255, 0.95);
+    --glass-border: rgba(13, 13, 13, 0.8);
+    --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+    --text-primary: #000000;
+    --text-secondary: #000000;
+    --text-heading: #000000;
+  }
+  
+  /* Dark Theme High Contrast */
+  body[data-theme="dark"] {
+    --glass-bg: rgba(0, 0, 0, 0.95);
+    --glass-border: rgba(255, 255, 255, 0.8);
+    --glass-shadow: 0 4px 16px rgba(255, 255, 255, 0.4);
+    --text-primary: #ffffff;
+    --text-secondary: #ffffff;
+    --text-heading: #ffffff;
+  }
+}
+
+/* ========================================
+   THEME TOGGLE BUTTON & SWITCHING
+======================================== */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--glass-bg);
+  border: 2px solid var(--glass-border);
+  border-radius: 50px;
+  padding: 12px 16px;
+  cursor: pointer;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.3s ease;
+  z-index: 1001;
+  box-shadow: var(--glass-shadow);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: var(--hover-shadow);
+}
+
+.theme-toggle-icon {
+  font-size: 20px;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+/* Light Theme Toggle Icon */
+body:not([data-theme="dark"]) .theme-toggle-icon::before {
+  content: '🌙';
+}
+
+/* Dark Theme Toggle Icon */
+body[data-theme="dark"] .theme-toggle-icon::before {
+  content: '☀️';
+}
+
+/* Theme Toggle Animation */
+.theme-toggle.switching {
+  animation: themeSwitch 0.6s ease;
+}
+
+@keyframes themeSwitch {
+  0% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.2) rotate(180deg); }
+  100% { transform: scale(1) rotate(360deg); }
+}
+
+/* Theme Transition Animation */
+body.theme-transitioning * {
+  transition: all 0.3s ease !important;
+}
+
+/* Ensure Dark Theme Variables Override */
+body[data-theme="dark"] {
+  --gradient-hero: var(--dark-gradient-hero);
+  --gradient-card: var(--dark-gradient-card);
+  --gradient-button: var(--dark-gradient-button);
+  --gradient-nav: var(--dark-gradient-nav);
+  --text-primary: var(--dark-text-primary);
+  --text-secondary: var(--dark-text-secondary);
+  --text-muted: var(--dark-text-muted);
+  --text-button: var(--dark-text-button);
+  --text-heading: var(--dark-text-heading);
+  --glass-bg: var(--dark-glass-bg);
+  --glass-border: var(--dark-glass-border);
+  --glass-shadow: var(--dark-glass-shadow);
+  --hover-shadow: var(--dark-hover-shadow);
+  --glow-primary: var(--dark-glow-primary);
+  --glow-secondary: var(--dark-glow-secondary);
+  --glow-hover: var(--dark-glow-hover);
+  --gradient-animation: var(--dark-animation);
+}
+
+/* Light Theme Variables Override */
+body:not([data-theme="dark"]) {
+  --gradient-hero: var(--light-gradient-hero);
+  --gradient-card: var(--light-gradient-card);
+  --gradient-button: var(--light-gradient-button);
+  --gradient-nav: var(--light-gradient-nav);
+  --text-primary: var(--light-text-primary);
+  --text-secondary: var(--light-text-secondary);
+  --text-muted: var(--light-text-muted);
+  --text-button: var(--light-text-button);
+  --text-heading: var(--light-text-heading);
+  --glass-bg: var(--light-glass-bg);
+  --glass-border: var(--light-glass-border);
+  --glass-shadow: var(--light-glass-shadow);
+  --hover-shadow: var(--light-hover-shadow);
+  --glow-primary: var(--light-glow-primary);
+  --glow-secondary: var(--light-glow-secondary);
+  --glow-hover: var(--light-glow-hover);
+  --gradient-animation: var(--light-animation);
+}
+
+/* ========================================
+   LOADING STATES
+======================================== */
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+  position: relative;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid var(--glass-border);
+  border-top: 2px solid var(--text-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ========================================
+   END OF MASTER THEME SYSTEM
+======================================== */

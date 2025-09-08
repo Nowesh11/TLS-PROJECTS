@@ -1,0 +1,131 @@
+/* Responsive Dashboard Styles */
+
+/* Mobile-first approach */
+@media (max-width: 768px) {
+    .hamburger-menu {
+        display: block !important;
+    }
+    
+    .admin-sidebar {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        height: 100vh;
+        width: 280px;
+        z-index: 1000;
+        transition: left 0.3s ease;
+        background: var(--bg-primary);
+        border-right: 1px solid var(--border-primary);
+    }
+    
+    .admin-sidebar.show {
+        left: 0;
+    }
+    
+    .dashboard-overview {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    
+    .quick-actions-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.75rem !important;
+    }
+    
+    .quick-action-btn {
+        min-height: 70px !important;
+        padding: 0.75rem !important;
+    }
+    
+    .quick-action-btn span {
+        font-size: 0.8rem !important;
+    }
+    
+    .section-header h1 {
+        font-size: 1.5rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-overview {
+        margin-bottom: 1rem !important;
+    }
+    
+    .dashboard-card,
+    .quick-actions-container,
+    .recent-activity-section {
+        padding: 1.5rem !important;
+    }
+    
+    .quick-actions-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    #overviewPieChart {
+        width: 250px !important;
+        height: 250px !important;
+    }
+}
+
+/* Theme toggle positioning */
+.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1001;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-lg);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* Notifications positioning under theme toggle */
+.notifications-container {
+    position: fixed;
+    top: 4rem;
+    right: 1rem;
+    z-index: 1000;
+    max-width: 300px;
+}
+
+/* Quick actions hover effects */
+.quick-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Activity item hover effects */
+.activity-item:hover {
+    background-color: var(--bg-secondary) !important;
+}
+
+/* Loading states */
+.loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Chart responsiveness */
+@media (max-width: 1024px) {
+    .dashboard-overview {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 1200px) {
+    .dashboard-overview {
+        grid-template-columns: 1fr 1fr;
+    }
+}

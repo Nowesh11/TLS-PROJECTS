@@ -1,0 +1,251 @@
+/* Content Editor Styles */
+
+.content-editor-container {
+    max-width: 100%;
+    padding: 1.5rem;
+    box-sizing: border-box;
+}
+
+/* Page Selector */
+.page-selector-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.page-selector-container select {
+    min-width: 200px;
+    flex: 1;
+}
+
+/* Content List */
+.content-list {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.content-block {
+    background: var(--surface-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.content-block-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Content Editor */
+.content-editor {
+    background: var(--surface-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-md);
+}
+
+.editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.editor-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.editor-content {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.editor-field {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.editor-field label {
+    font-weight: 500;
+}
+
+/* Logo Upload */
+.current-logo {
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.current-logo img {
+    max-width: 200px;
+    height: auto;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+/* Statistics Editor */
+.statistics-editor {
+    display: grid;
+    gap: 1rem;
+}
+
+.statistic-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 0.5rem;
+    align-items: start;
+}
+
+/* Tables Section */
+.tables-section {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.table th {
+    background: var(--surface-color);
+    font-weight: 600;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.modal-content {
+    background: var(--surface-color);
+    border-radius: 8px;
+    max-width: 600px;
+    width: 100%;
+    margin: 2rem auto;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header .close-modal {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.modal form {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Loading State */
+.loading {
+    position: relative;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(var(--surface-rgb), 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Rich Text Editor */
+.rich-text-editor {
+    min-height: 200px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .content-editor-container {
+        padding: 1rem;
+    }
+
+    .page-selector-container {
+        flex-direction: column;
+    }
+
+    .editor-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .editor-actions {
+        width: 100%;
+    }
+
+    .editor-actions button {
+        flex: 1;
+    }
+
+    .statistic-item {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-content {
+        margin: 1rem;
+        max-height: calc(100vh - 2rem);
+    }
+}
+
+/* Dark Theme Support */
+[data-theme="dark"] .modal {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

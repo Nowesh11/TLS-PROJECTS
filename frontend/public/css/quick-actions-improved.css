@@ -1,0 +1,198 @@
+/* Improved Quick Actions Layout with Consistent Spacing */
+
+.quick-actions-container {
+    background: var(--bg-primary) !important;
+    border-radius: 1rem !important;
+    padding: 2rem !important;
+    border: 1px solid var(--border-primary) !important;
+    box-shadow: var(--shadow-sm) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin-bottom: 2rem !important;
+}
+
+.quick-actions-container h3 {
+    margin: 0 0 1.5rem 0 !important;
+    color: var(--text-primary) !important;
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+}
+
+.quick-actions-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
+    gap: 1.25rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    justify-items: center !important;
+    align-items: stretch !important;
+}
+
+.quick-action-btn {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.75rem !important;
+    padding: 1.25rem 1rem !important;
+    min-height: 90px !important;
+    min-width: 140px !important;
+    border-radius: 0.875rem !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    border: 2px solid transparent !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.quick-action-btn::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)) !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+    pointer-events: none !important;
+}
+
+.quick-action-btn:hover::before {
+    opacity: 1 !important;
+}
+
+.quick-action-btn:hover {
+    transform: translateY(-4px) scale(1.02) !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.quick-action-btn:active {
+    transform: translateY(-2px) scale(0.98) !important;
+    transition: all 0.1s ease !important;
+}
+
+.quick-action-btn i {
+    font-size: 1.4rem !important;
+    margin-bottom: 0.25rem !important;
+    transition: transform 0.3s ease !important;
+}
+
+.quick-action-btn:hover i {
+    transform: scale(1.1) !important;
+}
+
+.quick-action-btn span {
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    line-height: 1.3 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Color-specific improvements */
+.btn-primary.quick-action-btn {
+    background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3) !important;
+}
+
+.btn-success.quick-action-btn {
+    background: linear-gradient(135deg, #10b981, #059669) !important;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3) !important;
+}
+
+.btn-info.quick-action-btn {
+    background: linear-gradient(135deg, #06b6d4, #0891b2) !important;
+    box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3) !important;
+}
+
+.btn-warning.quick-action-btn {
+    background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3) !important;
+}
+
+.btn-purple.quick-action-btn {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed) !important;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3) !important;
+}
+
+.btn-indigo.quick-action-btn {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
+}
+
+.btn-secondary.quick-action-btn {
+    background: linear-gradient(135deg, #6b7280, #4b5563) !important;
+    box-shadow: 0 4px 15px rgba(107, 114, 128, 0.3) !important;
+}
+
+/* Responsive Design Improvements */
+@media (max-width: 1200px) {
+    .quick-actions-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important;
+        gap: 1rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .quick-actions-container {
+        padding: 1.5rem !important;
+    }
+    
+    .quick-actions-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.875rem !important;
+    }
+    
+    .quick-action-btn {
+        min-height: 75px !important;
+        padding: 1rem 0.75rem !important;
+        min-width: 120px !important;
+    }
+    
+    .quick-action-btn i {
+        font-size: 1.2rem !important;
+    }
+    
+    .quick-action-btn span {
+        font-size: 0.8rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .quick-actions-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem !important;
+    }
+    
+    .quick-action-btn {
+        min-height: 70px !important;
+        padding: 0.875rem !important;
+        min-width: 100% !important;
+    }
+}
+
+/* Focus states for accessibility */
+.quick-action-btn:focus {
+    outline: 2px solid var(--primary-color) !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1) !important;
+}
+
+/* Loading state */
+.quick-action-btn.loading {
+    pointer-events: none !important;
+    opacity: 0.7 !important;
+}
+
+.quick-action-btn.loading i {
+    animation: spin 1s linear infinite !important;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400" viewBox="0 0 300 400">
+  <defs>
+    <linearGradient id="bookGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Book Background -->
+  <rect width="300" height="400" fill="url(#bookGradient)" rx="10" ry="10"/>
+  
+  <!-- Book Icon -->
+  <rect x="50" y="80" width="200" height="240" fill="rgba(255,255,255,0.2)" rx="5" ry="5"/>
+  <rect x="60" y="90" width="180" height="220" fill="rgba(255,255,255,0.1)" rx="3" ry="3"/>
+  
+  <!-- Book Lines -->
+  <line x1="80" y1="120" x2="220" y2="120" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+  <line x1="80" y1="140" x2="200" y2="140" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+  <line x1="80" y1="160" x2="210" y2="160" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+  <line x1="80" y1="180" x2="190" y2="180" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+  
+  <!-- Tamil Text -->
+  <text x="150" y="260" font-family="serif" font-size="24" font-weight="bold" text-anchor="middle" fill="white">புத்தகம்</text>
+  
+  <!-- Book Spine -->
+  <rect x="0" y="0" width="20" height="400" fill="rgba(0,0,0,0.2)"/>
+</svg>

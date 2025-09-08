@@ -1,0 +1,400 @@
+/* Enhanced Responsive Dashboard Styles */
+/* Mobile-first approach with improved hamburger menu and responsive design */
+
+/* Base responsive styles */
+.admin-container {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Enhanced Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1002;
+    background: var(--bg-accent);
+    color: var(--text-inverse);
+    border: 2px solid var(--glass-border);
+    width: 50px;
+    height: 50px;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-lg);
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    font-size: 1.2rem;
+}
+
+.mobile-menu-toggle:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-xl);
+}
+
+.mobile-menu-toggle:active {
+    transform: scale(0.95);
+}
+
+/* Enhanced Sidebar Styles */
+.admin-sidebar {
+    width: 280px;
+    background: var(--bg-primary);
+    border-right: 1px solid var(--border-primary);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1000;
+}
+
+/* Enhanced Sidebar Overlay */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(2px);
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Enhanced Main Content Area */
+.admin-main {
+    flex: 1;
+    padding: 2rem;
+    background: var(--bg-secondary);
+    min-height: 100vh;
+    transition: all 0.3s ease;
+}
+
+/* Enhanced Dashboard Overview - Responsive Grid */
+.dashboard-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Enhanced Quick Actions Grid */
+.quick-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+}
+
+.quick-action-btn {
+    padding: 1rem;
+    border-radius: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 80px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.quick-action-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.quick-action-btn:hover::before {
+    left: 100%;
+}
+
+.quick-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Enhanced Theme Toggle Positioning */
+.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1001;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(10px);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: var(--shadow-xl);
+}
+
+/* Enhanced Notifications Positioning */
+.notifications-container {
+    position: fixed;
+    top: 4rem;
+    right: 1rem;
+    z-index: 1000;
+    max-width: 320px;
+    width: 100%;
+}
+
+/* Tablet Styles (768px - 1024px) */
+@media (max-width: 1024px) {
+    .admin-main {
+        padding: 1.5rem;
+    }
+    
+    .dashboard-overview {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.25rem;
+    }
+    
+    .quick-actions-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 0.875rem;
+    }
+}
+
+/* Mobile Styles (max-width: 768px) */
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: flex !important;
+    }
+    
+    .admin-sidebar {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        height: 100vh;
+        width: 280px;
+        z-index: 1000;
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: var(--bg-primary);
+        border-right: 1px solid var(--border-primary);
+        box-shadow: var(--shadow-xl);
+    }
+    
+    .admin-sidebar.active {
+        left: 0;
+    }
+    
+    .admin-main {
+        padding: 1rem;
+        margin-left: 0;
+    }
+    
+    .dashboard-overview {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .quick-actions-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+    
+    .quick-action-btn {
+        min-height: 70px;
+        padding: 0.75rem;
+        font-size: 0.875rem;
+    }
+    
+    .quick-action-btn span {
+        font-size: 0.8rem;
+    }
+    
+    .section-header h1 {
+        font-size: 1.5rem;
+        margin-left: 60px; /* Account for hamburger menu */
+    }
+    
+    /* Enhanced pie chart responsiveness */
+    #overviewPieChart {
+        width: 280px !important;
+        height: 280px !important;
+    }
+    
+    .dashboard-card,
+    .quick-actions-container,
+    .recent-activity-section {
+        padding: 1.5rem;
+        border-radius: 0.75rem;
+    }
+    
+    /* Improved notification positioning on mobile */
+    .notifications-container {
+        top: 4rem;
+        right: 0.5rem;
+        left: 0.5rem;
+        max-width: none;
+    }
+    
+    .theme-toggle {
+        top: 1rem;
+        right: 0.5rem;
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* Small Mobile Styles (max-width: 480px) */
+@media (max-width: 480px) {
+    .admin-main {
+        padding: 0.75rem;
+    }
+    
+    .dashboard-overview {
+        margin-bottom: 1rem;
+    }
+    
+    .dashboard-card,
+    .quick-actions-container,
+    .recent-activity-section {
+        padding: 1.25rem;
+        border-radius: 0.5rem;
+    }
+    
+    .quick-actions-grid {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+    
+    .quick-action-btn {
+        min-height: 60px;
+        padding: 0.625rem;
+    }
+    
+    #overviewPieChart {
+        width: 240px !important;
+        height: 240px !important;
+    }
+    
+    .section-header h1 {
+        font-size: 1.25rem;
+        margin-left: 55px;
+    }
+    
+    .admin-sidebar {
+        width: 260px;
+    }
+    
+    .mobile-menu-toggle {
+        width: 45px;
+        height: 45px;
+        top: 0.75rem;
+        left: 0.75rem;
+    }
+    
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+        top: 0.75rem;
+        right: 0.75rem;
+    }
+}
+
+/* Enhanced animations and transitions */
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.admin-sidebar.active {
+    animation: slideInFromLeft 0.3s ease-out;
+}
+
+.sidebar-overlay.active {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Enhanced focus states for accessibility */
+.mobile-menu-toggle:focus,
+.theme-toggle:focus,
+.quick-action-btn:focus {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
+/* Enhanced loading states */
+.dashboard-card.loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard-card.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Print styles */
+@media print {
+    .mobile-menu-toggle,
+    .theme-toggle,
+    .sidebar-overlay,
+    .admin-sidebar {
+        display: none !important;
+    }
+    
+    .admin-main {
+        margin-left: 0 !important;
+        padding: 1rem !important;
+    }
+}

@@ -1,0 +1,279 @@
+/**
+ * CSS Priority Fixes
+ * This file addresses CSS priority conflicts and removes !important abuse
+ * by using proper CSS specificity and cascade order
+ */
+
+/* ===== SPECIFICITY ENHANCEMENT ===== */
+
+/* Public Website Theme Overrides */
+body[data-theme="light"] .hero {
+    background: var(--public-gradient-hero);
+    color: var(--public-text-primary);
+}
+
+body[data-theme="dark"] .hero {
+    background: var(--public-gradient-hero-dark);
+    color: var(--public-text-primary-dark);
+}
+
+body[data-theme="light"] .navbar {
+    background: var(--public-glass-bg);
+    border-bottom: 1px solid var(--public-glass-border);
+    backdrop-filter: blur(10px);
+}
+
+body[data-theme="dark"] .navbar {
+    background: var(--public-glass-bg-dark);
+    border-bottom: 1px solid var(--public-glass-border-dark);
+    backdrop-filter: blur(10px);
+}
+
+/* Admin Panel Theme Overrides */
+body[data-theme="light"] .admin-sidebar {
+    background: var(--gradient-royal);
+    border-right: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px);
+}
+
+body[data-theme="dark"] .admin-sidebar {
+    background: var(--bg-primary);
+    border-right: 1px solid var(--border-primary);
+    backdrop-filter: blur(20px);
+}
+
+/* ===== RESPONSIVE FIXES WITHOUT !IMPORTANT ===== */
+
+/* Mobile Responsive Enhancements */
+@media (width <= 768px) {
+    html body .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    html body .modal-dialog {
+        margin: 1rem;
+        max-width: calc(100vw - 2rem);
+    }
+    
+    html body .btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    html body .form-control {
+        padding: 0.75rem;
+        font-size: 1rem;
+    }
+}
+
+/* Tablet Responsive Enhancements */
+@media (width >= 769px) and (width <= 1024px) {
+    html body .container {
+        max-width: 95%;
+    }
+    
+    html body .admin-sidebar {
+        width: 250px;
+    }
+    
+    html body .main-content {
+        margin-left: 250px;
+    }
+}
+
+/* ===== FORM AND INPUT PRIORITY FIXES ===== */
+
+/* Enhanced form control specificity */
+html body .form-control:focus {
+    border-color: var(--primary-color, #3b82f6);
+    box-shadow: 0 0 0 0.2rem rgb(59 130 246 / 25%);
+    outline: none;
+}
+
+html body .form-control.is-valid {
+    border-color: var(--success-color, #10b981);
+}
+
+html body .form-control.is-invalid {
+    border-color: var(--error-color, #ef4444);
+}
+
+/* ===== BUTTON PRIORITY FIXES ===== */
+
+/* Enhanced button specificity */
+html body .btn-primary {
+    background: var(--gradient-primary);
+    border: none;
+    color: white;
+}
+
+html body .btn-primary:hover {
+    background: var(--gradient-primary);
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+
+html body .btn-secondary {
+    background: var(--gradient-purple);
+    border: none;
+    color: white;
+}
+
+html body .btn-success {
+    background: var(--gradient-success);
+    border: none;
+    color: white;
+}
+
+/* ===== MODAL PRIORITY FIXES ===== */
+
+/* Enhanced modal specificity */
+html body .modal-content {
+    background: var(--glass-bg, rgb(255 255 255 / 95%));
+    border: 1px solid var(--glass-border, rgb(255 255 255 / 18%));
+    border-radius: var(--border-radius-lg, 1rem);
+    backdrop-filter: blur(10px);
+}
+
+html body .modal-header {
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    padding: 1.5rem;
+}
+
+html body .modal-body {
+    padding: 1.5rem;
+}
+
+html body .modal-footer {
+    border-top: 1px solid var(--border-color, #e5e7eb);
+    padding: 1rem 1.5rem;
+}
+
+/* ===== TABLE PRIORITY FIXES ===== */
+
+/* Enhanced table specificity */
+html body .table {
+    background: transparent;
+}
+
+html body .table th {
+    background: var(--bg-secondary, #f8fafc);
+    border-bottom: 2px solid var(--border-color, #e5e7eb);
+    font-weight: 600;
+}
+
+html body .table td {
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    vertical-align: middle;
+}
+
+html body .table-hover tbody tr:hover {
+    background: var(--bg-accent-light, rgb(59 130 246 / 5%));
+}
+
+/* ===== CARD PRIORITY FIXES ===== */
+
+/* Enhanced card specificity */
+html body .card {
+    background: var(--glass-bg, rgb(255 255 255 / 95%));
+    border: 1px solid var(--glass-border, rgb(255 255 255 / 18%));
+    border-radius: var(--border-radius-lg, 1rem);
+    box-shadow: var(--glass-shadow, 0 8px 32px rgb(31 38 135 / 37%));
+    backdrop-filter: blur(10px);
+}
+
+html body .card-header {
+    background: transparent;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    padding: 1.25rem;
+}
+
+html body .card-body {
+    padding: 1.25rem;
+}
+
+/* ===== NAVIGATION PRIORITY FIXES ===== */
+
+/* Enhanced navigation specificity */
+html body .navbar-nav .nav-link {
+    color: var(--text-primary, #1f2937);
+    font-weight: 500;
+    transition: var(--transition-normal, 0.3s ease);
+}
+
+html body .navbar-nav .nav-link:hover {
+    color: var(--primary-color, #3b82f6);
+}
+
+html body .navbar-nav .nav-link.active {
+    color: var(--primary-color, #3b82f6);
+    font-weight: 600;
+}
+
+/* ===== ACCESSIBILITY PRIORITY FIXES ===== */
+
+/* Enhanced focus states */
+html body *:focus {
+    outline: 2px solid var(--primary-color, #3b82f6);
+    outline-offset: 2px;
+}
+
+html body .btn:focus {
+    box-shadow: 0 0 0 0.2rem rgb(59 130 246 / 25%);
+}
+
+html body .form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgb(59 130 246 / 25%);
+}
+
+/* ===== PRINT STYLES ===== */
+
+@media print {
+    html body * {
+        background: white;
+        color: black;
+        box-shadow: none;
+        text-shadow: none;
+    }
+    
+    html body .sidebar,
+    html body .navbar,
+    html body .modal {
+        display: none;
+    }
+}
+
+/* ===== REDUCED MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+    html body * {
+        animation-duration: 0.01ms;
+        animation-iteration-count: 1;
+        transition-duration: 0.01ms;
+    }
+}
+
+/* ===== HIGH CONTRAST MODE ===== */
+
+@media (prefers-contrast: high) {
+    html body {
+        --border-color: #000;
+        --text-primary: #000;
+        --bg-primary: #fff;
+    }
+    
+    html body .btn {
+        border: 2px solid currentcolor;
+    }
+}
+
+/* ===== DARK MODE PREFERENCE ===== */
+
+@media (prefers-color-scheme: dark) {
+    html body:not([data-theme]) {
+        --bg-primary: #1f2937;
+        --text-primary: #fff;
+        --border-color: #374151;
+    }
+}
